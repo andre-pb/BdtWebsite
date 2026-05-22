@@ -37,7 +37,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ""
           NEXT_PUBLIC_SITE_URL: https://busydadtraining.com
           NEXT_PUBLIC_LISTMONK_URL: https://mail.busydadtraining.com
-          NEXT_PUBLIC_LISTMONK_LIST_UUID: f309ec3a-0c87-4727-94b7-00bedd885d7d
+          NEXT_PUBLIC_LISTMONK_LIST_UUID: cfad440c-6ba9-47a0-8de2-765397a41f0d
 
       - name: Ensure Jekyll is disabled
         run: touch out/.nojekyll
