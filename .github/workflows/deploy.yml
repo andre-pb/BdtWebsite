@@ -35,6 +35,9 @@ jobs:
         env:
           GITHUB_ACTIONS: true
 
+      - name: Ensure Jekyll is disabled
+        run: touch out/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

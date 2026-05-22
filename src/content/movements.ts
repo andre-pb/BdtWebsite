@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/base-path";
+
 export const movementsPage = {
   seo: {
     title: "The Two Sacred Movements",
@@ -7,7 +9,7 @@ export const movementsPage = {
   hero: {
     eyebrow: "The Program",
     title: "The Two Sacred Movements",
-    backgroundImage: "/photos/burpee-photo-1.jpg",
+    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   intro: {
     paragraphs: [

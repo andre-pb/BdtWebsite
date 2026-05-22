@@ -109,8 +109,12 @@ export const baseMetadata: Metadata = {
     images: [seo.ogImage],
   },
   icons: {
-    icon: site.logo.src,
-    apple: site.logo.src,
+    icon: [
+      { url: site.favicon.ico },
+      { url: site.favicon.png32, sizes: "32x32", type: "image/png" },
+      { url: site.favicon.png16, sizes: "16x16", type: "image/png" },
+    ],
+    apple: [{ url: site.favicon.apple, sizes: "180x180", type: "image/png" }],
   },
   category: "fitness",
 };

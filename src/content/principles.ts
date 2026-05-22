@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/base-path";
+
 export const principlesPage = {
   seo: {
     title: "Principles of the Busy Dad Program",
@@ -9,13 +11,13 @@ export const principlesPage = {
     title: "Principles of the busy dad program",
     intro:
       "The Busy Dad Program revolves around three principles: simplicity, efficiency, and intentionality. Let's break them down.",
-    backgroundImage: "/photos/burpee-photo-1.jpg",
+    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   creator: {
     eyebrow: "Creator",
     name: "Max Edwards",
     subtitle: "Philosopher, warrior, tyrant",
-    image: "/photos/burpee-photo-2.jpg",
+    image: assetPath("/photos/burpee-photo-2.jpg"),
     imageAlt: "Max Edwards, creator of the Busy Dad Program",
     quote: "Your aim is simple: cultivate excellence in the two Sacred Movements",
   },

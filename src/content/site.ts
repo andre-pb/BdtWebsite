@@ -1,15 +1,4 @@
-function getSiteUrl(): string {
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  }
-
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}${basePath}`;
-  }
-
-  return `https://yourusername.github.io/BusyDadTraining2`;
-}
+import { assetPath, getSiteUrl } from "@/lib/base-path";
 
 export const site = {
   name: "Busy Dad Training",
@@ -17,9 +6,17 @@ export const site = {
   url: getSiteUrl(),
   copyright: "© 2023 Busy Dad Training. Do the work.",
   logo: {
-    src: "/busy_dad_white_logo_small.png",
+    src: assetPath("/busy_dad_white_logo_small.png"),
     width: 172,
     height: 87,
+  },
+  favicon: {
+    ico: assetPath("/favicon.ico"),
+    png16: assetPath("/favicon-16x16.png"),
+    png32: assetPath("/favicon-32x32.png"),
+    apple: assetPath("/apple-touch-icon.png"),
+    png192: assetPath("/icon-192.png"),
+    png512: assetPath("/icon-512.png"),
   },
 } as const;
 
@@ -36,7 +33,7 @@ export const seo = {
     "fitness app",
     "no gym workout",
   ],
-  ogImage: "/photos/burpee-photo-1.jpg",
+  ogImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
 
 export const navLinks = [
@@ -57,7 +54,7 @@ export const hero = {
   headlineAccent: "busy dads.",
   description:
     "Build strength, fitness and consistency with a progressive bodyweight programme designed around real life. No gym, no commute, no excuses.",
-  backgroundImage: "/photos/burpee-photo-1.jpg",
+  backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
 
 export const philosophy = {
@@ -65,19 +62,19 @@ export const philosophy = {
   title: "Zero friction fitness.",
   description:
     "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee and the Squat. High volume, simple execution.",
-  image: "/photos/burpee-photo-2.jpg",
+  image: assetPath("/photos/burpee-photo-2.jpg"),
   imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
 } as const;
 
 export const appScreenshots = {
   timer: {
-    src: "/photos/Timer_Screenshot.jpeg",
+    src: assetPath("/photos/Timer_Screenshot.jpeg"),
     width: 1206,
     height: 2483,
     alt: "Busy Dad Training app timer screen",
   },
   levels: {
-    src: "/photos/levels_Screenshot.jpeg",
+    src: assetPath("/photos/levels_Screenshot.jpeg"),
     width: 1206,
     height: 2498,
     alt: "Busy Dad Training app levels screen",

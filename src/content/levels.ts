@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/base-path";
+
 export const levelsPage = {
   seo: {
     title: "The Four Levels of the Busy Dad Program",
@@ -7,7 +9,7 @@ export const levelsPage = {
   hero: {
     eyebrow: "Progress",
     title: "The Four Levels of the Busy Dad Program",
-    backgroundImage: "/photos/burpee-photo-1.jpg",
+    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   intro: {
     paragraphs: [

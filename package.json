@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "favicon": "node scripts/generate-favicon.mjs"
   },
   "engines": {
     "node": ">=20"
@@ -25,6 +26,7 @@
     "@types/react-dom": "^19.1.5",
     "eslint": "^9.27.0",
     "eslint-config-next": "^15.3.3",
+    "sharp": "^0.34.5",
     "typescript": "^5.8.3"
   }
 }
