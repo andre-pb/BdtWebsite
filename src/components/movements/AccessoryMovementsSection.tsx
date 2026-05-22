@@ -1,3 +1,10 @@
+// Temporarily disabled — uncomment alongside movementsPage.accessory and the page import.
+
+export function AccessoryMovementsSection() {
+  return null;
+}
+
+/*
 import { movementsPage } from "@/content/movements";
 import { colors } from "@/constants/colors";
 import { MovementBadge } from "@/components/movements/MovementBadge";
@@ -152,3 +159,4 @@ export function AccessoryMovementsSection() {
     </section>
   );
 }
+*/

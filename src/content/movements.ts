@@ -61,45 +61,45 @@ export const movementsPage = {
       },
     },
   ],
-  accessory: {
-    title: "Accessory Movements",
-    intro: [
-      "The Busy Dad Program is a minimalist program. Simplicity is one of the three principles of our training philosophy. But we do allow ourselves to choose from a very limited menu of accessory movements. These movements are to be used sparingly, as a device for breaking plateaus. Sometimes we need to iron out a weakness within one of the two Sacred Movements, and these accessory movements help us make targeted interventions. The key point to remember is that these movements are designed to serve our training for the Sacred Movements, not to compete with that training.",
-      "The following accessory movements are kosher within BDP:",
-    ],
-    primaryList: ["Squats", "Mountain Climbers", "Push Ups"],
-    burpeeIntro:
-      "You'll notice that there are two burpee variations on the menu. I assume familiarity with squats, mountain climbers, and push ups, but let me briefly explain the burpee movements.",
-    secondaryMovements: [
-      {
-        id: "four-count",
-        tier: "secondary" as const,
-        title: "The 4-Count Military Burpee",
-        shortName: "4-Count",
-        paragraphs: [
-          "The 4-count burpee is the original burpee developed by pioneering sports scientist Dr Royal Burpee in the 1930s. Quite simply, it is a 6-count minus counts 3 and 4. The 6-count tutorial video also demos the 4-count, so take a look in case the previous sentence didn't make sense to you:",
-        ],
-        video: {
-          label: "4-Count Tutorial (included in 6-Count video)",
-          youtubeId: "eroWyZxZNlA",
-          url: "https://www.youtube.com/watch?v=eroWyZxZNlA",
-        },
-      },
-      {
-        id: "five-pump-navy-seal",
-        tier: "secondary" as const,
-        title: "5-Pump Navy Seal",
-        shortName: "5-Pump Navy Seal",
-        paragraphs: [
-          "The 5-pump Navy Seal, meanwhile, is a beefed-up version of the Navy Seal. It is considerably harder than the standard Navy Seal, and I find it a fairly effective device for building strength in the standard version of the movement. Please take a look at the tutorial video here.",
-          "If the 5-pump is harder than the Navy Seal, why, you might ask, isn't it a Sacred Movement? The answer is that harder doesn't always mean more effective. The movement is so taxing on the upper body that I need to take longer rest periods between reps to continue performing the movement with proper form. These extended rest periods seriously restrict the amount of high-quality training volume I can pack into a 20-minute session. Navy Seals are easier than their 5-pump older brothers, which means that our bodies can afford much shorter rest periods between reps. As a result, we can accumulate more high-quality training volume across a 20-minute session using the Navy Seal than we can with the 5-pump Navy Seal.",
-        ],
-        video: {
-          label: "YouTube 5-Pump Navy Seal Tutorial Video",
-          youtubeId: "zeCGO_AwsAM",
-          url: "https://www.youtube.com/watch?v=zeCGO_AwsAM",
-        },
-      },
-    ],
-  },
+  // accessory: {
+  //   title: "Accessory Movements",
+  //   intro: [
+  //     "The Busy Dad Program is a minimalist program. Simplicity is one of the three principles of our training philosophy. But we do allow ourselves to choose from a very limited menu of accessory movements. These movements are to be used sparingly, as a device for breaking plateaus. Sometimes we need to iron out a weakness within one of the two Sacred Movements, and these accessory movements help us make targeted interventions. The key point to remember is that these movements are designed to serve our training for the Sacred Movements, not to compete with that training.",
+  //     "The following accessory movements are kosher within BDP:",
+  //   ],
+  //   primaryList: ["Squats", "Mountain Climbers", "Push Ups"],
+  //   burpeeIntro:
+  //     "You'll notice that there are two burpee variations on the menu. I assume familiarity with squats, mountain climbers, and push ups, but let me briefly explain the burpee movements.",
+  //   secondaryMovements: [
+  //     {
+  //       id: "four-count",
+  //       tier: "secondary" as const,
+  //       title: "The 4-Count Military Burpee",
+  //       shortName: "4-Count",
+  //       paragraphs: [
+  //         "The 4-count burpee is the original burpee developed by pioneering sports scientist Dr Royal Burpee in the 1930s. Quite simply, it is a 6-count minus counts 3 and 4. The 6-count tutorial video also demos the 4-count, so take a look in case the previous sentence didn't make sense to you:",
+  //       ],
+  //       video: {
+  //         label: "4-Count Tutorial (included in 6-Count video)",
+  //         youtubeId: "eroWyZxZNlA",
+  //         url: "https://www.youtube.com/watch?v=eroWyZxZNlA",
+  //       },
+  //     },
+  //     {
+  //       id: "five-pump-navy-seal",
+  //       tier: "secondary" as const,
+  //       title: "5-Pump Navy Seal",
+  //       shortName: "5-Pump Navy Seal",
+  //       paragraphs: [
+  //         "The 5-pump Navy Seal, meanwhile, is a beefed-up version of the Navy Seal. It is considerably harder than the standard Navy Seal, and I find it a fairly effective device for building strength in the standard version of the movement. Please take a look at the tutorial video here.",
+  //         "If the 5-pump is harder than the Navy Seal, why, you might ask, isn't it a Sacred Movement? The answer is that harder doesn't always mean more effective. The movement is so taxing on the upper body that I need to take longer rest periods between reps to continue performing the movement with proper form. These extended rest periods seriously restrict the amount of high-quality training volume I can pack into a 20-minute session. Navy Seals are easier than their 5-pump older brothers, which means that our bodies can afford much shorter rest periods between reps. As a result, we can accumulate more high-quality training volume across a 20-minute session using the Navy Seal than we can with the 5-pump Navy Seal.",
+  //       ],
+  //       video: {
+  //         label: "YouTube 5-Pump Navy Seal Tutorial Video",
+  //         youtubeId: "zeCGO_AwsAM",
+  //         url: "https://www.youtube.com/watch?v=zeCGO_AwsAM",
+  //       },
+  //     },
+  //   ],
+  // },
 } as const;

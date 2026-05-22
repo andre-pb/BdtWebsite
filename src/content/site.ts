@@ -1,5 +1,9 @@
 import { assetPath, getSiteUrl } from "@/lib/base-path";
 
+export const analytics = {
+  googleAnalyticsId: "G-LLVGVMFPHH",
+} as const;
+
 export const site = {
   name: "Busy Dad Training",
   shortName: "BusyDad",

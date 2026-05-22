@@ -5,7 +5,7 @@ import { MovementsHero } from "@/components/movements/MovementsHero";
 import { MovementsIntro } from "@/components/movements/MovementsIntro";
 import { SacredMovementSection } from "@/components/movements/SacredMovementSection";
 import { TrainingSplitCallout } from "@/components/movements/TrainingSplitCallout";
-import { AccessoryMovementsSection } from "@/components/movements/AccessoryMovementsSection";
+// import { AccessoryMovementsSection } from "@/components/movements/AccessoryMovementsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { movementsPage } from "@/content/movements";
 import { createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
@@ -46,7 +46,7 @@ export default function MovementsPage() {
           <SacredMovementSection key={movement.id} movement={movement} reversed={index % 2 === 1} />
         ))}
         <TrainingSplitCallout />
-        <AccessoryMovementsSection />
+        {/* <AccessoryMovementsSection /> */}
         <DownloadSection />
       </main>
       <Footer />

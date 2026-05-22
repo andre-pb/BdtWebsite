@@ -1,5 +1,7 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter } from "next/font/google";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { analytics } from "@/content/site";
 import { baseMetadata, getSiteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
@@ -21,6 +23,7 @@ export default function RootLayout({
       <body className={inter.variable}>
         <JsonLd data={getSiteJsonLd()} />
         {children}
+        <GoogleAnalytics gaId={analytics.googleAnalyticsId} />
       </body>
     </html>
   );
