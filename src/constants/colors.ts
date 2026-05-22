@@ -1,0 +1,42 @@
+export const colors = {
+  bgPure: "#FFFFFF",
+  bgOff: "#F8FAFC",
+  bgBlueLight: "#EFF6FF",
+  textMain: "#0F172A",
+  textMuted: "#475569",
+  textLight: "#94A3B8",
+  brandBlue: "#0055FF",
+  brandBlueHover: "#0040D1",
+  borderLight: "#E2E8F0",
+  borderBlue: "#DBEAFE",
+  heroDark: "#0F172A",
+  accentLight: "#60A5FA",
+} as const;
+
+export const appFrameStyles = {
+  frame: {
+    width: "320px",
+    height: "690px",
+    background: colors.bgPure,
+    borderRadius: "40px",
+    border: "8px solid #111",
+    boxShadow: "0 24px 60px -12px rgba(0, 10, 40, 0.12)",
+    overflow: "hidden" as const,
+    position: "relative" as const,
+    display: "flex",
+    flexDirection: "column" as const,
+    margin: "0 auto",
+  },
+  notch: {
+    position: "absolute" as const,
+    top: 0,
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "120px",
+    height: "24px",
+    background: "#111",
+    borderBottomLeftRadius: "12px",
+    borderBottomRightRadius: "12px",
+    zIndex: 10,
+  },
+};
