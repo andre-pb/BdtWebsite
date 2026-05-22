@@ -14,12 +14,12 @@ export const principlesPage = {
     backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   creator: {
-    eyebrow: "Creator",
+    eyebrow: "The Coach",
     name: "Max Edwards",
-    subtitle: "Philosopher, warrior, tyrant",
+    subtitle: "Founder of Busy Dad Training",
     image: assetPath("/photos/burpee-photo-2.jpg"),
     imageAlt: "Max Edwards, creator of the Busy Dad Program",
-    quote: "Your aim is simple: cultivate excellence in the two Sacred Movements",
+    quote: "Your aim is simple: cultivate excellence in the two Sacred Movements.",
   },
   pillars: [
     {
@@ -29,7 +29,7 @@ export const principlesPage = {
         "The Busy Dad Program is a minimalist program. Some programs have you perform an endless library of isolation exercises, each targeted at a different muscle. Not here. We look for the best compound movements. Unlike isolation exercises, compound movements require the body to work as an integrated system, and they activate every major muscle group.",
         "BDP has discovered two dazzlingly effective compound movements, dubbed the Sacred Movements of the program. As a practitioner of BDP, you will train these movements and very little else. Your aim is simple: cultivate excellence in the two Sacred Movements.",
       ],
-      quote: null,
+      quote: "Your aim is simple: cultivate excellence in the two Sacred Movements.",
     },
     {
       id: "efficiency",

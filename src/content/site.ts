@@ -25,9 +25,9 @@ export const site = {
 } as const;
 
 export const seo = {
-  title: "Busy Dad Training | Simple Bodyweight Training for Busy Dads",
+  title: "Busy Dad Training | Simplicity. Efficiency. Intentionality.",
   description:
-    "Build strength, fitness and consistency with a progressive bodyweight programme designed around real life. 20-minute workouts. No gym, no commute, no excuses.",
+    "A minimalist training program built around two compound movements and 80 minutes a week. Four 20-minute sessions, no gym, no equipment. Simplicity, efficiency, intentionality.",
   keywords: [
     "busy dad workout",
     "bodyweight training",
@@ -53,21 +53,21 @@ export const appStores = {
 } as const;
 
 export const hero = {
-  eyebrow: "The Method",
-  headline: "Simple training for",
-  headlineAccent: "busy dads.",
+  eyebrow: "The Program",
+  headline: "Simplicity. Efficiency.",
+  headlineAccent: "Intentionality.",
   description:
-    "Build strength, fitness and consistency with a progressive bodyweight programme designed around real life. No gym, no commute, no excuses.",
+    "A minimalist training program built around two compound movements and a strict 80-minute weekly budget. No gym, no equipment, no excuses.",
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
 
 export const philosophy = {
-  eyebrow: "Core Philosophy",
-  title: "Zero friction fitness.",
+  eyebrow: "An Introduction",
+  title: "The Busy Dad Program.",
   description:
-    "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee and the Squat. High volume, simple execution.",
+    "The unbelievably simple, effective, and time-efficient training protocol I've been following ever since my daughter was born. It's gotten me into the best shape of my life, and it can do the same for you. No matter your fitness level, if you can find just 80 minutes per week and pledge to fill those minutes with intentional physical training, BDP can work its magic on you the same way it has on me.",
   image: assetPath("/photos/burpee-photo-2.jpg"),
-  imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
+  imageAlt: "Max Edwards, creator of the Busy Dad Program",
 } as const;
 
 export const appScreenshots = {
@@ -86,22 +86,22 @@ export const appScreenshots = {
 } as const;
 
 export const program = {
-  eyebrow: "The Program",
-  title: "Structured for consistency.",
+  eyebrow: "Four Sessions A Week",
+  title: "20 minutes. Two movements.",
   description:
-    "Set a timer, do the work, get back to your family. The app tracks your volume in strict 20-minute windows. Start where you are. The system automatically steps you up from Level 1 to Level 4 as your conditioning improves.",
+    "Set the timer, do the work, get back to your family. The app tracks your volume in strict 20-minute windows. Four sessions a week — 80 minutes total — and not a single wasted minute.",
   movements: [
     { label: "Movement A", value: "6-Count Burpee" },
-    { label: "Movement B", value: "Bodyweight Squat" },
+    { label: "Movement B", value: "Navy Seal Burpee" },
   ],
   protocol: "20 Min AMRAP",
 } as const;
 
 export const levels = {
-  eyebrow: "Clear Path Forward",
+  eyebrow: "Four Levels & Graduation",
   title: "Know exactly where you stand.",
   description:
-    "No guesswork. You pass a benchmark, you move to the next level. The app tells you what to do every single day based on your current tier. Start at Level 1 and progress all the way to mastery.",
+    "Every level is unlocked by two Landmark Workouts: one 20-minute 6-count workout, and one 20-minute Navy Seal workout. From Level 1A all the way to Graduation — your training is never aimless.",
   cards: [
     { num: "1", title: "Foundation", status: "Completed", variant: "active" as const },
     { num: "2", title: "Conditioning", status: "In Progress", variant: "inProgress" as const },
@@ -137,25 +137,58 @@ export const appShowcaseSteps = [
 ] as const;
 
 export const video = {
-  eyebrow: "Video Content",
-  title: "Watch the Method in Action.",
+  eyebrow: "Watch & Train",
+  title: "Landmark Workouts in Action.",
   description:
-    "Daily workout demonstrations, form breakdowns, and real training sessions. No fluff, just effective training content you can follow along with.",
-  channelName: "BusyDad Training",
+    "Follow-along Landmark Workouts, form breakdowns of the Sacred Movements, and real 20-minute sessions. No fluff, no gimmicks — just the work.",
+  channelName: "Busy Dad Training",
   channelHandle: "@BusyDadTraining",
-  featuredTitle: "20-Minute Full Body Workout",
+  featuredTitle: "20-Minute Follow-Along Workout",
   featuredDescription:
-    "Follow-along session • Burpee & Squat protocol • No equipment needed",
+    "Follow-along session • 6-Count & Navy Seal protocol • No equipment needed",
   featuredVideoId: "ftJ7kR04HvU",
   featuredVideoUrl: "https://www.youtube.com/watch?v=ftJ7kR04HvU",
   youtubeUrl: "https://www.youtube.com/@BusyDadTraining",
 } as const;
 
+export const testimonials = {
+  eyebrow: "From the Busy Dad Army",
+  title: "In Their Own Words.",
+  description:
+    "Real practitioners on what 80 minutes a week has done for them.",
+  quotes: [
+    {
+      quote:
+        "I started exercising more seriously during the first lockdown in 2020 and tried various app-based programs from YouTube — none of them stuck. Ten weeks into the Busy Dad Programme, I've doubled my 6-counts and nearly tripled my Navy Seals. The philosophy fits my life as a busy dad and I'm seeing real physical and emotional improvements.",
+      name: "Mike",
+      role: "Busy Dad · Wales",
+    },
+    {
+      quote:
+        "In January 2021 I quit a 20+ year smoking habit cold turkey and decided I needed to start training. I floundered for months writing my own routines. Then I found the Busy Dad Program — structure and simplicity, presented in a way that's easy to digest. I dove straight in and started seeing palpable results almost immediately.",
+      name: "Paul",
+      role: "Busy Dad · Oregon",
+    },
+    {
+      quote:
+        "Eighty minutes is all I needed to find. The Busy Dad Program is the most honest, no-nonsense protocol I've come across. Two movements. That's it. And that's everything.",
+      name: "Daniel",
+      role: "Busy Dad · São Paulo",
+    },
+    {
+      quote:
+        "The Busy Dad Program cuts through every gimmick. It's a serious training philosophy delivered with humour, conviction, and a deep respect for whoever's doing the work.",
+      name: "Burpees Bandit",
+      role: "Fitness YouTuber",
+    },
+  ],
+} as const;
+
 export const download = {
   eyebrow: "Start Today",
-  title: "Ready to put in the work?",
+  title: "Eighty minutes. Two movements.",
   description:
-    "Join thousands of busy dads who stopped overcomplicating fitness and started getting results with 20 minutes a day.",
+    "That's all the program asks of you. Open the app and pick up where the reading leaves off.",
 } as const;
 
 export const newsletter = {

@@ -107,7 +107,10 @@ export const levelsPage = {
         title: "Level 2B",
         description:
           "There is a vast desert between level 2A and Level 3A; 2B is a pitstop on your journey. Take stock here, savor your achievements, and prepare for your campaign to unlock Level 3. You are closer than you think.",
-        landmarks: [],
+        landmarks: [
+          { movement: "6-Count", target: "225 in 20 minutes" },
+          { movement: "Navy Seal", target: "90 in 20 minutes" },
+        ],
       },
     ],
   },
@@ -131,7 +134,10 @@ export const levelsPage = {
         title: "Level 3B",
         description:
           "Only a practitioner can know how demanding the workouts are that unlock Level 3B. The kind of volume you are now packing into 20 minutes sets you apart from the many. You might feel a bit of vertigo at these dizzying heights of the program, but make no mistake: if you've made it this far, you can take it all the way.",
-        landmarks: [],
+        landmarks: [
+          { movement: "6-Count", target: "260 in 20 minutes" },
+          { movement: "Navy Seal", target: "110 in 20 minutes" },
+        ],
       },
     ],
   },
@@ -155,7 +161,10 @@ export const levelsPage = {
         title: "Level 4B",
         description:
           "The final level of the Busy Dad Program, this is your last pitstop before you begin your campaign to graduate. It takes greatness to reach this level of BDP, but now is not the time to rest on your laurels. Thousands have tried, only a tiny handful have made it all the way. Could you be the next?",
-        landmarks: [],
+        landmarks: [
+          { movement: "6-Count", target: "300 in 20 minutes" },
+          { movement: "Navy Seal", target: "135 in 20 minutes" },
+        ],
       },
     ],
   },
