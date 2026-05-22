@@ -36,6 +36,8 @@ jobs:
           GITHUB_ACTIONS: true
           NEXT_PUBLIC_BASE_PATH: ""
           NEXT_PUBLIC_SITE_URL: https://busydadtraining.com
+          NEXT_PUBLIC_LISTMONK_URL: ${{ secrets.NEXT_PUBLIC_LISTMONK_URL }}
+          NEXT_PUBLIC_LISTMONK_LIST_UUID: ${{ secrets.NEXT_PUBLIC_LISTMONK_LIST_UUID }}
 
       - name: Ensure Jekyll is disabled
         run: touch out/.nojekyll

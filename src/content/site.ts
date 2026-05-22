@@ -158,6 +158,17 @@ export const download = {
     "Join thousands of busy dads who stopped overcomplicating fitness and started getting results with 20 minutes a day.",
 } as const;
 
+export const newsletter = {
+  label: "Get training tips in your inbox",
+  placeholder: "you@email.com",
+  button: "Subscribe",
+  buttonSubmitting: "Subscribing…",
+  disclaimer: "No spam. Unsubscribe anytime.",
+  success: "You're in. Check your inbox soon.",
+  successConfirm: "Almost there — check your inbox to confirm your subscription.",
+  error: "Something went wrong. Please try again.",
+} as const;
+
 export const cta = {
   getApp: "Get the App",
   subscribeYoutube: "Subscribe on YouTube",

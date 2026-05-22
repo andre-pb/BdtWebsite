@@ -12,6 +12,7 @@ type Screenshot = {
 type ScreenshotLayer = {
   screenshot: Screenshot;
   layerRef?: Ref<HTMLDivElement>;
+  layerIndex?: number;
   opacity?: number;
 };
 
@@ -44,18 +45,20 @@ export function AppFrame({
       <div style={appFrameStyles.notch} />
       {screenshotLayers ? (
         <div style={{ position: "relative", flex: 1, width: "100%", height: "100%" }}>
-          {screenshotLayers.map(({ screenshot: layerScreenshot, layerRef, opacity = 1 }, index) => (
+          {screenshotLayers.map(({ screenshot: layerScreenshot, layerRef, layerIndex, opacity }, index) => (
             <div
               key={layerScreenshot.src}
               ref={layerRef}
+              className={`showcase-screenshot-layer${index === 0 ? " showcase-screenshot-layer--first" : ""}`}
+              data-layer-index={layerIndex ?? index}
               style={{
                 position: index === 0 ? "relative" : "absolute",
                 inset: index === 0 ? undefined : 0,
                 top: index === 0 ? undefined : 0,
                 left: index === 0 ? undefined : 0,
                 width: "100%",
-                height: index === 0 ? "100%" : "100%",
-                opacity,
+                height: "100%",
+                ...(opacity !== undefined ? { opacity } : {}),
               }}
             >
               <Image

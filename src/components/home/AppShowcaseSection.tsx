@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -121,7 +121,8 @@ export function AppShowcaseSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const screenshotLayerRefs = useRef<(HTMLDivElement | null)[]>([]);
   const textPanelRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [activeStepIndex, setActiveStepIndex] = useState(0);
+  const liveRegionRef = useRef<HTMLDivElement>(null);
+  const activeStepIndexRef = useRef(0);
 
   useGSAP(
     () => {
@@ -137,6 +138,7 @@ export function AppShowcaseSection() {
         textPanelRefs.current.forEach((panel, index) => {
           if (panel) {
             gsap.set(panel, { opacity: index === 0 ? 1 : 0, y: index === 0 ? 0 : 12 });
+            panel.setAttribute("aria-hidden", index === 0 ? "false" : "true");
           }
         });
 
@@ -155,7 +157,17 @@ export function AppShowcaseSection() {
             invalidateOnRefresh: true,
             onUpdate: (self) => {
               const stepIndex = Math.round(self.progress * (appShowcaseSteps.length - 1));
-              setActiveStepIndex(stepIndex);
+              if (stepIndex === activeStepIndexRef.current) return;
+
+              activeStepIndexRef.current = stepIndex;
+
+              if (liveRegionRef.current) {
+                liveRegionRef.current.textContent = appShowcaseSteps[stepIndex].title;
+              }
+
+              textPanelRefs.current.forEach((panel, index) => {
+                panel?.setAttribute("aria-hidden", index === stepIndex ? "false" : "true");
+              });
             },
           },
         });
@@ -214,14 +226,14 @@ export function AppShowcaseSection() {
                 layerRef: (element: HTMLDivElement | null) => {
                   screenshotLayerRefs.current[index] = element;
                 },
-                opacity: index === 0 ? 1 : 0,
+                layerIndex: index,
               }))}
             />
           </div>
 
           <div style={{ position: "relative" }}>
-            <div className="sr-only" aria-live="polite">
-              {appShowcaseSteps[activeStepIndex].title}
+            <div ref={liveRegionRef} className="sr-only" aria-live="polite">
+              {appShowcaseSteps[0].title}
             </div>
 
             {appShowcaseSteps.map((step, index) => (
@@ -230,15 +242,8 @@ export function AppShowcaseSection() {
                 ref={(element) => {
                   textPanelRefs.current[index] = element;
                 }}
-                style={{
-                  position: index === 0 ? "relative" : "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  opacity: index === 0 ? 1 : 0,
-                  transform: index === 0 ? "translateY(0)" : "translateY(12px)",
-                }}
-                aria-hidden={activeStepIndex !== index}
+                className={`showcase-text-panel${index === 0 ? " showcase-text-panel--first" : ""}`}
+                aria-hidden={index !== 0}
               >
                 <ShowcaseCopy
                   step={step}

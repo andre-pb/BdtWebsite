@@ -1,6 +1,7 @@
 import { download } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
+import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { PageContainer } from "@/components/ui/PageContainer";
 
 export function DownloadSection() {
@@ -37,16 +38,19 @@ export function DownloadSection() {
         >
           {download.title}
         </h2>
-        <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "1.125rem", marginBottom: "1.5rem" }}>
+        <p style={{ color: "rgba(255,255,255,0.8)", fontSize: "1.125rem", marginBottom: "2rem" }}>
           {download.description}
         </p>
+
+        <NewsletterSignup />
+
         <div
           style={{
             display: "flex",
             gap: "16px",
             justifyContent: "center",
             flexWrap: "wrap",
-            marginTop: "32px",
+            marginTop: "40px",
           }}
         >
           <AppStoreBadge />
