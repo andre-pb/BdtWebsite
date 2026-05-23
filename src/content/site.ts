@@ -27,7 +27,7 @@ export const site = {
 export const seo = {
   title: "Busy Dad Training | Simplicity. Efficiency. Intentionality.",
   description:
-    "A minimalist training program built around two compound movements and 80 minutes a week. Simplicity, efficiency, intentionality.",
+    "Busy Dad Training: a minimalist program built around two compound movements and 80 minutes a week. Simplicity, efficiency, intentionality.",
   keywords: [
     "busy dad workout",
     "bodyweight training",
@@ -54,10 +54,10 @@ export const appStores = {
 
 export const hero = {
   eyebrow: "The Program",
-  headline: "Simplicity. Efficiency.",
-  headlineAccent: "Intentionality.",
+  headline: "Busy Dad",
+  headlineAccent: "Training",
   description:
-    "A minimalist training program built around two compound movements and a strict 80-minute weekly budget. No gym, no equipment, no excuses.",
+    "Simplicity. Efficiency. Intentionality. A minimalist program built around two compound movements and a strict 80-minute weekly budget.",
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
 

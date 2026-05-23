@@ -2,13 +2,13 @@ import { assetPath } from "@/lib/base-path";
 
 export const movementsPage = {
   seo: {
-    title: "The Two Sacred Movements",
+    title: "The Two Sacred Burpee Movements",
     description:
-      "Meet the 6-count military burpee and the Navy Seal — the two Sacred Movements at the heart of the Busy Dad Program.",
+      "The two Sacred burpee movements of Busy Dad Training: the 6-count military burpee and the Navy Seal.",
   },
   hero: {
     eyebrow: "The Sacred Movements",
-    title: "The Two Sacred Movements",
+    title: "The Two Sacred Burpee Movements",
     backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   intro: {

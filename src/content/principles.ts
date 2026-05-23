@@ -2,13 +2,13 @@ import { assetPath } from "@/lib/base-path";
 
 export const principlesPage = {
   seo: {
-    title: "Principles of the Busy Dad Program",
+    title: "Busy Dad Training Principles",
     description:
-      "Three principles — simplicity, efficiency, intentionality — and the philosophy behind two Sacred Movements and an 80-minute weekly budget.",
+      "The three principles of Busy Dad Training — simplicity, efficiency, intentionality — and the philosophy behind two Sacred Movements.",
   },
   hero: {
     eyebrow: "The Philosophy",
-    title: "Principles of the busy dad program",
+    title: "Busy Dad Training Principles",
     intro:
       "The Busy Dad Program revolves around three principles: simplicity, efficiency, and intentionality. Let's break them down.",
     backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
