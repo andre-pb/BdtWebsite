@@ -138,6 +138,40 @@ button:focus-visible {
   opacity: 1;
 }
 
+.mobile-nav-close {
+  position: absolute;
+  top: 28px;
+  right: 24px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.25s cubic-bezier(0.215, 0.61, 0.355, 1),
+    transform 0.25s cubic-bezier(0.215, 0.61, 0.355, 1),
+    background 0.2s ease, border-color 0.2s ease;
+}
+
+.mobile-nav.is-open .mobile-nav-close {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.mobile-nav-close:hover,
+.mobile-nav-close:focus-visible {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
@@ -215,12 +249,14 @@ button:focus-visible {
   .mobile-nav-backdrop,
   .mobile-nav-panel,
   .mobile-nav-link,
-  .mobile-nav-cta-wrap {
+  .mobile-nav-cta-wrap,
+  .mobile-nav-close {
     transition: none !important;
   }
 
   .mobile-nav.is-open .mobile-nav-link,
-  .mobile-nav.is-open .mobile-nav-cta-wrap {
+  .mobile-nav.is-open .mobile-nav-cta-wrap,
+  .mobile-nav.is-open .mobile-nav-close {
     opacity: 1;
     transform: none;
   }
@@ -339,5 +375,62 @@ button:focus-visible {
 
   .showcase-mobile {
     display: block;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Mobile responsiveness overrides                                            */
+/* -------------------------------------------------------------------------- */
+/* Inline styles win over normal CSS, so these targeted attribute-selector    */
+/* overrides use !important to shrink the big paddings/gaps on small screens. */
+
+@media (max-width: 768px) {
+  :root {
+    --page-padding-x: 20px;
+  }
+
+  /* Section padding: 120px 0 → 64px 0 */
+  section[style*="padding: 120px 0"] {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+
+  /* DownloadSection uses "120px 0 60px" — keep proportions */
+  section[style*="padding: 120px 0 60px"] {
+    padding-top: 64px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* Hero sections — paddingTop:200px is too tall on mobile */
+  section[style*="padding-top: 200px"] {
+    padding-top: 110px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Big two-column grid gaps shrink on mobile */
+  [style*="gap: 80px"] {
+    gap: 32px !important;
+  }
+
+  [style*="gap: 64px"] {
+    gap: 32px !important;
+  }
+
+  /* Fluid heading sizes are good, but the home H1 specifically scales bigger */
+  h1[id="hero-heading"] {
+    font-size: clamp(2.5rem, 12vw, 3.5rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Tiny screens: even tighter section padding and slimmer side padding */
+  section[style*="padding: 120px 0"] {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  section[style*="padding-top: 200px"] {
+    padding-top: 96px !important;
+    padding-bottom: 48px !important;
   }
 }
