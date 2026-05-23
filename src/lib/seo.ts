@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { appStores, seo, site, video } from "@/content/site";
+import { movementsPage } from "@/content/movements";
 
 const siteUrl = site.url;
 
@@ -231,5 +232,112 @@ export function getExerciseProgramJsonLd() {
     provider: { "@id": `${siteUrl}/#organization` },
     activityDuration: "PT20M",
     category: "Bodyweight Training",
+  };
+}
+
+const movementHowToSteps = {
+  "six-count": [
+    {
+      name: "Counts 1–2: drop into a plank",
+      text: "From standing, drop into a squat, place your hands on the ground, and kick your feet back into a plank position. The legs and posterior chain do the work here.",
+    },
+    {
+      name: "Counts 3–4: push up",
+      text: "Lower your chest to the ground and press back up to plank. This is where the upper body — chest, shoulders, triceps — takes the limelight.",
+    },
+    {
+      name: "Counts 5–6: stand up",
+      text: "Jump your feet back to your hands, then stand up. That's one repetition. Call out the count.",
+    },
+  ],
+  "navy-seal": [
+    {
+      name: "Counts 1–2: drop into a plank",
+      text: "From standing, drop into a squat, place your hands on the ground, and kick your feet back into a plank position.",
+    },
+    {
+      name: "Counts 3–8: the upper-body work",
+      text: "Move through the six-count upper-body sequence that engages core, chest, shoulders, triceps, scapula, traps, and lats. Call out every count.",
+    },
+    {
+      name: "Counts 9–10: stand up",
+      text: "Jump your feet back to your hands, then stand up. That's one repetition.",
+    },
+  ],
+} as const;
+
+export function getMovementsHowToJsonLd() {
+  return movementsPage.sacredMovements.map((m) => {
+    const steps = movementHowToSteps[m.id as keyof typeof movementHowToSteps];
+    return {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      name: `How to Perform the ${m.title.replace(/^The /, "")}`,
+      description: m.paragraphs[0],
+      totalTime: m.id === "navy-seal" ? "PT8S" : "PT5S",
+      video: {
+        "@type": "VideoObject",
+        name: m.video.label,
+        thumbnailUrl: `https://i.ytimg.com/vi/${m.video.youtubeId}/hqdefault.jpg`,
+        contentUrl: m.video.url,
+        embedUrl: `https://www.youtube.com/embed/${m.video.youtubeId}`,
+        uploadDate: "2024-01-01",
+        description: m.paragraphs[0],
+      },
+      step: steps.map((s) => ({
+        "@type": "HowToStep",
+        name: s.name,
+        text: s.text,
+      })),
+    };
+  });
+}
+
+export function getLevelsFaqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What are the four levels of the Busy Dad Program?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The Busy Dad Program has four levels — Level 1, Level 2, Level 3, and Level 4 — followed by Graduation. Level 1 is further subdivided into 1A, 1B, 1C, and 1D. Each level is unlocked by two Landmark Workouts: one 20-minute 6-count workout and one 20-minute Navy Seal workout.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I unlock Level 1A of the Busy Dad Program?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Level 1A is the most elementary level of the program. To unlock it, you need to complete one 6-count military burpee and one Navy Seal burpee, each within a 20-minute window.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How many burpees do you need to graduate the Busy Dad Program?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Graduation requires two Landmark Workouts completed in the same week: 325 6-counts in 20 minutes and 150 Navy Seal burpees in 20 minutes. You must call out every count of both movements. To maintain Graduation status, repeat these workouts every 30 days, otherwise you slide back to Level 4B.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long does it take to progress through the levels?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The program asks for 80 minutes a week, ideally split into four 20-minute sessions. Progression depends on starting fitness and consistency: early sublevels can take weeks, later levels take months, and Graduation can take years and is achieved only by a small elite.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is a Landmark Workout?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A Landmark Workout is the benchmark that unlocks each level of the Busy Dad Program. Every level has two: one for the 6-count military burpee and one for the Navy Seal burpee, each performed in a 20-minute window.",
+        },
+      },
+    ],
   };
 }

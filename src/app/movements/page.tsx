@@ -8,7 +8,12 @@ import { TrainingSplitCallout } from "@/components/movements/TrainingSplitCallou
 // import { AccessoryMovementsSection } from "@/components/movements/AccessoryMovementsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { movementsPage } from "@/content/movements";
-import { createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
+import {
+  createPageMetadata,
+  getBreadcrumbJsonLd,
+  getMovementsHowToJsonLd,
+  getWebPageJsonLd,
+} from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: movementsPage.seo.title,
@@ -36,6 +41,7 @@ export default function MovementsPage() {
             { name: "Home", path: "/" },
             { name: "Movements", path: "/movements/" },
           ]),
+          ...getMovementsHowToJsonLd(),
         ]}
       />
       <Header />

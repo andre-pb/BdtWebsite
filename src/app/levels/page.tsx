@@ -7,7 +7,12 @@ import { LevelWithSublevelsSection } from "@/components/levels/LevelSection";
 import { GraduationSection, LevelsFooterNote } from "@/components/levels/GraduationSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { levelsPage } from "@/content/levels";
-import { createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
+import {
+  createPageMetadata,
+  getBreadcrumbJsonLd,
+  getLevelsFaqJsonLd,
+  getWebPageJsonLd,
+} from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: levelsPage.seo.title,
@@ -36,6 +41,7 @@ export default function LevelsPage() {
             { name: "Home", path: "/" },
             { name: "Levels", path: "/levels/" },
           ]),
+          getLevelsFaqJsonLd(),
         ]}
       />
       <Header />
