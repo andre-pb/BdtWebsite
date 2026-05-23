@@ -1,0 +1,33 @@
+# Busy Dad Training
+
+> A minimalist bodyweight training program built around two compound movements and a strict 80-minute weekly budget. Simplicity, efficiency, intentionality.
+
+Busy Dad Training (BDT) is a progressive bodyweight training program created by Max Edwards. It is designed for busy people — busy dads above all — who want elite fitness without surrendering their evenings to a gym.
+
+The whole program is built on three principles: **simplicity**, **efficiency**, and **intentionality**. Practitioners train exactly 80 minutes per week, ideally split into four 20-minute sessions. Training revolves around two compound bodyweight movements known as the Sacred Movements: the 6-count military burpee and the Navy Seal burpee. No equipment is required.
+
+Progression is governed by a four-tiered Level System (Level 1A → Graduation), with each level unlocked by two Landmark Workouts — one 20-minute 6-count workout and one 20-minute Navy Seal workout.
+
+## Core program pages
+
+- [Principles](https://busydadtraining.com/principles/): The three principles of Busy Dad Training — simplicity, efficiency, and intentionality — and the philosophy behind the program.
+- [The Two Sacred Movements](https://busydadtraining.com/movements/): The 6-count military burpee and the Navy Seal burpee, including step-by-step counts, training emphasis, and tutorial videos.
+- [The Four Levels](https://busydadtraining.com/levels/): The level system from 1A through Graduation, with the exact rep counts for each Landmark Workout.
+
+## Program facts
+
+- Weekly training budget: 80 minutes (typically 4 × 20-minute sessions)
+- Sacred Movements: 6-count military burpee, Navy Seal burpee
+- Levels: 1A, 1B, 1C, 1D, 2A, 2B, 3A, 3B, 4A, 4B, Graduation
+- Graduation Landmark Workouts: 325 6-counts in 20 minutes; 150 Navy Seal burpees in 20 minutes (both in the same week, all counts called out)
+- Equipment required: none
+- Creator: Max Edwards
+
+## App
+
+- [Busy Dad Training on the App Store](https://apps.apple.com/us/app/busy-dad-training/id6746872829): iOS app that tracks Landmark Workouts in strict 20-minute timer windows and steps practitioners through the levels.
+- [Busy Dad Training on Google Play](https://play.google.com/store/apps/details?id=com.busydadtraining.busydadtrainingapp&hl=en_GB): Android version of the BDT app.
+
+## Video content
+
+- [Busy Dad Training on YouTube](https://www.youtube.com/@BusyDadTraining): Tutorials for the Sacred Movements and follow-along 20-minute Landmark Workouts.
