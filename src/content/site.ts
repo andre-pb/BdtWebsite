@@ -27,7 +27,7 @@ export const site = {
 export const seo = {
   title: "Busy Dad Training | Simplicity. Efficiency. Intentionality.",
   description:
-    "A minimalist training program built around two compound movements and 80 minutes a week. Four 20-minute sessions, no gym, no equipment. Simplicity, efficiency, intentionality.",
+    "A minimalist training program built around two compound movements and 80 minutes a week. Simplicity, efficiency, intentionality.",
   keywords: [
     "busy dad workout",
     "bodyweight training",

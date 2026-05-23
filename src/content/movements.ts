@@ -4,7 +4,7 @@ export const movementsPage = {
   seo: {
     title: "The Two Sacred Movements",
     description:
-      "Meet the 6-count military burpee and the Navy Seal burpee — the two Sacred Movements at the heart of BDP. Plus accessory movements for targeted plateau-breaking.",
+      "Meet the 6-count military burpee and the Navy Seal — the two Sacred Movements at the heart of the Busy Dad Program.",
   },
   hero: {
     eyebrow: "The Sacred Movements",

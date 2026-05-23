@@ -4,7 +4,7 @@ export const principlesPage = {
   seo: {
     title: "Principles of the Busy Dad Program",
     description:
-      "The Busy Dad Program revolves around three principles: simplicity, efficiency, and intentionality. Learn the philosophy behind the Sacred Movements and the 80-minute weekly training budget.",
+      "Three principles — simplicity, efficiency, intentionality — and the philosophy behind two Sacred Movements and an 80-minute weekly budget.",
   },
   hero: {
     eyebrow: "The Philosophy",
