@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_SITE_URL: siteUrl,
   },
   outputFileTracingRoot: process.cwd(),
+  experimental: {
+    optimizeCss: true,
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
