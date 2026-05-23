@@ -7,16 +7,15 @@ export const movementsPage = {
       "The two Sacred burpee movements of Busy Dad Training: the 6-count military burpee and the Navy Seal.",
   },
   hero: {
-    eyebrow: "The Sacred Movements",
+    eyebrow: "The Program",
     title: "The Two Sacred Burpee Movements",
     backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   intro: {
     paragraphs: [
-      "The two Sacred Movements of BDP are both variations of the military burpee. Each is unbelievably powerful in isolation; combined, they inspire awe.",
-      "Please note: the military burpee has very little in common with the more familiar 'burpee' movement propounded by the CrossFit brand. Until very recently, the military burpee was a niche movement largely confined to the military and to US prison culture. Role models such as Iron Wolf have brought these movements to a wider audience, and the world is a better place for it.",
+      "The two Sacred Movements of BDP are both variations of the American military burpee. Please note, the American military burpee has very little in common with the more familiar 'burpee' movement propounded by the CrossFit brand. Until very recently, the American military burpee was a niche movement largely confined to the military and to US prison culture. Role models such as Iron Wolf have brought these movements to a wider audience, and the world is a better place for it.",
       "Because, my friends, these movements are unbelievably effective. Effective enough to oil the wheels of the most formidable fighting force in human history. Effective enough to bring sanity and salvation to the convicts on death row. And I believe that BDP has discovered the two most effective variations.",
-      "I built BDP out of the conviction that these two movements yield all a person could need to build elite fitness and strength, and I have never looked back. Let's meet them.",
+      "These are the Sacred Movements. Each is unbelievably powerful in isolation; combined, they inspire awe. I built BDP out of the conviction that these two movements yield all a person could need to build elite fitness and strength, and I have never looked back. Let's meet them.",
     ],
     author: "Max Edwards",
   },
@@ -32,7 +31,7 @@ export const movementsPage = {
       title: "The 6-Count Military Burpee",
       shortName: "6-Count",
       paragraphs: [
-        "The 6-count military burpee, or 6-count for short, is a six-part compound movement that recruits every major muscle group. The core is engaged throughout (counts 1–6). The legs and posterior chain work hard at the start and end (counts 1–2, 5–6). And in between, at the centre of the movement (counts 3–4), the upper body takes the limelight.",
+        "The 6-count military burpee, or 6-count for short, is a six-part compound movement that recruits every major muscle group. The core is engaged throughout the movement (counts 1-6). The legs and posterior chain are working hard at the start and end of the movement (counts 1-2, 5-6). And in between the leg work, at the center of the movement (counts 3-4), the upper body is in the limelight. You'll get a better idea of what I'm talking about if you watch the brief tutorial video below.",
         "Your 6-count training will condition and strengthen your entire body, but where the 6-count really excels is in building leg strength and cardiovascular fitness. After 18 months of training 6-counts, my resting heart rate had dropped from 70 bpm to 45 bpm.",
       ],
       summary: "6-counts will get you strong and fit.",
@@ -50,11 +49,11 @@ export const movementsPage = {
       title: "The Navy Seal Burpee",
       shortName: "Navy Seal",
       paragraphs: [
-        "The Navy Seal burpee, or Navy Seal for short, is the stuff of legend. There is dispute about where and how exactly it originated; but whoever invented this movement deserves a Nobel prize. No calisthenics movement builds upper body strength like this movement. None.",
-        "With ten component parts, the Navy Seal is a more complex movement than the 6-count. It starts and finishes with leg work (counts 1–2, 9–10). The upper-body magic happens between those counts. As you move through 3–8, your core, chest, shoulders, triceps, scapula, traps, and lats synergise in a way that will shock your body and stimulate muscle growth.",
-        "The Navy Seal is also a powerful device for building cardiovascular fitness, especially if you call out all ten counts of the movement, as we do in BDP. It doesn't condition the legs like the 6-count. But for building upper body strength and mass, no bodyweight movement on earth comes even remotely close.",
+        "The Navy Seal burpee, or Navy Seal for short, is the stuff of legend. There is dispute about where and how exactly it originated; but whoever invented this movement deserves a Nobel prize. No calisthenics movement builds upper body strength like this movement. None. It has genius, power, and magic in it.",
+        "With 10 component parts, the Navy Seal is a more complex movement than the 6-count. As with the 6-count, the navy seal starts and finishes (counts 1-2, 9-10) with leg work. The upper-body magic happens between those counts. As you move through counts 3-8, your core, chest, shoulders, triceps, scapula, traps, and lats synergize with one another in a way that will shock your body and stimulate muscle growth. This brief tutorial video takes you through all ten counts of the movement:",
+        "The Navy Seal is an effective device for building cardiovascular fitness, especially if you call out all ten counts of the movement, as we do in BDP. It doesn't condition the legs like the 6-count. But for building upper body strength and mass, no bodyweight movement on earth comes even remotely close.",
       ],
-      summary: "6-counts will get you strong and fit. Navy Seals will get you ripped.",
+      summary: "Navy Seals will get you ripped.",
       video: {
         label: "YouTube Navy Seal Tutorial Video",
         youtubeId: "BqWQkblauo8",

@@ -1,7 +1,7 @@
 import { colors } from "@/constants/colors";
 import { MovementBadge } from "@/components/movements/MovementBadge";
 import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
-import { bodyStyle, eyebrowStyle, headingStyle } from "@/components/ui/Typography";
+import { bodyStyle, headingStyle } from "@/components/ui/Typography";
 import { PageContainer } from "@/components/ui/PageContainer";
 
 type SacredMovement = {
@@ -45,8 +45,7 @@ export function SacredMovementSection({ movement, reversed = false }: SacredMove
       >
         <div style={{ order: reversed ? 2 : 1 }}>
           <MovementBadge tier="sacred" order={movement.order} />
-          <span style={eyebrowStyle}>{movement.eyebrow}</span>
-          <h2 id={`${movement.id}-heading`} style={headingStyle}>
+          <h2 id={`${movement.id}-heading`} style={{ ...headingStyle, marginTop: "1rem" }}>
             {movement.title}
           </h2>
           {movement.paragraphs.map((paragraph) => (

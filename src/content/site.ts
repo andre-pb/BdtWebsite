@@ -53,21 +53,21 @@ export const appStores = {
 } as const;
 
 export const hero = {
-  eyebrow: "The Program",
+  eyebrow: "The Method",
   headline: "Busy Dad",
   headlineAccent: "Training",
   description:
-    "Simplicity. Efficiency. Intentionality. A minimalist program built around two compound movements and a strict 80-minute weekly budget.",
+    "Build strength, fitness and consistency with a progressive bodyweight programme designed around real life. No gym, no commute, no excuses.",
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
 
 export const philosophy = {
-  eyebrow: "An Introduction",
-  title: "The Busy Dad Program.",
+  eyebrow: "Core Philosophy",
+  title: "Zero friction fitness.",
   description:
-    "The unbelievably simple, effective, and time-efficient training protocol I've been following ever since my daughter was born. It's gotten me into the best shape of my life, and it can do the same for you. No matter your fitness level, if you can find just 80 minutes per week and pledge to fill those minutes with intentional physical training, BDP can work its magic on you the same way it has on me.",
+    "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee. High volume, simple execution.",
   image: assetPath("/photos/burpee-photo-2.jpg"),
-  imageAlt: "Max Edwards, creator of the Busy Dad Program",
+  imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
 } as const;
 
 export const appScreenshots = {
@@ -86,22 +86,22 @@ export const appScreenshots = {
 } as const;
 
 export const program = {
-  eyebrow: "Four Sessions A Week",
-  title: "20 minutes. Two movements.",
+  eyebrow: "The Program",
+  title: "Structured for consistency.",
   description:
-    "Set the timer, do the work, get back to your family. The app tracks your volume in strict 20-minute windows. Four sessions a week — 80 minutes total — and not a single wasted minute.",
+    "Set a timer, do the work, get back to your family. The app tracks your volume in strict 20-minute windows. Start where you are. The system automatically steps you up from Level 1 to Level 4 as your conditioning improves.",
   movements: [
     { label: "Movement A", value: "6-Count Burpee" },
-    { label: "Movement B", value: "Navy Seal Burpee" },
+    { label: "Movement B", value: "Bodyweight Squat" },
   ],
   protocol: "20 Min AMRAP",
 } as const;
 
 export const levels = {
-  eyebrow: "Four Levels & Graduation",
+  eyebrow: "Clear Path Forward",
   title: "Know exactly where you stand.",
   description:
-    "Every level is unlocked by two Landmark Workouts: one 20-minute 6-count workout, and one 20-minute Navy Seal workout. From Level 1A all the way to Graduation — your training is never aimless.",
+    "No guesswork. You pass a benchmark, you move to the next level. The app tells you what to do every single day based on your current tier. Start at Level 1 and progress all the way to mastery.",
   cards: [
     { num: "1", title: "Foundation", status: "Completed", variant: "active" as const },
     { num: "2", title: "Conditioning", status: "In Progress", variant: "inProgress" as const },
@@ -137,15 +137,15 @@ export const appShowcaseSteps = [
 ] as const;
 
 export const video = {
-  eyebrow: "Watch & Train",
-  title: "Landmark Workouts in Action.",
+  eyebrow: "Video Content",
+  title: "Watch the Method in Action.",
   description:
-    "Follow-along Landmark Workouts, form breakdowns of the Sacred Movements, and real 20-minute sessions. No fluff, no gimmicks — just the work.",
-  channelName: "Busy Dad Training",
+    "Daily workout demonstrations, form breakdowns, and real training sessions. No fluff, just effective training content you can follow along with.",
+  channelName: "BusyDad Training",
   channelHandle: "@BusyDadTraining",
-  featuredTitle: "20-Minute Follow-Along Workout",
+  featuredTitle: "20-Minute Full Body Workout",
   featuredDescription:
-    "Follow-along session • 6-Count & Navy Seal protocol • No equipment needed",
+    "Follow-along session • Burpee & Squat protocol • No equipment needed",
   featuredVideoId: "ftJ7kR04HvU",
   featuredVideoUrl: "https://www.youtube.com/watch?v=ftJ7kR04HvU",
   youtubeUrl: "https://www.youtube.com/@BusyDadTraining",
@@ -186,9 +186,9 @@ export const testimonials = {
 
 export const download = {
   eyebrow: "Start Today",
-  title: "Eighty minutes. Two movements.",
+  title: "Ready to put in the work?",
   description:
-    "That's all the program asks of you. Open the app and pick up where the reading leaves off.",
+    "Join thousands of busy dads who stopped overcomplicating fitness and started getting results with 80 minutes a week.",
 } as const;
 
 export const newsletter = {

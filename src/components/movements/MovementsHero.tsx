@@ -49,7 +49,7 @@ export function MovementsHero() {
             fontWeight: 600,
           }}
         >
-          6-Count &amp; Navy Seal are your primary training. Everything else is secondary.
+          Two movements. Eighty minutes a week.
         </p>
       </PageContainer>
     </section>
