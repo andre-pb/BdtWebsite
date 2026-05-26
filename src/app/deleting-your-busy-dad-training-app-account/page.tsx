@@ -31,6 +31,7 @@ export default function AccountDeletionPage() {
           heading={accountDeletionPage.heading}
           intro={accountDeletionPage.intro}
           sections={accountDeletionPage.sections}
+          eyebrow="Support"
         />
       </main>
       <Footer />

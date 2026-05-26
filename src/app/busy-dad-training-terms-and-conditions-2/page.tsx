@@ -32,6 +32,7 @@ export default function TermsPage() {
           intro={termsPage.intro}
           sections={termsPage.sections}
           lastUpdated={termsPage.lastUpdated}
+          eyebrow="Legal"
         />
       </main>
       <Footer />
