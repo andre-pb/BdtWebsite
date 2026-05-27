@@ -181,6 +181,12 @@ export const testimonials = {
       name: "Burpees Bandit",
       role: "Fitness YouTuber",
     },
+    {
+      quote:
+        "The Busy Dad program brought discipline, structure, resilience, and a stronger sense of body awareness into my life. It also dramatically improved my push-up capacity and overall work capacity.",
+      name: "Ossi",
+      role: "Practitioner",
+    },
   ],
 } as const;
 

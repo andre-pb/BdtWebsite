@@ -376,6 +376,23 @@ button:focus-visible {
   .showcase-mobile {
     display: block;
   }
+
+  .testimonials-marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-inline: var(--page-padding-x);
+    padding-inline: var(--page-padding-x);
+    scrollbar-width: none;
+  }
+
+  .testimonials-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonials-marquee-track {
+    transform: none !important;
+  }
 }
 
 /* -------------------------------------------------------------------------- */
