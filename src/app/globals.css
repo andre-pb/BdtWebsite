@@ -89,6 +89,31 @@ button:focus-visible {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+.app-store-badge--compact:hover {
+  background: rgba(0, 0, 0, 1) !important;
+  border-color: rgba(255, 255, 255, 0.24) !important;
+  transform: translateY(-1px);
+}
+
+.featured-in-logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.featured-in-logo:hover,
+.featured-in-logo:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.featured-in-logo:hover img,
+.featured-in-logo:focus-visible img {
+  opacity: 1 !important;
+}
+
 .mobile-nav {
   position: fixed;
   inset: 0;

@@ -32,6 +32,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
+      <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .mobile-nav { display: none !important; pointer-events: none; }
+              .mobile-nav.is-open { display: block !important; pointer-events: auto; }
+              .header-burger { display: none; }
+              @media (max-width: 900px) {
+                .header-desktop-nav,
+                .header-desktop-cta { display: none !important; }
+                .header-burger { display: flex; }
+              }
+            `,
+          }}
+        />
+      </head>
       <body className={inter.variable}>
         <JsonLd data={getSiteJsonLd()} />
         {children}

@@ -61,6 +61,36 @@ export const hero = {
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
 
+export const featuredIn = {
+  label: "As featured in",
+  logos: [
+    {
+      name: "Men's Health",
+      href: "https://www.menshealth.com/uk/fitness/a70766848/busy-dad-navy-seal-burpee-workout/",
+      src: assetPath("/Logos/mens_health.svg"),
+      width: 608,
+      height: 125,
+      maxHeight: 24,
+    },
+    {
+      name: "Yahoo",
+      href: "https://uk.style.yahoo.com/busy-dad-shares-navy-seal-000000961.html",
+      src: assetPath("/Logos/Yahoo_Logo_0.svg"),
+      width: 1000,
+      height: 277,
+      maxHeight: 30,
+    },
+  ],
+} as const;
+
+export const burpeeStat = {
+  eyebrow: "The Busy Dad Army",
+  value: 2_784_095,
+  valueSuffix: "+",
+  label: "burpees logged on the app",
+  caption: "And counting. Every single rep, by dads who showed up.",
+} as const;
+
 export const philosophy = {
   eyebrow: "Core Philosophy",
   title: "Zero friction fitness.",

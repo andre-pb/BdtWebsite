@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/home/HeroSection";
 import { PhilosophySection } from "@/components/home/PhilosophySection";
+import { BurpeeStatSection } from "@/components/home/BurpeeStatSection";
 import { AppShowcaseSection } from "@/components/home/AppShowcaseSection";
 import { VideoSection } from "@/components/home/VideoSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
@@ -17,6 +18,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <PhilosophySection />
+        <BurpeeStatSection />
         <AppShowcaseSection />
         <VideoSection />
         <TestimonialsSection />
