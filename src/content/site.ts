@@ -96,7 +96,7 @@ export const philosophy = {
   title: "Zero friction fitness.",
   description:
     "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee. High volume, simple execution.",
-  image: assetPath("/photos/burpee-photo-2.jpg"),
+  image: assetPath("/images/Busy_Dad%20Large.webp"),
   imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
 } as const;
 
