@@ -17,7 +17,7 @@ export const principlesPage = {
     eyebrow: "Creator",
     name: "Max Edwards",
     subtitle: "Philosopher, warrior, tyrant",
-    image: assetPath("/photos/burpee-photo-2.jpg"),
+    image: assetPath("/images/Busy_Dad%20Large.webp"),
     imageAlt: "Max Edwards, creator of the Busy Dad Program",
     quote: "Your aim is simple: cultivate excellence in the two Sacred Movements",
   },

@@ -24,8 +24,8 @@ export function CreatorSection() {
           <Image
             src={creator.image}
             alt={creator.imageAlt}
-            width={1080}
-            height={1430}
+            width={852}
+            height={1280}
             style={{
               width: "100%",
               maxWidth: "420px",
