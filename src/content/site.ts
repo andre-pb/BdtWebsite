@@ -41,10 +41,11 @@ export const seo = {
 } as const;
 
 export const navLinks = [
+  { label: "About Max", href: "/about/" },
   { label: "Principles", href: "/principles/" },
   { label: "Movements", href: "/movements/" },
   { label: "Levels", href: "/levels/" },
-  { label: "About Max", href: "/about/" },
+  { label: "Community", href: "/community/" },
 ] as const;
 
 export const appStores = {

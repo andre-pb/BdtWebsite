@@ -54,7 +54,7 @@ export function PrincipleSection({ id, title, blocks, quote, variant }: Principl
         backgroundColor: isLight ? colors.bgPure : colors.bgOff,
       }}
     >
-      <PageContainer style={{ maxWidth: "720px" }}>
+      <PageContainer>
         <h2 id={`${id}-heading`} style={headingStyle}>
           {title}
         </h2>
