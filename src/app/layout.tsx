@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB">
+    <html lang="en-GB" className={inter.variable}>
       <head>
         <style
           dangerouslySetInnerHTML={{
@@ -48,7 +48,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.variable}>
+      <body className={inter.className}>
         <JsonLd data={getSiteJsonLd()} />
         {children}
         <GoogleAnalytics gaId={analytics.googleAnalyticsId} />

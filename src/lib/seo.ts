@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { appStores, seo, site, video } from "@/content/site";
+import { aboutPage } from "@/content/about";
+import { appStores, seo, site, youtube } from "@/content/site";
 import { movementsPage } from "@/content/movements";
 
 const siteUrl = site.url;
@@ -145,7 +146,7 @@ export function getSiteJsonLd() {
           width: site.logo.width,
           height: site.logo.height,
         },
-        sameAs: [video.youtubeUrl, appStores.appStoreUrl, appStores.googlePlayUrl],
+        sameAs: [youtube.url, appStores.appStoreUrl, appStores.googlePlayUrl],
       },
       {
         "@type": "MobileApplication",
@@ -208,18 +209,23 @@ export function getHomePageJsonLd() {
       description: seo.description,
       path: "/",
     }),
-    {
-      "@context": "https://schema.org",
-      "@type": "VideoObject",
-      name: video.featuredTitle,
-      description: video.featuredDescription,
-      thumbnailUrl: `https://i.ytimg.com/vi/${video.featuredVideoId}/hqdefault.jpg`,
-      uploadDate: "2024-01-01",
-      contentUrl: video.featuredVideoUrl,
-      embedUrl: `https://www.youtube.com/embed/${video.featuredVideoId}`,
-      publisher: { "@id": `${siteUrl}/#organization` },
-    },
   ];
+}
+
+export function getAboutVideoJsonLd() {
+  const { featuredVideo } = aboutPage;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: featuredVideo.title,
+    description: featuredVideo.description,
+    thumbnailUrl: `https://i.ytimg.com/vi/${featuredVideo.videoId}/hqdefault.jpg`,
+    uploadDate: featuredVideo.uploadDate,
+    contentUrl: featuredVideo.videoUrl,
+    embedUrl: `https://www.youtube.com/embed/${featuredVideo.videoId}`,
+    publisher: { "@id": `${siteUrl}/#organization` },
+  };
 }
 
 export function getExerciseProgramJsonLd() {

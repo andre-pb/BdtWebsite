@@ -13,9 +13,8 @@ export const movementsPage = {
   },
   intro: {
     paragraphs: [
-      "The two Sacred Movements of BDP are both variations of the American military burpee. Please note, the American military burpee has very little in common with the more familiar 'burpee' movement propounded by the CrossFit brand. Until very recently, the American military burpee was a niche movement largely confined to the military and to US prison culture. Role models such as Iron Wolf have brought these movements to a wider audience, and the world is a better place for it.",
-      "Because, my friends, these movements are unbelievably effective. Effective enough to oil the wheels of the most formidable fighting force in human history. Effective enough to bring sanity and salvation to the convicts on death row. And I believe that BDP has discovered the two most effective variations.",
-      "These are the Sacred Movements. Each is unbelievably powerful in isolation; combined, they inspire awe. I built BDP out of the conviction that these two movements yield all a person could need to build elite fitness and strength, and I have never looked back. Let's meet them.",
+      "The Sacred Movements sit outside mainstream fitness culture. They evolved in high-demand military training environments where conditioning had to be simple, repeatable, and effective without equipment or complexity. Over time, they became a quiet staple in places where performance was the only metric that mattered.",
+      "These are not the burpees you'll recognise from modern gym classes or CrossFit workouts. These are burpees like you've never seen them: elegant, stripped of excess, and designed to build real capacity in minimal time. No noise. No flair. Just movements that deliver.",
     ],
     author: "Max Edwards",
   },

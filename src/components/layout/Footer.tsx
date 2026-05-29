@@ -98,7 +98,7 @@ export function Footer() {
               margin: 0,
             }}
           >
-            {site.copyright}
+            © {new Date().getFullYear()} {site.copyright}
           </p>
         </div>
       </div>

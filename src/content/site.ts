@@ -8,7 +8,7 @@ export const site = {
   name: "Busy Dad Training",
   shortName: "BusyDad",
   url: getSiteUrl(),
-  copyright: "© 2023 Busy Dad Training. Do the work.",
+  copyright: "Busy Dad Training. Do the work.",
   logo: {
     src: assetPath("/busy_dad_white_logo_small.png"),
     width: 172,
@@ -44,6 +44,7 @@ export const navLinks = [
   { label: "Principles", href: "/principles/" },
   { label: "Movements", href: "/movements/" },
   { label: "Levels", href: "/levels/" },
+  { label: "About Max", href: "/about/" },
 ] as const;
 
 export const appStores = {
@@ -166,19 +167,10 @@ export const appShowcaseSteps = [
   },
 ] as const;
 
-export const video = {
-  eyebrow: "Video Content",
-  title: "Watch the Method in Action.",
-  description:
-    "Daily workout demonstrations, form breakdowns, and real training sessions. No fluff, just effective training content you can follow along with.",
+export const youtube = {
   channelName: "BusyDad Training",
   channelHandle: "@BusyDadTraining",
-  featuredTitle: "20-Minute Full Body Workout",
-  featuredDescription:
-    "Follow-along session • Burpee & Squat protocol • No equipment needed",
-  featuredVideoId: "ftJ7kR04HvU",
-  featuredVideoUrl: "https://www.youtube.com/watch?v=ftJ7kR04HvU",
-  youtubeUrl: "https://www.youtube.com/@BusyDadTraining",
+  url: "https://www.youtube.com/@BusyDadTraining",
 } as const;
 
 export const testimonials = {
@@ -217,6 +209,12 @@ export const testimonials = {
       name: "Ossi",
       role: "Practitioner",
     },
+    {
+      quote:
+        "Starting the Busy Dad Training Programme and then working directly with Max has been one of, if not the best positive step I've made for myself. It's the antidote to a 'fitness' industry that's so full of noise. The system is time efficient, simple (but not easy) and dare I say enjoyable. If you learn the movements correctly, commit to the plan and put in the work, you will see significant and timely results. Very highly recommended.",
+      name: "Lyndon",
+      role: "Practitioner",
+    },
   ],
 } as const;
 
@@ -240,5 +238,4 @@ export const newsletter = {
 
 export const cta = {
   getApp: "Get the App",
-  subscribeYoutube: "Subscribe on YouTube",
 } as const;
