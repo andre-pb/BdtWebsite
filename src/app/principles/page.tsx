@@ -2,7 +2,6 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { DownloadSection } from "@/components/home/DownloadSection";
 import { PrinciplesHero } from "@/components/principles/PrinciplesHero";
-import { CreatorSection } from "@/components/principles/CreatorSection";
 import { PrincipleSection } from "@/components/principles/PrincipleSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { principlesPage } from "@/content/principles";
@@ -37,13 +36,12 @@ export default function PrinciplesPage() {
       <Header />
       <main>
         <PrinciplesHero />
-        <CreatorSection />
         {principlesPage.pillars.map((pillar, index) => (
           <PrincipleSection
             key={pillar.id}
             id={pillar.id}
             title={pillar.title}
-            paragraphs={pillar.paragraphs}
+            blocks={pillar.blocks}
             quote={pillar.quote}
             variant={index % 2 === 0 ? "light" : "dark"}
           />

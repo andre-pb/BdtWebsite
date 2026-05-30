@@ -2,15 +2,47 @@ import { colors } from "@/constants/colors";
 import { PullQuote, bodyStyle, headingStyle } from "@/components/ui/Typography";
 import { PageContainer } from "@/components/ui/PageContainer";
 
+type PrincipleBlock =
+  | string
+  | {
+      emphasis: string;
+    };
+
 type PrincipleSectionProps = {
   id: string;
   title: string;
-  paragraphs: readonly string[];
+  blocks: readonly PrincipleBlock[];
   quote: string | null;
   variant: "light" | "dark";
 };
 
-export function PrincipleSection({ id, title, paragraphs, quote, variant }: PrincipleSectionProps) {
+function renderBlock(block: PrincipleBlock, index: number) {
+  if (typeof block === "string") {
+    return (
+      <p key={`${index}-${block.slice(0, 32)}`} style={{ ...bodyStyle, marginBottom: "1.25rem" }}>
+        {block}
+      </p>
+    );
+  }
+
+  return (
+    <p
+      key={`${index}-${block.emphasis.slice(0, 32)}`}
+      style={{
+        ...bodyStyle,
+        marginBottom: "1rem",
+        fontSize: "1.35rem",
+        fontWeight: 600,
+        color: colors.textMain,
+        lineHeight: 1.4,
+      }}
+    >
+      {block.emphasis}
+    </p>
+  );
+}
+
+export function PrincipleSection({ id, title, blocks, quote, variant }: PrincipleSectionProps) {
   const isLight = variant === "light";
 
   return (
@@ -26,11 +58,7 @@ export function PrincipleSection({ id, title, paragraphs, quote, variant }: Prin
         <h2 id={`${id}-heading`} style={headingStyle}>
           {title}
         </h2>
-        {paragraphs.map((paragraph) => (
-          <p key={paragraph.slice(0, 40)} style={{ ...bodyStyle, marginBottom: "1.25rem" }}>
-            {paragraph}
-          </p>
-        ))}
+        {blocks.map((block, index) => renderBlock(block, index))}
         {quote && <PullQuote>{quote}</PullQuote>}
       </PageContainer>
     </section>

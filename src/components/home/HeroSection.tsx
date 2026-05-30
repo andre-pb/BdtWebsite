@@ -2,6 +2,7 @@ import { hero } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
 import { PageContainer } from "@/components/ui/PageContainer";
+import { FeaturedInBar } from "@/components/home/FeaturedInBar";
 
 export function HeroSection() {
   return (
@@ -83,6 +84,7 @@ export function HeroSection() {
           <AppStoreBadge />
           <GooglePlayBadge />
         </div>
+        <FeaturedInBar />
       </PageContainer>
     </section>
   );

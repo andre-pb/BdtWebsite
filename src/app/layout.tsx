@@ -31,8 +31,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-GB">
-      <body className={inter.variable}>
+    <html lang="en-GB" className={inter.variable}>
+      <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              .mobile-nav { display: none !important; pointer-events: none; }
+              .mobile-nav.is-open { display: block !important; pointer-events: auto; }
+              .header-burger { display: none; }
+              @media (max-width: 900px) {
+                .header-desktop-nav,
+                .header-desktop-cta { display: none !important; }
+                .header-burger { display: flex; }
+              }
+            `,
+          }}
+        />
+      </head>
+      <body className={inter.className}>
         <JsonLd data={getSiteJsonLd()} />
         {children}
         <GoogleAnalytics gaId={analytics.googleAnalyticsId} />

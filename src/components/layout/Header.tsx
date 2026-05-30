@@ -157,6 +157,8 @@ export function Header() {
         id="mobile-nav-menu"
         className={`mobile-nav${menuOpen ? " is-open" : ""}`}
         aria-hidden={!menuOpen}
+        hidden={!menuOpen}
+        style={{ display: menuOpen ? "block" : "none" }}
       >
         <button
           type="button"

@@ -1,15 +1,15 @@
 import Image from "next/image";
-import { principlesPage } from "@/content/principles";
+import { aboutPage } from "@/content/about";
 import { colors } from "@/constants/colors";
-import { PullQuote, bodyStyle, eyebrowStyle, headingStyle } from "@/components/ui/Typography";
+import { bodyStyle, eyebrowStyle, headingStyle } from "@/components/ui/Typography";
 import { PageContainer } from "@/components/ui/PageContainer";
 
-export function CreatorSection() {
-  const { creator } = principlesPage;
+export function AboutBio() {
+  const { bio } = aboutPage;
 
   return (
     <section
-      aria-labelledby="creator-heading"
+      aria-labelledby="about-bio-heading"
       style={{ padding: "120px 0", backgroundColor: colors.bgOff }}
     >
       <PageContainer
@@ -22,10 +22,10 @@ export function CreatorSection() {
       >
         <div>
           <Image
-            src={creator.image}
-            alt={creator.imageAlt}
-            width={1080}
-            height={1430}
+            src={bio.image}
+            alt={bio.imageAlt}
+            width={852}
+            height={1280}
             style={{
               width: "100%",
               maxWidth: "420px",
@@ -39,9 +39,9 @@ export function CreatorSection() {
           />
         </div>
         <div>
-          <span style={eyebrowStyle}>{creator.eyebrow}</span>
-          <h2 id="creator-heading" style={headingStyle}>
-            {creator.name}
+          <span style={eyebrowStyle}>Creator</span>
+          <h2 id="about-bio-heading" style={headingStyle}>
+            {bio.name}
           </h2>
           <p
             style={{
@@ -54,9 +54,13 @@ export function CreatorSection() {
               marginBottom: "2rem",
             }}
           >
-            {creator.subtitle}
+            {bio.subtitle}
           </p>
-          <PullQuote>{creator.quote}</PullQuote>
+          {bio.paragraphs.map((paragraph) => (
+            <p key={paragraph.slice(0, 32)} style={{ ...bodyStyle, marginBottom: "1.25rem" }}>
+              {paragraph}
+            </p>
+          ))}
         </div>
       </PageContainer>
     </section>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { legalFooterLinks } from "@/content/legal";
 import { navLinks, site } from "@/content/site";
 import { colors } from "@/constants/colors";
 
@@ -66,6 +67,29 @@ export function Footer() {
             ))}
           </nav>
 
+          <nav
+            aria-label="Legal"
+            style={{ display: "flex", gap: "24px", flexWrap: "wrap", justifyContent: "center" }}
+          >
+            {legalFooterLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  color: hoveredLink === link.label ? "white" : "rgba(255,255,255,0.5)",
+                  fontWeight: 500,
+                  fontSize: "0.85rem",
+                  transition: "color 0.2s",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={() => setHoveredLink(link.label)}
+                onMouseLeave={() => setHoveredLink(null)}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
           <p
             style={{
               color: "rgba(255,255,255,0.5)",
@@ -74,7 +98,7 @@ export function Footer() {
               margin: 0,
             }}
           >
-            {site.copyright}
+            © {new Date().getFullYear()} {site.copyright}
           </p>
         </div>
       </div>

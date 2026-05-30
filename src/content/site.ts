@@ -8,7 +8,7 @@ export const site = {
   name: "Busy Dad Training",
   shortName: "BusyDad",
   url: getSiteUrl(),
-  copyright: "© 2023 Busy Dad Training. Do the work.",
+  copyright: "Busy Dad Training. Do the work.",
   logo: {
     src: assetPath("/busy_dad_white_logo_small.png"),
     width: 172,
@@ -41,9 +41,11 @@ export const seo = {
 } as const;
 
 export const navLinks = [
+  { label: "About Max", href: "/about/" },
   { label: "Principles", href: "/principles/" },
   { label: "Movements", href: "/movements/" },
   { label: "Levels", href: "/levels/" },
+  { label: "Community", href: "/community/" },
 ] as const;
 
 export const appStores = {
@@ -61,12 +63,42 @@ export const hero = {
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
 
+export const featuredIn = {
+  label: "As featured in",
+  logos: [
+    {
+      name: "Men's Health",
+      href: "https://www.menshealth.com/uk/fitness/a70766848/busy-dad-navy-seal-burpee-workout/",
+      src: assetPath("/Logos/mens_health.svg"),
+      width: 608,
+      height: 125,
+      maxHeight: 24,
+    },
+    {
+      name: "Yahoo",
+      href: "https://uk.style.yahoo.com/busy-dad-shares-navy-seal-000000961.html",
+      src: assetPath("/Logos/Yahoo_Logo_0.svg"),
+      width: 1000,
+      height: 277,
+      maxHeight: 30,
+    },
+  ],
+} as const;
+
+export const burpeeStat = {
+  eyebrow: "The Busy Dad Army",
+  value: 2_784_095,
+  valueSuffix: "+",
+  label: "burpees logged on the app",
+  caption: "And counting. Every single rep, by dads who showed up.",
+} as const;
+
 export const philosophy = {
   eyebrow: "Core Philosophy",
   title: "Zero friction fitness.",
   description:
     "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee. High volume, simple execution.",
-  image: assetPath("/photos/burpee-photo-2.jpg"),
+  image: assetPath("/images/Busy_Dad%20Large.webp"),
   imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
 } as const;
 
@@ -136,19 +168,10 @@ export const appShowcaseSteps = [
   },
 ] as const;
 
-export const video = {
-  eyebrow: "Video Content",
-  title: "Watch the Method in Action.",
-  description:
-    "Daily workout demonstrations, form breakdowns, and real training sessions. No fluff, just effective training content you can follow along with.",
+export const youtube = {
   channelName: "BusyDad Training",
   channelHandle: "@BusyDadTraining",
-  featuredTitle: "20-Minute Full Body Workout",
-  featuredDescription:
-    "Follow-along session • Burpee & Squat protocol • No equipment needed",
-  featuredVideoId: "ftJ7kR04HvU",
-  featuredVideoUrl: "https://www.youtube.com/watch?v=ftJ7kR04HvU",
-  youtubeUrl: "https://www.youtube.com/@BusyDadTraining",
+  url: "https://www.youtube.com/@BusyDadTraining",
 } as const;
 
 export const testimonials = {
@@ -181,6 +204,18 @@ export const testimonials = {
       name: "Burpees Bandit",
       role: "Fitness YouTuber",
     },
+    {
+      quote:
+        "The Busy Dad program brought discipline, structure, resilience, and a stronger sense of body awareness into my life. It also dramatically improved my push-up capacity and overall work capacity.",
+      name: "Ossi",
+      role: "Practitioner",
+    },
+    {
+      quote:
+        "Starting the Busy Dad Training Programme and then working directly with Max has been one of, if not the best positive step I've made for myself. It's the antidote to a 'fitness' industry that's so full of noise. The system is time efficient, simple (but not easy) and dare I say enjoyable. If you learn the movements correctly, commit to the plan and put in the work, you will see significant and timely results. Very highly recommended.",
+      name: "Lyndon",
+      role: "Practitioner",
+    },
   ],
 } as const;
 
@@ -204,5 +239,4 @@ export const newsletter = {
 
 export const cta = {
   getApp: "Get the App",
-  subscribeYoutube: "Subscribe on YouTube",
 } as const;
