@@ -11,7 +11,7 @@ export const aboutPage = {
     eyebrow: "The Creator",
     title: "Meet Max.",
     intro:
-      "Not an athlete. No special background. Just years of trying to make training stick — until fatherhood forced a simpler rule.",
+      "Years of trying to make training stick — until fatherhood forced one simple rule.",
     backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   bio: {
