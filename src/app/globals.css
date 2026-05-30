@@ -324,6 +324,79 @@ button:focus-visible {
   border: 0;
 }
 
+/* -------------------------------------------------------------------------- */
+/* Community story cards + modal                                              */
+/* -------------------------------------------------------------------------- */
+
+.story-card {
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.story-card:hover,
+.story-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(96, 165, 250, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.story-card__cue svg {
+  transition: transform 0.2s ease;
+}
+
+.story-card:hover .story-card__cue svg,
+.story-card:focus-visible .story-card__cue svg {
+  transform: translateX(3px);
+}
+
+.story-modal-overlay {
+  animation: story-overlay-in 0.2s ease forwards;
+}
+
+.story-modal {
+  animation: story-modal-in 0.28s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+}
+
+@keyframes story-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes story-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-card {
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .story-card:hover,
+  .story-card:focus-visible {
+    transform: none;
+  }
+
+  .story-card:hover .story-card__cue svg,
+  .story-card:focus-visible .story-card__cue svg {
+    transform: none;
+  }
+
+  .story-modal-overlay,
+  .story-modal {
+    animation: none;
+  }
+}
+
 .newsletter-input-group {
   display: flex;
   align-items: stretch;
