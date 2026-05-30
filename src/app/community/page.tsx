@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { communityPage } from "@/content/community";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
+import { CommunityLeaderboard } from "@/components/community/CommunityLeaderboard";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
 
@@ -31,11 +32,9 @@ export default function CommunityPage() {
         <section
           aria-labelledby="community-heading"
           style={{
-            paddingTop: "200px",
-            paddingBottom: "160px",
+            paddingTop: "160px",
+            paddingBottom: "120px",
             minHeight: "calc(100vh - 80px)",
-            display: "flex",
-            alignItems: "center",
             backgroundColor: colors.heroDark,
             color: "white",
           }}
@@ -56,15 +55,17 @@ export default function CommunityPage() {
             </h1>
             <p
               style={{
-                color: "white",
-                fontSize: "clamp(1.25rem, 3vw, 1.75rem)",
+                color: "rgba(255,255,255,0.85)",
+                fontSize: "clamp(1.125rem, 2.4vw, 1.5rem)",
                 fontWeight: 500,
                 lineHeight: 1.5,
                 letterSpacing: "-0.01em",
+                marginBottom: "3rem",
               }}
             >
               {communityPage.message}
             </p>
+            <CommunityLeaderboard />
           </PageContainer>
         </section>
       </main>

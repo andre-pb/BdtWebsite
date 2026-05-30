@@ -1,8 +1,9 @@
 export const communityPage = {
   seo: {
     title: "Community — Busy Dad Training",
-    description: "The Busy Dad Training community — coming soon.",
+    description:
+      "The Busy Dad Army leaderboard — see the top dads by burpees logged this month and this year, updating live.",
   },
-  title: "Community",
-  message: "Coming soon",
+  title: "The Army Leaderboard",
+  message: "Every rep counts. Here's who's putting in the work — live.",
 } as const;
