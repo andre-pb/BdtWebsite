@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@microsoft/signalr": "^10.0.0",
     "@next/third-parties": "^16.2.6",
     "critters": "^0.0.23",
     "gsap": "^3.15.0",

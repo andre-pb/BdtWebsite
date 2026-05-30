@@ -38,6 +38,7 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://busydadtraining.com
           NEXT_PUBLIC_LISTMONK_URL: https://mail.busydadtraining.com
           NEXT_PUBLIC_LISTMONK_LIST_UUID: cfad440c-6ba9-47a0-8de2-765397a41f0d
+          NEXT_PUBLIC_BURPEE_HUB_URL: https://api.busydadtraining.com/hubs/burpees
 
       - name: Ensure Jekyll is disabled
         run: touch out/.nojekyll

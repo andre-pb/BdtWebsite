@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import { burpeeStat } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
@@ -12,50 +13,116 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const formatter = new Intl.NumberFormat("en-GB");
 
+// Anonymous, receive-only SignalR hub on the app API. It sends the current
+// total on connect and again whenever a workout is logged.
+const HUB_URL = process.env.NEXT_PUBLIC_BURPEE_HUB_URL;
+const TOTAL_UPDATED_EVENT = "BurpeeTotalUpdated";
+
 export function BurpeeStatSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
+
+  // Shared between the GSAP animation and the SignalR listener.
+  const targetRef = useRef<number>(burpeeStat.value); // latest known total
+  const displayedRef = useRef<number>(0); // value currently on screen
+  const enteredRef = useRef<boolean>(false); // has the scroll-in run yet
+  const reducedMotionRef = useRef<boolean>(false);
+
+  const renderValue = (value: number) => {
+    if (numberRef.current) {
+      numberRef.current.textContent = formatter.format(Math.floor(value));
+    }
+  };
+
+  // Tween the displayed number from its current value to `value`.
+  const animateTo = (value: number, duration: number) => {
+    const counter = { value: displayedRef.current };
+    gsap.to(counter, {
+      value,
+      duration,
+      ease: "power2.out",
+      onUpdate: () => {
+        displayedRef.current = counter.value;
+        renderValue(counter.value);
+      },
+    });
+  };
 
   useGSAP(
     () => {
       const number = numberRef.current;
       if (!number) return;
 
-      const target = burpeeStat.value;
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const counter = { value: 0 };
         number.textContent = "0";
 
-        const tween = gsap.to(counter, {
-          value: target,
-          duration: 2.4,
-          ease: "power2.out",
-          onUpdate: () => {
-            number.textContent = formatter.format(Math.floor(counter.value));
-          },
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            once: true,
+        const trigger = ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top 75%",
+          once: true,
+          onEnter: () => {
+            enteredRef.current = true;
+            // Animate to the latest total received so far (live or fallback).
+            animateTo(targetRef.current, 2.4);
           },
         });
 
-        return () => {
-          tween.scrollTrigger?.kill();
-          tween.kill();
-        };
+        return () => trigger.kill();
       });
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
-        number.textContent = formatter.format(target);
+        reducedMotionRef.current = true;
+        enteredRef.current = true;
+        displayedRef.current = targetRef.current;
+        renderValue(targetRef.current);
       });
 
       return () => mm.revert();
     },
     { scope: sectionRef },
   );
+
+  // Live updates from the burpee hub.
+  useEffect(() => {
+    if (!HUB_URL) return;
+
+    const connection = new HubConnectionBuilder()
+      // Anonymous hub: no cookies/auth, so don't send credentials. A
+      // credentialed CORS request would require Access-Control-Allow-Credentials
+      // on the API, which the shared policy intentionally doesn't set.
+      .withUrl(HUB_URL, { withCredentials: false })
+      .withAutomaticReconnect()
+      .configureLogging(LogLevel.Warning)
+      .build();
+
+    connection.on(TOTAL_UPDATED_EVENT, (total: number) => {
+      if (typeof total !== "number" || !Number.isFinite(total)) return;
+      // The hub is authoritative — always take its value, even if it's lower
+      // than the static fallback (the real DB total is below the marketing
+      // placeholder until enough reps accumulate).
+      targetRef.current = total;
+
+      if (reducedMotionRef.current) {
+        displayedRef.current = total;
+        renderValue(total);
+      } else if (enteredRef.current) {
+        animateTo(total, 1.2);
+      }
+      // If the section hasn't scrolled into view yet, the scroll-in
+      // animation will pick up the latest targetRef value.
+    });
+
+    // Fail silently — the static fallback number stays on screen.
+    connection.start().catch(() => {});
+
+    return () => {
+      connection.stop().catch(() => {});
+    };
+    // animateTo/renderValue only read refs, so they're stable — no deps needed.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section
