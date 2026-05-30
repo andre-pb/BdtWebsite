@@ -86,7 +86,7 @@ I have so much more energy and continue to honor the 80 minute commitment, which
   },
   {
     name: "Conor",
-    location: "California",
+    location: "Las Vegas",
     countryCode: "US",
     headline: "I've never looked forward to a workout so much — while being completely scared of it.",
     body: `I will be 47-years-old this coming summer. Last year, I decided to take a break from running to heal a foot injury that had been getting worse. I thought about all the activities I could do instead of running to get my heart pumping. And then I remembered burpees from my military days.
