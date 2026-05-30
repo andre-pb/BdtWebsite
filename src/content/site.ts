@@ -55,7 +55,6 @@ export const appStores = {
 } as const;
 
 export const hero = {
-  eyebrow: "The Method",
   headline: "Busy Dad",
   headlineAccent: "Training",
   description:
