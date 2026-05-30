@@ -6,7 +6,12 @@ import { CreatorSection } from "@/components/principles/CreatorSection";
 import { PrincipleSection } from "@/components/principles/PrincipleSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { principlesPage } from "@/content/principles";
-import { createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
+import {
+  createPageMetadata,
+  getBreadcrumbJsonLd,
+  getPrinciplesFaqJsonLd,
+  getWebPageJsonLd,
+} from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: principlesPage.seo.title,
@@ -26,6 +31,7 @@ export default function PrinciplesPage() {
             { name: "Home", path: "/" },
             { name: "Principles", path: "/principles/" },
           ]),
+          getPrinciplesFaqJsonLd(),
         ]}
       />
       <Header />

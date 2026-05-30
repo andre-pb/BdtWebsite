@@ -11,6 +11,7 @@ import { movementsPage } from "@/content/movements";
 import {
   createPageMetadata,
   getBreadcrumbJsonLd,
+  getMovementsFaqJsonLd,
   getMovementsHowToJsonLd,
   getWebPageJsonLd,
 } from "@/lib/seo";
@@ -42,6 +43,7 @@ export default function MovementsPage() {
             { name: "Movements", path: "/movements/" },
           ]),
           ...getMovementsHowToJsonLd(),
+          getMovementsFaqJsonLd(),
         ]}
       />
       <Header />

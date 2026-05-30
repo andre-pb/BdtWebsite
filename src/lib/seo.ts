@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { appStores, seo, site, video } from "@/content/site";
 import { movementsPage } from "@/content/movements";
+import { levelsPage } from "@/content/levels";
 
 const siteUrl = site.url;
 
@@ -291,6 +292,171 @@ export function getMovementsHowToJsonLd() {
       })),
     };
   });
+}
+
+export function getPrinciplesFaqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What are the three principles of Busy Dad Training?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The Busy Dad Program revolves around three principles: simplicity, efficiency, and intentionality. Simplicity means training only two compound movements rather than an endless library of exercises. Efficiency means a strict weekly training budget of 80 minutes. Intentionality means every minute of every workout is geared toward a specific training goal within the four-tiered level system.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Why does the Busy Dad Program only use two movements?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "BDP is a minimalist program. Rather than performing an endless library of isolation exercises, practitioners train two compound movements — the Sacred Movements — that recruit the whole body as an integrated system and activate every major muscle group. The aim is to cultivate excellence in those two movements, not breadth across many.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How long should I train each week on the Busy Dad Program?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Exactly 80 minutes per week — not a minute more, not a minute less. The preferred breakdown is four 20-minute sessions, but practitioners are free to divide the 80 minutes however they choose.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Is 80 minutes a week really enough to get fit?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Just 80 minutes per week is enough to see profound training results — provided every minute is of the highest possible quality. Because the training budget is so restrictive, every workout must be deliberate and goal-directed, and that intensity is what produces results.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Who created the Busy Dad Program?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Busy Dad Training was created by Max Edwards, who developed the program out of the conviction that two compound burpee variations — the 6-count military burpee and the Navy Seal burpee — yield all a person needs to build elite fitness and strength.",
+        },
+      },
+    ],
+  };
+}
+
+export function getMovementsFaqJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What are the two Sacred Movements of the Busy Dad Program?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The two Sacred Movements are the 6-count military burpee and the Navy Seal burpee. Both are variations of the American military burpee. BDP practitioners train these two movements and very little else.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is a 6-count military burpee?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The 6-count military burpee is a six-part compound movement that recruits every major muscle group. The core is engaged throughout. The legs and posterior chain work hardest at counts 1–2 and 5–6, and the upper body — chest, shoulders, triceps — takes over at counts 3–4. The 6-count excels at building leg strength and cardiovascular fitness.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is a Navy Seal burpee?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The Navy Seal burpee is a 10-count compound movement. Counts 1–2 and 9–10 are leg work; counts 3–8 are an upper-body sequence where the core, chest, shoulders, triceps, scapula, traps, and lats work together. No bodyweight movement builds upper-body strength and mass like the Navy Seal.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How is the American military burpee different from a CrossFit burpee?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "The American military burpee has very little in common with the more familiar burpee popularised by CrossFit. Until recently it was a niche movement largely confined to the US military and prison culture. The Sacred Movements of BDP — the 6-count and the Navy Seal — are the two most effective variations of the American military burpee.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How should I split my training time between the two movements?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "On a standard week of BDP, the 80-minute weekly training budget is split evenly: 40 minutes of 6-count training and 40 minutes of Navy Seal training, ideally across four 20-minute sessions.",
+        },
+      },
+    ],
+  };
+}
+
+export function getLevelsItemListJsonLd() {
+  const url = absoluteUrl("/levels/");
+  const tierLevels = [
+    levelsPage.level1,
+    levelsPage.level2,
+    levelsPage.level3,
+    levelsPage.level4,
+  ] as const;
+
+  const itemListElement = [
+    ...tierLevels.map((level, index) => {
+      const firstSublevel = level.sublevels[0];
+      const lastSublevel = level.sublevels[level.sublevels.length - 1];
+      const description =
+        "intro" in level && level.intro
+          ? level.intro
+          : firstSublevel.description;
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: level.title,
+        url: `${url}#${level.id}`,
+        item: {
+          "@type": "Thing",
+          name: level.title,
+          description,
+          additionalProperty: [
+            {
+              "@type": "PropertyValue",
+              name: "Entry sublevel",
+              value: firstSublevel.title,
+            },
+            {
+              "@type": "PropertyValue",
+              name: "Top sublevel",
+              value: lastSublevel.title,
+            },
+          ],
+        },
+      };
+    }),
+    {
+      "@type": "ListItem",
+      position: tierLevels.length + 1,
+      name: levelsPage.graduation.title,
+      url: `${url}#graduation`,
+      item: {
+        "@type": "Thing",
+        name: levelsPage.graduation.title,
+        description: levelsPage.graduation.paragraphs[0],
+      },
+    },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Busy Dad Program Levels",
+    description:
+      "The four-tiered level system of the Busy Dad Program, from Level 1A through Graduation.",
+    url,
+    numberOfItems: itemListElement.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement,
+  };
 }
 
 export function getLevelsFaqJsonLd() {
