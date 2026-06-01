@@ -23,19 +23,6 @@ export function HeroSection() {
     >
       <PageContainer>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <span
-            style={{
-              display: "inline-block",
-              fontSize: "0.875rem",
-              fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.05em",
-              color: colors.accentLight,
-              marginBottom: "1rem",
-            }}
-          >
-            {hero.eyebrow}
-          </span>
           <h1
             id="hero-heading"
             style={{
@@ -47,8 +34,7 @@ export function HeroSection() {
               marginBottom: "1.5rem",
             }}
           >
-            {hero.headline}
-            <br />
+            {hero.headline}{" "}
             <span
               style={{
                 color: "white",
@@ -72,15 +58,7 @@ export function HeroSection() {
         >
           {hero.description}
         </p>
-        <div
-          style={{
-            display: "flex",
-            gap: "16px",
-            marginTop: "40px",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
+        <div className="hero-store-badges">
           <AppStoreBadge />
           <GooglePlayBadge />
         </div>

@@ -9,8 +9,7 @@ export const principlesPage = {
   hero: {
     eyebrow: "The Philosophy",
     title: "Busy Dad Training Principles",
-    intro:
-      "The Busy Dad Program is built on three principles: disciplined minimalism, ruthless efficiency, and intentional execution.",
+    intro: "Minimalism. Efficiency. Intentional Execution.",
     backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   },
   pillars: [

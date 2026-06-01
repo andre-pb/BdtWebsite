@@ -55,7 +55,6 @@ export const appStores = {
 } as const;
 
 export const hero = {
-  eyebrow: "The Method",
   headline: "Busy Dad",
   headlineAccent: "Training",
   description:
@@ -115,6 +114,12 @@ export const appScreenshots = {
     height: 2498,
     alt: "Busy Dad Training app levels screen",
   },
+  community: {
+    src: assetPath("/photos/Community_Screenshot.PNG"),
+    width: 1206,
+    height: 2622,
+    alt: "Busy Dad Training app community screen",
+  },
 } as const;
 
 export const program = {
@@ -139,6 +144,13 @@ export const levels = {
     { num: "2", title: "Conditioning", status: "In Progress", variant: "inProgress" as const },
     { num: "3", title: "Advanced", status: "Locked", variant: "locked" as const },
   ],
+} as const;
+
+export const community = {
+  eyebrow: "The Busy Dad Army",
+  title: "You're not doing this alone.",
+  description:
+    "See what the army is up to, share your wins, and stay accountable with dads who get it. The app connects you to a global community built on showing up.",
 } as const;
 
 export const appShowcaseSteps = [
@@ -166,6 +178,18 @@ export const appShowcaseSteps = [
     background: "#F8FAFC",
     mockupFirst: false,
   },
+  {
+    id: "community",
+    sectionId: "community-preview",
+    headingId: "community-heading",
+    eyebrow: community.eyebrow,
+    title: community.title,
+    description: community.description,
+    screenshot: appScreenshots.community,
+    icon: "users" as const,
+    background: "#FFFFFF",
+    mockupFirst: true,
+  },
 ] as const;
 
 export const youtube = {
@@ -182,27 +206,9 @@ export const testimonials = {
   quotes: [
     {
       quote:
-        "I started exercising more seriously during the first lockdown in 2020 and tried various app-based programs from YouTube — none of them stuck. Ten weeks into the Busy Dad Programme, I've doubled my 6-counts and nearly tripled my Navy Seals. The philosophy fits my life as a busy dad and I'm seeing real physical and emotional improvements.",
-      name: "Mike",
-      role: "Busy Dad · Wales",
-    },
-    {
-      quote:
         "In January 2021 I quit a 20+ year smoking habit cold turkey and decided I needed to start training. I floundered for months writing my own routines. Then I found the Busy Dad Program — structure and simplicity, presented in a way that's easy to digest. I dove straight in and started seeing palpable results almost immediately.",
       name: "Paul",
       role: "Busy Dad · Oregon",
-    },
-    {
-      quote:
-        "Eighty minutes is all I needed to find. The Busy Dad Program is the most honest, no-nonsense protocol I've come across. Two movements. That's it. And that's everything.",
-      name: "Daniel",
-      role: "Busy Dad · São Paulo",
-    },
-    {
-      quote:
-        "The Busy Dad Program cuts through every gimmick. It's a serious training philosophy delivered with humour, conviction, and a deep respect for whoever's doing the work.",
-      name: "Burpees Bandit",
-      role: "Fitness YouTuber",
     },
     {
       quote:

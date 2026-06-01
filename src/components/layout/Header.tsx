@@ -191,31 +191,38 @@ export function Header() {
             </svg>
           </button>
 
-          <div className="mobile-nav-links">
+          <nav className="mobile-nav-links" aria-label="Mobile navigation">
             {[{ label: "Home", href: "/" }, ...navLinks].map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className="mobile-nav-link"
-                style={{ transitionDelay: `${index * 50 + 80}ms` }}
+                style={{ transitionDelay: `${index * 45 + 70}ms` }}
                 onClick={closeMenu}
                 tabIndex={menuOpen ? 0 : -1}
               >
                 <span className="mobile-nav-link-label">{link.label}</span>
+                <svg
+                  className="mobile-nav-link-chevron"
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="9 6 15 12 9 18" />
+                </svg>
               </Link>
             ))}
-          </div>
+          </nav>
 
           <div className="mobile-nav-cta-wrap">
-            <div
-              style={{
-                display: "flex",
-                gap: "12px",
-                justifyContent: "center",
-                flexWrap: "wrap",
-              }}
-              onClick={closeMenu}
-            >
+            <span className="mobile-nav-cta-label">Get the app</span>
+            <div className="mobile-nav-badges" onClick={closeMenu}>
               <AppStoreBadge />
               <GooglePlayBadge />
             </div>
