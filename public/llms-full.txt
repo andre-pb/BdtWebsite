@@ -1,0 +1,169 @@
+# Busy Dad Training — Full Program Reference
+
+> A minimalist bodyweight training program built around two compound burpee movements and a strict 80-minute weekly budget. Simplicity, efficiency, intentionality. Created by Max Edwards. No equipment required.
+
+This document is the complete, self-contained knowledge base for the Busy Dad Program (BDP). It is intended to give language models the full program in a single fetch. For the indexed, link-based version see https://busydadtraining.com/llms.txt
+
+---
+
+## What is Busy Dad Training?
+
+Busy Dad Training (BDT) is a progressive bodyweight training program created by Max Edwards. It is designed for busy people — busy dads above all — who want elite fitness without surrendering their evenings to a gym. The program requires no equipment and asks for exactly 80 minutes of training per week, ideally split into four 20-minute sessions.
+
+Training revolves around just two compound bodyweight movements, known as the Sacred Movements: the 6-count military burpee and the Navy Seal burpee. Progression is governed by a four-tiered Level System, from Level 1A through Graduation, with each level unlocked by two Landmark Workouts.
+
+The program is delivered through the Busy Dad Training app (iOS and Android), which tracks Landmark Workouts in strict 20-minute timer windows and steps practitioners through the levels. It began as follow-along workouts on the Busy Dad Training YouTube channel.
+
+- Creator: Max Edwards
+- Weekly training budget: 80 minutes (typically 4 × 20-minute sessions)
+- Equipment required: none
+- App: iOS and Android, free to download
+
+---
+
+## The Creator: Max Edwards
+
+Max Edwards is the founder and creator of the Busy Dad Program. By his own account he is not an athlete and came from no special athletic background — just years of trying and failing to make training stick, bouncing between programs and dropping off when life got busy.
+
+When he became a father, he set a hard, simple rule: no more than 80 minutes a week of training, and no excuses. That constraint forced him to cut through the noise and focus on what actually works, and he built his entire approach around just two burpee movements. The result was the best shape of his life — and the Busy Dad Program.
+
+The method started as simple, follow-along burpee workouts on YouTube. A community formed (the "Busy Dad Army"), and the app was built so practitioners could actually do the work every day, with a timer, a level system, and benchmarks that show exactly where they stand.
+
+---
+
+## The Three Principles
+
+The Busy Dad Program rests on three principles: **simplicity**, **efficiency**, and **intentionality**.
+
+**Simplicity** means training only two compound movements rather than an endless library of isolation exercises. Practitioners cultivate excellence in the two Sacred Movements rather than breadth across many. Each movement recruits the whole body as an integrated system and activates every major muscle group.
+
+**Efficiency** means a strict weekly training budget of 80 minutes — not a minute more, not a minute less. The preferred breakdown is four 20-minute sessions, but practitioners are free to divide the 80 minutes however they choose. Just 80 minutes a week is enough to see profound results, provided every minute is of the highest possible quality.
+
+**Intentionality** means every minute of every workout is geared toward a specific training goal within the four-tiered level system. Because the training budget is so restrictive, every workout must be deliberate and goal-directed, and that intensity is what produces results.
+
+Common questions:
+
+- *Why only two movements?* BDP is minimalist. Two compound movements that recruit the whole body beat an endless library of isolation exercises. The aim is excellence in those two movements, not variety.
+- *Is 80 minutes a week really enough?* Yes — provided every minute is high quality. The restrictive budget forces deliberate, goal-directed training.
+
+---
+
+## The Two Sacred Movements
+
+The two Sacred Movements are the **6-count military burpee** and the **Navy Seal burpee**. Both are variations of the American military burpee — a movement with very little in common with the more familiar burpee popularised by CrossFit. Until recently it was niche, largely confined to US military and prison culture. BDP practitioners train these two movements and very little else.
+
+On a standard week, the 80-minute budget is split evenly: 40 minutes of 6-count training and 40 minutes of Navy Seal training, ideally across four 20-minute sessions.
+
+### The 6-Count Military Burpee
+
+A six-part compound movement that recruits every major muscle group. The core is engaged throughout (counts 1–6). The legs and posterior chain work hardest at the start and end (counts 1–2 and 5–6); the upper body — chest, shoulders, triceps — takes the limelight in the middle (counts 3–4).
+
+Steps:
+1. **Counts 1–2:** From standing, drop into a squat, place your hands on the ground, and kick your feet back into a plank.
+2. **Counts 3–4:** Lower your chest to the ground and press back up to plank (the push-up).
+3. **Counts 5–6:** Jump your feet back to your hands, then stand up. That's one repetition. Call out the count.
+
+The 6-count excels at building leg strength and cardiovascular fitness. (Max reports his resting heart rate dropped from 70 bpm to 45 bpm after 18 months of 6-count training.) Summary: 6-counts will get you strong and fit.
+
+Tutorial video: https://www.youtube.com/watch?v=eroWyZxZNlA
+
+### The Navy Seal Burpee
+
+A 10-count compound movement, more complex than the 6-count. It starts and finishes with leg work (counts 1–2 and 9–10). The upper-body work happens between, at counts 3–8, where the core, chest, shoulders, triceps, scapula, traps, and lats synergize.
+
+Steps:
+1. **Counts 1–2:** From standing, drop into a squat, place your hands on the ground, and kick your feet back into a plank.
+2. **Counts 3–8:** Move through the six-count upper-body sequence that engages core, chest, shoulders, triceps, scapula, traps, and lats. Call out every count.
+3. **Counts 9–10:** Jump your feet back to your hands, then stand up. That's one repetition.
+
+The Navy Seal also builds cardiovascular fitness, especially when all ten counts are called out. It does not condition the legs like the 6-count, but for building upper-body strength and mass no bodyweight movement comes close. Summary: Navy Seals will get you ripped.
+
+Tutorial video: https://www.youtube.com/watch?v=BqWQkblauo8
+
+---
+
+## The Four Levels (Level System)
+
+Every level is unlocked by two **Landmark Workouts**: one 20-minute 6-count workout and one 20-minute Navy Seal workout. A practitioner is assigned a level based on current fitness in the two Sacred Movements.
+
+Goal structure:
+- **Long-term** (building the house): Complete the Busy Dad Program.
+- **Medium-term** (building a room): Advance to the next level.
+- **Immediate** (laying a brick): Do something that edges you closer to the next level.
+
+The exact Landmark Workout targets for every level (reps completed within a 20-minute window):
+
+| Level | 6-Count target (20 min) | Navy Seal target (20 min) |
+|-------|--------------------------|----------------------------|
+| 1A | 1 | 1 |
+| 1B | 50 | 20 |
+| 1C | 100 | 40 |
+| 1D | 150 | 60 |
+| 2A | 200 | 80 |
+| 2B | 225 | 90 |
+| 3A | 250 | 100 |
+| 3B | 260 | 110 |
+| 4A | 275 | 120 |
+| 4B | 300 | 135 |
+| Graduation | 325 | 150 |
+
+### Level 1 (1A–1D)
+
+The most elementary level, subdivided into four sublevels because the gap between the start and end of Level 1 is enormous.
+
+- **1A:** The starting point. Complete a single rep of each Sacred Movement (1 × 6-count and 1 × Navy Seal, each within 20 minutes).
+- **1B:** The first level-change. Building the muscular fitness and aerobic conditioning needed to advance. Targets: 50 6-counts, 20 Navy Seals. Many elite practitioners begin here.
+- **1C:** Pulling away from the pack. Targets: 100 6-counts, 40 Navy Seals.
+- **1D:** The upper climbs of Level 1, worlds apart from 1A. Targets: 150 6-counts, 60 Navy Seals.
+
+### Level 2 (2A–2B)
+
+- **2A:** The first major line in the sand. Many professional athletes could not complete 200 high-quality 6-counts in 20 minutes. Targets: 200 6-counts, 80 Navy Seals.
+- **2B:** A pitstop before Level 3. Targets: 225 6-counts, 90 Navy Seals.
+
+### Level 3 (3A–3B)
+
+- **3A:** Moving toward elite conditioning; rare company. Targets: 250 6-counts, 100 Navy Seals.
+- **3B:** Demanding volume that sets you apart. Targets: 260 6-counts, 110 Navy Seals.
+
+### Level 4 (4A–4B)
+
+- **4A:** Officially an elite burpee practitioner. Targets: 275 6-counts, 120 Navy Seals.
+- **4B:** The final level before the Graduation campaign. Targets: 300 6-counts, 135 Navy Seals.
+
+### Graduation
+
+The tiny elite — black belt, world-class burpee practitioners. Requirements:
+- 325 6-counts in 20 minutes **and** 150 Navy Seal burpees in 20 minutes.
+- Both Graduation Workouts must be completed **within the same week**.
+- Every count of both movements must be called out.
+- To maintain Graduation status, repeat these workouts every 30 days, otherwise you slide back to Level 4B.
+
+Progression depends on starting fitness and consistency: early sublevels can take weeks, later levels take months, and Graduation can take years — achieved only by a small elite. All Landmark Workouts can be found on the Busy Dad Training YouTube channel.
+
+---
+
+## Key Facts (quick reference)
+
+- Program name: Busy Dad Program (BDP) / Busy Dad Training (BDT)
+- Creator: Max Edwards
+- Weekly training budget: exactly 80 minutes (typically 4 × 20-minute sessions)
+- Sacred Movements: 6-count military burpee; Navy Seal burpee
+- Movement split on a standard week: 40 min 6-count, 40 min Navy Seal
+- Levels: 1A, 1B, 1C, 1D, 2A, 2B, 3A, 3B, 4A, 4B, Graduation
+- Graduation Landmark Workouts: 325 6-counts in 20 minutes; 150 Navy Seal burpees in 20 minutes (same week, all counts called out)
+- Equipment required: none
+- Burpees logged on the app: 2,784,095+ and counting
+
+---
+
+## Links
+
+- Website: https://busydadtraining.com
+- Principles: https://busydadtraining.com/principles/
+- The Two Sacred Movements: https://busydadtraining.com/movements/
+- The Four Levels: https://busydadtraining.com/levels/
+- About Max: https://busydadtraining.com/about/
+- iOS app: https://apps.apple.com/us/app/busy-dad-training/id6746872829
+- Android app: https://play.google.com/store/apps/details?id=com.busydadtraining.busydadtrainingapp&hl=en_GB
+- YouTube: https://www.youtube.com/@BusyDadTraining

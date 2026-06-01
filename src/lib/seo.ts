@@ -147,7 +147,28 @@ export function getSiteJsonLd() {
           width: site.logo.width,
           height: site.logo.height,
         },
+        founder: { "@id": `${siteUrl}/#max-edwards` },
         sameAs: [youtube.url, appStores.appStoreUrl, appStores.googlePlayUrl],
+      },
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#max-edwards`,
+        name: "Max Edwards",
+        url: absoluteUrl("/about/"),
+        jobTitle: "Founder & Creator",
+        description:
+          "Max Edwards is the creator of the Busy Dad Program, a minimalist bodyweight training system built around two compound burpee movements and a strict 80-minute weekly training budget. He developed the method after fatherhood forced a simpler approach to staying fit.",
+        knowsAbout: [
+          "Bodyweight training",
+          "Burpees",
+          "Minimalist fitness",
+          "6-count military burpee",
+          "Navy Seal burpee",
+        ],
+        worksFor: { "@id": `${siteUrl}/#organization` },
+        // Add Max's personal profiles (Instagram, X, LinkedIn) here to
+        // strengthen entity disambiguation for search engines and LLMs.
+        sameAs: [youtube.url],
       },
       {
         "@type": "MobileApplication",
