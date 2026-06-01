@@ -33,6 +33,11 @@ const legacyRedirects = [
     title: "Program Levels",
   },
   {
+    from: "/the-four-levels-of-the-busy-dad-program/",
+    to: "/levels/",
+    title: "The Four Levels of the Busy Dad Program",
+  },
+  {
     from: "/home/",
     to: "/",
     title: "Home",

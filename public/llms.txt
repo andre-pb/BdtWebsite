@@ -8,6 +8,8 @@ The whole program is built on three principles: **simplicity**, **efficiency**, 
 
 Progression is governed by a four-tiered Level System (Level 1A → Graduation), with each level unlocked by two Landmark Workouts — one 20-minute 6-count workout and one 20-minute Navy Seal workout.
 
+For the complete program in a single document — all principles, both movements, and every level's exact rep counts — see [llms-full.txt](https://busydadtraining.com/llms-full.txt).
+
 ## Core program pages
 
 - [Principles](https://busydadtraining.com/principles/): The three principles of Busy Dad Training — simplicity, efficiency, and intentionality — and the philosophy behind the program.
