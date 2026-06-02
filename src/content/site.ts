@@ -13,6 +13,7 @@ export const site = {
     src: assetPath("/busy_dad_white_logo_small.png"),
     width: 172,
     height: 87,
+    alt: "Busy Dad Training logo — minimalist fitness for fathers",
   },
   favicon: {
     ico: assetPath("/favicon.ico"),
@@ -85,6 +86,8 @@ export const hero = {
   description:
     "Build strength, fitness and consistency with a progressive bodyweight programme designed around real life. No gym, no commute, no excuses.",
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+  backgroundImageAlt:
+    "Busy dad performing a bodyweight burpee during a minimalist home workout",
 } as const;
 
 export const featuredIn = {
@@ -94,6 +97,7 @@ export const featuredIn = {
       name: "Men's Health",
       href: "https://www.menshealth.com/uk/fitness/a70766848/busy-dad-navy-seal-burpee-workout/",
       src: assetPath("/Logos/mens_health.svg"),
+      alt: "Men's Health logo featuring Busy Dad Training burpee workout",
       width: 608,
       height: 125,
       maxHeight: 24,
@@ -102,6 +106,7 @@ export const featuredIn = {
       name: "Yahoo",
       href: "https://uk.style.yahoo.com/busy-dad-shares-navy-seal-000000961.html",
       src: assetPath("/Logos/Yahoo_Logo_0.svg"),
+      alt: "Yahoo logo featuring Busy Dad Training Navy Seal workout",
       width: 1000,
       height: 277,
       maxHeight: 30,
@@ -127,7 +132,8 @@ export const philosophy = {
     href: "/best-short-home-workout-apps-for-men-2026/",
   },
   image: assetPath("/images/Busy_Dad%20Large.webp"),
-  imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
+  imageAlt:
+    "Busy dad training coach demonstrating bodyweight squat form during a home workout",
 } as const;
 
 export const appScreenshots = {
@@ -135,19 +141,19 @@ export const appScreenshots = {
     src: assetPath("/photos/Timer_Screenshot.jpeg"),
     width: 1206,
     height: 2483,
-    alt: "Busy Dad Training app timer screen",
+    alt: "Busy Dad Training app 20-minute AMRAP timer for bodyweight burpee workouts",
   },
   levels: {
     src: assetPath("/photos/levels_Screenshot.jpeg"),
     width: 1206,
     height: 2498,
-    alt: "Busy Dad Training app levels screen",
+    alt: "Busy Dad Training app level screen showing Landmark Workout progression",
   },
   community: {
     src: assetPath("/photos/Community_Screenshot.PNG"),
     width: 1206,
     height: 2622,
-    alt: "Busy Dad Training app community screen",
+    alt: "Busy Dad Training app community feed where busy dads share workout wins",
   },
 } as const;
 

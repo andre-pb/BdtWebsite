@@ -53,7 +53,7 @@ export function FeaturedInBar() {
             >
               <Image
                 src={logo.src}
-                alt=""
+                alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
                 style={{
