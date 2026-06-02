@@ -27,7 +27,7 @@ export const site = {
 export const seo = {
   title: "Busy Dad Training | Simplicity. Efficiency. Intentionality.",
   description:
-    "Busy Dad Training: a short home workout app for men at $9.99/month or $99/year — two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
+    "Busy Dad Training: a short home workout app for men from £9.99/month or £99.99/year — two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
   keywords: [
     "busy dad workout",
     "bodyweight training",
@@ -66,17 +66,17 @@ export const appStores = {
 export const appPricing = {
   monthly: {
     amount: 9.99,
-    currency: "USD",
-    display: "$9.99/month",
+    currency: "GBP",
+    display: "£9.99/month",
   },
   annual: {
-    amount: 99,
-    currency: "USD",
-    display: "$99/year",
-    effectiveMonthly: "~$8.25/month when billed annually",
+    amount: 99.99,
+    currency: "GBP",
+    display: "£99.99/year",
+    effectiveMonthly: "~£8.33/month when billed annually",
   },
-  summary: "$9.99/month or $99/year (~$8.25/month billed annually)",
-  tableLabel: "$9.99/mo or $99/yr",
+  summary: "from £9.99/month or £99.99/year (~£8.33/month billed annually)",
+  tableLabel: "From £9.99/mo or £99.99/yr",
 } as const;
 
 export const hero = {

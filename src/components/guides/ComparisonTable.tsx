@@ -92,7 +92,15 @@ export function ComparisonTable() {
                   <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{app.sessionLength}</td>
                   <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{app.equipment}</td>
                   <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{app.focus}</td>
-                  <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{app.price}</td>
+                  <td
+                    style={{
+                      padding: "1rem 1.25rem",
+                      fontWeight: app.isOwnProduct ? 600 : 400,
+                      color: app.isOwnProduct ? colors.textMain : colors.textMuted,
+                    }}
+                  >
+                    {app.price}
+                  </td>
                 </tr>
               ))}
             </tbody>
