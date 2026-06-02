@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
 import { accountDeletionPage, privacyPage, termsPage } from "@/content/legal";
 import { site } from "@/content/site";
 
@@ -31,9 +32,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${site.url}${bestHomeWorkoutAppsPage.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.95,
+    },
+    {
       url: `${site.url}/about/`,
       lastModified: new Date(),
       changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${site.url}/community/`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 0.8,
     },
     {

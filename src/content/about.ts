@@ -5,7 +5,7 @@ export const aboutPage = {
   seo: {
     title: "About Max — Busy Dad Training",
     description:
-      "Max Edwards on building the Busy Dad Program — a stripped-back, time-efficient training system born from the constraint of 80 minutes a week and fatherhood.",
+      "Meet Max Edwards, creator of Busy Dad Training — the short home workout app for men built on 80 minutes a week and two compound burpee movements.",
   },
   hero: {
     eyebrow: "The Creator",

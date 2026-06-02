@@ -27,14 +27,18 @@ export const site = {
 export const seo = {
   title: "Busy Dad Training | Simplicity. Efficiency. Intentionality.",
   description:
-    "Busy Dad Training: a minimalist program built around two compound movements and 80 minutes a week. Simplicity, efficiency, intentionality.",
+    "Busy Dad Training: a short home workout app for men at $9.99/month or $99/year — two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
   keywords: [
     "busy dad workout",
     "bodyweight training",
     "home workout for dads",
     "20 minute workout",
+    "20 minute home workout",
     "burpee workout",
     "fitness app",
+    "short home workout app",
+    "home workout app for men",
+    "workout app for men",
     "no gym workout",
   ],
   ogImage: assetPath("/photos/burpee-photo-1.jpg"),
@@ -48,10 +52,31 @@ export const navLinks = [
   { label: "Community", href: "/community/" },
 ] as const;
 
+export const footerGuideLink = {
+  label: "Best home workout apps (2026)",
+  href: "/best-short-home-workout-apps-for-men-2026/",
+} as const;
+
 export const appStores = {
   appStoreUrl: "https://apps.apple.com/us/app/busy-dad-training/id6746872829",
   googlePlayUrl:
     "https://play.google.com/store/apps/details?id=com.busydadtraining.busydadtrainingapp&hl=en_GB",
+} as const;
+
+export const appPricing = {
+  monthly: {
+    amount: 9.99,
+    currency: "USD",
+    display: "$9.99/month",
+  },
+  annual: {
+    amount: 99,
+    currency: "USD",
+    display: "$99/year",
+    effectiveMonthly: "~$8.25/month when billed annually",
+  },
+  summary: "$9.99/month or $99/year (~$8.25/month billed annually)",
+  tableLabel: "$9.99/mo or $99/yr",
 } as const;
 
 export const hero = {
@@ -97,6 +122,10 @@ export const philosophy = {
   title: "Zero friction fitness.",
   description:
     "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee. High volume, simple execution.",
+  guideLink: {
+    label: "Compare the best short home workout apps for men (2026)",
+    href: "/best-short-home-workout-apps-for-men-2026/",
+  },
   image: assetPath("/images/Busy_Dad%20Large.webp"),
   imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
 } as const;

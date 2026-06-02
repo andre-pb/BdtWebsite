@@ -4,7 +4,7 @@ export const communityPage = {
   seo: {
     title: "Community — Busy Dad Training",
     description:
-      "Meet the Busy Dad Army — real stories from dads who showed up, plus the live burpee leaderboard updating in real time.",
+      "Join the Busy Dad Army — real stories from men using this home workout app, plus a live burpee leaderboard and accountability.",
   },
   hero: {
     eyebrow: "The Busy Dad Army",

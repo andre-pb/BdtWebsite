@@ -4,7 +4,7 @@ export const principlesPage = {
   seo: {
     title: "Busy Dad Training Principles",
     description:
-      "The three principles of Busy Dad Training — disciplined minimalism, ruthless efficiency, and intentional execution — and the philosophy behind the two Sacred Movements.",
+      "The three principles behind this short home workout app for men: 80 minutes a week, disciplined minimalism, and intentional 20-minute sessions — no gym required.",
   },
   hero: {
     eyebrow: "The Philosophy",

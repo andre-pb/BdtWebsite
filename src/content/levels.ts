@@ -4,7 +4,7 @@ export const levelsPage = {
   seo: {
     title: "The Four Levels of the Busy Dad Program",
     description:
-      "Understand the BDP four-tiered level system: Landmark Workouts for 6-counts and Navy Seals that unlock each level, from Level 1A through Graduation.",
+      "How the Busy Dad Training app progresses you from Level 1 to Graduation — Landmark Workouts and benchmarks for short home workouts.",
   },
   hero: {
     eyebrow: "Progress",
