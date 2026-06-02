@@ -32,7 +32,7 @@ export const communityPage = {
     eyebrow: "Real Stories",
     title: "In their own words.",
     description:
-      "Long-form journeys from dads who stopped overcomplicating fitness and started showing up.",
+      "Long-form journeys from busy men and women who stopped overcomplicating fitness and started showing up.",
   },
   leaderboard: {
     eyebrow: "Live Rankings",
