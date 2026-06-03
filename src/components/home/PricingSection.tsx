@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { PageContainer } from "@/components/ui/PageContainer";
+import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
 import { colors } from "@/constants/colors";
 
 const MONTHLY_PRICE = 9.99;
@@ -93,6 +94,9 @@ function PlanCard({
   valueNote: string;
   highlighted?: boolean;
 }) {
+  const [showStoreButtons, setShowStoreButtons] = useState(false);
+  const storePanelId = `${label.toLowerCase().replace(/\s+/g, "-")}-store-buttons`;
+
   return (
     <article
       style={{
@@ -223,12 +227,16 @@ function PlanCard({
           {valueNote}
         </p>
 
-        <a
-          href="#download"
+        <button
+          type="button"
+          onClick={() => setShowStoreButtons((current) => !current)}
+          aria-expanded={showStoreButtons}
+          aria-controls={storePanelId}
           style={{
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
+            gap: "8px",
             width: "100%",
             padding: "13px 20px",
             fontSize: "0.97rem",
@@ -238,10 +246,50 @@ function PlanCard({
             color: highlighted ? "white" : colors.brandBlue,
             border: highlighted ? `1px solid ${colors.brandBlue}` : `1px solid ${colors.brandBlue}`,
             textDecoration: "none",
+            cursor: "pointer",
+            transition: "transform 180ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
           Start 7-Day Free Trial
-        </a>
+          <span
+            aria-hidden="true"
+            style={{
+              display: "inline-flex",
+              transform: showStoreButtons ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 220ms cubic-bezier(0.16, 1, 0.3, 1)",
+              lineHeight: 1,
+            }}
+          >
+            ▼
+          </span>
+        </button>
+
+        <div
+          id={storePanelId}
+          style={{
+            display: "grid",
+            gridTemplateRows: showStoreButtons ? "1fr" : "0fr",
+            transition: "grid-template-rows 280ms cubic-bezier(0.16, 1, 0.3, 1), margin-top 280ms cubic-bezier(0.16, 1, 0.3, 1)",
+            marginTop: showStoreButtons ? "12px" : "0px",
+          }}
+        >
+          <div style={{ overflow: "hidden" }}>
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                opacity: showStoreButtons ? 1 : 0,
+                transform: showStoreButtons ? "translateY(0)" : "translateY(-8px)",
+                transition: "opacity 220ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1)",
+              }}
+            >
+              <AppStoreBadge />
+              <GooglePlayBadge />
+            </div>
+          </div>
+        </div>
       </div>
     </article>
   );
