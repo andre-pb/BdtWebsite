@@ -5,6 +5,7 @@ import { PhilosophySection } from "@/components/home/PhilosophySection";
 import { BurpeeStatSection } from "@/components/home/BurpeeStatSection";
 import { AppShowcaseSection } from "@/components/home/AppShowcaseSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { PricingSection } from "@/components/home/PricingSection";
 import { DownloadSection } from "@/components/home/DownloadSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { seo } from "@/content/site";
@@ -31,6 +32,7 @@ export default function HomePage() {
         <BurpeeStatSection />
         <AppShowcaseSection />
         <TestimonialsSection />
+        <PricingSection />
         <DownloadSection />
       </main>
       <Footer />
