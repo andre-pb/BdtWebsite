@@ -8,7 +8,7 @@ import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { DownloadSection } from "@/components/home/DownloadSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { seo } from "@/content/site";
-import { createPageMetadata, getExerciseProgramJsonLd, getHomePageJsonLd } from "@/lib/seo";
+import { createPageMetadata, getExerciseProgramJsonLd, getHomePageJsonLd, getAggregateRatingJsonLd, getHomepageReviewJsonLd } from "@/lib/seo";
 
 export const metadata = {
   ...createPageMetadata({
@@ -23,7 +23,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={[...getHomePageJsonLd(), getExerciseProgramJsonLd()]} />
+      <JsonLd data={[...getHomePageJsonLd(), getExerciseProgramJsonLd(), getAggregateRatingJsonLd(), ...getHomepageReviewJsonLd()]} />
       <Header />
       <main>
         <HeroSection />
