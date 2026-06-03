@@ -4,7 +4,7 @@ export const communityPage = {
   seo: {
     title: "Community — Busy Dad Training",
     description:
-      "Meet the Busy Dad Army — real stories from dads who showed up, plus the live burpee leaderboard updating in real time.",
+      "Join the Busy Dad Army — real stories from men using this home workout app, plus a live burpee leaderboard and accountability.",
   },
   hero: {
     eyebrow: "The Busy Dad Army",
@@ -32,7 +32,7 @@ export const communityPage = {
     eyebrow: "Real Stories",
     title: "In their own words.",
     description:
-      "Long-form journeys from dads who stopped overcomplicating fitness and started showing up.",
+      "Long-form journeys from busy men and women who stopped overcomplicating fitness and started showing up.",
   },
   leaderboard: {
     eyebrow: "Live Rankings",
@@ -154,5 +154,16 @@ I worked with Max for 18 months to help me build and maintain my burpee practice
     countryCode: "ZA",
     headline: "What appears simple opens doors you never knew existed.",
     body: `The Busy Dad Program has been my faithful companion for the past three years, and I can hardly begin to describe the ways in which it has changed my life. What appears to be a simple approach opens doors you never knew existed — whether physical, mental, or spiritual — and becomes a springboard from which every other aspect of your life can thrive. Give it a go!`,
+  },
+  {
+    name: "Sam",
+    location: "Norway",
+    countryCode: "NO",
+    headline: "One of the very few programmes I've followed for years.",
+    body: `BDP changed my relationship with fitness. I discovered the programme while recovering from a hip injury and looking for a way to stay active without making it worse. What started as a simple workout became a sustainable system that I could stick to regardless of travel, work, or life circumstances.
+
+The physical transformation was great, but the biggest benefits have been consistency, focus, and discipline. Through weekly coaching with Max, I've come to see fitness as part of a broader practice of living intentionally.
+
+It's one of the very few programmes I've followed consistently for years, and I expect it will remain part of my life for many years to come.`,
   },
 ];

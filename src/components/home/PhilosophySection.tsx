@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { philosophy } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
@@ -47,6 +48,19 @@ export function PhilosophySection() {
           </h2>
           <p style={{ color: colors.textMuted, fontSize: "1.125rem", marginBottom: "1.5rem" }}>
             {philosophy.description}
+          </p>
+          <p style={{ marginBottom: "1.5rem" }}>
+            <Link
+              href={philosophy.guideLink.href}
+              style={{
+                color: colors.brandBlue,
+                fontWeight: 600,
+                fontSize: "1rem",
+                textDecoration: "none",
+              }}
+            >
+              {philosophy.guideLink.label} →
+            </Link>
           </p>
           <div
             style={{

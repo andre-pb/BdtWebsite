@@ -7,7 +7,18 @@ import { AppShowcaseSection } from "@/components/home/AppShowcaseSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { DownloadSection } from "@/components/home/DownloadSection";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getExerciseProgramJsonLd, getHomePageJsonLd } from "@/lib/seo";
+import { seo } from "@/content/site";
+import { createPageMetadata, getExerciseProgramJsonLd, getHomePageJsonLd } from "@/lib/seo";
+
+export const metadata = {
+  ...createPageMetadata({
+    title: seo.title,
+    description: seo.description,
+    path: "/",
+    keywords: [...seo.keywords],
+  }),
+  title: { absolute: seo.title },
+};
 
 export default function HomePage() {
   return (

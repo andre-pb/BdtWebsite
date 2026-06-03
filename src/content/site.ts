@@ -13,6 +13,7 @@ export const site = {
     src: assetPath("/busy_dad_white_logo_small.png"),
     width: 172,
     height: 87,
+    alt: "Busy Dad Training logo — minimalist fitness for fathers",
   },
   favicon: {
     ico: assetPath("/favicon.ico"),
@@ -27,14 +28,18 @@ export const site = {
 export const seo = {
   title: "Busy Dad Training | Simplicity. Efficiency. Intentionality.",
   description:
-    "Busy Dad Training: a minimalist program built around two compound movements and 80 minutes a week. Simplicity, efficiency, intentionality.",
+    "Busy Dad Training: a short home workout app for men from £9.99/month or £99.99/year — two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
   keywords: [
     "busy dad workout",
     "bodyweight training",
     "home workout for dads",
     "20 minute workout",
+    "20 minute home workout",
     "burpee workout",
     "fitness app",
+    "short home workout app",
+    "home workout app for men",
+    "workout app for men",
     "no gym workout",
   ],
   ogImage: assetPath("/photos/burpee-photo-1.jpg"),
@@ -48,10 +53,31 @@ export const navLinks = [
   { label: "Community", href: "/community/" },
 ] as const;
 
+export const footerGuideLink = {
+  label: "Best home workout apps (2026)",
+  href: "/best-short-home-workout-apps-for-men-2026/",
+} as const;
+
 export const appStores = {
   appStoreUrl: "https://apps.apple.com/us/app/busy-dad-training/id6746872829",
   googlePlayUrl:
     "https://play.google.com/store/apps/details?id=com.busydadtraining.busydadtrainingapp&hl=en_GB",
+} as const;
+
+export const appPricing = {
+  monthly: {
+    amount: 9.99,
+    currency: "GBP",
+    display: "£9.99/month",
+  },
+  annual: {
+    amount: 99.99,
+    currency: "GBP",
+    display: "£99.99/year",
+    effectiveMonthly: "~£8.33/month when billed annually",
+  },
+  summary: "from £9.99/month or £99.99/year (~£8.33/month billed annually)",
+  tableLabel: "From £9.99/mo or £99.99/yr",
 } as const;
 
 export const hero = {
@@ -60,6 +86,8 @@ export const hero = {
   description:
     "Build strength, fitness and consistency with a progressive bodyweight programme designed around real life. No gym, no commute, no excuses.",
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+  backgroundImageAlt:
+    "Busy dad performing a bodyweight burpee during a minimalist home workout",
 } as const;
 
 export const featuredIn = {
@@ -69,6 +97,7 @@ export const featuredIn = {
       name: "Men's Health",
       href: "https://www.menshealth.com/uk/fitness/a70766848/busy-dad-navy-seal-burpee-workout/",
       src: assetPath("/Logos/mens_health.svg"),
+      alt: "Men's Health logo featuring Busy Dad Training burpee workout",
       width: 608,
       height: 125,
       maxHeight: 24,
@@ -77,6 +106,7 @@ export const featuredIn = {
       name: "Yahoo",
       href: "https://uk.style.yahoo.com/busy-dad-shares-navy-seal-000000961.html",
       src: assetPath("/Logos/Yahoo_Logo_0.svg"),
+      alt: "Yahoo logo featuring Busy Dad Training Navy Seal workout",
       width: 1000,
       height: 277,
       maxHeight: 30,
@@ -97,8 +127,13 @@ export const philosophy = {
   title: "Zero friction fitness.",
   description:
     "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee. High volume, simple execution.",
+  guideLink: {
+    label: "Compare the best short home workout apps for men (2026)",
+    href: "/best-short-home-workout-apps-for-men-2026/",
+  },
   image: assetPath("/images/Busy_Dad%20Large.webp"),
-  imageAlt: "Busy Dad Training coach demonstrating bodyweight exercise form",
+  imageAlt:
+    "Busy dad training coach demonstrating bodyweight squat form during a home workout",
 } as const;
 
 export const appScreenshots = {
@@ -106,19 +141,19 @@ export const appScreenshots = {
     src: assetPath("/photos/Timer_Screenshot.jpeg"),
     width: 1206,
     height: 2483,
-    alt: "Busy Dad Training app timer screen",
+    alt: "Busy Dad Training app 20-minute AMRAP timer for bodyweight burpee workouts",
   },
   levels: {
     src: assetPath("/photos/levels_Screenshot.jpeg"),
     width: 1206,
     height: 2498,
-    alt: "Busy Dad Training app levels screen",
+    alt: "Busy Dad Training app level screen showing Landmark Workout progression",
   },
   community: {
     src: assetPath("/photos/Community_Screenshot.PNG"),
     width: 1206,
     height: 2622,
-    alt: "Busy Dad Training app community screen",
+    alt: "Busy Dad Training app community feed where busy dads share workout wins",
   },
 } as const;
 

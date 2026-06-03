@@ -119,7 +119,7 @@ export function Header() {
           >
             <Image
               src={site.logo.src}
-              alt={site.name}
+              alt={site.logo.alt}
               width={site.logo.width}
               height={site.logo.height}
               priority

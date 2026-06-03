@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { hero } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
@@ -14,14 +15,33 @@ export function HeroSection() {
         paddingBottom: "160px",
         position: "relative",
         backgroundColor: colors.heroDark,
-        backgroundImage: `linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.9)), url('${hero.backgroundImage}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         textAlign: "center",
         color: "white",
+        overflow: "hidden",
       }}
     >
-      <PageContainer>
+      <Image
+        src={hero.backgroundImage}
+        alt={hero.backgroundImageAlt}
+        fill
+        priority
+        sizes="100vw"
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+          zIndex: 0,
+        }}
+      />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.9))",
+          zIndex: 1,
+        }}
+      />
+      <PageContainer style={{ position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <h1
             id="hero-heading"

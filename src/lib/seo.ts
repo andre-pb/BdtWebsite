@@ -1,10 +1,40 @@
 import type { Metadata } from "next";
 import { aboutPage } from "@/content/about";
-import { appStores, seo, site, youtube } from "@/content/site";
+import { appPricing, appStores, appScreenshots, seo, site, youtube } from "@/content/site";
 import { movementsPage } from "@/content/movements";
 import { levelsPage } from "@/content/levels";
+import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
 
 const siteUrl = site.url;
+
+export function getAppOffersJsonLd() {
+  return [
+    {
+      "@type": "Offer",
+      price: String(appPricing.monthly.amount),
+      priceCurrency: appPricing.monthly.currency,
+      description: appPricing.monthly.display,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: String(appPricing.monthly.amount),
+        priceCurrency: appPricing.monthly.currency,
+        billingDuration: "P1M",
+      },
+    },
+    {
+      "@type": "Offer",
+      price: String(appPricing.annual.amount),
+      priceCurrency: appPricing.annual.currency,
+      description: appPricing.annual.display,
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: String(appPricing.annual.amount),
+        priceCurrency: appPricing.annual.currency,
+        billingDuration: "P1Y",
+      },
+    },
+  ];
+}
 
 export function absoluteUrl(path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
@@ -177,11 +207,7 @@ export function getSiteJsonLd() {
         applicationCategory: "HealthApplication",
         operatingSystem: "iOS, Android",
         description: seo.description,
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "USD",
-        },
+        offers: getAppOffersJsonLd(),
         downloadUrl: [appStores.appStoreUrl, appStores.googlePlayUrl],
       },
     ],
@@ -533,4 +559,128 @@ export function getLevelsFaqJsonLd() {
       },
     ],
   };
+}
+
+export type FaqEntry = {
+  question: string;
+  answer: string;
+};
+
+export function buildFaqJsonLd(faqs: readonly FaqEntry[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function getArticleJsonLd({
+  headline,
+  description,
+  path,
+  datePublished,
+  dateModified,
+}: {
+  headline: string;
+  description: string;
+  path: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  const url = absoluteUrl(path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline,
+    description,
+    url,
+    datePublished,
+    dateModified,
+    inLanguage: "en-GB",
+    author: { "@id": `${siteUrl}/#max-edwards` },
+    publisher: { "@id": `${siteUrl}/#organization` },
+    mainEntityOfPage: { "@id": `${url}#webpage` },
+    isPartOf: { "@id": `${siteUrl}/#website` },
+  };
+}
+
+export function getAppsItemListJsonLd(
+  apps: readonly { id: string; name: string; websiteUrl: string }[]
+) {
+  const url = absoluteUrl(bestHomeWorkoutAppsPage.path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Best Short Home Workout Apps for Men (2026)",
+    description: bestHomeWorkoutAppsPage.seo.description,
+    url,
+    numberOfItems: apps.length,
+    itemListOrder: "https://schema.org/ItemListUnordered",
+    itemListElement: apps.map((app, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: app.name,
+      url: `${url}#${app.id}`,
+      item: {
+        "@type": "SoftwareApplication",
+        name: app.name,
+        url: app.websiteUrl,
+        applicationCategory: "HealthApplication",
+        operatingSystem: "iOS, Android",
+      },
+    })),
+  };
+}
+
+export function getGuideAppJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "@id": `${absoluteUrl(bestHomeWorkoutAppsPage.path)}#app-details`,
+    name: site.name,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "iOS, Android",
+    description:
+      "A minimalist home workout app for men: two burpee movements, 20-minute sessions, 80 minutes per week, and a four-level progression system.",
+    featureList: [
+      "20-minute workout timer",
+      "Four-tier level progression with Landmark Workouts",
+      "6-count and Navy Seal burpee tracking",
+      "Global community and burpee leaderboard",
+      "No equipment required",
+    ],
+    screenshot: [
+      absoluteUrl(appScreenshots.timer.src),
+      absoluteUrl(appScreenshots.levels.src),
+      absoluteUrl(appScreenshots.community.src),
+    ],
+    offers: getAppOffersJsonLd(),
+    downloadUrl: [appStores.appStoreUrl, appStores.googlePlayUrl],
+  };
+}
+
+export function getReviewJsonLdFromTestimonials(
+  quotes: readonly { quote: string; name: string; role: string }[]
+) {
+  return quotes.map((t, index) => ({
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "@id": `${absoluteUrl(bestHomeWorkoutAppsPage.path)}#review-${index + 1}`,
+    author: {
+      "@type": "Person",
+      name: t.name,
+    },
+    reviewBody: t.quote,
+    itemReviewed: { "@id": `${siteUrl}/#app` },
+  }));
 }
