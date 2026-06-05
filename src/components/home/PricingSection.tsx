@@ -84,12 +84,14 @@ const sharedFeatures = [
 function PlanCard({
   label,
   price,
+  billingCycle,
   subtext,
   valueNote,
   highlighted = false,
 }: {
   label: string;
   price: string;
+  billingCycle: "/month" | "/year";
   subtext: string;
   valueNote: string;
   highlighted?: boolean;
@@ -167,7 +169,7 @@ function PlanCard({
               color: highlighted ? "rgba(255,255,255,0.85)" : colors.textMuted,
             }}
           >
-            /month
+            {billingCycle}
           </span>
         </p>
         <p
@@ -383,12 +385,14 @@ export function PricingSection() {
             <PlanCard
               label="Monthly Plan"
               price={monthlyLabel}
+              billingCycle="/month"
               subtext="Billed monthly. Cancel anytime."
               valueNote="Great if you want maximum flexibility."
             />
             <PlanCard
               label="Yearly"
               price={yearlyLabel}
+              billingCycle="/year"
               subtext={`Billed annually at ${yearlyLabel} total.`}
               valueNote={`Save ${formatCurrency(config.currencySymbol, yearlySavings)} per year (${Math.round(
                 yearlyDiscount,
