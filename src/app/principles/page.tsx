@@ -41,6 +41,7 @@ export default function PrinciplesPage() {
             key={pillar.id}
             id={pillar.id}
             title={pillar.title}
+            image={pillar.image}
             blocks={pillar.blocks}
             quote={pillar.quote}
             variant={index % 2 === 0 ? "light" : "dark"}
