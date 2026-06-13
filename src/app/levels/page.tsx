@@ -54,6 +54,7 @@ export default function LevelsPage() {
             id={level.id}
             number={level.number}
             title={level.title}
+            image={"image" in level ? level.image : undefined}
             intro={"intro" in level ? level.intro : undefined}
             sublevels={level.sublevels}
             outro={"outro" in level ? level.outro : undefined}
