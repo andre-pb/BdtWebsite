@@ -133,12 +133,19 @@ export function TestimonialsSection() {
         gsap.set(track, { x: 0 });
 
         const distance = set.offsetWidth + CARD_GAP;
-        tweenRef.current = gsap.to(track, {
-          x: -distance,
-          duration: distance / MARQUEE_SPEED,
-          ease: "none",
-          repeat: -1,
-        });
+        // fromTo ensures clean repeat behaviour — GSAP resets to the exact
+        // `from` values on each loop, eliminating the 1-frame flash that
+        // `to()` with repeat: -1 can produce.
+        tweenRef.current = gsap.fromTo(
+          track,
+          { x: 0 },
+          {
+            x: -distance,
+            duration: distance / MARQUEE_SPEED,
+            ease: "none",
+            repeat: -1,
+          },
+        );
       };
 
       const mm = gsap.matchMedia();
@@ -253,15 +260,28 @@ export function TestimonialsSection() {
             willChange: "transform",
           }}
         >
+          {/* 4 duplicate sets ensure there is always buffered content on
+              screen when GSAP resets the tween from -distance back to 0,
+              eliminating the white gap. */}
           <TestimonialSet
             quotes={testimonials.quotes}
             setRef={setRef}
-            suffix="primary"
+            suffix="a"
           />
           <TestimonialSet
             quotes={testimonials.quotes}
             ariaHidden
-            suffix="duplicate"
+            suffix="b"
+          />
+          <TestimonialSet
+            quotes={testimonials.quotes}
+            ariaHidden
+            suffix="c"
+          />
+          <TestimonialSet
+            quotes={testimonials.quotes}
+            ariaHidden
+            suffix="d"
           />
         </div>
       </div>
