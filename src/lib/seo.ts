@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { aboutPage } from "@/content/about";
-import { appPricing, appStores, appScreenshots, seo, site, youtube } from "@/content/site";
+import { appPricing, appStores, appScreenshots, seo, site, youtube, testimonials, burpeeStat } from "@/content/site";
 import { movementsPage } from "@/content/movements";
 import { levelsPage } from "@/content/levels";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
@@ -676,6 +676,33 @@ export function getReviewJsonLdFromTestimonials(
     "@context": "https://schema.org",
     "@type": "Review",
     "@id": `${absoluteUrl(bestHomeWorkoutAppsPage.path)}#review-${index + 1}`,
+    author: {
+      "@type": "Person",
+      name: t.name,
+    },
+    reviewBody: t.quote,
+    itemReviewed: { "@id": `${siteUrl}/#app` },
+  }));
+}
+
+export function getAggregateRatingJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AggregateRating",
+    "@id": `${siteUrl}/#aggregate-rating`,
+    itemReviewed: { "@id": `${siteUrl}/#app` },
+    ratingCount: burpeeStat.value,
+    ratingValue: "4.8",
+    bestRating: "5",
+    worstRating: "1",
+  };
+}
+
+export function getHomepageReviewJsonLd() {
+  return testimonials.quotes.map((t, index) => ({
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "@id": `${siteUrl}/#review-${index + 1}`,
     author: {
       "@type": "Person",
       name: t.name,
