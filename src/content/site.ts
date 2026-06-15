@@ -26,21 +26,21 @@ export const site = {
 } as const;
 
 export const seo = {
-  title: "Busy Dad Training | Simplicity. Efficiency. Intentionality.",
+  title: "Busy Dad Training: Short Home Workout App for Men",
   description:
     "Busy Dad Training: a short home workout app for men from £9.99/month or £99.99/year — two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
   keywords: [
-    "busy dad workout",
+    "busy dad workout app",
+    "short home workout app for men",
     "bodyweight training",
     "home workout for dads",
-    "20 minute workout",
-    "20 minute home workout",
-    "burpee workout",
-    "fitness app",
-    "short home workout app",
-    "home workout app for men",
-    "workout app for men",
-    "no gym workout",
+    "20 minute workout for men",
+    "burpee workout app",
+    "fitness app for men",
+    "no equipment workout app",
+    "workout app for busy dads",
+    "home exercise app for men",
+    "no gym workout app",
   ],
   ogImage: assetPath("/photos/burpee-photo-1.jpg"),
 } as const;
@@ -84,7 +84,7 @@ export const hero = {
   headline: "Busy Dad",
   headlineAccent: "Training",
   description:
-    "Build strength, fitness and consistency with a progressive bodyweight programme designed around real life. No gym, no commute, no excuses.",
+    "Build strength, fitness and consistency with a short home workout app designed for busy dads. A progressive bodyweight programme — no gym, no commute, no excuses.",
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
   backgroundImageAlt:
     "Busy dad performing a bodyweight burpee during a minimalist home workout",
