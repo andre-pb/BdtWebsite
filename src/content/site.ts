@@ -58,6 +58,12 @@ export const footerGuideLink = {
   href: "/best-short-home-workout-apps-for-men-2026/",
 } as const;
 
+export const footerComparisonLinks = [
+  { label: "Freeletics vs BDT", href: "/comparisons/freeletics-vs-busy-dad-training/" },
+  { label: "Boostcamp vs BDT", href: "/comparisons/boostcamp-vs-busy-dad-training/" },
+  { label: "Thenx vs BDT", href: "/comparisons/thenx-vs-busy-dad-training/" },
+] as const;
+
 export const appStores = {
   appStoreUrl: "https://apps.apple.com/us/app/busy-dad-training/id6746872829",
   googlePlayUrl:

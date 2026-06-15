@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { legalFooterLinks } from "@/content/legal";
-import { footerGuideLink, navLinks, site } from "@/content/site";
+import { footerGuideLink, footerComparisonLinks, navLinks, site } from "@/content/site";
 import { colors } from "@/constants/colors";
 
 export function Footer() {
@@ -85,6 +85,23 @@ export function Footer() {
             >
               {footerGuideLink.label}
             </Link>
+            {footerComparisonLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  color: hoveredLink === link.label ? "white" : "rgba(255,255,255,0.6)",
+                  fontWeight: 500,
+                  fontSize: "0.9rem",
+                  transition: "color 0.2s",
+                  textDecoration: "none",
+                }}
+                onMouseEnter={() => setHoveredLink(link.label)}
+                onMouseLeave={() => setHoveredLink(null)}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <nav
