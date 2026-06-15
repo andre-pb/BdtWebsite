@@ -40,6 +40,10 @@ export const levelsPage = {
     id: "level-1",
     number: 1,
     title: "Level 1",
+    image: {
+      src: assetPath("/levels-images/Level%201.webp"),
+      alt: "Busy Dad Training Level 1 practitioner demonstrating a foundational workout movement",
+    },
     intro:
       "Level 1 is the most elementary level of the program, and it is further differentiated into four sublevels. There is an enormous difference between someone at the beginning of Level 1 and someone at the end of Level 1, and the sub-levels are in place to acknowledge those differences.",
     sublevels: [
@@ -90,6 +94,10 @@ export const levelsPage = {
     id: "level-2",
     number: 2,
     title: "Level 2",
+    image: {
+      src: assetPath("/levels-images/Level%202.webp"),
+      alt: "Busy Dad Training Level 2 practitioner progressing through a workout",
+    },
     highlight: true,
     sublevels: [
       {
@@ -118,6 +126,10 @@ export const levelsPage = {
     id: "level-3",
     number: 3,
     title: "Level 3",
+    image: {
+      src: assetPath("/levels-images/Level%203.webp"),
+      alt: "Busy Dad Training Level 3 practitioner performing an advanced workout movement",
+    },
     sublevels: [
       {
         id: "3a",
@@ -145,6 +157,10 @@ export const levelsPage = {
     id: "level-4",
     number: 4,
     title: "Level 4",
+    image: {
+      src: assetPath("/levels-images/Level%204.webp"),
+      alt: "Busy Dad Training Level 4 practitioner completing an elite workout movement",
+    },
     sublevels: [
       {
         id: "4a",

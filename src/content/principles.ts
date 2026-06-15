@@ -16,6 +16,10 @@ export const principlesPage = {
     {
       id: "disciplined-minimalism",
       title: "Disciplined Minimalism",
+      image: {
+        src: assetPath("/levels-images/motivation%201.webp"),
+        alt: "Busy Dad Training motivation image for disciplined minimalism",
+      },
       blocks: [
         { emphasis: "The Busy Dad Program is built on disciplined minimalism." },
         "Most training programs bury progress beneath endless variation: isolation exercises, complicated splits, and unnecessary volume. The Busy Dad Program strips training down to what matters most.",
@@ -31,6 +35,10 @@ export const principlesPage = {
     {
       id: "ruthless-efficiency",
       title: "Ruthless Efficiency",
+      image: {
+        src: assetPath("/levels-images/motivation%202.webp"),
+        alt: "Busy Dad Training motivation image for ruthless efficiency",
+      },
       blocks: [
         { emphasis: "Time is our most limited resource." },
         "Busy dads cannot afford to spend endless hours in the gym. Training must deliver maximum return with minimal time investment.",
@@ -46,6 +54,10 @@ export const principlesPage = {
     {
       id: "intentional-execution",
       title: "Intentional Execution",
+      image: {
+        src: assetPath("/levels-images/motivation%203.webp"),
+        alt: "Busy Dad Training motivation image for intentional execution",
+      },
       blocks: [
         { emphasis: "Constraint creates focus." },
         { emphasis: "With only 80 minutes each week, every second matters." },

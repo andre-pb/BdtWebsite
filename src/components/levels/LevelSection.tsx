@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { colors } from "@/constants/colors";
 import { LandmarkWorkouts, LevelNumberBadge } from "@/components/levels/LandmarkWorkouts";
 import { bodyStyle, headingStyle } from "@/components/ui/Typography";
@@ -14,6 +15,10 @@ type LevelWithSublevelsSectionProps = {
   id: string;
   number: number;
   title: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
   intro?: string;
   sublevels: readonly Sublevel[];
   outro?: string;
@@ -25,6 +30,7 @@ export function LevelWithSublevelsSection({
   id,
   number,
   title,
+  image,
   intro,
   sublevels,
   outro,
@@ -45,14 +51,53 @@ export function LevelWithSublevelsSection({
       }}
     >
       <PageContainer>
-        <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "2rem" }}>
-          <LevelNumberBadge number={number} large />
-          <h2 id={headingId} style={{ ...headingStyle, marginBottom: 0 }}>
-            {title}
-          </h2>
-        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 420px), 1fr))",
+            gap: "64px",
+            alignItems: "center",
+            marginBottom: "48px",
+          }}
+        >
+          <div>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "2rem" }}>
+              <LevelNumberBadge number={number} large />
+              <h2 id={headingId} style={{ ...headingStyle, marginBottom: 0 }}>
+                {title}
+              </h2>
+            </div>
 
-        {intro ? <p style={{ ...bodyStyle, marginBottom: "2.5rem" }}>{intro}</p> : null}
+            {intro ? <p style={{ ...bodyStyle, marginBottom: 0 }}>{intro}</p> : null}
+          </div>
+
+          {image ? (
+            <div
+              style={{
+                position: "relative",
+                borderRadius: "28px",
+                overflow: "hidden",
+                border: `1px solid ${colors.borderLight}`,
+                background: colors.bgOff,
+              }}
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={1200}
+                height={800}
+                sizes="(max-width: 768px) calc(100vw - 40px), 560px"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "auto",
+                  aspectRatio: "3 / 2",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+          ) : null}
+        </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
           {sublevels.map((sublevel, index) => (
