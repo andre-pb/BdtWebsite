@@ -1,207 +1,199 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { DownloadSection } from "@/components/home/DownloadSection";
-import { JsonLd } from "@/components/seo/JsonLd";
+import Link from "next/link";
+import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
-import {
-  buildFaqJsonLd,
-  createPageMetadata,
-  getBreadcrumbJsonLd,
-  getWebPageJsonLd,
-} from "@/lib/seo";
-import { ComparisonPageData } from "@/content/comparisons";
+import { PullQuote } from "@/components/ui/Typography";
+import { eyebrowStyle, headingStyle, bodyStyle } from "@/components/ui/Typography";
+import type { ComparisonPageData } from "@/content/comparisons";
 
 type Props = { data: ComparisonPageData };
 
 function ComparisonHero({ data: d }: Props) {
   return (
     <section
+      aria-labelledby="comparison-hero-heading"
       style={{
         paddingTop: "200px",
         paddingBottom: "100px",
-        background: "#0F172A",
+        position: "relative",
+        backgroundColor: colors.heroDark,
+        backgroundImage: `linear-gradient(rgba(15,23,42,0.75), rgba(15,23,42,0.92))`,
         color: "white",
-        textAlign: "center",
       }}
     >
       <PageContainer>
-        <span
-          style={{
-            display: "inline-block",
-            fontSize: "0.875rem",
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            color: "#60A5FA",
-            marginBottom: "1rem",
-          }}
-        >
-          {d.hero.eyebrow}
-        </span>
+        <span style={{ ...eyebrowStyle, color: colors.accentLight }}>{d.hero.eyebrow}</span>
         <h1
+          id="comparison-hero-heading"
           style={{
-            fontSize: "clamp(2.5rem, 4vw, 3.5rem)",
+            fontSize: "clamp(2.5rem, 4vw, 3.75rem)",
             fontWeight: 800,
             lineHeight: 1.1,
             letterSpacing: "-0.02em",
-            marginBottom: "1rem",
-            maxWidth: "700px",
-            margin: "0 auto 1.5rem",
+            color: "white",
+            marginBottom: "1.5rem",
           }}
         >
           {d.hero.title}
         </h1>
-        <p
-          style={{
-            maxWidth: "640px",
-            margin: "0 auto",
-            color: "rgba(255,255,255,0.85)",
-            fontSize: "1.125rem",
-            lineHeight: 1.7,
-          }}
-        >
+        <p style={{ color: "rgba(255,255,255,0.9)", fontSize: "1.25rem", lineHeight: 1.7, maxWidth: "720px" }}>
           {d.hero.intro}
+        </p>
+        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", marginTop: "1.5rem", marginBottom: 0 }}>
+          Updated {d.dateModified}
         </p>
       </PageContainer>
     </section>
   );
 }
 
-function ComparisonTable({
-  competitor,
-}: {
-  competitor: ComparisonPageData["competitor"];
-}) {
-  const rowStyle: React.CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: "16px 0",
-    borderBottom: "1px solid #E2E8F0",
-  };
-  const labelStyle: React.CSSProperties = {
-    fontWeight: 600,
-    color: "#475569",
-    minWidth: "140px",
-    fontSize: "0.95rem",
-  };
-  const valueStyle: React.CSSProperties = {
-    textAlign: "right",
-    color: "#0F172A",
-    fontSize: "0.95rem",
-  };
+function ComparisonTable({ data: d }: Props) {
+  const { competitor } = d;
+  const columns = [
+    { key: "sessionLength", label: "Typical session" },
+    { key: "equipment", label: "Equipment" },
+    { key: "focus", label: "Focus" },
+    { key: "price", label: "Pricing" },
+  ] as const;
 
   const rows = [
-    { label: "Typical session", bdt: "20 min, 4×/week", other: competitor.sessionLength },
-    { label: "Equipment", bdt: "None — bodyweight", other: competitor.equipment },
-    { label: "Focus", bdt: "Burpee programme, levels", other: competitor.focus },
-    { label: "Price", bdt: "£9.99/mo or £99.99/yr", other: competitor.price },
-    { label: "Best for", bdt: "Busy dads, no equipment", other: competitor.bestFor },
+    { label: competitor.name, ...competitor, isOwnProduct: false },
   ];
 
   return (
-    <section style={{ padding: "80px 0", background: "#F8FAFC" }}>
+    <section aria-labelledby="comparison-table-heading" style={{ padding: "80px 0", backgroundColor: colors.bgOff }}>
       <PageContainer>
-        <h2
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: 700,
-            marginBottom: "2rem",
-            color: "#0F172A",
-          }}
-        >
-          Side-by-side comparison
+        <h2 id="comparison-table-heading" style={{ ...headingStyle, marginBottom: "2rem" }}>
+          At a glance
         </h2>
-        <div
-          style={{
-            background: "white",
-            borderRadius: "16px",
-            padding: "24px 32px",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-          }}
-        >
-          <div style={rowStyle}>
-            <span style={labelStyle}></span>
-            <div style={{ display: "flex", gap: "32px", textAlign: "right" }}>
-              <span style={{ fontWeight: 700, color: "#0055FF", minWidth: "160px" }}>
-                BDT
-              </span>
-              <span style={{ fontWeight: 700, color: "#0F172A", minWidth: "160px" }}>
-                {competitor.name}
-              </span>
-            </div>
-          </div>
-          {rows.map((row) => (
-            <div key={row.label} style={rowStyle}>
-              <span style={labelStyle}>{row.label}</span>
-              <div style={{ display: "flex", gap: "32px", textAlign: "right" }}>
-                <span style={{ ...valueStyle, minWidth: "160px" }}>{row.bdt}</span>
-                <span style={{ ...valueStyle, minWidth: "160px" }}>{row.other}</span>
-              </div>
-            </div>
-          ))}
+        <div style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+          <table
+            style={{
+              width: "100%",
+              minWidth: "500px",
+              borderCollapse: "collapse",
+              fontSize: "0.95rem",
+              backgroundColor: colors.bgPure,
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 4px 24px -8px rgba(15,23,42,0.08)",
+            }}
+          >
+            <thead>
+              <tr style={{ backgroundColor: colors.heroDark, color: "white" }}>
+                <th scope="col" style={{ textAlign: "left", padding: "1rem 1.25rem", fontWeight: 700 }}>App</th>
+                {columns.map((col) => (
+                  <th key={col.key} scope="col" style={{ textAlign: "left", padding: "1rem 1.25rem", fontWeight: 600, whiteSpace: "nowrap" }}>
+                    {col.label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {/* Busy Dad Training row */}
+              <tr style={{ borderTop: `1px solid ${colors.borderLight}`, backgroundColor: colors.bgBlueLight }}>
+                <th scope="row" style={{ textAlign: "left", padding: "1rem 1.25rem", fontWeight: 700, color: colors.textMain }}>
+                  Busy Dad Training
+                  <span style={{ display: "inline-block", marginLeft: "0.5rem", fontSize: "0.7rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.04em", color: colors.brandBlue, verticalAlign: "middle" }}>
+                    Our pick
+                  </span>
+                </th>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>20 min, 4×/week</td>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>None — bodyweight</td>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>Burpee programme, levels</td>
+                <td style={{ padding: "1rem 1.25rem", fontWeight: 600, color: colors.textMain }}>£9.99/mo or £99.99/yr</td>
+              </tr>
+              {/* Competitor row */}
+              <tr style={{ borderTop: `1px solid ${colors.borderLight}` }}>
+                <th scope="row" style={{ textAlign: "left", padding: "1rem 1.25rem", fontWeight: 600, color: colors.textMain }}>
+                  {competitor.name}
+                </th>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{competitor.sessionLength}</td>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{competitor.equipment}</td>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{competitor.focus}</td>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{competitor.price}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </PageContainer>
     </section>
   );
 }
 
-function ProsConsSection({
-  competitor,
-}: {
-  competitor: ComparisonPageData["competitor"];
-}) {
+function ProsConsSection({ data: d }: Props) {
+  const { competitor } = d;
+
   return (
-    <section style={{ padding: "80px 0", background: "white" }}>
+    <section aria-labelledby="comparison-pros-cons-heading" style={{ padding: "100px 0", backgroundColor: colors.bgPure }}>
       <PageContainer>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "40px",
-          }}
-        >
-          <div>
-            <h3
-              style={{
-                fontSize: "1.25rem",
-                fontWeight: 700,
-                color: "#0055FF",
-                marginBottom: "1rem",
-              }}
-            >
-              ✅ Busy Dad Training
-            </h3>
-            <h4 style={{ fontWeight: 600, marginBottom: "0.75rem", color: "#059669" }}>Pros</h4>
-            <ul style={{ paddingLeft: "1.25rem", lineHeight: 1.8, color: "#475569" }}>
-              {competitor.pros.map((p, i) => <li key={i}>{p}</li>)}
-            </ul>
-            <h4 style={{ fontWeight: 600, margin: "1rem 0 0.75rem", color: "#DC2626" }}>Cons</h4>
-            <ul style={{ paddingLeft: "1.25rem", lineHeight: 1.8, color: "#475569" }}>
-              {competitor.cons.map((c, i) => <li key={i}>{c}</li>)}
-            </ul>
+        <h2 id="comparison-pros-cons-heading" style={headingStyle}>
+          How they compare
+        </h2>
+
+        {/* BDT */}
+        <div style={{ marginBottom: "3rem" }}>
+          <h3 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>
+            Busy Dad Training — best for busy dads who want zero-friction bodyweight training
+          </h3>
+          <p style={bodyStyle}>{d.competitor.summary}</p>
+          <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "0.5rem" }}>
+            <strong style={{ color: colors.textMain }}>Best for:</strong> {d.competitor.bestFor}
+          </p>
+          <p style={{ ...bodyStyle, marginBottom: "1.5rem" }}>
+            <a href="https://busydadtraining.com/" target="_blank" rel="noopener noreferrer" style={{ color: colors.brandBlue, fontWeight: 600 }}>
+              busydadtraining.com
+            </a>
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
+            <div>
+              <h4 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>Pros</h4>
+              <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7 }}>
+                <li style={{ marginBottom: "0.5rem" }}>Fixed 20-minute sessions with no decision fatigue.</li>
+                <li style={{ marginBottom: "0.5rem" }}>No equipment — train anywhere.</li>
+                <li style={{ marginBottom: "0.5rem" }}>Clear level progression with objective benchmarks.</li>
+                <li style={{ marginBottom: "0.5rem" }}>£9.99/mo or £99.99/yr (~£8.33/month billed annually).</li>
+                <li style={{ marginBottom: "0.5rem" }}>Full app: timer, level tracking, community.</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>Cons</h4>
+              <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7 }}>
+                <li style={{ marginBottom: "0.5rem" }}>Narrow exercise menu — two movements only.</li>
+                <li style={{ marginBottom: "0.5rem" }}>Not for those who want exercise variety or barbell work.</li>
+                <li style={{ marginBottom: "0.5rem" }}>Upper levels are demanding; Graduation is a long-term goal.</li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <h3
-              style={{
-                fontSize: "1.25rem",
-                fontWeight: 700,
-                color: "#0F172A",
-                marginBottom: "1rem",
-              }}
-            >
-              {competitor.name}
-            </h3>
-            <p style={{ color: "#475569", lineHeight: 1.7, marginBottom: "1rem" }}>
-              {competitor.summary}
-            </p>
-            <h4 style={{ fontWeight: 600, marginBottom: "0.75rem", color: "#059669" }}>Pros</h4>
-            <ul style={{ paddingLeft: "1.25rem", lineHeight: 1.8, color: "#475569" }}>
-              {competitor.pros.map((p, i) => <li key={i}>{p}</li>)}
-            </ul>
-            <h4 style={{ fontWeight: 600, margin: "1rem 0 0.75rem", color: "#DC2626" }}>Cons</h4>
-            <ul style={{ paddingLeft: "1.25rem", lineHeight: 1.8, color: "#475569" }}>
-              {competitor.cons.map((c, i) => <li key={i}>{c}</li>)}
-            </ul>
+        </div>
+
+        {/* Competitor */}
+        <div>
+          <h3 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>
+            {competitor.name} — {competitor.bestFor}
+          </h3>
+          <p style={bodyStyle}>{competitor.summary}</p>
+          <p style={{ ...bodyStyle, marginBottom: "1.5rem" }}>
+            <a href={competitor.websiteUrl} target="_blank" rel="noopener noreferrer" style={{ color: colors.brandBlue, fontWeight: 600 }}>
+              {new URL(competitor.websiteUrl).hostname.replace(/^www\./, "")}
+            </a>
+          </p>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
+            <div>
+              <h4 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>Pros</h4>
+              <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7 }}>
+                {competitor.pros.map((pro, i) => (
+                  <li key={i} style={{ marginBottom: "0.5rem" }}>{pro}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>Cons</h4>
+              <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7 }}>
+                {competitor.cons.map((con, i) => (
+                  <li key={i} style={{ marginBottom: "0.5rem" }}>{con}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </PageContainer>
@@ -211,128 +203,94 @@ function ProsConsSection({
 
 function VerdictSection({ data: d }: Props) {
   return (
-    <section style={{ padding: "80px 0", background: "#F8FAFC" }}>
+    <section aria-labelledby="comparison-verdict-heading" style={{ padding: "100px 0", backgroundColor: colors.bgOff }}>
       <PageContainer>
-        <h2
-          style={{
-            fontSize: "1.75rem",
-            fontWeight: 700,
-            marginBottom: "2rem",
-            color: "#0F172A",
-          }}
-        >
+        <h2 id="comparison-verdict-heading" style={headingStyle}>
+          The verdict
+        </h2>
+
+        <PullQuote>{d.verdict}</PullQuote>
+
+        <h3 style={{ ...headingStyle, fontSize: "clamp(1.5rem, 2.5vw, 2rem)", marginTop: "3rem" }}>
           Why choose Busy Dad Training?
-        </h2>
-        <div
-          style={{
-            background: "white",
-            borderRadius: "16px",
-            padding: "32px",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-            marginBottom: "2rem",
-          }}
-        >
-          <ul style={{ lineHeight: 1.8, color: "#475569", paddingLeft: "1.25rem" }}>
-            {d.whyBdpWins.map((reason, i) => (
-              <li key={i} style={{ marginBottom: "0.75rem" }}>
-                {reason}
-              </li>
-            ))}
-          </ul>
-        </div>
+        </h3>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7, fontSize: "1.125rem" }}>
+          {d.whyBdpWins.map((reason, i) => (
+            <li key={i} style={{ marginBottom: "0.75rem" }}>{reason}</li>
+          ))}
+        </ul>
 
-        <h2
-          style={{
-            fontSize: "1.75rem",
-            fontWeight: 700,
-            marginBottom: "2rem",
-            color: "#0F172A",
-          }}
-        >
+        <h3 style={{ ...headingStyle, fontSize: "clamp(1.5rem, 2.5vw, 2rem)", marginTop: "3rem" }}>
           Where {d.competitor.name} wins
-        </h2>
-        <div
-          style={{
-            background: "white",
-            borderRadius: "16px",
-            padding: "32px",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
-            marginBottom: "2rem",
-          }}
-        >
-          <ul style={{ lineHeight: 1.8, color: "#475569", paddingLeft: "1.25rem" }}>
-            {d.whereCompetitorWins.map((reason, i) => (
-              <li key={i} style={{ marginBottom: "0.75rem" }}>
-                {reason}
-              </li>
-            ))}
-          </ul>
-        </div>
+        </h3>
+        <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7, fontSize: "1.125rem" }}>
+          {d.whereCompetitorWins.map((reason, i) => (
+            <li key={i} style={{ marginBottom: "0.75rem" }}>{reason}</li>
+          ))}
+        </ul>
 
-        <div
-          style={{
-            background: "#EFF6FF",
-            borderRadius: "16px",
-            padding: "32px",
-            borderLeft: "4px solid #0055FF",
-          }}
-        >
-          <h3
-            style={{
-              fontWeight: 700,
-              fontSize: "1.25rem",
-              marginBottom: "0.75rem",
-              color: "#0055FF",
-            }}
-          >
-            Verdict
-          </h3>
-          <p style={{ color: "#1E3A5F", lineHeight: 1.7, fontSize: "1.05rem" }}>
-            {d.verdict}
-          </p>
-        </div>
+        <h3 style={{ ...headingStyle, fontSize: "clamp(1.5rem, 2.5vw, 2rem)", marginTop: "3rem" }}>
+          Key difference
+        </h3>
+        <p style={bodyStyle}>
+          {d.competitor.name} and Busy Dad Training serve different training philosophies.
+        </p>
+
+        <nav aria-label="Related Busy Dad Training pages" style={{ marginTop: "2rem" }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+            <li>
+              <Link href="/principles/" style={{ display: "inline-block", padding: "0.6rem 1.25rem", borderRadius: "999px", backgroundColor: colors.bgPure, border: `1px solid ${colors.borderBlue}`, color: colors.brandBlue, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
+                Training principles
+              </Link>
+            </li>
+            <li>
+              <Link href="/movements/" style={{ display: "inline-block", padding: "0.6rem 1.25rem", borderRadius: "999px", backgroundColor: colors.bgPure, border: `1px solid ${colors.borderBlue}`, color: colors.brandBlue, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
+                The two Sacred Movements
+              </Link>
+            </li>
+            <li>
+              <Link href="/levels/" style={{ display: "inline-block", padding: "0.6rem 1.25rem", borderRadius: "999px", backgroundColor: colors.bgPure, border: `1px solid ${colors.borderBlue}`, color: colors.brandBlue, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
+                Level system & benchmarks
+              </Link>
+            </li>
+            <li>
+              <Link href="/community/" style={{ display: "inline-block", padding: "0.6rem 1.25rem", borderRadius: "999px", backgroundColor: colors.bgPure, border: `1px solid ${colors.borderBlue}`, color: colors.brandBlue, fontWeight: 600, fontSize: "0.95rem", textDecoration: "none" }}>
+                Community stories
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </PageContainer>
     </section>
   );
 }
 
-function FaqSection({ faqs }: { faqs: { question: string; answer: string }[] }) {
+function ComparisonFaqSection({ faqs }: { faqs: ComparisonPageData["faqs"] }) {
   return (
-    <section style={{ padding: "80px 0", background: "white" }}>
+    <section aria-labelledby="comparison-faq-heading" style={{ padding: "100px 0", backgroundColor: colors.bgPure }}>
       <PageContainer>
-        <h2
-          style={{
-            fontSize: "1.75rem",
-            fontWeight: 700,
-            marginBottom: "2rem",
-            color: "#0F172A",
-          }}
-        >
+        <h2 id="comparison-faq-heading" style={{ ...headingStyle, marginBottom: "2rem" }}>
           Frequently asked questions
         </h2>
-        <div style={{ maxWidth: "700px" }}>
-          {faqs.map((faq, i) => (
+        <dl style={{ margin: 0 }}>
+          {faqs.map((faq, index) => (
             <div
-              key={i}
+              key={faq.question}
               style={{
-                padding: "20px 0",
-                borderBottom: i < faqs.length - 1 ? "1px solid #E2E8F0" : "none",
+                marginBottom: index < faqs.length - 1 ? "2rem" : 0,
+                paddingBottom: index < faqs.length - 1 ? "2rem" : 0,
+                borderBottom: index < faqs.length - 1 ? `1px solid ${colors.borderLight}` : undefined,
               }}
             >
-              <h3
-                style={{
-                  fontWeight: 600,
-                  fontSize: "1.05rem",
-                  marginBottom: "0.5rem",
-                  color: "#0F172A",
-                }}
-              >
+              <dt style={{ fontSize: "1.15rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem", lineHeight: 1.4 }}>
                 {faq.question}
-              </h3>
-              <p style={{ color: "#475569", lineHeight: 1.7 }}>{faq.answer}</p>
+              </dt>
+              <dd style={{ margin: 0, color: colors.textMuted, fontSize: "1.0625rem", lineHeight: 1.7 }}>
+                {faq.answer}
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
       </PageContainer>
     </section>
   );
@@ -343,28 +301,14 @@ export function ComparisonPage({ data }: Props) {
 
   return (
     <>
-      <JsonLd
-        data={[
-          getWebPageJsonLd({ title: seo.title, description: seo.description, path }),
-          getBreadcrumbJsonLd([
-            { name: "Home", path: "/" },
-            { name: seo.title, path },
-          ]),
-          buildFaqJsonLd(faqs),
-        ]}
-      />
-      <Header />
-      <main>
+      {/* JSON-LD handled by each page */}
+      <div data-comparison-page>
         <ComparisonHero data={data} />
-        <ComparisonTable competitor={data.competitor} />
-        <ProsConsSection competitor={data.competitor} />
+        <ComparisonTable data={data} />
+        <ProsConsSection data={data} />
         <VerdictSection data={data} />
-        <FaqSection faqs={faqs} />
-        <DownloadSection />
-      </main>
-      <Footer />
+        <ComparisonFaqSection faqs={faqs} />
+      </div>
     </>
   );
 }
-
-export { createPageMetadata } from "@/lib/seo";
