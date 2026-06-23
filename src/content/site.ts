@@ -87,8 +87,8 @@ export const appPricing = {
 } as const;
 
 export const hero = {
-  headline: "Busy Dad",
-  headlineAccent: "Training",
+  headline: "Short Home Workouts for Busy Dads",
+  headlineAccent: "in 20 Minutes",
   description:
     "Build strength, fitness and consistency with a short home workout app designed for busy dads. A progressive bodyweight programme — no gym, no commute, no excuses.",
   backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
