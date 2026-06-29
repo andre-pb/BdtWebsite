@@ -2,6 +2,7 @@ import type { Viewport } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter } from "next/font/google";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { NewsletterPopup } from "@/components/ui/NewsletterPopup";
 import { analytics } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { baseMetadata, getSiteJsonLd } from "@/lib/seo";
@@ -51,6 +52,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <JsonLd data={getSiteJsonLd()} />
         {children}
+        <NewsletterPopup />
         <GoogleAnalytics gaId={analytics.googleAnalyticsId} />
       </body>
     </html>

@@ -5,7 +5,17 @@ import { newsletter } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { subscribeToNewsletter } from "@/lib/listmonk";
 
-export function NewsletterSignup() {
+type NewsletterSignupProps = {
+  inputId?: string;
+  showLabel?: boolean;
+  onSuccess?: () => void;
+};
+
+export function NewsletterSignup({
+  inputId = "newsletter-email",
+  showLabel = true,
+  onSuccess,
+}: NewsletterSignupProps = {}) {
   const [email, setEmail] = useState("");
   const [focused, setFocused] = useState(false);
   const [buttonHovered, setButtonHovered] = useState(false);
@@ -33,6 +43,7 @@ export function NewsletterSignup() {
 
     setPendingConfirmation(result.pendingConfirmation);
     setSubmitted(true);
+    onSuccess?.();
   };
 
   if (submitted) {
@@ -58,16 +69,18 @@ export function NewsletterSignup() {
 
   return (
     <div style={{ maxWidth: "520px", margin: "0 auto" }}>
-      <p
-        style={{
-          margin: "0 0 12px",
-          fontSize: "0.95rem",
-          fontWeight: 600,
-          color: "rgba(255,255,255,0.85)",
-        }}
-      >
-        {newsletter.label}
-      </p>
+      {showLabel ? (
+        <p
+          style={{
+            margin: "0 0 12px",
+            fontSize: "0.95rem",
+            fontWeight: 600,
+            color: "rgba(255,255,255,0.85)",
+          }}
+        >
+          {newsletter.label}
+        </p>
+      ) : null}
 
       <form
         onSubmit={handleSubmit}
@@ -80,11 +93,11 @@ export function NewsletterSignup() {
         <div
           className={`newsletter-input-group${focused ? " newsletter-input-group--focused" : ""}`}
         >
-          <label htmlFor="newsletter-email" className="sr-only">
+          <label htmlFor={inputId} className="sr-only">
             Email address
           </label>
           <input
-            id="newsletter-email"
+            id={inputId}
             type="email"
             name="email"
             autoComplete="email"
@@ -127,13 +140,7 @@ export function NewsletterSignup() {
           </p>
         ) : null}
 
-        <p
-          style={{
-            margin: 0,
-            fontSize: "0.8125rem",
-            color: "rgba(255,255,255,0.45)",
-          }}
-        >
+        <p className="newsletter-signup-disclaimer">
           {newsletter.disclaimer}
         </p>
       </form>

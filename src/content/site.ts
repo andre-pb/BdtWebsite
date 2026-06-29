@@ -284,6 +284,17 @@ export const newsletter = {
   error: "Something went wrong. Please try again.",
 } as const;
 
+export const newsletterPopup = {
+  eyebrow: "From Max",
+  title: "Training tips for busy dads",
+  description: "Short, practical advice — no fluff. Join the list.",
+  dismissLabel: "No thanks",
+  image: {
+    src: assetPath("/levels-images/Level%202.webp"),
+    alt: "Busy Dad Training practitioner progressing through a workout",
+  },
+} as const;
+
 export const cta = {
   getApp: "Get the App",
 } as const;
