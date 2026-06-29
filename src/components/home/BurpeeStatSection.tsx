@@ -94,7 +94,7 @@ export function BurpeeStatSection() {
       // on the API, which the shared policy intentionally doesn't set.
       .withUrl(HUB_URL, { withCredentials: false })
       .withAutomaticReconnect()
-      .configureLogging(LogLevel.Warning)
+      .configureLogging(LogLevel.Error)
       .build();
 
     connection.on(TOTAL_UPDATED_EVENT, (total: number) => {
