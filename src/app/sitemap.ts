@@ -1,5 +1,10 @@
 import type { MetadataRoute } from "next";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import {
+  freeleticsComparison,
+  boostcampComparison,
+  thenxComparison,
+} from "@/content/comparisons";
 import { accountDeletionPage, privacyPage, termsPage } from "@/content/legal";
 import { site } from "@/content/site";
 
@@ -36,6 +41,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.95,
+    },
+    {
+      url: `${site.url}${freeleticsComparison.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${site.url}${boostcampComparison.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${site.url}${thenxComparison.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${site.url}/about/`,
