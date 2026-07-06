@@ -40,6 +40,10 @@ For the complete program in a single document — all principles, both movements
 
 - [About Max Edwards](https://busydadtraining.com/about/): The creator of the Busy Dad Program and the story behind it.
 
+## Community
+
+- [Busy Dad Army Community](https://busydadtraining.com/community/): Join the Busy Dad Army — share your progress, ask questions, and connect with fellow practitioners. Live burpee leaderboard included.
+
 ## Comparisons
 
 - [Best Short Home Workout Apps for Men (2026)](https://busydadtraining.com/best-short-home-workout-apps-for-men-2026/): How Busy Dad Training compares to Freeletics, Boostcamp, Thenx, and other home workout apps.
@@ -54,4 +58,9 @@ For the complete program in a single document — all principles, both movements
 - How much does it cost? £9.99/month or £99.99/year with a 14-day free trial.
 - Do I need equipment? No — bodyweight only.
 - Is it available on iOS and Android? Yes, both platforms.
-- How long are workouts? 20 minutes per session, 80 minutes per week total.
+|- How long are workouts? 20 minutes per session, 80 minutes per week total.
+|- Is Busy Dad Training a free app? The app is free to download with a 14-day free trial. After that it's £9.99/month or £99.99/year.
+|- How is Busy Dad Training different from Freeletics? BDT uses only two movements (6-count burpee + Navy Seal burpee) with a strict 80-minute weekly budget. Freeletics uses AI-generated varied workouts. BDT is simpler, more focused, and requires zero equipment.
+|- How is Busy Dad Training different from Boostcamp? Boostcamp is a marketplace of gym programmes from various creators. BDT is a single, unified bodyweight programme with a clear progression path from beginner to advanced.
+|- How is Busy Dad Training different from Thenx? Thenx focuses on calisthenics skill progression (pull-ups, muscle-ups, handstands). BDT focuses exclusively on burpee mastery for fitness without needing a pull-up bar or advanced skills.
+|- What do you need for Busy Dad Training? Just your body, a timer, and 20 minutes. No gym, no equipment, no apps beyond the BDT app itself.
