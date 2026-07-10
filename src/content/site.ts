@@ -2,6 +2,7 @@ import { assetPath, getSiteUrl } from "@/lib/base-path";
 
 export const analytics = {
   googleAnalyticsId: "G-LLVGVMFPHH",
+  metaPixelId: "1744352980037941",
 } as const;
 
 export const site = {
