@@ -1,4 +1,5 @@
 import type { Viewport } from "next";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Inter } from "next/font/google";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -48,6 +49,7 @@ export default function RootLayout({
             `,
           }}
         />
+        <MetaPixel />
       </head>
       <body className={inter.className}>
         <JsonLd data={getSiteJsonLd()} />
