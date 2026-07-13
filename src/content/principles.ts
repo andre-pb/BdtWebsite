@@ -10,7 +10,7 @@ export const principlesPage = {
     eyebrow: "The Philosophy",
     title: "Busy Dad Training Principles",
     intro: "Minimalism. Efficiency. Intentional Execution.",
-    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+    backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   pillars: [
     {

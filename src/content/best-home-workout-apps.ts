@@ -25,7 +25,7 @@ export const bestHomeWorkoutAppsPage = {
     title: "Best Short Home Workout Apps for Men (2026)",
     intro:
       "If you train at home and only have 20–30 minutes, the right app matters more than the trendiest one. We compared six popular options on session length, equipment, progression, and who each app is actually built for.",
-    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+    backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   intro: {
     title: "Who this guide is for",

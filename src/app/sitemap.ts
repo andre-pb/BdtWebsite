@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import { twentyMinuteWorkoutGuidePage } from "@/content/twenty-minute-workout-guide";
 import {
   freeleticsComparison,
   boostcampComparison,
@@ -35,6 +36,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: `${site.url}${twentyMinuteWorkoutGuidePage.path}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.95,
     },
     {
       url: `${site.url}${bestHomeWorkoutAppsPage.path}`,
