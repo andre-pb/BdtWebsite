@@ -60,6 +60,7 @@ export const footerGuideLink = {
 } as const;
 
 export const footerComparisonLinks = [
+  { label: "20-minute workout for busy dads", href: "/20-minute-home-workout-for-busy-dads/" },
   { label: "Freeletics vs BDT", href: "/comparisons/freeletics-vs-busy-dad-training/" },
   { label: "Boostcamp vs BDT", href: "/comparisons/boostcamp-vs-busy-dad-training/" },
   { label: "Thenx vs BDT", href: "/comparisons/thenx-vs-busy-dad-training/" },
@@ -91,8 +92,8 @@ export const hero = {
   headline: "Short Home Workouts for Busy Dads",
   headlineAccent: "in 20 Minutes",
   description:
-    "Build strength, fitness and consistency with a short home workout app designed for busy dads. A progressive bodyweight programme — no gym, no commute, no excuses.",
-  backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+    "Get strong and stay fit with a short home workout app built for busy dads. Just your bodyweight — no gym, no commute, no excuses.",
+  backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   backgroundImageAlt:
     "Busy dad performing a bodyweight burpee during a minimalist home workout",
 } as const;
@@ -133,7 +134,7 @@ export const philosophy = {
   eyebrow: "Core Philosophy",
   title: "Zero friction fitness.",
   description:
-    "We removed everything that gets in the way of working out. What remains is a brutally effective, incredibly simple system. Forget complex programming. We focus purely on mastering the Burpee. High volume, simple execution.",
+    "We stripped out everything that gets in the way of your workout. What's left is a simple system that works. No complex plans. You master the burpee. High reps, simple form.",
   guideLink: {
     label: "Compare the best short home workout apps for men (2026)",
     href: "/best-short-home-workout-apps-for-men-2026/",
@@ -168,7 +169,7 @@ export const program = {
   eyebrow: "The Program",
   title: "Structured for consistency.",
   description:
-    "Set a timer, do the work, get back to your family. The app tracks your volume in strict 20-minute windows. Start where you are. The system automatically steps you up from Level 1 to Level 4 as your conditioning improves.",
+    "Set a timer, do the work, get back to your family. The app tracks your reps in strict 20-minute blocks. Start where you are. It moves you up from Level 1 to Level 4 as you get fitter.",
   movements: [
     { label: "Movement A", value: "6-Count Burpee" },
     { label: "Movement B", value: "Bodyweight Squat" },
@@ -180,7 +181,7 @@ export const levels = {
   eyebrow: "Clear Path Forward",
   title: "Know exactly where you stand.",
   description:
-    "No guesswork. You pass a benchmark, you move to the next level. The app tells you what to do every single day based on your current tier. Start at Level 1 and progress all the way to mastery.",
+    "No guesswork. Pass a benchmark, move up a level. The app tells you what to do each day. Start at Level 1 and work your way to the top.",
   cards: [
     { num: "1", title: "Foundation", status: "Completed", variant: "active" as const },
     { num: "2", title: "Conditioning", status: "In Progress", variant: "inProgress" as const },
@@ -192,7 +193,7 @@ export const community = {
   eyebrow: "The Busy Dad Army",
   title: "You're not doing this alone.",
   description:
-    "See what the army is up to, share your wins, and stay accountable with dads who get it. The app connects you to a global community built on showing up.",
+    "See what the army is up to, share your wins, and stay on track with dads who get it. The app connects you to a community built on showing up.",
 } as const;
 
 export const appShowcaseSteps = [
@@ -244,7 +245,7 @@ export const testimonials = {
   eyebrow: "From the Busy Dad Army",
   title: "In Their Own Words.",
   description:
-    "Real practitioners on what 80 minutes a week has done for them.",
+    "Real dads on what 80 minutes a week has done for them.",
   quotes: [
     {
       quote:
@@ -271,7 +272,7 @@ export const download = {
   eyebrow: "Start Today",
   title: "Ready to put in the work?",
   description:
-    "Join thousands of busy dads who stopped overcomplicating fitness and started getting results with 80 minutes a week.",
+    "Join thousands of busy dads who keep fitness simple and get results with 80 minutes a week.",
 } as const;
 
 export const newsletter = {

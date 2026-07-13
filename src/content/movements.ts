@@ -9,7 +9,7 @@ export const movementsPage = {
   hero: {
     eyebrow: "The Program",
     title: "The Two Sacred Burpee Movements",
-    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+    backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   intro: {
     paragraphs: [

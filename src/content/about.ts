@@ -12,7 +12,7 @@ export const aboutPage = {
     title: "Meet Max.",
     intro:
       "Years of trying to make training stick — until fatherhood forced one simple rule.",
-    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+    backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   bio: {
     name: "Max Edwards",

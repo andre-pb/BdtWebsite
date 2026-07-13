@@ -1,11 +1,15 @@
-import type { GuideFaq } from "@/content/best-home-workout-apps";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { headingStyle } from "@/components/ui/Typography";
 
+type FaqEntry = {
+  question: string;
+  answer: string;
+};
+
 type FaqSectionProps = {
   title?: string;
-  faqs: readonly GuideFaq[];
+  faqs: readonly FaqEntry[];
 };
 
 export function FaqSection({ title = "Frequently asked questions", faqs }: FaqSectionProps) {
