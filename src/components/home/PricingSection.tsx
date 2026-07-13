@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
 import { colors } from "@/constants/colors";
+import { promo } from "@/content/site";
 
 const MONTHLY_PRICE = 9.99;
 const YEARLY_PRICE = 99.99;
@@ -71,6 +72,143 @@ function detectMarket(): Market {
 
 function formatCurrency(symbol: "$" | "£", amount: number): string {
   return `${symbol}${amount.toFixed(2)}`;
+}
+
+function isPromoActive(): boolean {
+  // Visible through the whole of lastDay, hidden from the day after.
+  const [year, month, day] = promo.lastDay.split("-").map(Number);
+  const expiry = new Date(year, month - 1, day + 1); // midnight after lastDay, local time
+  return new Date() < expiry;
+}
+
+function formatPromoEndDate(): string {
+  const [year, month, day] = promo.lastDay.split("-").map(Number);
+  return new Date(year, month - 1, day).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+  });
+}
+
+function PromoBanner() {
+  const [copied, setCopied] = useState(false);
+
+  const copyCode = async () => {
+    try {
+      await navigator.clipboard.writeText(promo.code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard unavailable — code is still visible to copy manually.
+    }
+  };
+
+  return (
+    <aside
+      aria-label="Promotional offer"
+      style={{
+        borderRadius: "20px",
+        border: `1px solid ${colors.borderBlue}`,
+        background: colors.bgBlueLight,
+        padding: "20px 22px",
+        marginBottom: "24px",
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "16px",
+      }}
+    >
+      <div style={{ minWidth: "220px", flex: "1 1 280px" }}>
+        <p
+          style={{
+            color: colors.brandBlue,
+            fontSize: "0.78rem",
+            fontWeight: 700,
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+            marginBottom: "6px",
+          }}
+        >
+          {promo.headline} · Ends {formatPromoEndDate()}
+        </p>
+        <p style={{ color: colors.textMain, fontSize: "0.95rem", lineHeight: 1.5 }}>
+          {promo.description}
+        </p>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          gap: "10px",
+        }}
+      >
+        <button
+          type="button"
+          onClick={copyCode}
+          aria-label={`Copy promo code ${promo.code}`}
+          title="Copy code"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            padding: "10px 16px",
+            borderRadius: "12px",
+            border: `1px dashed ${colors.brandBlue}`,
+            background: colors.bgPure,
+            color: colors.brandBlue,
+            fontSize: "1rem",
+            fontWeight: 800,
+            letterSpacing: "0.08em",
+            cursor: "pointer",
+          }}
+        >
+          {promo.code}
+          <span
+            aria-hidden="true"
+            style={{ fontSize: "0.72rem", fontWeight: 600, letterSpacing: 0 }}
+          >
+            {copied ? "Copied!" : "Copy"}
+          </span>
+        </button>
+
+        <a
+          href={promo.appleRedeemUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            padding: "10px 16px",
+            borderRadius: "12px",
+            background: colors.brandBlue,
+            color: "white",
+            fontSize: "0.88rem",
+            fontWeight: 600,
+            textDecoration: "none",
+          }}
+        >
+          Redeem on iPhone
+        </a>
+        <a
+          href={promo.googleRedeemUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            padding: "10px 16px",
+            borderRadius: "12px",
+            border: `1px solid ${colors.brandBlue}`,
+            background: colors.bgPure,
+            color: colors.brandBlue,
+            fontSize: "0.88rem",
+            fontWeight: 600,
+            textDecoration: "none",
+          }}
+        >
+          Redeem on Android
+        </a>
+      </div>
+    </aside>
+  );
 }
 
 const sharedFeatures = [
@@ -299,9 +437,11 @@ function PlanCard({
 
 export function PricingSection() {
   const [market, setMarket] = useState<Market>("row");
+  const [promoActive, setPromoActive] = useState(false);
 
   useEffect(() => {
     setMarket(detectMarket());
+    setPromoActive(isPromoActive());
   }, []);
 
   const config = marketConfig[market];
@@ -373,6 +513,8 @@ export function PricingSection() {
               flexible monthly or lock in annual savings.
             </p>
           </div>
+
+          {promoActive ? <PromoBanner /> : null}
 
           <div
             style={{
