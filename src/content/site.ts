@@ -74,8 +74,9 @@ export const appStores = {
 
 export const promo = {
   code: "BUSYDAD30",
-  headline: "Limited-time offer",
-  description: "Redeem in the app on any subscription, or use the links below.",
+  headline: "1 month free trial",
+  description:
+    "Follow these links, or copy the code and use it when you sign up in the app.",
   // Last day the promo is shown (inclusive). Hidden from the day after.
   lastDay: "2026-07-17",
   appleRedeemUrl:
