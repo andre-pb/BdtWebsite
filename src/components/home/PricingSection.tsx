@@ -189,23 +189,6 @@ function PromoBanner() {
         >
           Redeem on iPhone
         </a>
-        <a
-          href={promo.googleRedeemUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            padding: "10px 16px",
-            borderRadius: "12px",
-            border: `1px solid ${colors.brandBlue}`,
-            background: colors.bgPure,
-            color: colors.brandBlue,
-            fontSize: "0.88rem",
-            fontWeight: 600,
-            textDecoration: "none",
-          }}
-        >
-          Redeem on Android
-        </a>
       </div>
     </aside>
   );
