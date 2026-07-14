@@ -33,7 +33,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: ""
           NEXT_PUBLIC_SITE_URL: https://busydadtraining.com
           NEXT_PUBLIC_LISTMONK_URL: https://mail.busydadtraining.com
-          NEXT_PUBLIC_LISTMONK_LIST_UUID: cfad440c-6ba9-47a0-8de2-765397a41f0d
+          NEXT_PUBLIC_LISTMONK_LIST_UUID: ab776f98-a8ae-4e1b-9958-47d4deeefe3d
           NEXT_PUBLIC_BURPEE_HUB_URL: https://api.busydadtraining.com/hubs/burpees
           NEXT_PUBLIC_LEADERBOARD_HUB_URL: https://api.busydadtraining.com/hubs/leaderboard
       - name: Build And Deploy

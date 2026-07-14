@@ -76,12 +76,11 @@ export const promo = {
   code: "BUSYDAD30",
   headline: "1 month free trial",
   description:
-    "Follow these links, or copy the code and use it when you sign up in the app.",
+    "Follow this link, or copy the code and use it when you sign up in the app.",
   // Last day the promo is shown (inclusive). Hidden from the day after.
   lastDay: "2026-07-17",
   appleRedeemUrl:
     "https://apps.apple.com/redeem?ctx=offercodes&id=6746872829&code=BUSYDAD30",
-  googleRedeemUrl: "https://play.google.com/redeem?code=BUSYDAD30",
 } as const;
 
 export const appPricing = {
