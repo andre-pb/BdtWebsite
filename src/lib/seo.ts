@@ -50,7 +50,7 @@ export function getProductJsonLd() {
     offers: getAppOffersJsonLd(),
     aggregateRating: { "@id": `${siteUrl}/#aggregate-rating` },
     brand: { "@id": `${siteUrl}/#brand` },
-    dateModified: "2026-07-21",
+    dateModified: "2026-07-28",
     downloadUrl: [appStores.appStoreUrl, appStores.googlePlayUrl],
     featureList: [
       "20-minute workout timer",
@@ -80,6 +80,7 @@ export function getBrandJsonLd() {
     description: seo.description,
     slogan: "Short home workouts for busy dads in 20 minutes",
     sameAs: [youtube.url, appStores.appStoreUrl, appStores.googlePlayUrl],
+    identifier: ["com.busydadtraining.busydadtrainingapp"],
   };
 }
 

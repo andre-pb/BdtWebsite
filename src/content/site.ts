@@ -140,15 +140,16 @@ export const featuredIn = {
 
 export const burpeeStat = {
   eyebrow: "The Busy Dad Army",
-  value: 2_784_095,
+  value: 3_600_000,
   valueSuffix: "+",
   label: "burpees logged on the app",
   caption: "And counting. Every single rep, by dads who showed up.",
 } as const;
 
 export const appStoreRating = {
-  ratingValue: "4.2",
-  reviewCount: 16,
+  // Updated 28 Jul 2026: App Store shows 32 ratings at 4.72★ (v3.0.0 launched Jul 7)
+  ratingValue: "4.72",
+  reviewCount: 32,
   bestRating: "5",
   worstRating: "1",
   storeUrl: "https://apps.apple.com/gb/app/busy-dad-training/id6746872829",
