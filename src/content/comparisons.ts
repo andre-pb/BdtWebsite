@@ -67,37 +67,39 @@ export const freeleticsComparison: ComparisonPageData = {
     websiteUrl: "https://www.freeletics.com/",
     sessionLength: "15–50 min",
     equipment: "Bodyweight + optional equipment",
-    focus: "AI coach, HIIT, strength, personalised plans",
-    price: "Freemium + subscription",
+    focus: "AI coach, HIIT, strength, personalised plans (Coach+ tier launched Jul 2026)",
+    price: "Freemium + subscription (Coach+ ~$34.99/mo)",
     summary:
-      "Freeletics pairs bodyweight HIIT with an AI coach that adapts plans over time. Workouts scale from short bursts to longer sessions, with optional equipment tracks. One of the best-known home workout apps for men.",
+      "Freeletics pairs bodyweight HIIT with an AI coach that adapts plans over time — and with the July 2026 Coach+ launch, they're going all-in on AI as their core differentiator. Workouts scale from short bursts to longer sessions, with optional equipment tracks. One of the best-known home workout apps for men.",
     pros: [
       "Strong brand and large workout library.",
       "AI Coach personalises volume and exercise selection.",
       "Works well for general conditioning and fat loss.",
     ],
     cons: [
-      "Subscription unlocks the full experience.",
+      "Coach+ subscription is ~$34.99/mo — significantly more expensive than BDT.",
+      "The AI-heavy approach means less human coaching feel and more algorithm-driven decisions.",
       "Less rigid weekly structure than a fixed 80-minute programme.",
-      "Broader exercise selection — not a single-movement mastery model.",
     ],
-    bestFor: "Men who want AI-guided, varied HIIT/strength and don't mind subscribing.",
+    bestFor: "Men who want AI-guided, varied HIIT/strength and don't mind a premium subscription.",
   },
   path: "/comparisons/freeletics-vs-busy-dad-training/",
   datePublished: "2026-06-15",
-  dateModified: "2026-06-15",
+  dateModified: "2026-07-28",
   seo: {
-    title: "Freeletics vs Busy Dad Training (2026) — Which Home Workout App Wins?",
+    title: "Freeletics vs Busy Dad Training (2026) — AI Coach or Human-Designed Programme?",
     description:
-      "Freeletics vs Busy Dad Training head-to-head: AI-guided HIIT variety vs disciplined 20-minute burpee minimalism. Which short home workout app for men is right for you?",
+      "Freeletics vs Busy Dad Training head-to-head: AI-guided HIIT with new Coach+ tier vs disciplined 20-minute burpee minimalism. Which short home workout app for men is right for you?",
     keywords: [
       "Freeletics vs Busy Dad Training",
       "Freeletics alternative for dads",
       "Busy Dad Training vs Freeletics",
       "Freeletics vs BDT",
+      "Freeletics Coach+ alternative",
       "best home workout app for men",
       "Freeletics bodyweight review",
       "busy dad workout app comparison",
+      "AI fitness app vs human coaching",
     ],
   },
   hero: {
@@ -108,22 +110,22 @@ export const freeleticsComparison: ComparisonPageData = {
   },
   whyBdpWins: [
     "Fixed 20-minute sessions with no equipment needed — you can train in a hotel room, your garage, or your living room.",
-    "Clear objective progression: pass a Landmark Workout, unlock the next level. No algorithm deciding what you should do.",
-    "Lower price: £9.99/month or £99.99/year vs Freeletics which requires a subscription for the full AI Coach experience.",
+    "Clear objective progression: pass a Landmark Workout, unlock the next level. No algorithm deciding what you should do — a real programme designed by a real person.",
+    "Lower price: £9.99/month or £99.99/year vs Freeletics Coach+ at ~$34.99/month. You're paying for a programme, not an algorithm.",
     "No decision fatigue. Every session is the same format: two movements, 20 minutes. You just show up and work.",
   ],
   whereCompetitorWins: [
     "Freeletics has a much larger exercise library — if you get bored easily, it offers more variety.",
     "The AI Coach adapts to your performance across many exercise types, not just two movements.",
-    "Freeletics has a stronger brand presence and more social proof (larger user base, more reviews).",
+    "Freeletics has a stronger brand presence and more social proof (260K+ ratings, larger user base).",
   ],
   verdict:
-    "If you want a short home workout app with total variety and AI-driven coaching, Freeletics is a strong choice. If you want a disciplined, minimalist system optimised for busy schedules — no equipment, no decisions, just 20 minutes of high-quality work — Busy Dad Training is the better fit.",
+    "If you want a short home workout app with total variety and AI-driven coaching, Freeletics Coach+ is a premium option. If you want a disciplined, human-designed minimalist system optimised for busy schedules — no equipment, no algorithms, just 20 minutes of high-quality work controlled by you — Busy Dad Training is the better fit.",
   faqs: [
     {
       question: "What's the main difference between Freeletics and Busy Dad Training?",
       answer:
-        "Freeletics offers broad exercise variety with an AI coach that personalises your plan. Busy Dad Training offers disciplined minimalism: two compound burpee movements, an 80-minute weekly budget, and level unlocks via Landmark Workouts. Freeletics optimises for adaptable coaching; BDP optimises for time-boxed mastery and consistency.",
+        "Freeletics offers broad exercise variety with an AI coach that personalises your plan — and their new Coach+ tier (launched July 2026) goes even deeper into AI-driven training. Busy Dad Training offers disciplined, human-designed minimalism: two compound burpee movements, an 80-minute weekly budget, and level unlocks via Landmark Workouts. Freeletics optimises for adaptable AI coaching; BDT optimises for time-boxed mastery and consistency without an algorithm telling you what to do.",
     },
     {
       question: "Is Busy Dad Training cheaper than Freeletics?",
@@ -227,37 +229,39 @@ export const thenxComparison: ComparisonPageData = {
     websiteUrl: "https://thenx.com/",
     sessionLength: "Varies, often 20–45 min",
     equipment: "Bodyweight / calisthenics equipment optional",
-    focus: "Calisthenics skills, programmes, progressions",
-    price: "Free + Premium, around $19/mo",
+    focus: "Calisthenics skills, programmes, progressions (pivoting to creator economy)",
+    price: "Premium plan $19.99/mo or $119.99/yr",
     summary:
-      "Thenx offers calisthenics workouts and skill paths (beginner to advanced) with follow-along videos. Strong focus on bar work and physique at home.",
+      "Thenx offers calisthenics workouts and skill paths (beginner to advanced) with follow-along videos. However, the team is increasingly focused on their 'Streamer University' pivot into the creator economy and gaming space — the fitness app is no longer their primary focus. Their Google Play rating (3.83★) reflects user frustration with this shift.",
     pros: [
       "Structured skill progressions with technique breakdowns.",
       "Workouts can be relatively short for technique sessions.",
-      "Large community around street workout culture.",
+      "Large YouTube community (13.2M combined subs) — though less app-focused now.",
     ],
     cons: [
       "Pull-up bar strongly recommended for full value.",
-      "Skill variety can feel overwhelming vs a single-programme app.",
-      "Higher subscription price than BDP.",
+      "Declining app focus as the company pivots to creator economy (Streamer University).",
+      "Higher subscription price than BDT ($19.99/mo vs £9.99/mo) with a 3.83★ rating.",
     ],
-    bestFor: "Men who want calisthenics variety and skill goals with a bar at home.",
+    bestFor: "Men who want calisthenics variety and skill goals with a bar at home — but the company's attention is elsewhere.",
   },
   path: "/comparisons/thenx-vs-busy-dad-training/",
   datePublished: "2026-06-15",
-  dateModified: "2026-06-15",
+  dateModified: "2026-07-28",
   seo: {
-    title: "Thenx vs Busy Dad Training (2026) — Calisthenics Skills vs Burpee Minimalism",
+    title: "Thenx vs Busy Dad Training (2026) — Fading App or Focused Programme?",
     description:
-      "Thenx vs Busy Dad Training: calisthenics skill progression vs two-movement burpee mastery. Which is the best home workout app for men who want real results?",
+      "Thenx vs Busy Dad Training: calisthenics brand pivoting to creator economy (3.83★) vs actively maintained burpee programme. Which home workout app for men is worth your money?",
     keywords: [
       "Thenx vs Busy Dad Training",
       "Thenx alternative for dads",
       "Busy Dad Training vs Thenx",
       "calisthenics app vs burpee app",
       "Thenx review 2026",
+      "Thenx Streamer University pivot",
       "best bodyweight workout app",
       "Thenx vs BDT comparison",
+      "Thenx rating 3.83",
     ],
   },
   hero: {
@@ -269,16 +273,17 @@ export const thenxComparison: ComparisonPageData = {
   whyBdpWins: [
     "No equipment at all — not even a pull-up bar. Train anywhere.",
     "Fixed 20-minute sessions with zero planning. Thenx sessions vary and often assume you have time for longer skill work.",
-    "Lower price: £9.99/month vs Thenx Premium at ~$19/month.",
-    "Single clear goal: progress through the levels. No choice paralysis between 50 different skill paths.",
+    "Lower price: £9.99/month vs Thenx Premium at $19.99/month — less than half the cost for a programme with a 3.83★ user rating.",
+    "Single clear goal: progress through the levels. No choice paralysis between 50 different skill paths — and unlike Thenx, the app IS the company's focus, not a side project.",
+    "The company behind it is 100% committed to fitness, not pivoting to gaming or the creator economy.",
   ],
   whereCompetitorWins: [
     "Thenx offers pull-up and dip progression that builds upper body mass and skill in ways burpees alone cannot.",
-    "Larger workout library with follow-along videos for dozens of exercises.",
-    "Street workout culture with skill goals (muscle-ups, front lever) that appeal to a younger or more performance-oriented audience.",
+    "Larger YouTube presence (13.2M subs) and established brand in street workout culture.",
+    "Follow-along video library for dozens of exercises — though app updates are slowing.",
   ],
   verdict:
-    "If you have a pull-up bar and want calisthenics skill variety, Thenx is excellent. If you want the purest no-equipment, no-decisions home workout system — 20 minutes, two movements, four levels — Busy Dad Training is more focused and more affordable.",
+    "If you have a pull-up bar and want calisthenics skill variety with the backing of a big YouTube brand, Thenx is an option — but the company is clearly pivoting away from fitness toward the creator economy, and their 3.83★ rating reflects user frustration. If you want a focused, actively maintained, no-equipment system — 20 minutes, two movements, four levels — Busy Dad Training is more focused, more affordable, and not a side project.",
   faqs: [
     {
       question: "Do I need equipment for Thenx?",
@@ -288,12 +293,12 @@ export const thenxComparison: ComparisonPageData = {
     {
       question: "Which app is better for pure bodyweight training?",
       answer:
-        "Both. Thenx for calisthenics variety and skill work (with a bar). Busy Dad Training for pure burpee-based bodyweight conditioning and level progression (no equipment).",
+        "Both offer bodyweight training, but they've diverged. Thenx is now primarily a creator-economy brand (Streamer University) with a fitness app on the side — rating 3.83★. Busy Dad Training is a dedicated fitness app with ongoing updates, a clear level system, and no distraction from other ventures.",
     },
     {
       question: "Is Thenx more expensive than Busy Dad Training?",
       answer:
-        `Thenx Premium is around $19/month. Busy Dad Training is ${appPricing.summary}. Pricing varies by region.`,
+        `Thenx Premium is $19.99/month or $119.99/year. Busy Dad Training is ${appPricing.summary}. That's less than half the cost for a focused programme that isn't losing developer attention to a gaming pivot.`,
     },
   ],
 };
