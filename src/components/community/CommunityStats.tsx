@@ -24,6 +24,7 @@ function LiveBurpeeStatCell({ label }: { label: string }) {
   const targetRef = useRef<number>(burpeeStat.value);
   const displayedRef = useRef<number>(burpeeStat.value);
   const reducedMotionRef = useRef(false);
+  const tweenRef = useRef<gsap.core.Tween | null>(null); // in-flight count-up
 
   const renderValue = (value: number) => {
     if (numberRef.current) {
@@ -31,9 +32,15 @@ function LiveBurpeeStatCell({ label }: { label: string }) {
     }
   };
 
+  // IMPORTANT: always kill the previous tween before starting a new one.
+  // The mount-time tween targets the static burpeeStat.value fallback; the
+  // SignalR tween targets the live total. If both run concurrently, whichever
+  // finishes LAST wins — letting the fallback tween overwrite the live value
+  // so the cell gets stuck on 3,600,000. Do not remove the kill().
   const animateTo = (value: number, duration: number) => {
+    tweenRef.current?.kill();
     const counter = { value: displayedRef.current };
-    gsap.to(counter, {
+    tweenRef.current = gsap.to(counter, {
       value,
       duration,
       ease: "power2.out",

@@ -27,6 +27,7 @@ export function BurpeeStatSection() {
   const displayedRef = useRef<number>(0); // value currently on screen
   const enteredRef = useRef<boolean>(false); // has the scroll-in run yet
   const reducedMotionRef = useRef<boolean>(false);
+  const tweenRef = useRef<gsap.core.Tween | null>(null); // in-flight count-up
 
   const renderValue = (value: number) => {
     if (numberRef.current) {
@@ -35,9 +36,19 @@ export function BurpeeStatSection() {
   };
 
   // Tween the displayed number from its current value to `value`.
+  //
+  // IMPORTANT: the number on screen must always END at the latest SignalR
+  // value, never at the static burpeeStat.value fallback. Each call kills the
+  // previous tween first — without this, the scroll-in tween (2.4s, targeting
+  // the fallback) and the live-update tween (1.2s, targeting the hub value)
+  // run concurrently on separate counter objects, and whichever FINISHES LAST
+  // wins. The longer fallback tween finishing last is exactly how the site
+  // ends up stuck displaying 3,600,000 instead of the live total. Do not
+  // remove the kill() — see git history before "fixing" this.
   const animateTo = (value: number, duration: number) => {
+    tweenRef.current?.kill();
     const counter = { value: displayedRef.current };
-    gsap.to(counter, {
+    tweenRef.current = gsap.to(counter, {
       value,
       duration,
       ease: "power2.out",
