@@ -78,6 +78,33 @@ export function HeroSection() {
         >
           {hero.description}
         </p>
+        <div
+          style={{
+            maxWidth: "600px",
+            margin: "0 auto 2rem",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.5rem",
+            justifyContent: "center",
+          }}
+        >
+          {hero.useCaseTags.map((tag, i) => (
+            <span
+              key={i}
+              style={{
+                background: "rgba(255,255,255,0.1)",
+                color: "rgba(255,255,255,0.9)",
+                padding: "0.4rem 0.8rem",
+                borderRadius: "999px",
+                fontSize: "0.8rem",
+                fontWeight: 500,
+                border: "1px solid rgba(255,255,255,0.15)",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
         <div className="hero-store-badges">
           <AppStoreBadge />
           <GooglePlayBadge />
