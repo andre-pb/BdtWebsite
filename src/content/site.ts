@@ -107,6 +107,11 @@ export const hero = {
   backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   backgroundImageAlt:
     "Busy dad performing a bodyweight burpee during a minimalist home workout",
+  useCaseTags: [
+    "Best for: busy dads who want elite fitness without the gym",
+    "Best for: men who need a workout that fits around family life",
+    "Best for: anyone who wants results from just 2 movements, 80 min/week",
+  ],
 } as const;
 
 export const featuredIn = {
@@ -135,15 +140,24 @@ export const featuredIn = {
 
 export const burpeeStat = {
   eyebrow: "The Busy Dad Army",
-  value: 2_784_095,
+  value: 3_600_000,
   valueSuffix: "+",
   label: "burpees logged on the app",
   caption: "And counting. Every single rep, by dads who showed up.",
 } as const;
 
+export const appStoreRating = {
+  // Updated 28 Jul 2026: App Store shows 32 ratings at 4.72★ (v3.0.0 launched Jul 7)
+  ratingValue: "4.72",
+  reviewCount: 32,
+  bestRating: "5",
+  worstRating: "1",
+  storeUrl: "https://apps.apple.com/gb/app/busy-dad-training/id6746872829",
+} as const;
+
 export const philosophy = {
   eyebrow: "Core Philosophy",
-  title: "Zero friction fitness.",
+  title: "What makes Busy Dad Training different?",
   description:
     "We stripped out everything that gets in the way of your workout. What's left is a simple system that works. No complex plans. You master the burpee. High reps, simple form.",
   guideLink: {
@@ -178,7 +192,7 @@ export const appScreenshots = {
 
 export const program = {
   eyebrow: "The Program",
-  title: "Structured for consistency.",
+  title: "How does the 20-minute workout system work?",
   description:
     "Set a timer, do the work, get back to your family. The app tracks your reps in strict 20-minute blocks. Start where you are. It moves you up from Level 1 to Level 4 as you get fitter.",
   movements: [
@@ -190,7 +204,7 @@ export const program = {
 
 export const levels = {
   eyebrow: "Clear Path Forward",
-  title: "Know exactly where you stand.",
+  title: "How do you progress through the levels?",
   description:
     "No guesswork. Pass a benchmark, move up a level. The app tells you what to do each day. Start at Level 1 and work your way to the top.",
   cards: [
@@ -202,7 +216,7 @@ export const levels = {
 
 export const community = {
   eyebrow: "The Busy Dad Army",
-  title: "You're not doing this alone.",
+  title: "Who else is doing this programme?",
   description:
     "See what the army is up to, share your wins, and stay on track with dads who get it. The app connects you to a community built on showing up.",
 } as const;
@@ -254,7 +268,7 @@ export const youtube = {
 
 export const testimonials = {
   eyebrow: "From the Busy Dad Army",
-  title: "In Their Own Words.",
+  title: "What do real users say about Busy Dad Training?",
   description:
     "Real dads on what 80 minutes a week has done for them.",
   quotes: [
@@ -281,7 +295,7 @@ export const testimonials = {
 
 export const download = {
   eyebrow: "Start Today",
-  title: "Ready to put in the work?",
+  title: "How do I get started with Busy Dad Training?",
   description:
     "Join thousands of busy dads who keep fitness simple and get results with 80 minutes a week.",
 } as const;
