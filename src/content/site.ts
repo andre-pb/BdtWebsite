@@ -146,6 +146,14 @@ export const burpeeStat = {
   caption: "And counting. Every single rep, by dads who showed up.",
 } as const;
 
+// Static fallback for the live country count (GET /api/v1/CountryStats).
+// Shown only if the API call fails — keep it a safe undercount.
+export const countryStat = {
+  value: 20,
+  valueSuffix: "+",
+  label: "countries with dads putting in the work",
+} as const;
+
 export const appStoreRating = {
   // Updated 28 Jul 2026: App Store shows 32 ratings at 4.72★ (v3.0.0 launched Jul 7)
   ratingValue: "4.72",
