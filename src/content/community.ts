@@ -1,4 +1,4 @@
-import { burpeeStat } from "./site";
+import { burpeeStat, countryStat } from "./site";
 
 export const communityPage = {
   seo: {
@@ -16,6 +16,10 @@ export const communityPage = {
     {
       kind: "burpee" as const,
       label: burpeeStat.label,
+    },
+    {
+      kind: "countries" as const,
+      label: countryStat.label,
     },
     {
       value: "80",
