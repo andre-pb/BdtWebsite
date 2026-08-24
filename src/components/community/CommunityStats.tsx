@@ -42,7 +42,7 @@ function LiveBurpeeStatCell({ label }: { label: string }) {
   // IMPORTANT: always kill the previous tween before starting a new one.
   // The mount-time tween targets the static burpeeStat.value fallback; the
   // SignalR tween targets the live total. If both run concurrently, whichever
-  // finishes LAST wins — letting the fallback tween overwrite the live value
+  // finishes LAST wins, letting the fallback tween overwrite the live value
   // so the cell gets stuck on 3,600,000. Do not remove the kill().
   const animateTo = (value: number, duration: number) => {
     tweenRef.current?.kill();
@@ -167,7 +167,7 @@ function LiveCountryStatCell({ label }: { label: string }) {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Fetch the real country count once on mount. The static countryStat
-    // fallback is only ever shown if this request fails — when it succeeds,
+    // fallback is only ever shown if this request fails; when it succeeds,
     // the cell must always display the API value.
     fetch(COUNTRY_STATS_URL, { signal: controller.signal })
       .then((res) => (res.ok ? res.json() : Promise.reject(new Error(String(res.status)))))
@@ -182,11 +182,11 @@ function LiveCountryStatCell({ label }: { label: string }) {
           animateTo(total, 1.2);
         }
       })
-      // Fail silently — the static fallback number stays on screen.
+      // Fail silently; the static fallback number stays on screen.
       .catch(() => {});
 
     return () => controller.abort();
-    // animateTo/renderValue only read refs, so they're stable — no deps needed.
+    // animateTo/renderValue only read refs, so they're stable; no deps needed.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

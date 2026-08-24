@@ -98,7 +98,7 @@ function PromoBanner() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Clipboard unavailable — code is still visible to copy manually.
+      // Clipboard unavailable; the code is still visible to copy manually.
     }
   };
 

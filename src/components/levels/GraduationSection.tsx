@@ -1,6 +1,7 @@
 import { levelsPage } from "@/content/levels";
 import { colors } from "@/constants/colors";
 import { LandmarkWorkouts } from "@/components/levels/LandmarkWorkouts";
+import { LevelShareTag } from "@/components/levels/LevelShareTag";
 import { bodyStyle, eyebrowStyle, headingStyle } from "@/components/ui/Typography";
 import { PageContainer } from "@/components/ui/PageContainer";
 
@@ -63,9 +64,20 @@ export function GraduationSection() {
           >
             {graduation.eyebrow}
           </span>
-          <h2 id="graduation-heading" style={headingStyle}>
-            {graduation.title}
-          </h2>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "12px",
+              marginBottom: "1rem",
+            }}
+          >
+            <h2 id="graduation-heading" style={{ ...headingStyle, marginBottom: 0 }}>
+              {graduation.title}
+            </h2>
+            <LevelShareTag levelKey="graduation" showDefinition />
+          </div>
 
           {graduation.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 48)} style={{ ...bodyStyle, marginBottom: "1.25rem" }}>

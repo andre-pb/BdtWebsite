@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { colors } from "@/constants/colors";
 import { LandmarkWorkouts, LevelNumberBadge } from "@/components/levels/LandmarkWorkouts";
+import { LevelShareTag } from "@/components/levels/LevelShareTag";
 import { bodyStyle, headingStyle } from "@/components/ui/Typography";
 import { PageContainer } from "@/components/ui/PageContainer";
 
@@ -127,16 +128,27 @@ export function LevelWithSublevelsSection({
                 {index + 1} of {sublevels.length}
               </div>
 
-              <h3
+              <div
                 style={{
-                  fontSize: "1.35rem",
-                  fontWeight: 800,
-                  color: colors.brandBlue,
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  gap: "12px",
                   marginBottom: "12px",
                 }}
               >
-                {sublevel.title}
-              </h3>
+                <h3
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: 800,
+                    color: colors.brandBlue,
+                    margin: 0,
+                  }}
+                >
+                  {sublevel.title}
+                </h3>
+                <LevelShareTag levelKey={sublevel.id} />
+              </div>
               <p style={{ ...bodyStyle, marginBottom: sublevel.landmarks.length > 0 ? "0.5rem" : 0 }}>
                 {sublevel.description}
               </p>

@@ -98,7 +98,7 @@ function ComparisonTable({ data: d }: Props) {
                   </span>
                 </th>
                 <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>20 min, 4×/week</td>
-                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>None — bodyweight</td>
+                <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>None (bodyweight)</td>
                 <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>Burpee programme, levels</td>
                 <td style={{ padding: "1rem 1.25rem", fontWeight: 600, color: colors.textMain }}>£9.99/mo or £99.99/yr</td>
               </tr>
@@ -133,7 +133,7 @@ function ProsConsSection({ data: d }: Props) {
         {/* BDT */}
         <div style={{ marginBottom: "3rem" }}>
           <h3 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>
-            Busy Dad Training — best for busy dads who want zero-friction bodyweight training
+            Busy Dad Training: best for busy dads who want zero-friction bodyweight training
           </h3>
           <p style={bodyStyle}>{d.competitor.summary}</p>
           <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "0.5rem" }}>
@@ -149,7 +149,7 @@ function ProsConsSection({ data: d }: Props) {
               <h4 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>Pros</h4>
               <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7 }}>
                 <li style={{ marginBottom: "0.5rem" }}>Fixed 20-minute sessions with no decision fatigue.</li>
-                <li style={{ marginBottom: "0.5rem" }}>No equipment — train anywhere.</li>
+                <li style={{ marginBottom: "0.5rem" }}>No equipment, train anywhere.</li>
                 <li style={{ marginBottom: "0.5rem" }}>Clear level progression with objective benchmarks.</li>
                 <li style={{ marginBottom: "0.5rem" }}>£9.99/mo or £99.99/yr (~£8.33/month billed annually).</li>
                 <li style={{ marginBottom: "0.5rem" }}>Full app: timer, level tracking, community.</li>
@@ -158,7 +158,7 @@ function ProsConsSection({ data: d }: Props) {
             <div>
               <h4 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>Cons</h4>
               <ul style={{ margin: 0, paddingLeft: "1.25rem", color: colors.textMuted, lineHeight: 1.7 }}>
-                <li style={{ marginBottom: "0.5rem" }}>Narrow exercise menu — two movements only.</li>
+                <li style={{ marginBottom: "0.5rem" }}>Narrow exercise menu: two movements only.</li>
                 <li style={{ marginBottom: "0.5rem" }}>Not for those who want exercise variety or barbell work.</li>
                 <li style={{ marginBottom: "0.5rem" }}>Upper levels are demanding; Graduation is a long-term goal.</li>
               </ul>
@@ -169,7 +169,7 @@ function ProsConsSection({ data: d }: Props) {
         {/* Competitor */}
         <div>
           <h3 style={{ fontSize: "1.125rem", fontWeight: 700, color: colors.textMain, marginBottom: "0.75rem" }}>
-            {competitor.name} — {competitor.bestFor}
+            {competitor.name}: {competitor.bestFor}
           </h3>
           <p style={bodyStyle}>{competitor.summary}</p>
           <p style={{ ...bodyStyle, marginBottom: "1.5rem" }}>

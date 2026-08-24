@@ -58,7 +58,7 @@ export function DownloadSection() {
           <GooglePlayBadge />
         </div>
 
-        <StoreRatings />
+        <StoreRatings showVersion />
       </PageContainer>
     </section>
   );

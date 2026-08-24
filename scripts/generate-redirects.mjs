@@ -116,7 +116,7 @@ function renderRedirectHtml({ title, to }) {
 <html lang="en-GB">
 <head>
   <meta charset="utf-8" />
-  <title>${title} — Busy Dad Training</title>
+  <title>${title} | Busy Dad Training</title>
   <link rel="canonical" href="${canonicalUrl}" />
   <meta http-equiv="refresh" content="0; url=${to}" />
   <meta name="robots" content="noindex" />

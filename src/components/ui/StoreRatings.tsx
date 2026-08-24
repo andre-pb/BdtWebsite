@@ -8,7 +8,7 @@ const HUB_URL = process.env.NEXT_PUBLIC_BURPEE_HUB_URL;
 
 // The REST API shares an origin with the SignalR hub, so derive the URL from
 // the hub instead of adding another env var (which would also need setting in
-// all three GitHub workflow files) — same approach as CommunityStats.
+// all three GitHub workflow files). Same approach as CommunityStats.
 const STORE_RATINGS_URL = HUB_URL
   ? new URL("/api/v1/StoreRatings", HUB_URL).toString()
   : undefined;
@@ -19,6 +19,23 @@ type Rating = {
   rating: number;
   ratingCount: number;
 };
+
+type AppInfo = {
+  version: string;
+  updated: string; // ISO date
+};
+
+function formatUpdated(iso: string): string | null {
+  const date = new Date(iso);
+
+  if (Number.isNaN(date.getTime())) return null;
+
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+}
 
 /**
  * Only accept a live value that could actually be a star rating. A malformed
@@ -101,8 +118,16 @@ function StorePill({
  * or a layout shift) and quietly replaces them with the live API values once
  * they arrive. If the API is unreachable the static numbers simply stay.
  */
-export function StoreRatings({ style }: { style?: CSSProperties }) {
+export function StoreRatings({
+  style,
+  showVersion = false,
+}: {
+  style?: CSSProperties;
+  /** Also show "App version x.y.z, updated <date>" under the pills. */
+  showVersion?: boolean;
+}) {
   const [live, setLive] = useState<Partial<Record<StoreKey, Rating>>>({});
+  const [liveApp, setLiveApp] = useState<AppInfo | null>(null);
 
   useEffect(() => {
     if (!STORE_RATINGS_URL) return;
@@ -119,8 +144,12 @@ export function StoreRatings({ style }: { style?: CSSProperties }) {
         if (isUsable(data?.google)) next.google = data.google;
 
         if (Object.keys(next).length > 0) setLive(next);
+
+        if (typeof data?.appVersion === "string" && typeof data?.appUpdatedUtc === "string") {
+          setLiveApp({ version: data.appVersion, updated: data.appUpdatedUtc });
+        }
       })
-      // Fail silently — the static fallback numbers stay on screen.
+      // Fail silently; the static fallback numbers stay on screen.
       .catch(() => {});
 
     return () => controller.abort();
@@ -131,32 +160,48 @@ export function StoreRatings({ style }: { style?: CSSProperties }) {
     { key: "google", label: storeRatings.google.label, storeUrl: storeRatings.google.storeUrl },
   ];
 
-  return (
-    <div
-      aria-label="App store ratings"
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "10px",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "20px",
-        ...style,
-      }}
-    >
-      {stores.map(({ key, label, storeUrl }) => {
-        const fallback = storeRatings[key];
-        const current = live[key] ?? fallback;
+  const app = liveApp ?? storeRatings.app;
+  const updatedText = formatUpdated(app.updated);
 
-        return (
-          <StorePill
-            key={key}
-            label={label}
-            storeUrl={storeUrl}
-            rating={current.rating}
-          />
-        );
-      })}
+  return (
+    <div style={style}>
+      <div
+        aria-label="App store ratings"
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "10px",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "20px",
+        }}
+      >
+        {stores.map(({ key, label, storeUrl }) => {
+          const fallback = storeRatings[key];
+          const current = live[key] ?? fallback;
+
+          return (
+            <StorePill
+              key={key}
+              label={label}
+              storeUrl={storeUrl}
+              rating={current.rating}
+            />
+          );
+        })}
+      </div>
+      {showVersion && updatedText ? (
+        <p
+          style={{
+            margin: "12px 0 0",
+            color: "rgba(255,255,255,0.45)",
+            fontSize: "0.8rem",
+            textAlign: "center",
+          }}
+        >
+          App version {app.version}, updated {updatedText}
+        </p>
+      ) : null}
     </div>
   );
 }

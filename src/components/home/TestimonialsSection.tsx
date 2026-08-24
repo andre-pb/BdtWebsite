@@ -133,7 +133,7 @@ export function TestimonialsSection() {
         gsap.set(track, { x: 0 });
 
         const distance = set.offsetWidth + CARD_GAP;
-        // fromTo ensures clean repeat behaviour — GSAP resets to the exact
+        // fromTo ensures clean repeat behaviour: GSAP resets to the exact
         // `from` values on each loop, eliminating the 1-frame flash that
         // `to()` with repeat: -1 can produce.
         tweenRef.current = gsap.fromTo(
