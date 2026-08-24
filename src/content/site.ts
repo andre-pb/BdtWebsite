@@ -1,4 +1,5 @@
 import { assetPath, getSiteUrl } from "@/lib/base-path";
+import { generatedStoreRatings } from "@/content/store-ratings.generated";
 
 export const analytics = {
   googleAnalyticsId: "G-LLVGVMFPHH",
@@ -154,10 +155,35 @@ export const countryStat = {
   label: "countries with dads putting in the work",
 } as const;
 
+// Live star ratings from both stores (GET /api/v1/StoreRatings).
+//
+// The numbers below come from store-ratings.generated.ts, which the prebuild
+// script refreshes from the API on every build. <StoreRatings /> shows them
+// on first paint and then swaps in whatever the live API returns, so they
+// are only ever "wrong" for a moment — or permanently, if the API is down,
+// which is exactly what a fallback is for.
+export const storeRatings = {
+  apple: {
+    label: "App Store",
+    rating: generatedStoreRatings.apple.rating,
+    ratingCount: generatedStoreRatings.apple.ratingCount,
+    storeUrl: appStores.appStoreUrl,
+  },
+  google: {
+    label: "Google Play",
+    rating: generatedStoreRatings.google.rating,
+    ratingCount: generatedStoreRatings.google.ratingCount,
+    storeUrl: appStores.googlePlayUrl,
+  },
+  combined: generatedStoreRatings.combined,
+} as const;
+
+// schema.org AggregateRating for the app, across both stores. These have to
+// be build-time values — Google does not reliably index JSON-LD injected by
+// client-side JavaScript — which is why the prebuild script exists.
 export const appStoreRating = {
-  // Updated 28 Jul 2026: App Store shows 32 ratings at 4.72★ (v3.0.0 launched Jul 7)
-  ratingValue: "4.72",
-  reviewCount: 32,
+  ratingValue: String(generatedStoreRatings.combined.rating),
+  reviewCount: generatedStoreRatings.combined.ratingCount,
   bestRating: "5",
   worstRating: "1",
   storeUrl: "https://apps.apple.com/gb/app/busy-dad-training/id6746872829",

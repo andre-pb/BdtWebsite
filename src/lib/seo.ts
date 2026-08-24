@@ -50,8 +50,15 @@ export function getProductJsonLd() {
     offers: getAppOffersJsonLd(),
     aggregateRating: { "@id": `${siteUrl}/#aggregate-rating` },
     brand: { "@id": `${siteUrl}/#brand` },
-    dateModified: "2026-07-28",
+    dateModified: "2026-08-24",
     downloadUrl: [appStores.appStoreUrl, appStores.googlePlayUrl],
+    image: {
+      "@type": "ImageObject",
+      url: absoluteUrl(appScreenshots.timer.src),
+      width: appScreenshots.timer.width,
+      height: appScreenshots.timer.height,
+      caption: appScreenshots.timer.alt,
+    },
     featureList: [
       "20-minute workout timer",
       "Four-tier level progression with Landmark Workouts",
@@ -311,10 +318,15 @@ export function getWebPageJsonLd({
   title,
   description,
   path,
+  datePublished,
+  dateModified,
 }: {
   title: string;
   description: string;
   path: string;
+  /** Optional freshness signals — pass them on any page that tracks dates. */
+  datePublished?: string;
+  dateModified?: string;
 }) {
   const url = absoluteUrl(path);
 
@@ -327,6 +339,8 @@ export function getWebPageJsonLd({
     description,
     isPartOf: { "@id": `${siteUrl}/#website` },
     inLanguage: "en-GB",
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
   };
 }
 
