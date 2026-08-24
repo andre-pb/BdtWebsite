@@ -2,6 +2,7 @@ import Image from "next/image";
 import { hero } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
+import { StoreRatings } from "@/components/ui/StoreRatings";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { FeaturedInBar } from "@/components/home/FeaturedInBar";
 
@@ -109,6 +110,7 @@ export function HeroSection() {
           <AppStoreBadge />
           <GooglePlayBadge />
         </div>
+        <StoreRatings />
         <FeaturedInBar />
       </PageContainer>
     </section>

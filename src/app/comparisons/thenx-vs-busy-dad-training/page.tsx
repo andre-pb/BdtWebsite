@@ -20,7 +20,13 @@ export default function ThenxVsBdtPage() {
     <>
       <JsonLd
         data={[
-          getWebPageJsonLd({ title: data.seo.title, description: data.seo.description, path: data.path }),
+          getWebPageJsonLd({
+            title: data.seo.title,
+            description: data.seo.description,
+            path: data.path,
+            datePublished: data.datePublished,
+            dateModified: data.dateModified,
+          }),
           getBreadcrumbJsonLd([
             { name: "Home", path: "/" },
             { name: data.seo.title, path: data.path },
