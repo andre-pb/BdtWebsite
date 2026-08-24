@@ -1,6 +1,7 @@
 import { download } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
+import { StoreRatings } from "@/components/ui/StoreRatings";
 import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { PageContainer } from "@/components/ui/PageContainer";
 
@@ -56,6 +57,8 @@ export function DownloadSection() {
           <AppStoreBadge />
           <GooglePlayBadge />
         </div>
+
+        <StoreRatings />
       </PageContainer>
     </section>
   );
