@@ -7,6 +7,7 @@ import { CommunityLeaderboard } from "@/components/community/CommunityLeaderboar
 import { CommunityStats } from "@/components/community/CommunityStats";
 import { CommunityStories } from "@/components/community/CommunityStories";
 import { CommunityCTA } from "@/components/community/CommunityCTA";
+import { LatestVideos } from "@/components/community/LatestVideos";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
 
@@ -142,6 +143,7 @@ export default function CommunityPage() {
           </PageContainer>
         </section>
 
+        <LatestVideos />
         <CommunityCTA />
       </main>
       <Footer />

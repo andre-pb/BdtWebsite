@@ -8,7 +8,7 @@ export const twentyMinuteWorkoutGuidePage = {
   seo: {
     title: "The 20-Minute Home Workout for Busy Dads (2026 Guide)",
     description:
-      "A complete guide to the 20-minute home workout for busy dads: why short sessions work, the exact two-movement AMRAP workout, a weekly plan, and how to progress — no gym or equipment needed.",
+      "A complete guide to the 20-minute home workout for busy dads: why short sessions work, the exact two-movement AMRAP workout, a weekly plan, and how to progress. No gym or equipment needed.",
     keywords: [
       "20 minute home workout for busy dads",
       "20 minute workout for men",
@@ -34,7 +34,7 @@ export const twentyMinuteWorkoutGuidePage = {
       paragraphs: [
         "Most workout plans fail for one reason: they ask for too much time. An hour-long session plus a drive to the gym is two hours out of your day. With kids, work, and a home to run, that plan breaks within weeks.",
         "A 20-minute home workout removes every excuse. No commute. No kit to pack. No childcare to arrange. You can train before the kids wake up, in your lunch break, or after bedtime. When a workout costs 20 minutes, you stop skipping it.",
-        "The maths also works. Four 20-minute sessions a week gives you 80 minutes of hard training. The World Health Organization recommends 75 to 150 minutes of vigorous activity per week for adults. Train four times a week at high effort and you're inside that range — without ever leaving the house.",
+        "The maths also works. Four 20-minute sessions a week gives you 80 minutes of hard training. The World Health Organization recommends 75 to 150 minutes of vigorous activity per week for adults. Train four times a week at high effort and you're inside that range without ever leaving the house.",
         "The catch? Those 20 minutes have to count. That means simple movements, high effort, and no wasted time deciding what to do. That's exactly what the workout below delivers.",
       ],
     },
@@ -43,7 +43,7 @@ export const twentyMinuteWorkoutGuidePage = {
       title: "The workout: a 20-minute AMRAP",
       paragraphs: [
         "AMRAP stands for 'as many rounds as possible'. You set a timer for 20 minutes and repeat a small set of movements until it beeps. Your score is the total number of reps. Next session, you try to beat it.",
-        "The Busy Dad workout uses just two movements: the 6-count burpee and the bodyweight squat. The burpee works your whole body — legs, chest, arms, core, and lungs. The squat builds your legs and gives you an active rest between burpee sets. Together they hit everything that matters.",
+        "The Busy Dad workout uses just two movements: the 6-count burpee and the bodyweight squat. The burpee works your whole body: legs, chest, arms, core, and lungs. The squat builds your legs and gives you an active rest between burpee sets. Together they hit everything that matters.",
         "That's it. No machines, no dumbbells, no pull-up bar. Just you and the floor.",
       ],
     },
@@ -52,7 +52,7 @@ export const twentyMinuteWorkoutGuidePage = {
       title: "How to progress week to week",
       paragraphs: [
         "Random workouts give random results. Progress comes from doing the same simple test and beating your old score. With a 20-minute AMRAP, progress is one number: total reps.",
-        "The Busy Dad Training app structures this into four levels. Each level sets your daily rep targets. When you pass a benchmark — a Landmark Workout — you move up. Level 1 is built for complete beginners; Level 4 is a serious engine test. You always know where you stand and what to do next.",
+        "The Busy Dad Training app structures this into four levels. Each level sets your daily rep targets. When you pass a benchmark, a Landmark Workout, you move up. Level 1 is built for complete beginners; Level 4 is a serious engine test. You always know where you stand and what to do next.",
         "If you're training without the app, keep a simple log. Write down your total reps after each session. Aim to add a few reps each week. When your pace stops climbing, hold steady for a week and let your body catch up.",
       ],
     },
@@ -61,7 +61,7 @@ export const twentyMinuteWorkoutGuidePage = {
       title: "Get the form right first",
       paragraphs: [
         "High reps only work if your form holds. Before you chase a score, learn the 6-count burpee properly: each of the six counts is a distinct position, and rushing them turns the movement sloppy fast.",
-        "Keep your squats honest too — hips below parallel, heels down, chest up. Slow, full reps beat fast, half reps every time.",
+        "Keep your squats honest too: hips below parallel, heels down, chest up. Slow, full reps beat fast, half reps every time.",
         "Our movements guide breaks down both exercises step by step, with video demos of the 6-count burpee and the Navy Seal burpee.",
       ],
     },
@@ -71,7 +71,7 @@ export const twentyMinuteWorkoutGuidePage = {
       paragraphs: [
         "In the first two weeks, expect the workouts to feel brutal and your scores to climb fast. That early jump is your body learning the movements.",
         "By week four to six, most dads notice better recovery, easier stairs, and looser-fitting clothes. Burpees at volume burn a lot of energy and work nearly every muscle you have.",
-        "From there, it compounds. The dads in our community have logged millions of burpees between them, and the pattern is the same: the ones who show up four times a week, every week, get results. Consistency is the whole game — and 20 minutes is short enough to stay consistent.",
+        "From there, it compounds. The dads in our community have logged millions of burpees between them, and the pattern is the same: the ones who show up four times a week, every week, get results. Consistency is the whole game, and 20 minutes is short enough to stay consistent.",
       ],
     },
   ],
@@ -86,7 +86,7 @@ export const twentyMinuteWorkoutGuidePage = {
     },
     {
       name: "Do a set of 6-count burpees",
-      text: "Perform a set of 6-count burpees at a steady pace — for example 5 to 10 reps. Move with control through all six counts of the movement.",
+      text: "Perform a set of 6-count burpees at a steady pace, for example 5 to 10 reps. Move with control through all six counts of the movement.",
     },
     {
       name: "Do a set of bodyweight squats",
@@ -98,13 +98,13 @@ export const twentyMinuteWorkoutGuidePage = {
     },
     {
       name: "Log your score",
-      text: "Record your total reps. That number is your benchmark — aim to beat it next session.",
+      text: "Record your total reps. That number is your benchmark. Aim to beat it next session.",
     },
   ],
   weeklyPlan: {
     title: "Your week at a glance",
     intro:
-      "Four sessions a week is the sweet spot: enough volume to drive progress, enough rest to recover. Here's a simple template — shift the days to fit your life.",
+      "Four sessions a week is the sweet spot: enough volume to drive progress, enough rest to recover. Here's a simple template; shift the days to fit your life.",
     days: [
       { day: "Monday", session: "20-minute AMRAP" },
       { day: "Tuesday", session: "Rest or a walk" },
@@ -133,7 +133,7 @@ export const twentyMinuteWorkoutGuidePage = {
       {
         label: "Skipping the log",
         description:
-          "If you don't track your reps, you can't see progress — and seeing progress is what keeps you going.",
+          "If you don't track your reps, you can't see progress, and seeing progress is what keeps you going.",
       },
       {
         label: "Training only when motivated",
@@ -151,12 +151,12 @@ export const twentyMinuteWorkoutGuidePage = {
     {
       question: "Is a 20-minute home workout really enough to get fit?",
       answer:
-        "Yes — if the effort is high. Four 20-minute high-effort sessions give you 80 minutes of vigorous exercise a week, which sits within the World Health Organization's guideline of 75 to 150 minutes of vigorous activity. Consistency at 20 minutes beats an hour-long plan you quit after a month.",
+        "Yes, if the effort is high. Four 20-minute high-effort sessions give you 80 minutes of vigorous exercise a week, which sits within the World Health Organization's guideline of 75 to 150 minutes of vigorous activity. Consistency at 20 minutes beats an hour-long plan you quit after a month.",
     },
     {
       question: "Do I need any equipment for this workout?",
       answer:
-        "No. The workout uses only two bodyweight movements — the 6-count burpee and the bodyweight squat. You need a timer and enough floor space to lie down. No gym, no weights, no bar.",
+        "No. The workout uses only two bodyweight movements: the 6-count burpee and the bodyweight squat. You need a timer and enough floor space to lie down. No gym, no weights, no bar.",
     },
     {
       question: "I'm a complete beginner. Where do I start?",
@@ -166,12 +166,12 @@ export const twentyMinuteWorkoutGuidePage = {
     {
       question: "How many days a week should I do the 20-minute workout?",
       answer:
-        "Four sessions a week is the standard Busy Dad Training prescription — 80 minutes of training in total. Spread them across the week with rest days in between, and take at least one full rest day.",
+        "Four sessions a week is the standard Busy Dad Training prescription: 80 minutes of training in total. Spread them across the week with rest days in between, and take at least one full rest day.",
     },
     {
       question: "Will burpees alone build muscle?",
       answer:
-        "Burpees at volume build real strength endurance, conditioning, and visible muscle in your chest, shoulders, arms, and legs — especially if you're new or returning to training. They won't make you a bodybuilder, but they will make you strong, lean, and hard to tire out.",
+        "Burpees at volume build real strength endurance, conditioning, and visible muscle in your chest, shoulders, arms, and legs, especially if you're new or returning to training. They won't make you a bodybuilder, but they will make you strong, lean, and hard to tire out.",
     },
     {
       question: "How is this different from just doing random home workouts?",

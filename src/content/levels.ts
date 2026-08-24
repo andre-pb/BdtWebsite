@@ -4,7 +4,7 @@ export const levelsPage = {
   seo: {
     title: "The Four Levels of the Busy Dad Program",
     description:
-      "How the Busy Dad Training app progresses you from Level 1 to Graduation — Landmark Workouts and benchmarks for short home workouts.",
+      "How the Busy Dad Training app progresses you from Level 1 to Graduation: Landmark Workouts and benchmarks for short home workouts.",
   },
   hero: {
     eyebrow: "Progress",

@@ -39,12 +39,12 @@ export function BurpeeStatSection() {
   //
   // IMPORTANT: the number on screen must always END at the latest SignalR
   // value, never at the static burpeeStat.value fallback. Each call kills the
-  // previous tween first — without this, the scroll-in tween (2.4s, targeting
+  // previous tween first. Without this, the scroll-in tween (2.4s, targeting
   // the fallback) and the live-update tween (1.2s, targeting the hub value)
   // run concurrently on separate counter objects, and whichever FINISHES LAST
   // wins. The longer fallback tween finishing last is exactly how the site
   // ends up stuck displaying 3,600,000 instead of the live total. Do not
-  // remove the kill() — see git history before "fixing" this.
+  // remove the kill(); see git history before "fixing" this.
   const animateTo = (value: number, duration: number) => {
     tweenRef.current?.kill();
     const counter = { value: displayedRef.current };
@@ -110,7 +110,7 @@ export function BurpeeStatSection() {
 
     connection.on(TOTAL_UPDATED_EVENT, (total: number) => {
       if (typeof total !== "number" || !Number.isFinite(total)) return;
-      // The hub is authoritative — always take its value, even if it's lower
+      // The hub is authoritative: always take its value, even if it's lower
       // than the static fallback (the real DB total is below the marketing
       // placeholder until enough reps accumulate).
       targetRef.current = total;
@@ -125,13 +125,13 @@ export function BurpeeStatSection() {
       // animation will pick up the latest targetRef value.
     });
 
-    // Fail silently — the static fallback number stays on screen.
+    // Fail silently; the static fallback number stays on screen.
     connection.start().catch(() => {});
 
     return () => {
       connection.stop().catch(() => {});
     };
-    // animateTo/renderValue only read refs, so they're stable — no deps needed.
+    // animateTo/renderValue only read refs, so they're stable; no deps needed.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
