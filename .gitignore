@@ -24,3 +24,6 @@ yarn-error.log*
 
 *.tsbuildinfo
 UTM_LINKS.md
+
+# Local scratch for removed-but-not-deleted files
+/.trash/

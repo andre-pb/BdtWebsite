@@ -4,7 +4,7 @@ export const principlesPage = {
   seo: {
     title: "Busy Dad Training Principles",
     description:
-      "The three principles behind this short home workout app for men: 80 minutes a week, disciplined minimalism, and intentional 20-minute sessions — no gym required.",
+      "The three principles behind this short home workout app for men: 80 minutes a week, disciplined minimalism, and intentional 20-minute sessions. No gym required.",
   },
   hero: {
     eyebrow: "The Philosophy",
@@ -23,7 +23,7 @@ export const principlesPage = {
       blocks: [
         { emphasis: "The Busy Dad Program is built on disciplined minimalism." },
         "Most training programs bury progress beneath endless variation: isolation exercises, complicated splits, and unnecessary volume. The Busy Dad Program strips training down to what matters most.",
-        "Our focus is compound movement — exercises that demand full-body coordination, recruit every major muscle group, and train the body as an integrated system.",
+        "Our focus is compound movement: exercises that demand full-body coordination, recruit every major muscle group, and train the body as an integrated system.",
         "From this minimalist philosophy emerge the two Sacred Movements: the foundation of the entire program.",
         {
           emphasis:
@@ -63,7 +63,7 @@ export const principlesPage = {
         { emphasis: "With only 80 minutes each week, every second matters." },
         "In the Busy Dad Program, training is never casual or aimless. Every session is deliberate. Every effort serves a purpose. Every minute moves you forward.",
         { emphasis: "This is not exercise for the sake of exercise." },
-        "It is structured, purposeful progression guided by the program's four-tiered level system — a framework designed to turn consistency into measurable advancement.",
+        "It is structured, purposeful progression guided by the program's four-tiered level system, a framework designed to turn consistency into measurable advancement.",
         {
           emphasis:
             "Training is not a chore. It is a project. And every workout lays another brick.",

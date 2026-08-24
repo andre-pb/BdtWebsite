@@ -396,6 +396,17 @@ button:focus-visible {
   display: none;
 }
 
+/* Swipeable app-tour carousel (phones): snap scrolling, no visible scrollbar. */
+.showcase-carousel {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.showcase-carousel::-webkit-scrollbar {
+  display: none;
+}
+
 .showcase-text-panel--first {
   position: relative;
 }

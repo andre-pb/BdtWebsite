@@ -2,15 +2,15 @@ import { burpeeStat, countryStat } from "./site";
 
 export const communityPage = {
   seo: {
-    title: "Community — Busy Dad Training",
+    title: "Community | Busy Dad Training",
     description:
-      "Join the Busy Dad Army — real stories from men using this home workout app, plus a live burpee leaderboard and accountability.",
+      "Join the Busy Dad Army: real stories from men using this home workout app, plus a live burpee leaderboard and accountability.",
   },
   hero: {
     eyebrow: "The Busy Dad Army",
     title: "You're not doing this alone.",
     description:
-      "Dads around the world, same 80 minutes a week. Read their stories, then see who's putting in the work — live.",
+      "Dads around the world, same 80 minutes a week. Read their stories, then see who's putting in the work, live.",
   },
   stats: [
     {
@@ -41,7 +41,7 @@ export const communityPage = {
   leaderboard: {
     eyebrow: "Live Rankings",
     title: "The Army Leaderboard",
-    description: "Every rep counts. Here's who's putting in the work — updating live.",
+    description: "Every rep counts. Here's who's putting in the work, updating live.",
   },
   cta: {
     eyebrow: "Join the Army",

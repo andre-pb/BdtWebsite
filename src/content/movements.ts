@@ -4,7 +4,7 @@ export const movementsPage = {
   seo: {
     title: "The Two Sacred Burpee Movements",
     description:
-      "Master the two bodyweight burpee movements in the Busy Dad home workout app — 6-count and Navy Seal — for short, no-gym sessions.",
+      "Master the two bodyweight burpee movements in the Busy Dad home workout app (6-count and Navy Seal) for short, no-gym sessions.",
   },
   hero: {
     eyebrow: "The Program",

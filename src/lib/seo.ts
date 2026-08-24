@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { aboutPage } from "@/content/about";
-import { appPricing, appStores, appScreenshots, seo, site, youtube, testimonials, burpeeStat, appStoreRating } from "@/content/site";
+import { appPricing, appStores, appScreenshots, seo, site, youtube, testimonials, burpeeStat, appStoreRating, storeRatings } from "@/content/site";
 import { movementsPage } from "@/content/movements";
 import { levelsPage } from "@/content/levels";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
@@ -50,14 +50,15 @@ export function getProductJsonLd() {
     offers: getAppOffersJsonLd(),
     aggregateRating: { "@id": `${siteUrl}/#aggregate-rating` },
     brand: { "@id": `${siteUrl}/#brand` },
-    dateModified: "2026-08-24",
+    dateModified: storeRatings.app.updated,
+    softwareVersion: storeRatings.app.version,
     downloadUrl: [appStores.appStoreUrl, appStores.googlePlayUrl],
     image: {
       "@type": "ImageObject",
-      url: absoluteUrl(appScreenshots.timer.src),
-      width: appScreenshots.timer.width,
-      height: appScreenshots.timer.height,
-      caption: appScreenshots.timer.alt,
+      url: absoluteUrl(appScreenshots.home.src),
+      width: appScreenshots.home.width,
+      height: appScreenshots.home.height,
+      caption: appScreenshots.home.alt,
     },
     featureList: [
       "20-minute workout timer",
@@ -68,8 +69,10 @@ export function getProductJsonLd() {
       "14-day free trial",
     ],
     screenshot: [
-      absoluteUrl(appScreenshots.timer.src),
+      absoluteUrl(appScreenshots.home.src),
+      absoluteUrl(appScreenshots.train.src),
       absoluteUrl(appScreenshots.levels.src),
+      absoluteUrl(appScreenshots.stats.src),
       absoluteUrl(appScreenshots.community.src),
     ],
     sameAs: [appStores.appStoreUrl, appStores.googlePlayUrl],
@@ -107,7 +110,7 @@ export function getPricingItemListJsonLd() {
         item: {
           "@type": "Product",
           name: "Busy Dad Training Monthly",
-          description: "Monthly subscription to Busy Dad Training — cancel anytime. Best for trying the programme.",
+          description: "Monthly subscription to Busy Dad Training. Cancel anytime. Best for trying the programme.",
           offers: {
             "@type": "Offer",
             price: String(appPricing.monthly.amount),
@@ -123,7 +126,7 @@ export function getPricingItemListJsonLd() {
         item: {
           "@type": "Product",
           name: "Busy Dad Training Annual",
-          description: "Annual subscription to Busy Dad Training — save 17% vs monthly. Best for committed practitioners.",
+          description: "Annual subscription to Busy Dad Training. Save 17% vs monthly. Best for committed practitioners.",
           offers: {
             "@type": "Offer",
             price: String(appPricing.annual.amount),
@@ -324,7 +327,7 @@ export function getWebPageJsonLd({
   title: string;
   description: string;
   path: string;
-  /** Optional freshness signals — pass them on any page that tracks dates. */
+  /** Optional freshness signals. Pass them on any page that tracks dates. */
   datePublished?: string;
   dateModified?: string;
 }) {
@@ -404,7 +407,7 @@ const movementHowToSteps = {
     },
     {
       name: "Counts 3–4: push up",
-      text: "Lower your chest to the ground and press back up to plank. This is where the upper body — chest, shoulders, triceps — takes the limelight.",
+      text: "Lower your chest to the ground and press back up to plank. This is where the upper body (chest, shoulders, triceps) takes the limelight.",
     },
     {
       name: "Counts 5–6: stand up",
@@ -472,7 +475,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "Why does the Busy Dad Program only use two movements?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "BDP is a minimalist program. Rather than performing an endless library of isolation exercises, practitioners train two compound movements — the Sacred Movements — that recruit the whole body as an integrated system and activate every major muscle group. The aim is to cultivate excellence in those two movements, not breadth across many.",
+          text: "BDP is a minimalist program. Rather than performing an endless library of isolation exercises, practitioners train two compound movements, the Sacred Movements, that recruit the whole body as an integrated system and activate every major muscle group. The aim is to cultivate excellence in those two movements, not breadth across many.",
         },
       },
       {
@@ -480,7 +483,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "How long should I train each week on the Busy Dad Program?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Exactly 80 minutes per week — not a minute more, not a minute less. The preferred breakdown is four 20-minute sessions, but practitioners are free to divide the 80 minutes however they choose.",
+          text: "Exactly 80 minutes per week: not a minute more, not a minute less. The preferred breakdown is four 20-minute sessions, but practitioners are free to divide the 80 minutes however they choose.",
         },
       },
       {
@@ -488,7 +491,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "Is 80 minutes a week really enough to get fit?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Just 80 minutes per week is enough to see profound training results — provided every minute is of the highest possible quality. Because the training budget is so restrictive, every workout must be deliberate and goal-directed, and that intensity is what produces results.",
+          text: "Yes. Just 80 minutes per week is enough to see profound training results, provided every minute is of the highest possible quality. Because the training budget is so restrictive, every workout must be deliberate and goal-directed, and that intensity is what produces results.",
         },
       },
       {
@@ -496,7 +499,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "Who created the Busy Dad Program?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Busy Dad Training was created by Max Edwards, who developed the program out of the conviction that two compound burpee variations — the 6-count military burpee and the Navy Seal burpee — yield all a person needs to build elite fitness and strength.",
+          text: "Busy Dad Training was created by Max Edwards, who developed the program out of the conviction that two compound burpee variations, the 6-count military burpee and the Navy Seal burpee, yield all a person needs to build elite fitness and strength.",
         },
       },
     ],
@@ -521,7 +524,7 @@ export function getMovementsFaqJsonLd() {
         name: "What is a 6-count military burpee?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The 6-count military burpee is a six-part compound movement that recruits every major muscle group. The core is engaged throughout. The legs and posterior chain work hardest at counts 1–2 and 5–6, and the upper body — chest, shoulders, triceps — takes over at counts 3–4. The 6-count excels at building leg strength and cardiovascular fitness.",
+          text: "The 6-count military burpee is a six-part compound movement that recruits every major muscle group. The core is engaged throughout. The legs and posterior chain work hardest at counts 1–2 and 5–6, and the upper body (chest, shoulders, triceps) takes over at counts 3–4. The 6-count excels at building leg strength and cardiovascular fitness.",
         },
       },
       {
@@ -537,7 +540,7 @@ export function getMovementsFaqJsonLd() {
         name: "How is the American military burpee different from a CrossFit burpee?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The American military burpee has very little in common with the more familiar burpee popularised by CrossFit. Until recently it was a niche movement largely confined to the US military and prison culture. The Sacred Movements of BDP — the 6-count and the Navy Seal — are the two most effective variations of the American military burpee.",
+          text: "The American military burpee has very little in common with the more familiar burpee popularised by CrossFit. Until recently it was a niche movement largely confined to the US military and prison culture. The Sacred Movements of BDP, the 6-count and the Navy Seal, are the two most effective variations of the American military burpee.",
         },
       },
       {
@@ -629,7 +632,7 @@ export function getLevelsFaqJsonLd() {
         name: "What are the four levels of the Busy Dad Program?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The Busy Dad Program has four levels — Level 1, Level 2, Level 3, and Level 4 — followed by Graduation. Level 1 is further subdivided into 1A, 1B, 1C, and 1D. Each level is unlocked by two Landmark Workouts: one 20-minute 6-count workout and one 20-minute Navy Seal workout.",
+          text: "The Busy Dad Program has four levels (Level 1, Level 2, Level 3, and Level 4) followed by Graduation. Level 1 is further subdivided into 1A, 1B, 1C, and 1D. Each level is unlocked by two Landmark Workouts: one 20-minute 6-count workout and one 20-minute Navy Seal workout.",
         },
       },
       {
@@ -767,8 +770,10 @@ export function getGuideAppJsonLd() {
       "No equipment required",
     ],
     screenshot: [
-      absoluteUrl(appScreenshots.timer.src),
+      absoluteUrl(appScreenshots.home.src),
+      absoluteUrl(appScreenshots.train.src),
       absoluteUrl(appScreenshots.levels.src),
+      absoluteUrl(appScreenshots.stats.src),
       absoluteUrl(appScreenshots.community.src),
     ],
     offers: getAppOffersJsonLd(),

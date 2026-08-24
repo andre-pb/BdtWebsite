@@ -3,15 +3,15 @@ import { burpeeStat } from "@/content/site";
 
 export const aboutPage = {
   seo: {
-    title: "About Max — Busy Dad Training",
+    title: "About Max | Busy Dad Training",
     description:
-      "Meet Max Edwards, creator of Busy Dad Training — the short home workout app for men built on 80 minutes a week and two compound burpee movements.",
+      "Meet Max Edwards, creator of Busy Dad Training, the short home workout app for men built on 80 minutes a week and two compound burpee movements.",
   },
   hero: {
     eyebrow: "The Creator",
     title: "Meet Max.",
     intro:
-      "Years of trying to make training stick — until fatherhood forced one simple rule.",
+      "Years of trying to make training stick, until fatherhood forced one simple rule.",
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   bio: {
@@ -20,7 +20,7 @@ export const aboutPage = {
     image: assetPath("/images/Busy_Dad%20Large.webp"),
     imageAlt: "Max Edwards, creator of the Busy Dad Program",
     paragraphs: [
-      "I'm not an athlete, and I didn't come into this with any special background — just years of trying and failing to make training stick. Like so many of us, I bounced between programs, always starting strong and eventually dropping off when life got busy.",
+      "I'm not an athlete, and I didn't come into this with any special background, just years of trying and failing to make training stick. Like so many of us, I bounced between programs, always starting strong and eventually dropping off when life got busy.",
       "When I became a father, I made a hard, simple rule: no more than 80 minutes a week of training, and no excuses. That constraint changed everything. It forced me to cut through the noise and focus on what actually works. I ended up building my entire approach around just two burpee movements. The result wasn't just consistency. It was the best shape of my life.",
       "The Busy Dad Program is what came out of that: a stripped-back, time-efficient system built for real life and real responsibility.",
     ],
@@ -35,19 +35,19 @@ export const aboutPage = {
         id: "youtube",
         step: "01",
         title: "It started on YouTube",
-        body: "Max began filming simple, follow-along burpee workouts — no gym, no equipment, no fluff. Just the work. People could press play, hit the floor, and train alongside him.",
+        body: "Max began filming simple, follow-along burpee workouts. No gym, no equipment, no fluff. Just the work. People could press play, hit the floor, and train alongside him.",
       },
       {
         id: "community",
         step: "02",
         title: "A community formed",
-        body: `Practitioners kept showing up. The Busy Dad Army grew — ${burpeeStat.value.toLocaleString()}${burpeeStat.valueSuffix} burpees logged on the app and counting. Dads around the world proving that 80 minutes a week is enough when the system is honest.`,
+        body: `Practitioners kept showing up. The Busy Dad Army grew: ${burpeeStat.value.toLocaleString()}${burpeeStat.valueSuffix} burpees logged on the app and counting. Dads around the world proving that 80 minutes a week is enough when the system is honest.`,
       },
       {
         id: "app",
         step: "03",
         title: "So the app was built",
-        body: "The videos showed people what to do. The app helps them actually do it — every day, with a timer, a level system, and benchmarks that tell you exactly where you stand. Structure for people who don't have time to waste.",
+        body: "The videos showed people what to do. The app helps them actually do it: every day, with a timer, a level system, and benchmarks that tell you exactly where you stand. Structure for people who don't have time to waste.",
       },
     ],
   },

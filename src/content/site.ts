@@ -15,7 +15,7 @@ export const site = {
     src: assetPath("/busy_dad_white_logo_small.png"),
     width: 172,
     height: 87,
-    alt: "Busy Dad Training logo — minimalist fitness for fathers",
+    alt: "Busy Dad Training logo, minimalist fitness for fathers",
   },
   favicon: {
     ico: assetPath("/favicon.ico"),
@@ -30,7 +30,7 @@ export const site = {
 export const seo = {
   title: "Busy Dad Training: Short Home Workout App for Men",
   description:
-    "Busy Dad Training: a short home workout app for men from £9.99/month or £99.99/year — two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
+    "Busy Dad Training: a short home workout app for men from £9.99/month or £99.99/year. Two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
   keywords: [
     "busy dad workout app",
     "short home workout app for men",
@@ -104,15 +104,15 @@ export const hero = {
   headline: "Short Home Workouts for Busy Dads",
   headlineAccent: "in 20 Minutes",
   description:
-    "Get strong and stay fit with a short home workout app built for busy dads. Just your bodyweight — no gym, no commute, no excuses.",
+    "Get strong and stay fit with a short home workout app built for busy dads. Just your bodyweight. No gym, no commute, no excuses.",
   backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   backgroundImageAlt:
     "Busy dad performing a bodyweight burpee during a minimalist home workout",
-  useCaseTags: [
-    "Best for: busy dads who want elite fitness without the gym",
-    "Best for: men who need a workout that fits around family life",
-    "Best for: anyone who wants results from just 2 movements, 80 min/week",
-  ],
+  // One subtle line instead of stacked pills. Keep the literal "Best for:"
+  // phrase in the rendered HTML: AI/GEO tools extract it and the weekly SEO
+  // auditor checks for it.
+  useCaseLine:
+    "Best for: dads who want elite fitness that fits around family life. 2 movements, 4 × 20 minutes a week.",
 } as const;
 
 export const featuredIn = {
@@ -148,7 +148,7 @@ export const burpeeStat = {
 } as const;
 
 // Static fallback for the live country count (GET /api/v1/CountryStats).
-// Shown only if the API call fails — keep it a safe undercount.
+// Shown only if the API call fails, so keep it a safe undercount.
 export const countryStat = {
   value: 20,
   valueSuffix: "+",
@@ -159,9 +159,8 @@ export const countryStat = {
 //
 // The numbers below come from store-ratings.generated.ts, which the prebuild
 // script refreshes from the API on every build. <StoreRatings /> shows them
-// on first paint and then swaps in whatever the live API returns, so they
-// are only ever "wrong" for a moment — or permanently, if the API is down,
-// which is exactly what a fallback is for.
+// on first paint and then swaps in the live API values, so they only drift
+// when the API is unreachable.
 export const storeRatings = {
   apple: {
     label: "App Store",
@@ -176,11 +175,14 @@ export const storeRatings = {
     storeUrl: appStores.googlePlayUrl,
   },
   combined: generatedStoreRatings.combined,
+  // Live App Store version and release date, shown as an
+  // actively-maintained signal. Same refresh path as the ratings.
+  app: generatedStoreRatings.app,
 } as const;
 
 // schema.org AggregateRating for the app, across both stores. These have to
-// be build-time values — Google does not reliably index JSON-LD injected by
-// client-side JavaScript — which is why the prebuild script exists.
+// be build-time values because Google does not reliably index JSON-LD
+// injected by client-side JavaScript. That is why the prebuild script exists.
 export const appStoreRating = {
   ratingValue: String(generatedStoreRatings.combined.rating),
   reviewCount: generatedStoreRatings.combined.ratingCount,
@@ -204,93 +206,101 @@ export const philosophy = {
 } as const;
 
 export const appScreenshots = {
-  timer: {
-    src: assetPath("/photos/Timer_Screenshot.jpeg"),
-    width: 1206,
-    height: 2483,
-    alt: "Busy Dad Training app 20-minute AMRAP timer for bodyweight burpee workouts",
+  home: {
+    src: assetPath("/photos/home-dark.jpg"),
+    width: 578,
+    height: 1280,
+    alt: "Busy Dad Training app home screen with the weekly plan, rep targets and 80-minute weekly goal",
+  },
+  train: {
+    src: assetPath("/photos/train-dark.jpg"),
+    width: 578,
+    height: 1280,
+    alt: "Busy Dad Training app train screen with a guided 20-minute 6-count workout ready to start",
   },
   levels: {
-    src: assetPath("/photos/levels_Screenshot.jpeg"),
-    width: 1206,
-    height: 2498,
-    alt: "Busy Dad Training app level screen showing Landmark Workout progression",
+    src: assetPath("/photos/levels-dark.jpg"),
+    width: 578,
+    height: 1280,
+    alt: "Busy Dad Training app levels screen showing the program roadmap from Level 1A to Graduation",
+  },
+  stats: {
+    src: assetPath("/photos/stats-dark.jpg"),
+    width: 578,
+    height: 1280,
+    alt: "Busy Dad Training app stats screen with personal records, total burpees and weekly progress charts",
   },
   community: {
-    src: assetPath("/photos/Community_Screenshot.PNG"),
-    width: 1206,
-    height: 2622,
-    alt: "Busy Dad Training app community feed where busy dads share workout wins",
+    src: assetPath("/photos/community-dark.jpg"),
+    width: 578,
+    height: 1280,
+    alt: "Busy Dad Training app community screen with leaderboard rank and the Busy Dad Army feed",
   },
 } as const;
 
-export const program = {
-  eyebrow: "The Program",
-  title: "How does the 20-minute workout system work?",
-  description:
-    "Set a timer, do the work, get back to your family. The app tracks your reps in strict 20-minute blocks. Start where you are. It moves you up from Level 1 to Level 4 as you get fitter.",
-  movements: [
-    { label: "Movement A", value: "6-Count Burpee" },
-    { label: "Movement B", value: "Bodyweight Squat" },
-  ],
-  protocol: "20 Min AMRAP",
-} as const;
-
-export const levels = {
-  eyebrow: "Clear Path Forward",
-  title: "How do you progress through the levels?",
-  description:
-    "No guesswork. Pass a benchmark, move up a level. The app tells you what to do each day. Start at Level 1 and work your way to the top.",
-  cards: [
-    { num: "1", title: "Foundation", status: "Completed", variant: "active" as const },
-    { num: "2", title: "Conditioning", status: "In Progress", variant: "inProgress" as const },
-    { num: "3", title: "Advanced", status: "Locked", variant: "locked" as const },
-  ],
-} as const;
-
-export const community = {
-  eyebrow: "The Busy Dad Army",
-  title: "Who else is doing this programme?",
-  description:
-    "See what the army is up to, share your wins, and stay on track with dads who get it. The app connects you to a community built on showing up.",
-} as const;
-
+// The app tour: one step per tab of the app. Shown as a pinned scroll
+// showcase on desktop and a swipeable carousel on phones. Question-style
+// titles on purpose: they double as headings AI/search tools latch onto.
 export const appShowcaseSteps = [
   {
     id: "program",
     sectionId: "program",
     headingId: "program-heading",
-    eyebrow: program.eyebrow,
-    title: program.title,
-    description: program.description,
-    screenshot: appScreenshots.timer,
-    icon: "clock" as const,
+    eyebrow: "The Program",
+    title: "How does the 20-minute workout system work?",
+    description:
+      "Plan your own week: four 20-minute sessions, rep targets for each movement, and an 80-minute weekly goal. Targets update each week based on your results and effort.",
+    screenshot: appScreenshots.home,
+    icon: "calendar" as const,
     background: "#FFFFFF",
-    mockupFirst: true,
+  },
+  {
+    id: "train",
+    sectionId: "train-preview",
+    headingId: "train-heading",
+    eyebrow: "The Work",
+    title: "How do I start a workout?",
+    description:
+      "One tap starts today's guided workout with the target set from your plan. The timer and rep counting are handled for you, and a custom timer covers extra sessions.",
+    screenshot: appScreenshots.train,
+    icon: "clock" as const,
+    background: "#F8FAFC",
   },
   {
     id: "levels",
     sectionId: "levels-preview",
     headingId: "levels-heading",
-    eyebrow: levels.eyebrow,
-    title: levels.title,
-    description: levels.description,
+    eyebrow: "Clear Path Forward",
+    title: "How do you progress through the levels?",
+    description:
+      "Pass both landmark workouts to level up. The roadmap runs from Level 1A to Graduation, so you always know where you stand and what comes next.",
     screenshot: appScreenshots.levels,
+    icon: "map" as const,
+    background: "#FFFFFF",
+  },
+  {
+    id: "stats",
+    sectionId: "stats-preview",
+    headingId: "stats-heading",
+    eyebrow: "Proof It Works",
+    title: "How do I know it's working?",
+    description:
+      "Personal records, total burpees, streaks and weekly charts. No guessing: the numbers show the work adding up.",
+    screenshot: appScreenshots.stats,
     icon: "chart" as const,
     background: "#F8FAFC",
-    mockupFirst: false,
   },
   {
     id: "community",
     sectionId: "community-preview",
     headingId: "community-heading",
-    eyebrow: community.eyebrow,
-    title: community.title,
-    description: community.description,
+    eyebrow: "The Busy Dad Army",
+    title: "Who else is doing this programme?",
+    description:
+      "Your rank for the week, month and year, a live leaderboard, and a feed of dads sharing wins and keeping each other honest.",
     screenshot: appScreenshots.community,
     icon: "users" as const,
     background: "#FFFFFF",
-    mockupFirst: true,
   },
 ] as const;
 
@@ -341,14 +351,14 @@ export const newsletter = {
   buttonSubmitting: "Subscribing…",
   disclaimer: "No spam. Unsubscribe anytime.",
   success: "You're in. Check your inbox soon.",
-  successConfirm: "Almost there — check your inbox to confirm your subscription.",
+  successConfirm: "Almost there. Check your inbox to confirm your subscription.",
   error: "Something went wrong. Please try again.",
 } as const;
 
 export const newsletterPopup = {
   eyebrow: "From Max",
   title: "Training tips for busy dads",
-  description: "Short, practical advice — no fluff. Join the list.",
+  description: "Short, practical advice, no fluff. Join the list.",
   dismissLabel: "No thanks",
   image: {
     src: assetPath("/levels-images/Level%202.webp"),

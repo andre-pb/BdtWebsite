@@ -24,7 +24,7 @@ export const metadata = {
 const faqSchema = buildFaqJsonLd([
   {
     question: "What is Busy Dad Training?",
-    answer: "Busy Dad Training is a short home workout app for men built around two bodyweight movements — the 6-count military burpee and the Navy Seal burpee. Train 20 minutes a session, 4 times a week. No equipment, no gym required."
+    answer: "Busy Dad Training is a short home workout app for men built around two bodyweight movements: the 6-count military burpee and the Navy Seal burpee. Train 20 minutes a session, 4 times a week. No equipment, no gym required."
   },
   {
     question: "Is Busy Dad Training suitable for beginners?",
@@ -36,7 +36,7 @@ const faqSchema = buildFaqJsonLd([
   },
   {
     question: "Do I need any equipment for Busy Dad Training?",
-    answer: "No. The programme uses only bodyweight movements — specifically the 6-count military burpee and the Navy Seal burpee. No gym, no weights, no equipment required."
+    answer: "No. The programme uses only bodyweight movements: the 6-count military burpee and the Navy Seal burpee. No gym, no weights, no equipment required."
   },
   {
     question: "How long are Busy Dad Training workouts?",
