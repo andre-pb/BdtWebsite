@@ -76,7 +76,7 @@ export function GraduationSection() {
             <h2 id="graduation-heading" style={{ ...headingStyle, marginBottom: 0 }}>
               {graduation.title}
             </h2>
-            <LevelShareTag levelKey="graduation" showDefinition />
+            <LevelShareTag levelKey="graduation" />
           </div>
 
           {graduation.paragraphs.map((paragraph) => (
