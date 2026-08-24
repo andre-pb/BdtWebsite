@@ -13,8 +13,6 @@ const STORE_RATINGS_URL = HUB_URL
   ? new URL("/api/v1/StoreRatings", HUB_URL).toString()
   : undefined;
 
-const countFormatter = new Intl.NumberFormat("en-GB");
-
 type StoreKey = "apple" | "google";
 
 type Rating = {
@@ -54,21 +52,17 @@ function StorePill({
   label,
   storeUrl,
   rating,
-  ratingCount,
 }: {
   label: string;
   storeUrl: string;
   rating: number;
-  ratingCount: number;
 }) {
   return (
     <a
       href={storeUrl}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`${label}: rated ${rating.toFixed(1)} out of 5 from ${countFormatter.format(
-        ratingCount,
-      )} ratings`}
+      aria-label={`${label}: rated ${rating.toFixed(1)} out of 5`}
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -94,7 +88,7 @@ function StorePill({
         {rating.toFixed(1)}
       </span>
       <span style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.85rem" }}>
-        {label} · {countFormatter.format(ratingCount)} ratings
+        {label}
       </span>
     </a>
   );
@@ -160,7 +154,6 @@ export function StoreRatings({ style }: { style?: CSSProperties }) {
             label={label}
             storeUrl={storeUrl}
             rating={current.rating}
-            ratingCount={current.ratingCount}
           />
         );
       })}
