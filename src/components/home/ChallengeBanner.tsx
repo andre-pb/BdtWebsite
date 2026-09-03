@@ -76,7 +76,9 @@ function HeroPill({ promotion }: { promotion: ActivePromotion }) {
         alignItems: "center",
         gap: "10px",
         maxWidth: "100%",
-        margin: "0 auto 1.5rem",
+        // "Best for" line ends with 32px below it and the store badges carry
+        // 40px above them; 8px on top makes the pill sit evenly between them.
+        margin: "0.5rem auto 0",
         padding: "10px 18px 10px 14px",
         borderRadius: "9999px",
         border: "1px solid rgba(96, 165, 250, 0.45)",
