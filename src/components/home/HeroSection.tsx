@@ -45,10 +45,6 @@ export function HeroSection() {
       />
       <PageContainer style={{ position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          {/* Live challenge callout — renders only while a promotion is
-              open for joining (driven by the API), so the hero is unchanged
-              the rest of the year. */}
-          <ChallengeBanner variant="hero" />
           <h1
             id="hero-heading"
             style={{
@@ -95,6 +91,11 @@ export function HeroSection() {
         >
           {hero.useCaseLine}
         </p>
+        {/* Live challenge callout, right above the store buttons people use
+            to join. Renders only while a promotion is open for joining
+            (driven by the API), so the hero is unchanged the rest of the
+            year. */}
+        <ChallengeBanner variant="hero" />
         <div className="hero-store-badges">
           <AppStoreBadge />
           <GooglePlayBadge />
