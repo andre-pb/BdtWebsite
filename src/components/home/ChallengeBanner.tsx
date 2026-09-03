@@ -76,7 +76,7 @@ function HeroPill({ promotion }: { promotion: ActivePromotion }) {
     <a
       href="#download"
       className="challenge-hero-pill"
-      aria-label={`${promotion.name} is on — train free for up to ${promotion.weeksTotal} weeks. Get the app to join.`}
+      aria-label={`${promotion.name} is on. Train free for up to ${promotion.weeksTotal} weeks. Get the app to join.`}
       style={{
         display: "inline-flex",
         alignItems: "center",
@@ -108,8 +108,8 @@ function HeroPill({ promotion }: { promotion: ActivePromotion }) {
         }}
       />
       <span>
-        <strong style={{ fontWeight: 800 }}>{promotion.name} is on</strong>
-        {" — "}train free for up to {promotion.weeksTotal} weeks, no card needed.
+        <strong style={{ fontWeight: 800 }}>{promotion.name} is on.</strong>
+        {" "}Train free for up to {promotion.weeksTotal} weeks, no card needed.
       </span>
       <span
         className="challenge-hero-cta"
@@ -129,12 +129,12 @@ function HeroPill({ promotion }: { promotion: ActivePromotion }) {
 function PricingAside({ promotion }: { promotion: ActivePromotion }) {
   const description =
     promotion.description ??
-    `Join free in the app — no card needed. Hit ${promotion.fullWeekMinutes} minutes of training a week and each completed week unlocks the next, up to ${promotion.weeksTotal} weeks free.`;
+    `Join free in the app, no card needed. Hit ${promotion.fullWeekMinutes} minutes of training a week and each completed week unlocks the next, up to ${promotion.weeksTotal} weeks free.`;
 
   return (
     <aside
       className="challenge-pricing-aside"
-      aria-label={`${promotion.name} — train free`}
+      aria-label={`${promotion.name}: train free`}
       style={{
         borderRadius: "20px",
         border: `1px solid ${colors.borderBlue}`,
