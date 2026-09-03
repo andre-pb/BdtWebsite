@@ -5,6 +5,7 @@ import { PageContainer } from "@/components/ui/PageContainer";
 import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
 import { colors } from "@/constants/colors";
 import { promo } from "@/content/site";
+import { ChallengeBanner } from "@/components/home/ChallengeBanner";
 
 const MONTHLY_PRICE = 9.99;
 const YEARLY_PRICE = 99.99;
@@ -498,6 +499,9 @@ export function PricingSection() {
           </div>
 
           {promoActive ? <PromoBanner /> : null}
+          {/* Live challenge (API-driven): "…or try it free" right where the
+              pay decision happens. Renders nothing outside a campaign. */}
+          <ChallengeBanner variant="pricing" />
 
           <div
             style={{

@@ -5,6 +5,7 @@ import { AppStoreBadge, GooglePlayBadge } from "@/components/ui/AppStoreBadges";
 import { StoreRatings } from "@/components/ui/StoreRatings";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { FeaturedInBar } from "@/components/home/FeaturedInBar";
+import { ChallengeBanner } from "@/components/home/ChallengeBanner";
 
 export function HeroSection() {
   return (
@@ -44,6 +45,10 @@ export function HeroSection() {
       />
       <PageContainer style={{ position: "relative", zIndex: 2 }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          {/* Live challenge callout — renders only while a promotion is
+              open for joining (driven by the API), so the hero is unchanged
+              the rest of the year. */}
+          <ChallengeBanner variant="hero" />
           <h1
             id="hero-heading"
             style={{
