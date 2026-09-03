@@ -5,9 +5,9 @@
 // for joining, so outside a campaign the page is exactly as it was.
 //
 // Two placements share the data:
-//   - "hero"    — a glowing pill directly above the headline: the first thing
-//                 every visitor's eye lands on, without touching the floating
-//                 nav or shifting other pages.
+//   - "hero"    — a glowing pill just above the store buttons (below the
+//                 "Best for:" line): every visitor sees it, and the buttons
+//                 to join are the very next thing.
 //   - "pricing" — an aside above the plan cards, where the "should I pay?"
 //                 hesitation happens: "…or try it free through the challenge".
 //
@@ -48,12 +48,6 @@ const STYLES = `
 }
 .challenge-hero-pill {
   animation: challenge-banner-in 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-.challenge-hero-pill:hover {
-  background: rgba(0, 85, 255, 0.28) !important;
-  border-color: rgba(96, 165, 250, 0.7) !important;
-  transform: translateY(-1px);
 }
 .challenge-hero-dot {
   animation: challenge-banner-pulse 2s ease-out infinite;
@@ -63,7 +57,6 @@ const STYLES = `
 }
 @media (max-width: 640px) {
   .challenge-hero-pill { font-size: 0.82rem !important; padding: 9px 14px !important; }
-  .challenge-hero-cta { display: none !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   .challenge-hero-pill, .challenge-pricing-aside { animation: none; }
@@ -71,18 +64,19 @@ const STYLES = `
 }
 `;
 
+// Not a link on purpose: it sits directly above the App Store / Google Play
+// buttons, which are the intended next click.
 function HeroPill({ promotion }: { promotion: ActivePromotion }) {
   return (
-    <a
-      href="#download"
+    <div
+      role="status"
       className="challenge-hero-pill"
-      aria-label={`${promotion.name} is on. Train free for up to ${promotion.weeksTotal} weeks. Get the app to join.`}
       style={{
         display: "inline-flex",
         alignItems: "center",
         gap: "10px",
         maxWidth: "100%",
-        margin: "0 auto 1.75rem",
+        margin: "0 auto 1.5rem",
         padding: "10px 18px 10px 14px",
         borderRadius: "9999px",
         border: "1px solid rgba(96, 165, 250, 0.45)",
@@ -92,7 +86,6 @@ function HeroPill({ promotion }: { promotion: ActivePromotion }) {
         fontSize: "0.92rem",
         fontWeight: 600,
         lineHeight: 1.3,
-        textDecoration: "none",
         textAlign: "left",
       }}
     >
@@ -111,18 +104,7 @@ function HeroPill({ promotion }: { promotion: ActivePromotion }) {
         <strong style={{ fontWeight: 800 }}>{promotion.name} is on.</strong>
         {" "}Train free for up to {promotion.weeksTotal} weeks, no card needed.
       </span>
-      <span
-        className="challenge-hero-cta"
-        style={{
-          flexShrink: 0,
-          color: colors.accentLight,
-          fontWeight: 700,
-          whiteSpace: "nowrap",
-        }}
-      >
-        Join in the app →
-      </span>
-    </a>
+    </div>
   );
 }
 
