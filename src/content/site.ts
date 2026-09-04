@@ -56,15 +56,28 @@ export const navLinks = [
 ] as const;
 
 export const footerGuideLink = {
-  label: "Best home workout apps (2026)",
-  href: "/best-short-home-workout-apps-for-men-2026/",
+  label: "All comparisons",
+  href: "/comparisons/",
 } as const;
 
 export const footerComparisonLinks = [
+  { label: "Best burpee apps (2026)", href: "/best-burpee-workout-apps-2026/" },
+  { label: "Best bodyweight apps (2026)", href: "/best-bodyweight-workout-apps-2026/" },
+  { label: "Best home workout apps (2026)", href: "/best-short-home-workout-apps-for-men-2026/" },
   { label: "20-minute workout for busy dads", href: "/20-minute-home-workout-for-busy-dads/" },
   { label: "Freeletics vs BDT", href: "/comparisons/freeletics-vs-busy-dad-training/" },
   { label: "Boostcamp vs BDT", href: "/comparisons/boostcamp-vs-busy-dad-training/" },
   { label: "Thenx vs BDT", href: "/comparisons/thenx-vs-busy-dad-training/" },
+] as const;
+
+// Second footer row: the pages that answer "what is / how much / who".
+export const footerResourceLinks = [
+  { label: "Navy Seal burpee", href: "/navy-seal-burpee/" },
+  { label: "6-count burpee", href: "/6-count-burpee/" },
+  { label: "Pricing", href: "/pricing/" },
+  { label: "FAQ", href: "/faq/" },
+  { label: "Press", href: "/press/" },
+  { label: "llms.txt", href: "/llms.txt" },
 ] as const;
 
 export const appStores = {
@@ -309,6 +322,13 @@ export const youtube = {
   channelHandle: "@BusyDadTraining",
   url: "https://www.youtube.com/@BusyDadTraining",
 } as const;
+
+// Max's personal profiles. Each URL added here is emitted as schema.org
+// Person.sameAs, which is how search engines and LLMs confirm that the
+// "Max Edwards" on this site is the same person as the one on Instagram,
+// X, TikTok, LinkedIn, etc. Add the full profile URLs, e.g.
+// "https://www.instagram.com/busydadtraining/".
+export const founderProfiles: readonly string[] = [];
 
 export const testimonials = {
   eyebrow: "From the Busy Dad Army",

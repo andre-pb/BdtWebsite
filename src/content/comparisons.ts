@@ -67,17 +67,17 @@ export const freeleticsComparison: ComparisonPageData = {
     websiteUrl: "https://www.freeletics.com/",
     sessionLength: "15–50 min",
     equipment: "Bodyweight + optional equipment",
-    focus: "AI coach, HIIT, strength, personalised plans (Coach+ tier launched Jul 2026)",
-    price: "Freemium + subscription (Coach+ ~$34.99/mo)",
+    focus: "AI coach, HIIT, strength, personalised plans (Coach+ conversational AI included in Coach)",
+    price: "Limited free tier + Coach from ~$34.99 (term varies)",
     summary:
-      "Freeletics pairs bodyweight HIIT with an AI coach that adapts plans over time, and with the July 2026 Coach+ launch they're going all-in on AI as their core differentiator. Workouts scale from short bursts to longer sessions, with optional equipment tracks. One of the best-known home workout apps for men.",
+      "Freeletics pairs bodyweight HIIT with an AI coach that adapts plans over time, and its conversational Coach+ assistant (included in the Coach subscription, not a separate tier) makes AI the core differentiator. Workouts run 15–45 minutes, with optional equipment tracks. One of the best-known home workout apps for men, with 10M+ Android installs.",
     pros: [
       "Strong brand and large workout library.",
       "AI Coach personalises volume and exercise selection.",
       "Works well for general conditioning and fat loss.",
     ],
     cons: [
-      "Coach+ subscription is ~$34.99/mo, significantly more expensive than BDT.",
+      "The Coach subscription starts around $34.99 depending on term, significantly more expensive than BDT.",
       "The AI-heavy approach means less human coaching feel and more algorithm-driven decisions.",
       "Less rigid weekly structure than a fixed 80-minute programme.",
     ],
@@ -85,11 +85,11 @@ export const freeleticsComparison: ComparisonPageData = {
   },
   path: "/comparisons/freeletics-vs-busy-dad-training/",
   datePublished: "2026-06-15",
-  dateModified: "2026-07-28",
+  dateModified: "2026-09-03",
   seo: {
     title: "Freeletics vs Busy Dad Training (2026): AI Coach or Human-Designed Programme?",
     description:
-      "Freeletics vs Busy Dad Training head-to-head: AI-guided HIIT with new Coach+ tier vs disciplined 20-minute burpee minimalism. Which short home workout app for men is right for you?",
+      "Freeletics vs Busy Dad Training head-to-head: AI-guided HIIT with the Coach+ AI assistant vs disciplined 20-minute burpee minimalism. Which short home workout app for men is right for you?",
     keywords: [
       "Freeletics vs Busy Dad Training",
       "Freeletics alternative for dads",
@@ -111,7 +111,7 @@ export const freeleticsComparison: ComparisonPageData = {
   whyBdpWins: [
     "Fixed 20-minute sessions with no equipment needed. You can train in a hotel room, your garage, or your living room.",
     "Clear objective progression: pass a Landmark Workout, unlock the next level. No algorithm deciding what you should do. A real programme designed by a real person.",
-    "Lower price: £9.99/month or £99.99/year vs Freeletics Coach+ at ~$34.99/month. You're paying for a programme, not an algorithm.",
+    "Lower price: £9.99/month or £99.99/year vs Freeletics Coach from around $34.99. You're paying for a programme, not an algorithm.",
     "No decision fatigue. Every session is the same format: two movements, 20 minutes. You just show up and work.",
   ],
   whereCompetitorWins: [
@@ -120,12 +120,12 @@ export const freeleticsComparison: ComparisonPageData = {
     "Freeletics has a stronger brand presence and more social proof (260K+ ratings, larger user base).",
   ],
   verdict:
-    "If you want a short home workout app with total variety and AI-driven coaching, Freeletics Coach+ is a premium option. If you want a disciplined, human-designed minimalist system optimised for busy schedules (no equipment, no algorithms, just 20 minutes of high-quality work controlled by you), Busy Dad Training is the better fit.",
+    "If you want a short home workout app with total variety and AI-driven coaching, Freeletics Coach (with its Coach+ AI assistant) is a premium option. If you want a disciplined, human-designed minimalist system optimised for busy schedules (no equipment, no algorithms, just 20 minutes of high-quality work controlled by you), Busy Dad Training is the better fit.",
   faqs: [
     {
       question: "What's the main difference between Freeletics and Busy Dad Training?",
       answer:
-        "Freeletics offers broad exercise variety with an AI coach that personalises your plan, and their new Coach+ tier (launched July 2026) goes even deeper into AI-driven training. Busy Dad Training offers disciplined, human-designed minimalism: two compound burpee movements, an 80-minute weekly budget, and level unlocks via Landmark Workouts. Freeletics optimises for adaptable AI coaching; BDT optimises for time-boxed mastery and consistency without an algorithm telling you what to do.",
+        "Freeletics offers broad exercise variety with an AI coach that personalises your plan, and its conversational Coach+ assistant goes even deeper into AI-driven training. Busy Dad Training offers disciplined, human-designed minimalism: two compound burpee movements, an 80-minute weekly budget, and level unlocks via Landmark Workouts. Freeletics optimises for adaptable AI coaching; BDT optimises for time-boxed mastery and consistency without an algorithm telling you what to do.",
     },
     {
       question: "Is Busy Dad Training cheaper than Freeletics?",
