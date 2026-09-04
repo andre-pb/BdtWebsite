@@ -1,8 +1,8 @@
 import { GuidePage } from "@/components/guides/GuidePage";
-import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import { bestBodyweightAppsPage } from "@/content/best-bodyweight-apps";
 import { createPageMetadata } from "@/lib/seo";
 
-const { path, seo } = bestHomeWorkoutAppsPage;
+const { path, seo } = bestBodyweightAppsPage;
 
 export const metadata = createPageMetadata({
   title: seo.title,
@@ -11,6 +11,6 @@ export const metadata = createPageMetadata({
   keywords: [...seo.keywords],
 });
 
-export default function BestHomeWorkoutAppsPage() {
-  return <GuidePage guide={bestHomeWorkoutAppsPage} />;
+export default function BestBodyweightAppsPage() {
+  return <GuidePage guide={bestBodyweightAppsPage} />;
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { colors } from "@/constants/colors";
 import { MovementBadge } from "@/components/movements/MovementBadge";
 import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
@@ -96,6 +97,19 @@ export function SacredMovementSection({ movement, reversed = false }: SacredMove
           >
             {movement.video.label} →
           </a>
+          <Link
+            href={movement.id === "navy-seal" ? "/navy-seal-burpee/" : "/6-count-burpee/"}
+            style={{
+              display: "block",
+              marginTop: "8px",
+              fontSize: "0.9rem",
+              color: colors.brandBlue,
+              fontWeight: 600,
+              textDecoration: "none",
+            }}
+          >
+            Full guide: counts, muscles worked and 20-minute benchmarks →
+          </Link>
         </div>
       </PageContainer>
     </section>

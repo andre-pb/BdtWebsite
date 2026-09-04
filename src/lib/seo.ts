@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { aboutPage } from "@/content/about";
-import { appPricing, appStores, appScreenshots, seo, site, youtube, testimonials, burpeeStat, appStoreRating, storeRatings } from "@/content/site";
+import { appPricing, appStores, appScreenshots, seo, site, youtube, testimonials, burpeeStat, appStoreRating, storeRatings, founderProfiles } from "@/content/site";
 import { movementsPage } from "@/content/movements";
 import { levelsPage } from "@/content/levels";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideData } from "@/content/guide-types";
 
 const siteUrl = site.url;
 
@@ -299,9 +300,9 @@ export function getSiteJsonLd() {
           "Navy Seal burpee",
         ],
         worksFor: { "@id": `${siteUrl}/#organization` },
-        // Add Max's personal profiles (Instagram, X, LinkedIn) here to
-        // strengthen entity disambiguation for search engines and LLMs.
-        sameAs: [youtube.url],
+        // Personal profiles live in content/site.ts (founderProfiles) so
+        // they can be added without touching schema code.
+        sameAs: [youtube.url, ...founderProfiles],
       },
       {
         "@type": "MobileApplication",
@@ -342,6 +343,12 @@ export function getWebPageJsonLd({
     description,
     isPartOf: { "@id": `${siteUrl}/#website` },
     inLanguage: "en-GB",
+    about: { "@id": `${siteUrl}/#organization` },
+    // Tells assistants which parts of the page are the direct answer.
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "[data-speakable]"],
+    },
     ...(datePublished ? { datePublished } : {}),
     ...(dateModified ? { dateModified } : {}),
   };
@@ -420,8 +427,8 @@ const movementHowToSteps = {
       text: "From standing, drop into a squat, place your hands on the ground, and kick your feet back into a plank position.",
     },
     {
-      name: "Counts 3–8: the upper-body work",
-      text: "Move through the six-count upper-body sequence that engages core, chest, shoulders, triceps, scapula, traps, and lats. Call out every count.",
+      name: "Counts 3–8: three push-ups with knee drives",
+      text: "Three full push-ups with a knee-to-elbow drive after the first and the second (push-up, right knee, push-up, left knee, push-up). This six-count plank sequence engages core, chest, shoulders, triceps, scapula, traps, and lats. Call out every count.",
     },
     {
       name: "Counts 9–10: stand up",
@@ -822,4 +829,108 @@ export function getHomepageReviewJsonLd() {
     reviewBody: t.quote,
     itemReviewed: { "@id": `${siteUrl}/#app` },
   }));
+}
+
+
+/** ItemList schema for any app-roundup guide (see content/guide-types.ts). */
+export function getGuideItemListJsonLd(guide: GuideData) {
+  const url = absoluteUrl(guide.path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${url}#list`,
+    name: guide.listName,
+    description: guide.seo.description,
+    url,
+    numberOfItems: guide.apps.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: guide.apps.map((app, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: app.name,
+      url: `${url}#${app.id}`,
+      item: app.isOwnProduct
+        ? { "@id": `${siteUrl}/#product` }
+        : {
+            "@type": "SoftwareApplication",
+            name: app.name,
+            url: app.websiteUrl,
+            applicationCategory: "HealthApplication",
+            operatingSystem: app.platforms ?? "iOS, Android",
+            ...(app.appStoreUrl || app.googlePlayUrl
+              ? { sameAs: [app.appStoreUrl, app.googlePlayUrl].filter(Boolean) }
+              : {}),
+          },
+    })),
+  };
+}
+
+/** Editorial Review of each third-party app in a roundup, authored by Max. */
+export function getGuideReviewsJsonLd(guide: GuideData) {
+  const url = absoluteUrl(guide.path);
+
+  return guide.apps
+    .filter((app) => !app.isOwnProduct)
+    .map((app) => ({
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "@id": `${url}#review-${app.id}`,
+      url: `${url}#${app.id}`,
+      name: `${app.name} review`,
+      reviewBody: app.summary,
+      positiveNotes: {
+        "@type": "ItemList",
+        itemListElement: app.pros.map((text, i) => ({ "@type": "ListItem", position: i + 1, name: text })),
+      },
+      negativeNotes: {
+        "@type": "ItemList",
+        itemListElement: app.cons.map((text, i) => ({ "@type": "ListItem", position: i + 1, name: text })),
+      },
+      author: { "@id": `${siteUrl}/#max-edwards` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      datePublished: guide.datePublished,
+      itemReviewed: {
+        "@type": "SoftwareApplication",
+        name: app.name,
+        url: app.websiteUrl,
+        applicationCategory: "HealthApplication",
+        operatingSystem: app.platforms ?? "iOS, Android",
+      },
+    }));
+}
+
+/**
+ * DefinedTerm schema for the two burpee variations. Gives search engines and
+ * LLMs an explicit "this site defines this term" signal, which is how a
+ * small site becomes the canonical source for a phrase it popularised.
+ */
+export function getDefinedTermJsonLd({
+  path,
+  term,
+  alternateNames,
+  definition,
+}: {
+  path: string;
+  term: string;
+  alternateNames: readonly string[];
+  definition: string;
+}) {
+  const url = absoluteUrl(path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${url}#term`,
+    name: term,
+    alternateName: [...alternateNames],
+    description: definition,
+    url,
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      "@id": `${siteUrl}/movements/#terms`,
+      name: "Busy Dad Training movement glossary",
+      url: absoluteUrl("/movements/"),
+    },
+  };
 }

@@ -49,6 +49,8 @@ export default function RootLayout({
             `,
           }}
         />
+        {/* Machine-readable summary of the site for LLM crawlers. */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
         <MetaPixel />
       </head>
       <body className={inter.className}>
