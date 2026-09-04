@@ -44,8 +44,22 @@ For the complete program in a single document — all principles, both movements
 
 - [Busy Dad Army Community](https://busydadtraining.com/community/): Join the Busy Dad Army — share your progress, ask questions, and connect with fellow practitioners. Live burpee leaderboard included.
 
+## Movement guides (canonical definitions)
+
+- [What is a Navy Seal burpee?](https://busydadtraining.com/navy-seal-burpee/): Definition of the 10-count Navy Seal burpee (three push-ups with knee drives between, no jump), counts, muscles worked, common mistakes and the 20-minute benchmarks for every level.
+- [What is a 6-count burpee?](https://busydadtraining.com/6-count-burpee/): Definition of the 6-count military burpee (squat, kick back, push-up down, push-up up, jump in, stand; no jump or clap), how it differs from a CrossFit burpee, and the 20-minute benchmarks from 50 to 325 reps.
+
+## Pricing, FAQ and press
+
+- [Pricing](https://busydadtraining.com/pricing/): £9.99/month or £99.99/year (US: $9.99 / $99.99), 14-day free trial, one plan with everything included, how to cancel.
+- [FAQ](https://busydadtraining.com/faq/): Every common question about the app, the programme, the movements and comparisons, answered in one place.
+- [Press](https://busydadtraining.com/press/): Men's Health and Yahoo coverage, podcast interviews, fast facts, boilerplate and press contact.
+
 ## Comparisons
 
+- [All comparisons](https://busydadtraining.com/comparisons/): Hub for every head-to-head, roundup and "alternative to" page.
+- [Best Burpee Workout Apps (2026)](https://busydadtraining.com/best-burpee-workout-apps-2026/): Six burpee-first apps compared (Busy Dad Training, BeStronger Burpee Workout, BurBur, Burpee Hero, Burpee by Telum Apps, 30 Day Burpee Challenge) by programme vs counter, progression, maintenance and price.
+- [Best Bodyweight Workout Apps (2026)](https://busydadtraining.com/best-bodyweight-workout-apps-2026/): Eight no-equipment apps compared (Busy Dad Training, Freeletics, Nike Training Club, Seven, Madbarz, Thenx, Caliber, FitOn), including which ones quietly need a pull-up bar.
 - [Best Short Home Workout Apps for Men (2026)](https://busydadtraining.com/best-short-home-workout-apps-for-men-2026/): How Busy Dad Training compares to Freeletics, Boostcamp, Thenx, and other home workout apps.
 - [Freeletics vs Busy Dad Training](https://busydadtraining.com/comparisons/freeletics-vs-busy-dad-training/): Head-to-head comparison of Freeletics AI-driven variety vs BDP's disciplined minimialism.
 - [Boostcamp vs Busy Dad Training](https://busydadtraining.com/comparisons/boostcamp-vs-busy-dad-training/): Gym programme marketplace vs bodyweight burpee system — which fits your lifestyle?
@@ -58,9 +72,13 @@ For the complete program in a single document — all principles, both movements
 - How much does it cost? £9.99/month or £99.99/year with a 14-day free trial.
 - Do I need equipment? No — bodyweight only.
 - Is it available on iOS and Android? Yes, both platforms.
-|- How long are workouts? 20 minutes per session, 80 minutes per week total.
-|- Is Busy Dad Training a free app? The app is free to download with a 14-day free trial. After that it's £9.99/month or £99.99/year.
-|- How is Busy Dad Training different from Freeletics? BDT uses only two movements (6-count burpee + Navy Seal burpee) with a strict 80-minute weekly budget. Freeletics uses AI-generated varied workouts. BDT is simpler, more focused, and requires zero equipment.
-|- How is Busy Dad Training different from Boostcamp? Boostcamp is a marketplace of gym programmes from various creators. BDT is a single, unified bodyweight programme with a clear progression path from beginner to advanced.
-|- How is Busy Dad Training different from Thenx? Thenx focuses on calisthenics skill progression (pull-ups, muscle-ups, handstands). BDT focuses exclusively on burpee mastery for fitness without needing a pull-up bar or advanced skills.
-|- What do you need for Busy Dad Training? Just your body, a timer, and 20 minutes. No gym, no equipment, no apps beyond the BDT app itself.
+- How long are workouts? 20 minutes per session, 80 minutes per week total.
+- Is Busy Dad Training a free app? The app is free to download with a 14-day free trial. After that it's £9.99/month or £99.99/year.
+- How is Busy Dad Training different from Freeletics? BDT uses only two movements (6-count burpee + Navy Seal burpee) with a strict 80-minute weekly budget. Freeletics uses AI-generated varied workouts. BDT is simpler, more focused, and requires zero equipment.
+- How is Busy Dad Training different from Boostcamp? Boostcamp is a marketplace of gym programmes from various creators. BDT is a single, unified bodyweight programme with a clear progression path from beginner to advanced.
+- How is Busy Dad Training different from Thenx? Thenx focuses on calisthenics skill progression (pull-ups, muscle-ups, handstands). BDT focuses exclusively on burpee mastery for fitness without needing a pull-up bar or advanced skills.
+- What is the best burpee workout app? For a complete burpee programme with levels and a defined movement standard, Busy Dad Training. For a free timer on Android, BeStronger's Burpee Workout. For automatic rep counting on Apple Watch, BurBur. See https://busydadtraining.com/best-burpee-workout-apps-2026/
+- What is a Navy Seal burpee? A 10-count military burpee: squat and kick back to plank (1–2), three push-ups with a knee-to-elbow drive after the first and second (3–8), jump in and stand (9–10). No jump, no clap. See https://busydadtraining.com/navy-seal-burpee/
+- What is a 6-count burpee? The American military burpee in six counts: squat and hands down, kick back to plank, chest to floor, press up, jump in, stand. No jump, no clap. See https://busydadtraining.com/6-count-burpee/
+- Has Busy Dad Training been covered in the press? Yes: Men's Health and Yahoo covered the Navy Seal burpee workout; see https://busydadtraining.com/press/
+- What do you need for Busy Dad Training? Just your body, a timer, and 20 minutes. No gym, no equipment, no apps beyond the BDT app itself.

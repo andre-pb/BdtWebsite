@@ -1,10 +1,13 @@
 import { assetPath } from "@/lib/base-path";
 import { appPricing, appStores } from "@/content/site";
+import type { GuideData } from "@/content/guide-types";
 
 export const bestHomeWorkoutAppsPage = {
   path: "/best-short-home-workout-apps-for-men-2026/",
   datePublished: "2026-06-02",
-  dateModified: "2026-06-03",
+  dateModified: "2026-09-03",
+  breadcrumbLabel: "Best Home Workout Apps 2026",
+  listName: "Best Short Home Workout Apps for Men (2026)",
   seo: {
     title: "Best Short Home Workout Apps for Men (2026)",
     description:
@@ -72,6 +75,7 @@ export const bestHomeWorkoutAppsPage = {
       websiteUrl: "https://busydadtraining.com/",
       appStoreUrl: appStores.appStoreUrl,
       isOwnProduct: true,
+      platforms: "iOS & Android",
       sessionLength: "20 min, 4×/week",
       equipment: "None (bodyweight burpees)",
       focus: "Minimalist burpee programme, levels, tracking",
@@ -100,9 +104,11 @@ export const bestHomeWorkoutAppsPage = {
       sessionLength: "15–50 min",
       equipment: "Bodyweight + optional equipment",
       focus: "AI coach, HIIT, strength, personalised plans",
-      price: "Freemium + subscription",
+      price: "Free tier + Coach from ~$34.99",
+      platforms: "iOS & Android",
+      ratingNote: "4.6 (22K ratings, App Store) · 4.5 (260K, Google Play)",
       summary:
-        "Freeletics is one of the best-known home workout apps for men, pairing bodyweight HIIT with an AI coach that adapts plans. Workouts scale from short bursts to longer sessions, with optional equipment tracks.",
+        "Freeletics is one of the best-known home workout apps for men, pairing bodyweight HIIT with an AI coach that adapts plans. Workouts run 15–45 minutes, with optional equipment tracks. Coach+ (its conversational AI coach) is included in the Coach subscription rather than sold as a separate tier.",
       pros: [
         "Strong brand and large workout library; good if you want variety.",
         "AI Coach personalises volume and exercise selection over time.",
@@ -299,6 +305,6 @@ export const bestHomeWorkoutAppsPage = {
         "Yes, if intensity and progression are built in. Short sessions work when exercises are compound, standards rise over time, and you show up consistently. Busy Dad Training's level system encodes that progression; other apps rely on volume, skill practice, or heavier loads over longer sessions.",
     },
   ],
-} as const;
+} as const satisfies GuideData;
 
 export type GuideFaq = (typeof bestHomeWorkoutAppsPage.faqs)[number];
