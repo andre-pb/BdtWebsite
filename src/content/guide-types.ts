@@ -64,6 +64,12 @@ export interface GuideData {
     intro: string;
     backgroundImage: string;
   };
+  /**
+   * One self-contained 40–60-word answer to the page's target query.
+   * Rendered as a distinct block under the hero and marked data-speakable;
+   * AI Overviews and assistants retrieve passages, not pages.
+   */
+  quickAnswer: string;
   intro: {
     title: string;
     paragraphs: readonly string[];

@@ -4,13 +4,16 @@ import { appPricing } from "@/content/site";
 export const twentyMinuteWorkoutGuidePage = {
   path: "/20-minute-home-workout-for-busy-dads/",
   datePublished: "2026-07-13",
-  dateModified: "2026-07-13",
+  dateModified: "2026-09-05",
   seo: {
-    title: "The 20-Minute Home Workout for Busy Dads (2026 Guide)",
+    title: "The Best Quick Home Workout for Busy Dads: 20 Minutes, No Equipment (2026)",
     description:
       "A complete guide to the 20-minute home workout for busy dads: why short sessions work, the exact two-movement AMRAP workout, a weekly plan, and how to progress. No gym or equipment needed.",
     keywords: [
       "20 minute home workout for busy dads",
+      "best quick home workout for dads",
+      "quick workout for dads",
+      "10 minute workout for dads",
       "20 minute workout for men",
       "short home workout for dads",
       "burpee workout plan",
@@ -27,6 +30,8 @@ export const twentyMinuteWorkoutGuidePage = {
       "You don't need an hour in the gym. You need 20 minutes, a bit of floor space, and a plan you can stick to. This guide gives you all three: the exact workout, a weekly schedule, and a clear way to progress.",
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
+  quickAnswer:
+    "The best quick home workout for busy dads is a 20-minute AMRAP of two bodyweight movements, the 6-count burpee and the bodyweight squat, done four times a week with no equipment. Set a timer for 20 minutes, alternate sets of burpees and squats, count total reps, and beat that number next session. On days you only have 10 minutes, run the same workout for 10 and log it.",
   sections: [
     {
       id: "why-20-minutes",
@@ -63,6 +68,14 @@ export const twentyMinuteWorkoutGuidePage = {
         "High reps only work if your form holds. Before you chase a score, learn the 6-count burpee properly: each of the six counts is a distinct position, and rushing them turns the movement sloppy fast.",
         "Keep your squats honest too: hips below parallel, heels down, chest up. Slow, full reps beat fast, half reps every time.",
         "Our movements guide breaks down both exercises step by step, with video demos of the 6-count burpee and the Navy Seal burpee.",
+      ],
+    },
+    {
+      id: "ten-minute-version",
+      title: "The 10-minute version for days you don't have 20",
+      paragraphs: [
+        "Some days 20 minutes is not there. The rule is simple: shrink the timer, not the standard. Run exactly the same AMRAP for 10 minutes, at the same effort, and write the score down with a note that it was a short one. Ten hard minutes of 6-count burpees and squats is still a real session, and it keeps the four-a-week habit unbroken, which matters more than any single workout.",
+        "What you should not do is stack the missing 10 minutes onto tomorrow, or swap in a random circuit because the timer felt short. The programme works because the test never changes. If you find yourself doing the 10-minute version more than once a week, the fix is scheduling (before the house wakes up is the most reliable slot), not a different workout.",
       ],
     },
     {

@@ -173,9 +173,15 @@ function ProsConsSection({ data: d }: Props) {
           </h3>
           <p style={bodyStyle}>{competitor.summary}</p>
           <p style={{ ...bodyStyle, marginBottom: "1.5rem" }}>
-            <a href={competitor.websiteUrl} target="_blank" rel="noopener noreferrer" style={{ color: colors.brandBlue, fontWeight: 600 }}>
-              {new URL(competitor.websiteUrl).hostname.replace(/^www\./, "")}
-            </a>
+            {competitor.websiteUrl ? (
+              <a href={competitor.websiteUrl} target="_blank" rel="noopener noreferrer" style={{ color: colors.brandBlue, fontWeight: 600 }}>
+                {new URL(competitor.websiteUrl).hostname.replace(/^www\./, "")}
+              </a>
+            ) : (
+              <span style={{ color: colors.brandBlue, fontWeight: 600 }}>
+                {competitor.name}
+              </span>
+            )}
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
             <div>
