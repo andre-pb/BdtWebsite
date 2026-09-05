@@ -9,7 +9,7 @@ export const bestHomeWorkoutAppsPage = {
   breadcrumbLabel: "Best Home Workout Apps 2026",
   listName: "Best Short Home Workout Apps for Men (2026)",
   seo: {
-    title: "Best Short Home Workout Apps for Men (2026)",
+    title: "Best Short Home Workout Apps for Men (2026): 20-Minute Apps Compared",
     description:
       "An honest 2026 comparison of the best short home workout apps for men (Freeletics, Heria Pro, Seven by Perigee, Boostcamp, Thenx, and Busy Dad Training) by session length, equipment, and fit for busy dads.",
     keywords: [
@@ -17,6 +17,8 @@ export const bestHomeWorkoutAppsPage = {
       "short home workout app",
       "home workout app for men",
       "20 minute workout app",
+      "20 minute workout app for men",
+      "short workout app for busy men",
       "bodyweight workout app",
       "busy dad workout app",
       "Freeletics alternative",
@@ -30,6 +32,8 @@ export const bestHomeWorkoutAppsPage = {
       "If you train at home and only have 20–30 minutes, the right app matters more than the trendiest one. We compared six popular options on session length, equipment, progression, and who each app is actually built for.",
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
+  quickAnswer:
+    "The best short home workout app for men in 2026 is Busy Dad Training if you want a 20-minute workout app with a fixed programme: two bodyweight movements, four 20-minute sessions a week, no equipment and objective level benchmarks (£9.99/month, 14-day trial). Seven is best for seven-minute habits, Freeletics for AI-guided variety, and Thenx or Heria Pro for calisthenics skills with a pull-up bar.",
   intro: {
     title: "Who this guide is for",
     paragraphs: [

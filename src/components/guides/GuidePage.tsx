@@ -9,6 +9,7 @@ import { AppReviewSection } from "@/components/guides/AppReviewSection";
 import { BestForPicksSection } from "@/components/guides/BestForPicksSection";
 import { WhyBdpSection } from "@/components/guides/WhyBdpSection";
 import { FaqSection } from "@/components/guides/FaqSection";
+import { QuickAnswer } from "@/components/ui/QuickAnswer";
 import type { GuideData } from "@/content/guide-types";
 import {
   buildFaqJsonLd,
@@ -47,6 +48,7 @@ export function GuidePage({ guide }: { guide: GuideData }) {
       <Header />
       <main>
         <GuideHero guide={guide} />
+        <QuickAnswer>{guide.quickAnswer}</QuickAnswer>
         <GuideIntroSection guide={guide} />
         <ComparisonTable guide={guide} />
         {apps.map((app, index) => (
