@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
 import { bestBurpeeAppsPage } from "@/content/best-burpee-apps";
 import { bestBodyweightAppsPage } from "@/content/best-bodyweight-apps";
+import { bestFreeNoEquipmentAppsPage } from "@/content/best-free-no-equipment-apps";
 import { twentyMinuteWorkoutGuidePage } from "@/content/twenty-minute-workout-guide";
 import { navySealBurpeePage, sixCountBurpeePage } from "@/content/burpee-terms";
 import { comparisonsHubPage } from "@/content/comparisons-hub";
@@ -30,7 +31,7 @@ export const dynamic = "force-static";
  * use their dateModified; the rest carry the date they were last edited.
  * Bump CORE_LAST_MODIFIED when you change the core pages' copy.
  */
-const CORE_LAST_MODIFIED = "2026-09-03";
+const CORE_LAST_MODIFIED = "2026-09-05";
 const LEGAL_LAST_MODIFIED = "2026-05-29";
 
 type Entry = {
@@ -46,6 +47,7 @@ const entries: Entry[] = [
   { path: sixCountBurpeePage.path, lastModified: sixCountBurpeePage.dateModified, changeFrequency: "monthly", priority: 0.95 },
   { path: bestBurpeeAppsPage.path, lastModified: bestBurpeeAppsPage.dateModified, changeFrequency: "monthly", priority: 0.95 },
   { path: bestBodyweightAppsPage.path, lastModified: bestBodyweightAppsPage.dateModified, changeFrequency: "monthly", priority: 0.95 },
+  { path: bestFreeNoEquipmentAppsPage.path, lastModified: bestFreeNoEquipmentAppsPage.dateModified, changeFrequency: "monthly", priority: 0.95 },
   { path: bestHomeWorkoutAppsPage.path, lastModified: bestHomeWorkoutAppsPage.dateModified, changeFrequency: "monthly", priority: 0.95 },
   { path: twentyMinuteWorkoutGuidePage.path, lastModified: twentyMinuteWorkoutGuidePage.dateModified, changeFrequency: "monthly", priority: 0.95 },
   { path: "/principles/", lastModified: CORE_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.9 },

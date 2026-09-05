@@ -35,9 +35,11 @@ export const bestBodyweightAppsPage = {
     eyebrow: "2026 Guide",
     title: "Best Bodyweight Workout Apps (2026)",
     intro:
-      "No gym, no dumbbells, no pull-up bar: which apps actually deliver a progressive bodyweight programme? We compared eight of the most popular options on what a session looks like, what equipment they quietly assume, how you progress, and what they cost in 2026. Quick answer: Nike Training Club is the best free option, Freeletics the best adaptive HIIT, Seven the best micro-habit, and Busy Dad Training the best if you want the shortest programme with the clearest progression.",
+      "No gym, no dumbbells, no pull-up bar: which apps actually deliver a progressive bodyweight programme? We compared eight of the most popular options on what a session looks like, what equipment they quietly assume, how you progress, and what they cost in 2026.",
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
+  quickAnswer:
+    "The best bodyweight workout app in 2026 depends on what you want: Busy Dad Training for a measurable no-equipment programme (two burpee movements, four 20-minute sessions a week, four levels with 20-minute benchmarks); Nike Training Club for the best free video library; Freeletics for adaptive AI-generated HIIT; Seven for a seven-minute daily habit; Thenx for calisthenics skills if you own a pull-up bar.",
   intro: {
     title: "Who this guide is for",
     paragraphs: [

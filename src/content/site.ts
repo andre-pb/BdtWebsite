@@ -28,9 +28,9 @@ export const site = {
 } as const;
 
 export const seo = {
-  title: "Busy Dad Training: Short Home Workout App for Men",
+  title: "Busy Dad Training: 20-Minute Home Workout App for Men",
   description:
-    "Busy Dad Training: a short home workout app for men from £9.99/month or £99.99/year. Two bodyweight movements, 20-minute sessions, 80 minutes a week. No gym required.",
+    "Busy Dad Training: a 20-minute home workout app for men from £9.99/month or £99.99/year. Two bodyweight burpee movements, four 20-minute sessions, 80 minutes a week. No equipment, no gym. 14-day free trial.",
   keywords: [
     "busy dad workout app",
     "short home workout app for men",
@@ -40,6 +40,7 @@ export const seo = {
     "burpee workout app",
     "fitness app for men",
     "no equipment workout app",
+    "20 minute workout app for men",
     "workout app for busy dads",
     "home exercise app for men",
     "no gym workout app",
@@ -63,6 +64,7 @@ export const footerGuideLink = {
 export const footerComparisonLinks = [
   { label: "Best burpee apps (2026)", href: "/best-burpee-workout-apps-2026/" },
   { label: "Best bodyweight apps (2026)", href: "/best-bodyweight-workout-apps-2026/" },
+  { label: "Best free no-equipment apps (2026)", href: "/best-free-workout-apps-no-equipment-2026/" },
   { label: "Best home workout apps (2026)", href: "/best-short-home-workout-apps-for-men-2026/" },
   { label: "20-minute workout for busy dads", href: "/20-minute-home-workout-for-busy-dads/" },
   { label: "Freeletics vs BDT", href: "/comparisons/freeletics-vs-busy-dad-training/" },
@@ -213,6 +215,16 @@ export const philosophy = {
     label: "Compare the best short home workout apps for men (2026)",
     href: "/best-short-home-workout-apps-for-men-2026/",
   },
+  // Rendered as a small "Read next" row under the guide link. Linking the
+  // deep guides from the home page is what gets them crawled and ranked.
+  moreGuides: [
+    { label: "Best burpee workout apps", href: "/best-burpee-workout-apps-2026/" },
+    { label: "Best bodyweight workout apps", href: "/best-bodyweight-workout-apps-2026/" },
+    { label: "Best free no-equipment apps", href: "/best-free-workout-apps-no-equipment-2026/" },
+    { label: "What is a Navy Seal burpee?", href: "/navy-seal-burpee/" },
+    { label: "What is a 6-count burpee?", href: "/6-count-burpee/" },
+    { label: "The 20-minute workout for dads", href: "/20-minute-home-workout-for-busy-dads/" },
+  ],
   image: assetPath("/images/Busy_Dad%20Large.webp"),
   imageAlt:
     "Busy dad training coach demonstrating bodyweight squat form during a home workout",

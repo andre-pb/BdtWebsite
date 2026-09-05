@@ -37,9 +37,11 @@ export const bestBurpeeAppsPage = {
     eyebrow: "2026 Guide",
     title: "Best Burpee Workout Apps (2026)",
     intro:
-      "Burpee apps fall into three camps: full training programmes, simple counters, and 30-day challenges. We compared the six that are actually maintained in 2026 on what they do, what they cost, and who they suit. Quick answer: Busy Dad Training is the only complete burpee programme; BeStronger is the best free timer on Android; BurBur is the best counter if you own an Apple Watch.",
+      "Burpee apps fall into three camps: full training programmes, simple counters, and 30-day challenges. We compared the six that are actually maintained in 2026 on what they do, what they cost, and who they suit.",
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
+  quickAnswer:
+    "The best burpee workout app in 2026 is Busy Dad Training if you want a complete programme: two defined burpee movements, four 20-minute sessions a week and a level system with 20-minute benchmarks, on iOS and Android (£9.99/month, 14-day free trial). For a free burpee timer on Android choose BeStronger's Burpee Workout; for automatic rep counting on Apple Watch choose BurBur.",
   intro: {
     title: "What a burpee app should actually do",
     paragraphs: [

@@ -1,12 +1,13 @@
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
 import { bestBurpeeAppsPage } from "@/content/best-burpee-apps";
 import { bestBodyweightAppsPage } from "@/content/best-bodyweight-apps";
+import { bestFreeNoEquipmentAppsPage } from "@/content/best-free-no-equipment-apps";
 import { freeleticsComparison, boostcampComparison, thenxComparison } from "@/content/comparisons";
 
 export const comparisonsHubPage = {
   path: "/comparisons/",
   datePublished: "2026-09-03",
-  dateModified: "2026-09-03",
+  dateModified: "2026-09-05",
   seo: {
     title: "Busy Dad Training vs Other Workout Apps: Comparisons, Roundups and Alternatives",
     description:
@@ -41,6 +42,7 @@ export const comparisonsHubPage = {
     items: [
       { label: bestBurpeeAppsPage.seo.title, href: bestBurpeeAppsPage.path, summary: "Six burpee-first apps compared: programmes, counters and 30-day challenges." },
       { label: bestBodyweightAppsPage.seo.title, href: bestBodyweightAppsPage.path, summary: "Eight no-equipment apps, including which ones quietly need a pull-up bar." },
+      { label: bestFreeNoEquipmentAppsPage.seo.title, href: bestFreeNoEquipmentAppsPage.path, summary: "What is really free in seven no-equipment apps, and when paying is worth it." },
       { label: bestHomeWorkoutAppsPage.seo.title, href: bestHomeWorkoutAppsPage.path, summary: "Short-session home workout apps for men, from seven-minute habits to 20-minute programmes." },
     ],
   },

@@ -62,6 +62,29 @@ export function PhilosophySection() {
               {philosophy.guideLink.label} →
             </Link>
           </p>
+          <nav aria-label="Guides" style={{ marginBottom: "1.5rem" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              {philosophy.moreGuides.map((guide) => (
+                <li key={guide.href}>
+                  <Link
+                    href={guide.href}
+                    style={{
+                      display: "inline-block",
+                      padding: "0.4rem 0.9rem",
+                      borderRadius: "999px",
+                      border: `1px solid ${colors.borderBlue}`,
+                      color: colors.brandBlue,
+                      fontWeight: 600,
+                      fontSize: "0.85rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {guide.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <div
             style={{
               marginTop: "32px",

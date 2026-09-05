@@ -5,6 +5,7 @@ import { DownloadSection } from "@/components/home/DownloadSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqSection } from "@/components/guides/FaqSection";
 import { PageContainer } from "@/components/ui/PageContainer";
+import { QuickAnswer } from "@/components/ui/QuickAnswer";
 import { eyebrowStyle, headingStyle, bodyStyle } from "@/components/ui/Typography";
 import { colors } from "@/constants/colors";
 import { twentyMinuteWorkoutGuidePage } from "@/content/twenty-minute-workout-guide";
@@ -17,7 +18,7 @@ import {
   getWebPageJsonLd,
 } from "@/lib/seo";
 
-const { path, seo, hero, sections, workoutSteps, weeklyPlan, mistakes, faqs, datePublished, dateModified } =
+const { path, seo, hero, quickAnswer, sections, workoutSteps, weeklyPlan, mistakes, faqs, datePublished, dateModified } =
   twentyMinuteWorkoutGuidePage;
 
 export const metadata = createPageMetadata({
@@ -48,7 +49,7 @@ export default function TwentyMinuteWorkoutGuidePage() {
     <>
       <JsonLd
         data={[
-          getWebPageJsonLd({ title: seo.title, description: seo.description, path }),
+          getWebPageJsonLd({ title: seo.title, description: seo.description, path, datePublished, dateModified }),
           getBreadcrumbJsonLd([
             { name: "Home", path: "/" },
             { name: "20-Minute Home Workout for Busy Dads", path },
@@ -109,6 +110,8 @@ export default function TwentyMinuteWorkoutGuidePage() {
             </p>
           </PageContainer>
         </section>
+
+        <QuickAnswer>{quickAnswer}</QuickAnswer>
 
         {/* Why 20 minutes + the workout intro */}
         {sections.slice(0, 2).map((section, index) => (

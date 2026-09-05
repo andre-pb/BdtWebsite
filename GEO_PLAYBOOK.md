@@ -16,6 +16,7 @@ New URLs:
 /6-count-burpee/
 /best-burpee-workout-apps-2026/
 /best-bodyweight-workout-apps-2026/
+/best-free-workout-apps-no-equipment-2026/
 /comparisons/
 /faq/
 /pricing/
