@@ -13,6 +13,11 @@ import {
   boostcampComparison,
   thenxComparison,
 } from "@/content/comparisons";
+import {
+  bodyweightAppsComparison,
+  twentyMinuteAppsComparison,
+  freeWorkoutAppsComparison,
+} from "@/content/seo-comparisons";
 import { accountDeletionPage, privacyPage, termsPage } from "@/content/legal";
 import { site } from "@/content/site";
 
@@ -52,6 +57,9 @@ const entries: Entry[] = [
   { path: freeleticsComparison.path, lastModified: freeleticsComparison.dateModified, changeFrequency: "monthly", priority: 0.9 },
   { path: boostcampComparison.path, lastModified: boostcampComparison.dateModified, changeFrequency: "monthly", priority: 0.9 },
   { path: thenxComparison.path, lastModified: thenxComparison.dateModified, changeFrequency: "monthly", priority: 0.9 },
+  { path: bodyweightAppsComparison.path, lastModified: bodyweightAppsComparison.dateModified, changeFrequency: "monthly", priority: 0.9 },
+  { path: twentyMinuteAppsComparison.path, lastModified: twentyMinuteAppsComparison.dateModified, changeFrequency: "monthly", priority: 0.9 },
+  { path: freeWorkoutAppsComparison.path, lastModified: freeWorkoutAppsComparison.dateModified, changeFrequency: "monthly", priority: 0.9 },
   { path: "/about/", lastModified: CORE_LAST_MODIFIED, changeFrequency: "monthly", priority: 0.8 },
   { path: pressPage.path, lastModified: pressPage.dateModified, changeFrequency: "monthly", priority: 0.8 },
   { path: "/community/", lastModified: CORE_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
