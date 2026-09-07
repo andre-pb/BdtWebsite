@@ -130,7 +130,7 @@ export const freeleticsComparison: ComparisonPageData = {
     {
       question: "Is Busy Dad Training cheaper than Freeletics?",
       answer:
-        `Busy Dad Training is ${appPricing.summary} with a 14-day free trial. Freeletics uses a freemium model: the free tier is limited and the full AI Coach experience requires a subscription. Exact pricing varies by region and plan.`,
+        `Busy Dad Training is ${appPricing.summary} with a 7-day free trial. Freeletics uses a freemium model: the free tier is limited and the full AI Coach experience requires a subscription. Exact pricing varies by region and plan.`,
     },
     {
       question: "Can I do Freeletics workouts in 20 minutes?",
@@ -212,7 +212,7 @@ export const boostcampComparison: ComparisonPageData = {
     {
       question: "Which app is more affordable for home training?",
       answer:
-        `Busy Dad Training is ${appPricing.summary} including a 14-day free trial. Boostcamp is free for basic logging, with Pro at $14.99/month. However Boostcamp programmes often require gym access, adding cost.`,
+        `Busy Dad Training is ${appPricing.summary} including a 7-day free trial. Boostcamp is free for basic logging, with Pro at $14.99/month. However Boostcamp programmes often require gym access, adding cost.`,
     },
     {
       question: "How long are typical Boostcamp workouts?",

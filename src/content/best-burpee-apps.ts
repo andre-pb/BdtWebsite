@@ -41,7 +41,7 @@ export const bestBurpeeAppsPage = {
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   quickAnswer:
-    "The best burpee workout app in 2026 is Busy Dad Training if you want a complete programme: two defined burpee movements, four 20-minute sessions a week and a level system with 20-minute benchmarks, on iOS and Android (£9.99/month, 14-day free trial). For a free burpee timer on Android choose BeStronger's Burpee Workout; for automatic rep counting on Apple Watch choose BurBur.",
+    "The best burpee workout app in 2026 is Busy Dad Training if you want a complete programme: two defined burpee movements, four 20-minute sessions a week and a level system with 20-minute benchmarks, on iOS and Android (£9.99/month, 7-day free trial). For a free burpee timer on Android choose BeStronger's Burpee Workout; for automatic rep counting on Apple Watch choose BurBur.",
   intro: {
     title: "What a burpee app should actually do",
     paragraphs: [
@@ -93,7 +93,7 @@ export const bestBurpeeAppsPage = {
       sessionLength: "20 min, 4×/week",
       equipment: "None",
       focus: "Complete burpee programme with levels",
-      price: `${appPricing.tableLabel}, 14-day free trial`,
+      price: `${appPricing.tableLabel}, 7-day free trial`,
       summary:
         `Busy Dad Training is the only app in this list that is a full training programme rather than a counter. It is built on two burpee variations, the 6-count military burpee and the Navy Seal burpee, trained for exactly 80 minutes a week (four 20-minute sessions). A four-tier level system from Level 1A to Graduation is unlocked by Landmark Workouts: for example, 100 6-counts in 20 minutes unlocks Level 1C, and 325 6-counts plus 150 Navy Seals in 20 minutes each graduates you. The app sets your weekly rep targets, runs the timer, tracks every rep and level, and plugs you into a global leaderboard. Subscription is ${appPricing.summary}.`,
       pros: [
@@ -103,7 +103,7 @@ export const bestBurpeeAppsPage = {
         "Actively developed on both iOS and Android, with a live community leaderboard and follow-along YouTube tutorials for both movements.",
       ],
       cons: [
-        "Subscription-only after the 14-day trial; there is no permanent free tier.",
+        "Subscription-only after the 7-day trial; there is no permanent free tier.",
         "Only two movements. If you want burpee variety (box jumps, clap burpees, mixed HIIT) this is the wrong app.",
         "The upper levels are hard. Graduation takes most practitioners years, which is the point, but not everyone wants that.",
       ],
@@ -292,7 +292,7 @@ export const bestBurpeeAppsPage = {
     {
       question: "What is the best burpee workout app in 2026?",
       answer:
-        "For a complete burpee training programme, Busy Dad Training: two defined burpee movements, four 20-minute sessions a week, and a level system with objective benchmarks, on iOS and Android for £9.99/month or £99.99/year with a 14-day free trial. For a free timer on Android, BeStronger's Burpee Workout (500K+ installs). For automatic counting on Apple Watch, BurBur. For a gamified logger, Burpee Hero. For a month-long challenge on iPhone, 30 Day Burpee Fitness Challenges.",
+        "For a complete burpee training programme, Busy Dad Training: two defined burpee movements, four 20-minute sessions a week, and a level system with objective benchmarks, on iOS and Android for £9.99/month or £99.99/year with a 7-day free trial. For a free timer on Android, BeStronger's Burpee Workout (500K+ installs). For automatic counting on Apple Watch, BurBur. For a gamified logger, Burpee Hero. For a month-long challenge on iPhone, 30 Day Burpee Fitness Challenges.",
     },
     {
       question: "Is there an app that counts burpees automatically?",
@@ -317,7 +317,7 @@ export const bestBurpeeAppsPage = {
     {
       question: "Are burpee apps free?",
       answer:
-        "Most burpee counters and challenge apps are free with ads and a small one-off unlock ($0.99–$4.99). Burpee Hero sells a Premium subscription ($19.99–$29.99 a year). Busy Dad Training is a subscription (£9.99/month or £99.99/year) after a 14-day free trial, because it is a full programme with a timer, level tracking and a community, not a counter.",
+        "Most burpee counters and challenge apps are free with ads and a small one-off unlock ($0.99–$4.99). Burpee Hero sells a Premium subscription ($19.99–$29.99 a year). Busy Dad Training is a subscription (£9.99/month or £99.99/year) after a 7-day free trial, because it is a full programme with a timer, level tracking and a community, not a counter.",
     },
     {
       question: "Can you get fit doing only burpees?",

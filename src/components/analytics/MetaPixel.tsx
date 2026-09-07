@@ -8,7 +8,10 @@ export function MetaPixel() {
     <>
       <Script
         id="meta-pixel"
-        strategy="afterInteractive"
+        // lazyOnload: the pixel (~100 KB of third-party JS) waits until the
+        // page has fully loaded instead of competing with the first paint on
+        // mobile. PageView still fires on every visit.
+        strategy="lazyOnload"
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)

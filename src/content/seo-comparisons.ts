@@ -57,7 +57,7 @@ export const bodyweightAppsComparison: ComparisonPageData = {
   whyBdpWins: [
     "Fixed 20-minute sessions — no scrolling through a workout library. Show up, start, done.",
     "Clear level progression: pass a Landmark Workout, unlock the next tier. Most bodyweight apps have no real progression system.",
-    "Lower price than premium alternatives: £9.99/month or £99.99/year, with a 14-day free trial.",
+    "Lower price than premium alternatives: £9.99/month or £99.99/year, with a 7-day free trial.",
     "No decision fatigue. Every session is the same format: two compound burpee movements, 20 minutes on the clock.",
   ],
   whereCompetitorWins: [
@@ -71,7 +71,7 @@ export const bodyweightAppsComparison: ComparisonPageData = {
     {
       question: "What's the best free bodyweight workout app?",
       answer:
-        "Nike Training Club is the strongest free option — full workout library, no paywall. But it offers no fixed programme structure; you choose workouts daily. Busy Dad Training has a 14-day free trial and a clear levelling system if you want direction, not a library.",
+        "Nike Training Club is the strongest free option — full workout library, no paywall. But it offers no fixed programme structure; you choose workouts daily. Busy Dad Training has a 7-day free trial and a clear levelling system if you want direction, not a library.",
     },
     {
       question: "Can I build muscle with just bodyweight exercises?",
@@ -148,7 +148,7 @@ export const twentyMinuteAppsComparison: ComparisonPageData = {
     "Fixed 20 minutes, every session. Not '15–50 minutes depending on the day' — exactly 20, exactly 4× per week, exactly 80 minutes total.",
     "No workout selection. Open the app, press start, do the work. No scrolling through a library of 500 sessions trying to pick one.",
     "Progressive overload built in: as you get fitter, you do more burpees in the same 20 minutes. You don't need to manually increase difficulty.",
-    `${appPricing.tableLabel} with a 14-day free trial. Less than half the cost of Centr or Fitbod Pro.`,
+    `${appPricing.tableLabel} with a 7-day free trial. Less than half the cost of Centr or Fitbod Pro.`,
   ],
   whereCompetitorWins: [
     "Seven is completely free and genuinely takes 7 minutes — ideal for absolute minimalists.",
@@ -177,7 +177,7 @@ export const twentyMinuteAppsComparison: ComparisonPageData = {
     {
       question: `What's the cheapest 20-minute workout app?`,
       answer:
-        `Seven and Nike Training Club are free. Busy Dad Training is ${appPricing.summary} with a 14-day free trial — and unlike free apps, it provides a fixed programme with level progression rather than a disconnected workout library.`,
+        `Seven and Nike Training Club are free. Busy Dad Training is ${appPricing.summary} with a 7-day free trial — and unlike free apps, it provides a fixed programme with level progression rather than a disconnected workout library.`,
     },
   ],
 };
@@ -236,7 +236,7 @@ export const freeWorkoutAppsComparison: ComparisonPageData = {
       "Free home workout apps let you train anywhere with no equipment — but free often means no structure, no progression, and no accountability. We compared Nike Training Club, Seven, FitOn, Leap Fitness, and Busy Dad Training to find which no-cost (or low-cost) no-equipment app actually delivers results for busy men.",
   },
   whyBdpWins: [
-    "14-day free trial — try the full programme with zero risk, including all levels, timer, and community access.",
+    "7-day free trial — try the full programme with zero risk, including all levels, timer, and community access.",
     "Fixed programme, not a workout library. You're not choosing from 300 sessions daily — you follow one clear path.",
     "Progressive system: as you get stronger, your 20-minute output increases. Free apps can't track or push this.",
     `After trial: ${appPricing.tableLabel} — still cheaper than most premium fitness subscriptions, and you're paying for a programme, not a random collection of videos.`,
@@ -247,7 +247,7 @@ export const freeWorkoutAppsComparison: ComparisonPageData = {
     "Seven is the simplest possible option — 7 minutes, free, no decisions at all.",
   ],
   verdict:
-    "If you want a completely free library of home workouts with no commitment, Nike Training Club is the clear winner. But if you want an actual programme — a system that tells you what to do, tracks your progress, and gets harder as you improve — Busy Dad Training's 14-day free trial lets you test it for free before committing. Free is great for sampling; a programme is better for results.",
+    "If you want a completely free library of home workouts with no commitment, Nike Training Club is the clear winner. But if you want an actual programme — a system that tells you what to do, tracks your progress, and gets harder as you improve — Busy Dad Training's 7-day free trial lets you test it for free before committing. Free is great for sampling; a programme is better for results.",
   faqs: [
     {
       question: "Can I get fit for free with home workout apps?",

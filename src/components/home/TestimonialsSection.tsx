@@ -1,13 +1,10 @@
 "use client";
 
 import { useRef, type RefObject } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
 import { testimonials } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
-
-gsap.registerPlugin(useGSAP);
+import { useLazyMotion, type Tween } from "@/lib/lazy-motion";
 
 type TestimonialQuote = (typeof testimonials.quotes)[number];
 
@@ -120,10 +117,11 @@ export function TestimonialsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const setRef = useRef<HTMLDivElement>(null);
-  const tweenRef = useRef<gsap.core.Tween | null>(null);
+  const tweenRef = useRef<Tween | null>(null);
 
-  useGSAP(
-    () => {
+  // GSAP loads lazily once the marquee is near the viewport.
+  useLazyMotion(
+    ({ gsap }) => {
       const track = trackRef.current;
       const set = setRef.current;
       if (!track || !set) return;
@@ -163,7 +161,7 @@ export function TestimonialsSection() {
 
       return () => mm.revert();
     },
-    { scope: containerRef },
+    containerRef,
   );
 
   const pauseMarquee = () => tweenRef.current?.pause();

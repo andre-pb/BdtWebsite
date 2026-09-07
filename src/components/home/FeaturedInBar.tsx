@@ -75,6 +75,9 @@ export function FeaturedInBar() {
           signals to the full list. */}
       <Link
         href="/press/"
+        // In the first viewport on every load; don't let Next prefetch the
+        // press page's payload while the hero is still rendering.
+        prefetch={false}
         style={{
           fontSize: "0.8rem",
           fontWeight: 600,
