@@ -1,4 +1,4 @@
-import { burpeeStat, countryStat } from "./site";
+import { appPricing, burpeeStat, countryStat } from "./site";
 
 export const communityPage = {
   seo: {
@@ -49,6 +49,33 @@ export const communityPage = {
     description:
       "Download the app, log your first session, and join thousands of busy dads who get it.",
   },
+  // Rendered as a visible FAQ and as FAQPage JSON-LD. Keep answers factual
+  // and self-contained: AI search engines quote them verbatim.
+  faqs: [
+    {
+      question: "What is the Busy Dad Army?",
+      answer: `The Busy Dad Army is the community of people following the Busy Dad Training programme: the same 80 minutes a week, four 20-minute sessions, two burpee movements. Together they have logged ${burpeeStat.value.toLocaleString("en-GB")}${burpeeStat.valueSuffix} burpees in the app across ${countryStat.value}${countryStat.valueSuffix} countries.`,
+    },
+    {
+      question: "How do I join the Busy Dad Army?",
+      answer:
+        "Download the Busy Dad Training app on iOS or Android and log your first session. That puts you on the leaderboard and gives you access to the in-app community feed, where members share progress and ask questions. There is no separate sign-up for the community.",
+    },
+    {
+      question: "How does the leaderboard work?",
+      answer:
+        "Every rep you log in the app counts toward your total. The Army Leaderboard on this page ranks the community by burpees logged and updates live as members finish their sessions, so what you see is the current standings, not a snapshot.",
+    },
+    {
+      question: "Is the community free?",
+      answer: `The stories, live stats and leaderboard on this page are free to read. The community itself lives inside the Busy Dad Training app (feed, leaderboard and private forums), so it comes with the app subscription, ${appPricing.summary}, with a free trial to start.`,
+    },
+    {
+      question: "What is the live burpee counter?",
+      answer:
+        "The counter at the top of this page is the running total of burpees logged by the whole community in the Busy Dad Training app. It updates in real time as sessions are logged around the world, which is why the number keeps moving while you watch.",
+    },
+  ],
 } as const;
 
 export type CommunityStory = {
