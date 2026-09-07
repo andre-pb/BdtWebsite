@@ -5,9 +5,9 @@ export const pricingPage = {
   datePublished: "2026-09-03",
   dateModified: "2026-09-03",
   seo: {
-    title: "Busy Dad Training Pricing: £9.99/month or £99.99/year, 14-Day Free Trial",
+    title: "Busy Dad Training Pricing: £9.99/month or £99.99/year, 7-Day Free Trial",
     description:
-      `Busy Dad Training costs ${appPricing.monthly.display} or ${appPricing.annual.display} (${appPricing.annual.effectiveMonthly}), with a 14-day free trial. One plan, everything included: the full programme, 20-minute timer, level tracking and the Busy Dad Army community.`,
+      `Busy Dad Training costs ${appPricing.monthly.display} or ${appPricing.annual.display} (${appPricing.annual.effectiveMonthly}), with a 7-day free trial. One plan, everything included: the full programme, 20-minute timer, level tracking and the Busy Dad Army community.`,
     keywords: [
       "busy dad training price",
       "busy dad training cost",
@@ -21,7 +21,7 @@ export const pricingPage = {
   hero: {
     eyebrow: "Pricing",
     title: "Simple pricing. Everything included.",
-    intro: `Busy Dad Training is ${appPricing.summary}. Every plan starts with a 14-day free trial and includes the whole app. No tiers, no add-ons, no ads.`,
+    intro: `Busy Dad Training is ${appPricing.summary}. Every plan starts with a 7-day free trial and includes the whole app. No tiers, no add-ons, no ads.`,
   },
   plans: [
     {
@@ -53,9 +53,9 @@ export const pricingPage = {
     ],
   },
   trial: {
-    title: "How the 14-day free trial works",
+    title: "How the 7-day free trial works",
     paragraphs: [
-      "Download the app, create an account and start the trial from either the App Store or Google Play. You get the full app for 14 days. Cancel before the trial ends and you are not charged; do nothing and the plan you chose starts automatically.",
+      "Download the app, create an account and start the trial from either the App Store or Google Play. You get the full app for 7 days. Cancel before the trial ends and you are not charged; do nothing and the plan you chose starts automatically.",
       "Subscriptions are billed and managed by Apple or Google, so cancelling, switching plans and refunds all happen in your App Store or Google Play subscription settings, not in the app.",
     ],
   },
@@ -64,7 +64,7 @@ export const pricingPage = {
     intro:
       "US-store prices checked in September 2026; regional pricing varies. Included for context, not as a like-for-like feature comparison.",
     rows: [
-      { app: "Busy Dad Training", price: `${appPricing.monthly.display} or ${appPricing.annual.display} (US: $9.99 / $99.99)`, note: "Full programme, timer, levels, community; 14-day trial" },
+      { app: "Busy Dad Training", price: `${appPricing.monthly.display} or ${appPricing.annual.display} (US: $9.99 / $99.99)`, note: "Full programme, timer, levels, community; 7-day trial" },
       { app: "Freeletics Coach", price: "from ~$34.99 (term varies)", note: "AI-generated plans; limited free tier" },
       { app: "Seven (7 Club)", price: "$9.99/mo or $79.99/yr", note: "Seven-minute workouts; usable free tier" },
       { app: "Thenx", price: "$9.99–$19.99/mo, $89.99–$119.99/yr", note: "Calisthenics skills; needs a bar" },
@@ -76,12 +76,12 @@ export const pricingPage = {
   faqs: [
     {
       question: "How much does Busy Dad Training cost?",
-      answer: `Busy Dad Training costs ${appPricing.monthly.display} or ${appPricing.annual.display}, which works out at ${appPricing.annual.effectiveMonthly}. Both plans include a 14-day free trial and the full app.`,
+      answer: `Busy Dad Training costs ${appPricing.monthly.display} or ${appPricing.annual.display}, which works out at ${appPricing.annual.effectiveMonthly}. Both plans include a 7-day free trial and the full app.`,
     },
     {
       question: "Is Busy Dad Training free?",
       answer:
-        "The app is free to download and every subscription starts with a 14-day free trial of everything. After the trial it is a paid subscription; there is no permanently free tier. The programme itself (principles, movements, levels and tutorial videos) is published free on this site and on YouTube.",
+        "The app is free to download and every subscription starts with a 7-day free trial of everything. After the trial it is a paid subscription; there is no permanently free tier. The programme itself (principles, movements, levels and tutorial videos) is published free on this site and on YouTube.",
     },
     {
       question: "Is there a discount for paying annually?",

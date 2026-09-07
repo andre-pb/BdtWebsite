@@ -76,7 +76,7 @@ export const bestBodyweightAppsPage = {
       sessionLength: "20 min, 4×/week",
       equipment: "None, ever",
       focus: "Two-movement burpee programme with levels",
-      price: `${appPricing.tableLabel}, 14-day trial`,
+      price: `${appPricing.tableLabel}, 7-day trial`,
       summary:
         `Busy Dad Training is a bodyweight programme, not a library. You train two compound burpee movements (the 6-count military burpee and the Navy Seal burpee) for exactly 80 minutes a week, usually four 20-minute sessions. Progress is measured by Landmark Workouts, 20-minute tests that unlock each of the four levels from 1A to Graduation, so you always know precisely how fit you are relative to the standard. The app sets weekly rep targets, runs the timer, tracks every rep and hosts a global leaderboard. It costs ${appPricing.summary}.`,
       pros: [
@@ -87,7 +87,7 @@ export const bestBodyweightAppsPage = {
       ],
       cons: [
         "Only two movements. If you want variety, skills like handstands, or dumbbell work, look elsewhere.",
-        "No free tier after the 14-day trial.",
+        "No free tier after the 7-day trial.",
         "The programme is demanding at the top; most people spend a long time in Levels 1 and 2.",
       ],
       bestFor: "Time-poor men, dads especially, who want measurable results from the simplest possible bodyweight system.",
@@ -297,7 +297,7 @@ export const bestBodyweightAppsPage = {
     title: "Why Busy Dad Training is on this list",
     paragraphs: [
       "Most bodyweight apps optimise for choice. Busy Dad Training optimises for constraint: two movements, 80 minutes a week, and one 20-minute test per level that never changes. That is the opposite of a video library, and it is why it suits people who have tried the libraries and drifted. You cannot drift when Tuesday's session is 20 minutes of 6-counts with a rep target on the screen.",
-      "If you are not sure, download Nike Training Club (free) and take the 14-day Busy Dad Training trial in the same fortnight. The one you are still opening in week three is the one to keep.",
+      "If you are not sure, download Nike Training Club (free) and take the 7-day Busy Dad Training trial in the same week. The one you are still opening a fortnight later is the one to keep.",
     ],
     internalLinks: [
       { label: "The two Sacred Movements", href: "/movements/" },
@@ -315,7 +315,7 @@ export const bestBodyweightAppsPage = {
     {
       question: "What is the best free bodyweight workout app?",
       answer:
-        "Nike Training Club is free with no in-app purchases and has an equipment-free filter. FitOn is free with a huge class library. Caliber has the best free strength programming. Busy Dad Training is not free, but it includes a 14-day free trial of the full programme.",
+        "Nike Training Club is free with no in-app purchases and has an equipment-free filter. FitOn is free with a huge class library. Caliber has the best free strength programming. Busy Dad Training is not free, but it includes a 7-day free trial of the full programme.",
     },
     {
       question: "Do bodyweight workout apps really need no equipment?",
@@ -345,7 +345,7 @@ export const bestBodyweightAppsPage = {
     {
       question: "How much do bodyweight workout apps cost in 2026?",
       answer:
-        `Nike Training Club is free. Seven's 7 Club is $9.99/month or $79.99/year. Busy Dad Training is ${appPricing.summary} with a 14-day trial. Madbarz is $9.99/month on Android but $12.49/month on iOS. Thenx lists $9.99–$19.99/month. Freeletics Coach starts around $34.99 depending on term. Caliber and FitOn have free tiers with paid upgrades. Prices are US-store figures checked in September 2026 and vary by region.`,
+        `Nike Training Club is free. Seven's 7 Club is $9.99/month or $79.99/year. Busy Dad Training is ${appPricing.summary} with a 7-day trial. Madbarz is $9.99/month on Android but $12.49/month on iOS. Thenx lists $9.99–$19.99/month. Freeletics Coach starts around $34.99 depending on term. Caliber and FitOn have free tiers with paid upgrades. Prices are US-store figures checked in September 2026 and vary by region.`,
     },
   ],
 } as const satisfies GuideData;

@@ -20,7 +20,7 @@ export const bestFreeNoEquipmentAppsPage = {
   seo: {
     title: "Best Free Workout Apps With No Equipment (2026): 7 Apps Compared Honestly",
     description:
-      "The best free workout apps that need no equipment in 2026: Nike Training Club, FitOn, Caliber, Seven, BeStronger Burpee Workout and Burpee by Telum Apps, plus what you get from Busy Dad Training's 14-day trial. What is actually free, what is behind a paywall, and when paying is worth it.",
+      "The best free workout apps that need no equipment in 2026: Nike Training Club, FitOn, Caliber, Seven, BeStronger Burpee Workout and Burpee by Telum Apps, plus what you get from Busy Dad Training's 7-day trial. What is actually free, what is behind a paywall, and when paying is worth it.",
     keywords: [
       "best free workout apps no equipment",
       "free workout app no equipment",
@@ -40,12 +40,12 @@ export const bestFreeNoEquipmentAppsPage = {
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   quickAnswer:
-    "The best free workout app with no equipment in 2026 is Nike Training Club: completely free, no ads, no in-app purchases, with an equipment-free filter. FitOn is the best free class library, Caliber has the best free strength programming, and Seven's free tier is enough for a seven-minute daily habit. Busy Dad Training is not free (14-day trial, then £9.99/month) and is the pick if you want a measurable programme rather than a library.",
+    "The best free workout app with no equipment in 2026 is Nike Training Club: completely free, no ads, no in-app purchases, with an equipment-free filter. FitOn is the best free class library, Caliber has the best free strength programming, and Seven's free tier is enough for a seven-minute daily habit. Busy Dad Training is not free (7-day trial, then £9.99/month) and is the pick if you want a measurable programme rather than a library.",
   intro: {
     title: "What \"free\" actually means in each app",
     paragraphs: [
       "There are three kinds of free. Truly free: Nike Training Club has no purchases at all. Free tier: FitOn, Caliber, Seven and Freeletics give you a real, usable subset and sell the rest. Free with ads: the small burpee timers (BeStronger, Telum Apps) are free because they show adverts. All of these work with no equipment; only Nike Training Club and FitOn need you to filter for it.",
-      "Then there is the trial model, which is what Busy Dad Training uses: the whole app for 14 days, then a subscription. That is not a free app and we do not pretend otherwise. It is on this list so you can see what you get for the money against what you get for nothing, and decide with the facts in front of you.",
+      "Then there is the trial model, which is what Busy Dad Training uses: the whole app for 7 days, then a subscription. That is not a free app and we do not pretend otherwise. It is on this list so you can see what you get for the money against what you get for nothing, and decide with the facts in front of you.",
       "Every app here is on iOS and Android unless the platform column says otherwise, and every rating was read from the US store listing on the date at the top of the page.",
     ],
   },
@@ -188,12 +188,12 @@ export const bestFreeNoEquipmentAppsPage = {
       platforms: "iOS & Android",
       sessionLength: "20 min, 4×/week",
       equipment: "None, ever",
-      focus: "Full app for 14 days, then paid",
+      focus: "Full app for 7 days, then paid",
       price: appPricing.tableLabel,
       summary:
-        `Busy Dad Training is not a free app. Every subscription starts with a 14-day trial of the full programme, then it is ${appPricing.summary}. What you are paying for is the thing none of the free apps have: a programme. Two bodyweight burpee movements, four 20-minute sessions a week, weekly rep targets, a 20-minute timer, and a four-level system where the same 20-minute test tells you exactly how fit you are. The method itself is published free on this site and the tutorials are free on YouTube.`,
+        `Busy Dad Training is not a free app. Every subscription starts with a 7-day trial of the full programme, then it is ${appPricing.summary}. What you are paying for is the thing none of the free apps have: a programme. Two bodyweight burpee movements, four 20-minute sessions a week, weekly rep targets, a 20-minute timer, and a four-level system where the same 20-minute test tells you exactly how fit you are. The method itself is published free on this site and the tutorials are free on YouTube.`,
       pros: ["A complete programme with objective 20-minute benchmarks, not a library.", "Genuinely no equipment at any level.", "The method, movements and level targets are free to read on this site; the app adds the timer, targets and tracking."],
-      cons: ["Not free: 14-day trial, then a subscription.", "Two movements only; no variety.", "Demanding at the upper levels."],
+      cons: ["Not free: 7-day trial, then a subscription.", "Two movements only; no variety.", "Demanding at the upper levels."],
       bestFor: "People who have tried the free libraries, drifted, and want a programme that measures progress.",
     },
   ],
@@ -205,17 +205,17 @@ export const bestFreeNoEquipmentAppsPage = {
       { label: "Best free programme with progression", appId: "caliber", reason: "Coach-designed plans and logging at no cost." },
       { label: "Best free daily habit", appId: "seven", reason: "A real seven-minute workout in the free tier." },
       { label: "Best free burpee timer (Android)", appId: "bestronger-burpee-workout", reason: "500K+ installs, updated 2026, free with ads." },
-      { label: "Best if you decide to pay", appId: "busy-dad-training", reason: "The only fixed 20-minute programme with benchmarks; 14-day trial first." },
+      { label: "Best if you decide to pay", appId: "busy-dad-training", reason: "The only fixed 20-minute programme with benchmarks; 7-day trial first." },
     ],
   },
   whyBdp: {
     title: "When paying beats free",
     paragraphs: [
       "Free libraries fail people in a predictable way: there is nothing to do next. You pick a video, do it, and the app has no opinion about tomorrow. Paid programmes earn their money by removing that decision. Busy Dad Training does it with a fixed 20-minute test at every level and weekly rep targets, so on Tuesday there is one thing to do and a number to beat.",
-      "The honest recommendation: install Nike Training Club today, it costs nothing. If in a month you are still opening it, keep going. If you have drifted, take the 14-day Busy Dad Training trial and see whether a programme is what was missing.",
+      "The honest recommendation: install Nike Training Club today, it costs nothing. If in a month you are still opening it, keep going. If you have drifted, take the 7-day Busy Dad Training trial and see whether a programme is what was missing.",
     ],
     internalLinks: [
-      { label: "Pricing and the 14-day trial", href: "/pricing/" },
+      { label: "Pricing and the 7-day trial", href: "/pricing/" },
       { label: "Best bodyweight workout apps (2026)", href: "/best-bodyweight-workout-apps-2026/" },
       { label: "The 20-minute workout, free to follow", href: "/20-minute-home-workout-for-busy-dads/" },
       { label: "The four levels", href: "/levels/" },
@@ -230,7 +230,7 @@ export const bestFreeNoEquipmentAppsPage = {
     {
       question: "Is Busy Dad Training free?",
       answer:
-        "No. The app is free to download and every subscription starts with a 14-day free trial of the full programme, after which it is £9.99/month or £99.99/year. The programme itself, both movements and every level's targets, is published free on busydadtraining.com and the tutorial videos are free on YouTube.",
+        "No. The app is free to download and every subscription starts with a 7-day free trial of the full programme, after which it is £9.99/month or £99.99/year. The programme itself, both movements and every level's targets, is published free on busydadtraining.com and the tutorial videos are free on YouTube.",
     },
     {
       question: "Which free workout apps have no ads?",
@@ -250,7 +250,7 @@ export const bestFreeNoEquipmentAppsPage = {
     {
       question: "What is the best free burpee app?",
       answer:
-        "On Android, BeStronger's Burpee Workout (free with ads, 500K+ installs, updated 2026). Burpee by Telum Apps is a free Android alternative with a placement test. On iPhone the free options are small counters; BurBur is the best of them if you own an Apple Watch. For a full burpee programme, Busy Dad Training, which is paid after a 14-day trial.",
+        "On Android, BeStronger's Burpee Workout (free with ads, 500K+ installs, updated 2026). Burpee by Telum Apps is a free Android alternative with a placement test. On iPhone the free options are small counters; BurBur is the best of them if you own an Apple Watch. For a full burpee programme, Busy Dad Training, which is paid after a 7-day trial.",
     },
     {
       question: "Which free apps work with no equipment at all?",

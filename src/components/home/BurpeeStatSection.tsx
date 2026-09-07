@@ -1,15 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
 import { burpeeStat } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { loadSignalR, useLazyMotion, whenNear, type Motion, type Tween } from "@/lib/lazy-motion";
 
 const formatter = new Intl.NumberFormat("en-GB");
 
@@ -27,7 +22,10 @@ export function BurpeeStatSection() {
   const displayedRef = useRef<number>(0); // value currently on screen
   const enteredRef = useRef<boolean>(false); // has the scroll-in run yet
   const reducedMotionRef = useRef<boolean>(false);
-  const tweenRef = useRef<gsap.core.Tween | null>(null); // in-flight count-up
+  const tweenRef = useRef<Tween | null>(null); // in-flight count-up
+  // GSAP arrives lazily (see lib/lazy-motion); until then updates render
+  // instantly instead of tweening.
+  const motionRef = useRef<Motion | null>(null);
 
   const renderValue = (value: number) => {
     if (numberRef.current) {
@@ -47,6 +45,12 @@ export function BurpeeStatSection() {
   // remove the kill(); see git history before "fixing" this.
   const animateTo = (value: number, duration: number) => {
     tweenRef.current?.kill();
+    const gsap = motionRef.current?.gsap;
+    if (!gsap) {
+      displayedRef.current = value;
+      renderValue(value);
+      return;
+    }
     const counter = { value: displayedRef.current };
     tweenRef.current = gsap.to(counter, {
       value,
@@ -59,8 +63,10 @@ export function BurpeeStatSection() {
     });
   };
 
-  useGSAP(
-    () => {
+  useLazyMotion(
+    (motion) => {
+      motionRef.current = motion;
+      const { gsap, ScrollTrigger } = motion;
       const number = numberRef.current;
       if (!number) return;
 
@@ -92,44 +98,57 @@ export function BurpeeStatSection() {
 
       return () => mm.revert();
     },
-    { scope: sectionRef },
+    sectionRef,
   );
 
-  // Live updates from the burpee hub.
+  // Live updates from the burpee hub. The SignalR client (~70 KB) is only
+  // fetched, and the connection only opened, once this section is near the
+  // viewport, so neither competes with the hero for bandwidth or CPU.
   useEffect(() => {
     if (!HUB_URL) return;
 
-    const connection = new HubConnectionBuilder()
-      // Anonymous hub: no cookies/auth, so don't send credentials. A
-      // credentialed CORS request would require Access-Control-Allow-Credentials
-      // on the API, which the shared policy intentionally doesn't set.
-      .withUrl(HUB_URL, { withCredentials: false })
-      .withAutomaticReconnect()
-      .configureLogging(LogLevel.Error)
-      .build();
+    const controller = new AbortController();
+    let connection: import("@microsoft/signalr").HubConnection | null = null;
 
-    connection.on(TOTAL_UPDATED_EVENT, (total: number) => {
-      if (typeof total !== "number" || !Number.isFinite(total)) return;
-      // The hub is authoritative: always take its value, even if it's lower
-      // than the static fallback (the real DB total is below the marketing
-      // placeholder until enough reps accumulate).
-      targetRef.current = total;
+    void (async () => {
+      await whenNear(sectionRef.current, "600px", controller.signal);
+      if (controller.signal.aborted) return;
+      const { HubConnectionBuilder, LogLevel } = await loadSignalR();
+      if (controller.signal.aborted) return;
 
-      if (reducedMotionRef.current) {
-        displayedRef.current = total;
-        renderValue(total);
-      } else if (enteredRef.current) {
-        animateTo(total, 1.2);
-      }
-      // If the section hasn't scrolled into view yet, the scroll-in
-      // animation will pick up the latest targetRef value.
-    });
+      connection = new HubConnectionBuilder()
+        // Anonymous hub: no cookies/auth, so don't send credentials. A
+        // credentialed CORS request would require Access-Control-Allow-Credentials
+        // on the API, which the shared policy intentionally doesn't set.
+        .withUrl(HUB_URL, { withCredentials: false })
+        .withAutomaticReconnect()
+        .configureLogging(LogLevel.Error)
+        .build();
 
-    // Fail silently; the static fallback number stays on screen.
-    connection.start().catch(() => {});
+      connection.on(TOTAL_UPDATED_EVENT, (total: number) => {
+        if (typeof total !== "number" || !Number.isFinite(total)) return;
+        // The hub is authoritative: always take its value, even if it's lower
+        // than the static fallback (the real DB total is below the marketing
+        // placeholder until enough reps accumulate).
+        targetRef.current = total;
+
+        if (reducedMotionRef.current) {
+          displayedRef.current = total;
+          renderValue(total);
+        } else if (enteredRef.current) {
+          animateTo(total, 1.2);
+        }
+        // If the section hasn't scrolled into view yet, the scroll-in
+        // animation will pick up the latest targetRef value.
+      });
+
+      // Fail silently; the static fallback number stays on screen.
+      connection.start().catch(() => {});
+    })();
 
     return () => {
-      connection.stop().catch(() => {});
+      controller.abort();
+      connection?.stop().catch(() => {});
     };
     // animateTo/renderValue only read refs, so they're stable; no deps needed.
     // eslint-disable-next-line react-hooks/exhaustive-deps

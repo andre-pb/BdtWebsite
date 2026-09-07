@@ -189,7 +189,7 @@ export const twentyMinuteWorkoutGuidePage = {
     {
       question: "How is this different from just doing random home workouts?",
       answer:
-        `Structure and progression. The Busy Dad Training app gives you daily rep targets, a four-level progression system with benchmark workouts, and a community of dads doing the same programme. It costs ${appPricing.summary}, with a 14-day free trial.`,
+        `Structure and progression. The Busy Dad Training app gives you daily rep targets, a four-level progression system with benchmark workouts, and a community of dads doing the same programme. It costs ${appPricing.summary}, with a 7-day free trial.`,
     },
   ],
 } as const;
