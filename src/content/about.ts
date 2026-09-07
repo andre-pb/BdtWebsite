@@ -66,4 +66,33 @@ export const aboutPage = {
     videoUrl: "https://www.youtube.com/watch?v=ftJ7kR04HvU",
     uploadDate: "2024-01-01",
   },
+  // Rendered as a visible FAQ and as FAQPage JSON-LD. Answers stay within
+  // what the page already says about Max: no invented credentials.
+  faqs: [
+    {
+      question: "Who created Busy Dad Training?",
+      answer:
+        "Busy Dad Training was created by Max Edwards. It started as free follow-along burpee workouts on his YouTube channel, grew into a community of dads training 80 minutes a week, and became the Busy Dad Training app: the same method with a timer, a level system and benchmarks.",
+    },
+    {
+      question: "What is Max Edwards' fitness background?",
+      answer:
+        "Max is not a professional athlete and does not claim a special background. His method came from years of starting programmes and dropping off when life got busy. When he became a father he set one rule, no more than 80 minutes of training a week, and built everything around two burpee movements that fit inside it. The programme is the result of that constraint, tested on himself first and then on the dads he coached.",
+    },
+    {
+      question: "How did the Busy Dad Program start?",
+      answer:
+        "On YouTube. Max filmed simple, follow-along burpee sessions with no gym and no equipment, and people trained alongside him. As the community grew, the videos showed people what to do, but not how to stay consistent, so the app was built to add structure: a strict 20-minute timer, four levels unlocked by Landmark Workouts, and a record of exactly where you stand.",
+    },
+    {
+      question: "Is Max still involved in the programme?",
+      answer:
+        "Yes. Max still publishes tutorials and follow-along workouts on the Busy Dad Training YouTube channel, coaches members of the community, and the programme in the app is his method, unchanged: 80 minutes a week, two movements, level by level.",
+    },
+    {
+      question: "What does the 80-minute rule mean?",
+      answer:
+        "You train for 80 minutes a week and no more, ideally as four 20-minute sessions. The cap is the point: it is small enough to keep every week, even with kids and a job, and the intensity inside those 20 minutes is what drives progress. Every level of the programme, up to Graduation, is built on the same weekly budget.",
+    },
+  ],
 } as const;

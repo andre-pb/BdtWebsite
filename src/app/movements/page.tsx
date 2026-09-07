@@ -7,7 +7,9 @@ import { SacredMovementSection } from "@/components/movements/SacredMovementSect
 import { TrainingSplitCallout } from "@/components/movements/TrainingSplitCallout";
 // import { AccessoryMovementsSection } from "@/components/movements/AccessoryMovementsSection";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { RelatedGuides } from "@/components/ui/RelatedGuides";
 import { movementsPage } from "@/content/movements";
+import { relatedFor } from "@/content/related-guides";
 import {
   createPageMetadata,
   getBreadcrumbJsonLd,
@@ -55,6 +57,9 @@ export default function MovementsPage() {
         ))}
         <TrainingSplitCallout />
         {/* <AccessoryMovementsSection /> */}
+        <RelatedGuides
+          links={relatedFor("/movements/", ["sixCountBurpee", "navySealBurpee", "levels", "twentyMinuteGuide"])}
+        />
         <DownloadSection />
       </main>
       <Footer />

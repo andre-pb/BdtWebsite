@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { featuredIn } from "@/content/site";
 
 export function FeaturedInBar() {
@@ -69,6 +70,21 @@ export function FeaturedInBar() {
           </li>
         ))}
       </ul>
+      {/* Internal link to the press page: consolidates the coverage for
+          visitors and gives crawlers a path from the homepage's trust
+          signals to the full list. */}
+      <Link
+        href="/press/"
+        style={{
+          fontSize: "0.8rem",
+          fontWeight: 600,
+          color: "rgba(255,255,255,0.6)",
+          textDecoration: "underline",
+          textUnderlineOffset: "3px",
+        }}
+      >
+        All press coverage
+      </Link>
     </div>
   );
 }
