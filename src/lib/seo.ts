@@ -67,7 +67,7 @@ export function getProductJsonLd() {
       "6-count and Navy Seal burpee tracking",
       "Global community and burpee leaderboard",
       "No equipment required",
-      "14-day free trial",
+      "7-day free trial",
     ],
     screenshot: [
       absoluteUrl(appScreenshots.home.src),
@@ -100,7 +100,7 @@ export function getPricingItemListJsonLd() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Busy Dad Training Pricing Plans",
-    description: "Simple, transparent pricing: monthly or annual subscription with a 14-day free trial.",
+    description: "Simple, transparent pricing: monthly or annual subscription with a 7-day free trial.",
     numberOfItems: 2,
     itemListOrder: "https://schema.org/ItemListOrderAscending",
     itemListElement: [

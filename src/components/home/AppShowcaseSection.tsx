@@ -1,15 +1,11 @@
 "use client";
 
 import { useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { appShowcaseSteps } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { AppFrame } from "@/components/ui/AppFrame";
 import { PageContainer } from "@/components/ui/PageContainer";
-
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+import { useLazyMotion } from "@/lib/lazy-motion";
 
 type ShowcaseStep = (typeof appShowcaseSteps)[number];
 
@@ -266,8 +262,10 @@ export function AppShowcaseSection() {
   const liveRegionRef = useRef<HTMLDivElement>(null);
   const activeStepIndexRef = useRef(0);
 
-  useGSAP(
-    () => {
+  // GSAP loads lazily once the section is within ~800px of the viewport
+  // (desktop only needs it: the pinned scroll story is min-width 901px).
+  useLazyMotion(
+    ({ gsap }) => {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 901px) and (prefers-reduced-motion: no-preference)", () => {
@@ -332,7 +330,8 @@ export function AppShowcaseSection() {
 
       return () => mm.revert();
     },
-    { scope: sectionRef },
+    sectionRef,
+    { rootMargin: "800px" },
   );
 
   return (

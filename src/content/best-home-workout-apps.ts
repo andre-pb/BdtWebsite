@@ -33,7 +33,7 @@ export const bestHomeWorkoutAppsPage = {
     backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
   quickAnswer:
-    "The best short home workout app for men in 2026 is Busy Dad Training if you want a 20-minute workout app with a fixed programme: two bodyweight movements, four 20-minute sessions a week, no equipment and objective level benchmarks (£9.99/month, 14-day trial). Seven is best for seven-minute habits, Freeletics for AI-guided variety, and Thenx or Heria Pro for calisthenics skills with a pull-up bar.",
+    "The best short home workout app for men in 2026 is Busy Dad Training if you want a 20-minute workout app with a fixed programme: two bodyweight movements, four 20-minute sessions a week, no equipment and objective level benchmarks (£9.99/month, 7-day trial). Seven is best for seven-minute habits, Freeletics for AI-guided variety, and Thenx or Heria Pro for calisthenics skills with a pull-up bar.",
   intro: {
     title: "Who this guide is for",
     paragraphs: [

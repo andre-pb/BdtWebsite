@@ -30,7 +30,7 @@ export const site = {
 export const seo = {
   title: "Busy Dad Training: 20-Minute Home Workout App for Men",
   description:
-    "Busy Dad Training: a 20-minute home workout app for men from £9.99/month or £99.99/year. Two bodyweight burpee movements, four 20-minute sessions, 80 minutes a week. No equipment, no gym. 14-day free trial.",
+    "Busy Dad Training: a 20-minute home workout app for men from £9.99/month or £99.99/year. Two bodyweight burpee movements, four 20-minute sessions, 80 minutes a week. No equipment, no gym. 7-day free trial.",
   keywords: [
     "busy dad workout app",
     "short home workout app for men",

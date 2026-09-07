@@ -27,7 +27,7 @@ export const homeFaqs: readonly FaqEntry[] = [
   },
   {
     question: "How much does Busy Dad Training cost?",
-    answer: `Busy Dad Training costs ${appPricing.monthly.display} or ${appPricing.annual.display} (${appPricing.annual.effectiveMonthly}). A 14-day free trial is included.`,
+    answer: `Busy Dad Training costs ${appPricing.monthly.display} or ${appPricing.annual.display} (${appPricing.annual.effectiveMonthly}). A 7-day free trial is included.`,
   },
   {
     question: "Do I need any equipment for Busy Dad Training?",
@@ -50,7 +50,7 @@ const appFaqs: readonly FaqEntry[] = [
   {
     question: "Is there a free trial?",
     answer:
-      "Yes. Every new subscription starts with a 14-day free trial of the full app. Cancel before the trial ends and you are not charged.",
+      "Yes. Every new subscription starts with a 7-day free trial of the full app. Cancel before the trial ends and you are not charged.",
   },
   {
     question: "How do I cancel my Busy Dad Training subscription?",

@@ -79,7 +79,7 @@ export const pressPage = {
       { label: "Progression", value: "Four levels (1A to 4B) and Graduation, each unlocked by 20-minute Landmark Workouts. Graduation is 325 6-counts and 150 Navy Seals in 20 minutes each, in the same week." },
       { label: "Community", value: `The Busy Dad Army: ${burpeeStat.value.toLocaleString("en-GB")}${burpeeStat.valueSuffix} burpees logged in the app by practitioners in 20+ countries.` },
       { label: "Platforms", value: `iOS (App Store) and Android (Google Play). Current version ${storeRatings.app.version}, updated ${storeRatings.app.updated}.` },
-      { label: "Price", value: "£9.99/month or £99.99/year ($9.99 / $99.99 in the US) with a 14-day free trial." },
+      { label: "Price", value: "£9.99/month or £99.99/year ($9.99 / $99.99 in the US) with a 7-day free trial." },
       { label: "Origins", value: "Started as follow-along burpee workouts on YouTube; the app followed when the community grew." },
     ],
   },
