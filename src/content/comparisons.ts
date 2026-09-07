@@ -153,24 +153,24 @@ export const boostcampComparison: ComparisonPageData = {
     sessionLength: "45–90 min",
     equipment: "Mostly gym / strength equipment",
     focus: "Programme marketplace + workout tracking",
-    price: "Free + Pro $14.99/mo or $59.99/yr",
+    price: "Free + Pro $14.99/mo or $59.99/yr (checked Sep 2026)",
     summary:
-      "Boostcamp is a marketplace for popular lifting and hypertrophy programs (Reddit PPL, 5/3/1, etc.). You pick a template and log sets. Ideal when you already know you want barbell work.",
+      "Boostcamp is a free workout tracker and programme marketplace for lifters: 11,000+ programmes including 130+ coach-designed templates (Reddit PPL, 5/3/1, nSuns, GZCL), with set logging, RPE tracking and plate calculators. Boostcamp Pro ($14.99/month or $59.99/year, checked September 2026) adds 20+ exclusive coach programmes, a personalised programme builder, a 0–100 Strength Score and per-muscle volume heatmaps. Ideal when you already know you want barbell work.",
     pros: [
-      "Large library of proven strength templates.",
-      "Free to log workouts; many programmes are affordable one-offs.",
-      "Community reviews help you choose a plan.",
+      "Huge library of proven strength templates, most of them free.",
+      "Free to log workouts, with RPE/RIR tracking, rest timers and PR history.",
+      "Pro's programme builder and Strength Score add structure for lifters chasing numbers.",
     ],
     cons: [
       "Typical programmes are not short, often 60+ minutes.",
       "Requires gym equipment for most top programmes.",
-      "Less hand-holding than coached apps.",
+      "Choice overload: with 11,000+ programmes, picking and sticking to one is on you.",
     ],
     bestFor: "Men running barbell programmes who want flexible templates, not a 20-minute cap.",
   },
   path: "/comparisons/boostcamp-vs-busy-dad-training/",
   datePublished: "2026-06-15",
-  dateModified: "2026-06-15",
+  dateModified: "2026-09-07",
   seo: {
     title: "Boostcamp vs Busy Dad Training (2026): Home Workout or Gym Programme?",
     description:
@@ -193,16 +193,16 @@ export const boostcampComparison: ComparisonPageData = {
   whyBdpWins: [
     "No equipment needed. Busy Dad Training is pure bodyweight. Boostcamp assumes barbells and dumbbells for most programmes.",
     "Short fixed sessions: 20 minutes vs the 45–90 minute sessions typical on Boostcamp.",
-    "No programme selection required. BDP tells you exactly what to do each session. Boostcamp requires choosing and following a template.",
-    "Lower commitment: £9.99/month vs Boostcamp Pro at $14.99/month (plus potentially higher gym costs).",
+    "No programme selection required. Busy Dad Training tells you exactly what to do each session. Boostcamp hands you 11,000+ programmes and leaves the choosing (and the sticking with it) to you.",
+    "Lower commitment: £9.99/month vs Boostcamp Pro at $14.99/month, and no gym membership on top.",
   ],
   whereCompetitorWins: [
     "Boostcamp offers proven strength programmes (5/3/1, nSuns, GZCL) that build raw strength and size effectively.",
-    "Boostcamp is free for basic logging; only Pro features require payment.",
+    "Boostcamp is free for logging and for most of its programme library; only Pro features (exclusive programmes, Strength Score, programme builder) require payment.",
     "If you already have a gym membership and want structured lifting, Boostcamp is the obvious choice.",
   ],
   verdict:
-    "These apps are not direct competitors; they solve different problems. If you have gym access and want heavy barbell work, choose Boostcamp. If you want the shortest credible full-body workout at home with no equipment, choose Busy Dad Training.",
+    "These apps are not direct competitors; they solve different problems. If you have gym access and want heavy barbell work, choose Boostcamp. If you want the shortest credible full-body workout at home with no equipment, choose Busy Dad Training. Plenty of lifters run both: Boostcamp for their gym days, Busy Dad Training's 20-minute sessions on the days they can't get there.",
   faqs: [
     {
       question: "Can Boostcamp be used for home workouts?",
@@ -218,6 +218,16 @@ export const boostcampComparison: ComparisonPageData = {
       question: "How long are typical Boostcamp workouts?",
       answer:
         "Most Boostcamp programmes prescribe 45–90 minute sessions. This contrasts with Busy Dad Training's fixed 20-minute sessions, a significant difference for busy dads with limited time.",
+    },
+    {
+      question: "Can I use Boostcamp and Busy Dad Training together?",
+      answer:
+        "Yes, and they don't overlap. Boostcamp tracks your barbell sessions; Busy Dad Training gives you a fixed 20-minute bodyweight session with no equipment and no planning. If you lift two or three days a week, the burpee sessions slot into the other days, and the app still keeps your weekly training to 80 minutes.",
+    },
+    {
+      question: "Does Boostcamp have a free trial?",
+      answer:
+        "Boostcamp itself is free for workout logging and most of its programme library. Boostcamp Pro offers a 7-day trial on the annual plan ($59.99/year) but none on the monthly plan ($14.99/month), as of September 2026. Busy Dad Training has one plan with a free trial included.",
     },
   ],
 };

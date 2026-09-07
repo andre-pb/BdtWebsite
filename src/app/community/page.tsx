@@ -8,8 +8,11 @@ import { CommunityStats } from "@/components/community/CommunityStats";
 import { CommunityStories } from "@/components/community/CommunityStories";
 import { CommunityCTA } from "@/components/community/CommunityCTA";
 import { LatestVideos } from "@/components/community/LatestVideos";
+import { FaqSection } from "@/components/guides/FaqSection";
+import { RelatedGuides } from "@/components/ui/RelatedGuides";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
+import { relatedFor } from "@/content/related-guides";
+import { buildFaqJsonLd, createPageMetadata, getBreadcrumbJsonLd, getWebPageJsonLd } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
   title: communityPage.seo.title,
@@ -19,7 +22,7 @@ export const metadata = createPageMetadata({
 
 export default function CommunityPage() {
   const { title, description } = communityPage.seo;
-  const { hero, leaderboard } = communityPage;
+  const { hero, leaderboard, faqs } = communityPage;
 
   return (
     <>
@@ -30,6 +33,7 @@ export default function CommunityPage() {
             { name: "Home", path: "/" },
             { name: "Community", path: "/community/" },
           ]),
+          buildFaqJsonLd(faqs),
         ]}
       />
       <Header />
@@ -144,6 +148,16 @@ export default function CommunityPage() {
         </section>
 
         <LatestVideos />
+        <FaqSection
+          title="Community questions"
+          faqs={faqs}
+          variant="dark"
+          headingId="community-faq-heading"
+        />
+        <RelatedGuides
+          variant="dark"
+          links={relatedFor("/community/", ["about", "levels", "movements", "faq"])}
+        />
         <CommunityCTA />
       </main>
       <Footer />

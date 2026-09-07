@@ -31,7 +31,7 @@ export const dynamic = "force-static";
  * use their dateModified; the rest carry the date they were last edited.
  * Bump CORE_LAST_MODIFIED when you change the core pages' copy.
  */
-const CORE_LAST_MODIFIED = "2026-09-05";
+const CORE_LAST_MODIFIED = "2026-09-07";
 const LEGAL_LAST_MODIFIED = "2026-05-29";
 
 type Entry = {

@@ -10,7 +10,9 @@ import { BestForPicksSection } from "@/components/guides/BestForPicksSection";
 import { WhyBdpSection } from "@/components/guides/WhyBdpSection";
 import { FaqSection } from "@/components/guides/FaqSection";
 import { QuickAnswer } from "@/components/ui/QuickAnswer";
+import { RelatedGuides } from "@/components/ui/RelatedGuides";
 import type { GuideData } from "@/content/guide-types";
+import { relatedFor } from "@/content/related-guides";
 import {
   buildFaqJsonLd,
   getArticleJsonLd,
@@ -57,6 +59,9 @@ export function GuidePage({ guide }: { guide: GuideData }) {
         <BestForPicksSection guide={guide} />
         <WhyBdpSection guide={guide} />
         <FaqSection faqs={faqs} />
+        <RelatedGuides
+          links={relatedFor(path, ["comparisons", "twentyMinuteGuide", "movements", "pricing"])}
+        />
         <DownloadSection />
       </main>
       <Footer />
