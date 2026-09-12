@@ -192,7 +192,7 @@ function MobileShowcaseCarousel() {
               scrollSnapAlign: "center",
             }}
           >
-            <AppFrame screenshot={step.screenshot} />
+            <AppFrame screenshot={step.screenshot} defer={index > 0} />
             <div style={{ padding: "1.75rem 0.25rem 0" }}>
               <span
                 style={{
