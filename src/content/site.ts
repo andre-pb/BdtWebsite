@@ -232,31 +232,31 @@ export const philosophy = {
 
 export const appScreenshots = {
   home: {
-    src: assetPath("/photos/home-dark.jpg"),
+    src: assetPath("/photos/home-dark.webp"),
     width: 578,
     height: 1280,
     alt: "Busy Dad Training app home screen with the weekly plan, rep targets and 80-minute weekly goal",
   },
   train: {
-    src: assetPath("/photos/train-dark.jpg"),
+    src: assetPath("/photos/train-dark.webp"),
     width: 578,
     height: 1280,
     alt: "Busy Dad Training app train screen with a guided 20-minute 6-count workout ready to start",
   },
   levels: {
-    src: assetPath("/photos/levels-dark.jpg"),
+    src: assetPath("/photos/levels-dark.webp"),
     width: 578,
     height: 1280,
     alt: "Busy Dad Training app levels screen showing the program roadmap from Level 1A to Graduation",
   },
   stats: {
-    src: assetPath("/photos/stats-dark.jpg"),
+    src: assetPath("/photos/stats-dark.webp"),
     width: 578,
     height: 1280,
     alt: "Busy Dad Training app stats screen with personal records, total burpees and weekly progress charts",
   },
   community: {
-    src: assetPath("/photos/community-dark.jpg"),
+    src: assetPath("/photos/community-dark.webp"),
     width: 578,
     height: 1280,
     alt: "Busy Dad Training app community screen with leaderboard rank and the Busy Dad Army feed",
