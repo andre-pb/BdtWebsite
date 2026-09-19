@@ -171,13 +171,59 @@ export default function ShopPage() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // 🛡️ CART AUTO-PURGE GUARD
+    // 🛡️ CART AUTO-SWAP & REGIONAL PURGE GUARD
     useEffect(() => {
-        if (!isUkOrder && cart.length > 0) {
-            const unsupportedItems = cart.filter(item => item.garmentCut === 'VEST' || item.id.includes('beanie'));
-            if (unsupportedItems.length > 0) {
-                const cleansedCart = cart.filter(item => item.garmentCut !== 'VEST' && !item.id.includes('beanie'));
-                saveCart(cleansedCart);
+        if (cart.length === 0) return;
+
+        let itemsSwapped = false;
+        let itemsRemoved = false;
+
+        const updatedCart = cart
+            .map((item) => {
+                // ✈️ 1. UK -> International: Convert Performance Shirt to 50/50 Shirt
+                if (!isUkOrder && (item.id.includes('performance-shirt') || item.id.includes('perf-shirt'))) {
+                    itemsSwapped = true;
+                    return {
+                        ...item,
+                        id: item.id.replace('performance-shirt', '50-50-shirt').replace('perf-shirt', '50-50-shirt'),
+                        name: item.name.replace(/performance/i, '50/50 Blend'),
+                        supplierSku: item.supplierSku ? item.supplierSku.replace('PERF', '5050') : item.supplierSku,
+                    };
+                }
+
+                // 🏠 2. International -> UK: Convert 50/50 Shirt back to Performance Shirt
+                if (isUkOrder && item.id.includes('50-50-shirt')) {
+                    itemsSwapped = true;
+                    return {
+                        ...item,
+                        id: item.id.replace('50-50-shirt', 'performance-shirt'),
+                        name: item.name.replace(/50\/50 blend/i, 'Performance'),
+                        supplierSku: item.supplierSku ? item.supplierSku.replace('5050', 'PERF') : item.supplierSku,
+                    };
+                }
+
+                return item;
+            })
+            .filter((item) => {
+                // 🚫 3. Purge UK-only items (Vests and Beanies) for International orders
+                if (!isUkOrder && (item.garmentCut === 'VEST' || item.id.includes('beanie'))) {
+                    itemsRemoved = true;
+                    return false;
+                }
+                return true;
+            });
+
+        // Save updated cart and notify customer if changes occurred
+        if (itemsSwapped || itemsRemoved) {
+            saveCart(updatedCart);
+
+            if (itemsRemoved && itemsSwapped) {
+                window.alert("ℹ️ NOTICE:\n\nPerformance Shirts in your bag were updated to International 50/50 Blend Shirts, and UK-only items (Vests/Beanies) were removed for your selected destination.");
+            } else if (itemsSwapped && !isUkOrder) {
+                window.alert("ℹ️ NOTICE:\n\nPerformance Shirts in your bag have been updated to International 50/50 Blend Shirts for your selected destination.");
+            } else if (itemsSwapped && isUkOrder) {
+                window.alert("ℹ️ NOTICE:\n\nShirts in your bag have been updated to UK Performance Shirts for your selected destination.");
+            } else if (itemsRemoved) {
                 window.alert("ℹ️ NOTICE:\n\nSome items in your bag (Vests/Beanies) are not currently available in the selected region and have been removed.");
             }
         }

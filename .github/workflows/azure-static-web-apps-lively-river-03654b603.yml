@@ -26,6 +26,27 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Create production env file from GitHub Secrets
+        run: |
+          echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> .env.production
+          echo "STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}" >> .env.production
+          echo "PRINTFUL_ACCESS_TOKEN=${{ secrets.PRINTFUL_ACCESS_TOKEN }}" >> .env.production
+          echo "PRINTFUL_STORE_ID=${{ secrets.PRINTFUL_STORE_ID }}" >> .env.production
+          echo "TRELLO_API_KEY=${{ secrets.TRELLO_API_KEY }}" >> .env.production
+          echo "TRELLO_TOKEN=${{ secrets.TRELLO_TOKEN }}" >> .env.production
+          echo "TRELLO_BOARD_ID=${{ secrets.TRELLO_BOARD_ID }}" >> .env.production
+          echo "TRELLO_LIST_NEW_ORDERS=${{ secrets.TRELLO_LIST_NEW_ORDERS }}" >> .env.production
+          echo "TRELLO_LABEL_YELLOW=${{ secrets.TRELLO_LABEL_YELLOW }}" >> .env.production
+          echo "TRELLO_LABEL_ORANGE=${{ secrets.TRELLO_LABEL_ORANGE }}" >> .env.production
+          echo "TRELLO_LABEL_PURPLE=${{ secrets.TRELLO_LABEL_PURPLE }}" >> .env.production
+          echo "TRELLO_LABEL_CHECK_PRINTFUL=${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}" >> .env.production
+          echo "TRELLO_LABEL_GARMENTS_IN_STOCK=${{ secrets.TRELLO_LABEL_GARMENTS_IN_STOCK }}" >> .env.production
+          echo "TRELLO_LABEL_DESIGN_FILE_COMPLETED=${{ secrets.TRELLO_LABEL_DESIGN_FILE_COMPLETED }}" >> .env.production
+          echo "TRELLO_LABEL_DTF_PRINTED=${{ secrets.TRELLO_LABEL_DTF_PRINTED }}" >> .env.production
+          echo "TRELLO_LABEL_READY_FOR_HEAT_PRESS=${{ secrets.TRELLO_LABEL_READY_FOR_HEAT_PRESS }}" >> .env.production
+          echo "TRELLO_LABEL_ROYAL_MAIL_BOOKED=${{ secrets.TRELLO_LABEL_ROYAL_MAIL_BOOKED }}" >> .env.production
+          echo "TRELLO_LABEL_PRESSED_READY_TO_SHIP=${{ secrets.TRELLO_LABEL_PRESSED_READY_TO_SHIP }}" >> .env.production
+          echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.production
       - name: Build static site
         run: npm run build
         env:
@@ -36,25 +57,6 @@ jobs:
           NEXT_PUBLIC_LISTMONK_LIST_UUID: ab776f98-a8ae-4e1b-9958-47d4deeefe3d
           NEXT_PUBLIC_BURPEE_HUB_URL: https://api.busydadtraining.com/hubs/burpees
           NEXT_PUBLIC_LEADERBOARD_HUB_URL: https://api.busydadtraining.com/hubs/leaderboard
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-          PRINTFUL_ACCESS_TOKEN: ${{ secrets.PRINTFUL_ACCESS_TOKEN }}
-          PRINTFUL_STORE_ID: ${{ secrets.PRINTFUL_STORE_ID }}
-          TRELLO_API_KEY: ${{ secrets.TRELLO_API_KEY }}
-          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
-          TRELLO_BOARD_ID: ${{ secrets.TRELLO_BOARD_ID }}
-          TRELLO_LIST_NEW_ORDERS: ${{ secrets.TRELLO_LIST_NEW_ORDERS }}
-          TRELLO_LABEL_YELLOW: ${{ secrets.TRELLO_LABEL_YELLOW }}
-          TRELLO_LABEL_ORANGE: ${{ secrets.TRELLO_LABEL_ORANGE }}
-          TRELLO_LABEL_PURPLE: ${{ secrets.TRELLO_LABEL_PURPLE }}
-          TRELLO_LABEL_CHECK_PRINTFUL: ${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}
-          TRELLO_LABEL_GARMENTS_IN_STOCK: ${{ secrets.TRELLO_LABEL_GARMENTS_IN_STOCK }}
-          TRELLO_LABEL_DESIGN_FILE_COMPLETED: ${{ secrets.TRELLO_LABEL_DESIGN_FILE_COMPLETED }}
-          TRELLO_LABEL_DTF_PRINTED: ${{ secrets.TRELLO_LABEL_DTF_PRINTED }}
-          TRELLO_LABEL_READY_FOR_HEAT_PRESS: ${{ secrets.TRELLO_LABEL_READY_FOR_HEAT_PRESS }}
-          TRELLO_LABEL_ROYAL_MAIL_BOOKED: ${{ secrets.TRELLO_LABEL_ROYAL_MAIL_BOOKED }}
-          TRELLO_LABEL_PRESSED_READY_TO_SHIP: ${{ secrets.TRELLO_LABEL_PRESSED_READY_TO_SHIP }}
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -68,22 +70,3 @@ jobs:
           skip_app_build: true
         env:
           apiRuntime: "node:20"
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
-          STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-          PRINTFUL_ACCESS_TOKEN: ${{ secrets.PRINTFUL_ACCESS_TOKEN }}
-          PRINTFUL_STORE_ID: ${{ secrets.PRINTFUL_STORE_ID }}
-          TRELLO_API_KEY: ${{ secrets.TRELLO_API_KEY }}
-          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
-          TRELLO_BOARD_ID: ${{ secrets.TRELLO_BOARD_ID }}
-          TRELLO_LIST_NEW_ORDERS: ${{ secrets.TRELLO_LIST_NEW_ORDERS }}
-          TRELLO_LABEL_YELLOW: ${{ secrets.TRELLO_LABEL_YELLOW }}
-          TRELLO_LABEL_ORANGE: ${{ secrets.TRELLO_LABEL_ORANGE }}
-          TRELLO_LABEL_PURPLE: ${{ secrets.TRELLO_LABEL_PURPLE }}
-          TRELLO_LABEL_CHECK_PRINTFUL: ${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}
-          TRELLO_LABEL_GARMENTS_IN_STOCK: ${{ secrets.TRELLO_LABEL_GARMENTS_IN_STOCK }}
-          TRELLO_LABEL_DESIGN_FILE_COMPLETED: ${{ secrets.TRELLO_LABEL_DESIGN_FILE_COMPLETED }}
-          TRELLO_LABEL_DTF_PRINTED: ${{ secrets.TRELLO_LABEL_DTF_PRINTED }}
-          TRELLO_LABEL_READY_FOR_HEAT_PRESS: ${{ secrets.TRELLO_LABEL_READY_FOR_HEAT_PRESS }}
-          TRELLO_LABEL_ROYAL_MAIL_BOOKED: ${{ secrets.TRELLO_LABEL_ROYAL_MAIL_BOOKED }}
-          TRELLO_LABEL_PRESSED_READY_TO_SHIP: ${{ secrets.TRELLO_LABEL_PRESSED_READY_TO_SHIP }}
