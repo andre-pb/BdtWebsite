@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
+export const dynamic = 'force-dynamic';
 
 interface CartRequestItem {
     id: string;
@@ -127,6 +127,7 @@ export async function POST(request: Request) {
             sessionConfiguration.payment_method_types = ['card'];
         }
 
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
         const session = await stripe.checkout.sessions.create(sessionConfiguration);
         return NextResponse.json({ url: session.url });
 
