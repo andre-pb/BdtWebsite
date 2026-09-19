@@ -129,7 +129,9 @@ export function Header() {
           </Link>
 
           <div className="header-desktop-nav" style={{ display: "flex", gap: "32px", alignItems: "center" }}>
-            {navLinks.map((link) => (
+            {/* Home is listed explicitly: the logo also links home, but not
+                everyone knows that convention. Matches the mobile menu. */}
+            {[{ label: "Home", href: "/" }, ...navLinks].map((link) => (
               <NavLink key={link.href} href={link.href}>
                 {link.label}
               </NavLink>

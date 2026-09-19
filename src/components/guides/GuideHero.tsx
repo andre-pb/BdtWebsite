@@ -1,10 +1,13 @@
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideData } from "@/content/guide-types";
 import { colors } from "@/constants/colors";
 import { eyebrowStyle } from "@/components/ui/Typography";
 import { PageContainer } from "@/components/ui/PageContainer";
 
-export function GuideHero() {
-  const { hero } = bestHomeWorkoutAppsPage;
+type Props = { guide?: GuideData };
+
+export function GuideHero({ guide = bestHomeWorkoutAppsPage }: Props) {
+  const { hero } = guide;
 
   return (
     <section
@@ -46,7 +49,8 @@ export function GuideHero() {
             marginBottom: 0,
           }}
         >
-          Updated {bestHomeWorkoutAppsPage.dateModified}
+          Written by Max Edwards, creator of Busy Dad Training · Updated{" "}
+          <time dateTime={guide.dateModified}>{guide.dateModified}</time>
         </p>
       </PageContainer>
     </section>

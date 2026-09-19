@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideApp } from "@/content/guide-types";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { bodyStyle, headingStyle } from "@/components/ui/Typography";
-
-type GuideApp = (typeof bestHomeWorkoutAppsPage.apps)[number];
 
 type AppReviewSectionProps = {
   app: GuideApp;
@@ -14,6 +12,7 @@ type AppReviewSectionProps = {
 export function AppReviewSection({ app, variant }: AppReviewSectionProps) {
   const isLight = variant === "light";
   const websiteHost = new URL(app.websiteUrl).hostname.replace(/^www\./, "");
+  const metaBits = [app.platforms, app.ratingNote].filter(Boolean);
 
   return (
     <section
@@ -31,6 +30,11 @@ export function AppReviewSection({ app, variant }: AppReviewSectionProps) {
         <p style={{ ...bodyStyle, fontSize: "0.95rem", marginBottom: "0.5rem" }}>
           <strong style={{ color: colors.textMain }}>Best for:</strong> {app.bestFor}
         </p>
+        {metaBits.length > 0 && (
+          <p style={{ ...bodyStyle, fontSize: "0.9rem", color: colors.textLight, marginBottom: "1rem" }}>
+            {metaBits.join(" · ")}
+          </p>
+        )}
         <p style={bodyStyle}>{app.summary}</p>
         <p style={{ ...bodyStyle, marginBottom: "1.5rem" }}>
           <a
@@ -41,11 +45,27 @@ export function AppReviewSection({ app, variant }: AppReviewSectionProps) {
           >
             {websiteHost}
           </a>
+          {app.appStoreUrl && (
+            <>
+              {" · "}
+              <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer" style={{ color: colors.brandBlue, fontWeight: 600 }}>
+                App Store
+              </a>
+            </>
+          )}
+          {app.googlePlayUrl && (
+            <>
+              {" · "}
+              <a href={app.googlePlayUrl} target="_blank" rel="noopener noreferrer" style={{ color: colors.brandBlue, fontWeight: 600 }}>
+                Google Play
+              </a>
+            </>
+          )}
           {app.isOwnProduct && (
             <>
               {" · "}
-              <Link href="/" style={{ color: colors.brandBlue, fontWeight: 600 }}>
-                busydadtraining.com
+              <Link href="/pricing/" style={{ color: colors.brandBlue, fontWeight: 600 }}>
+                Pricing
               </Link>
             </>
           )}

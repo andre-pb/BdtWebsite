@@ -1,10 +1,13 @@
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideData } from "@/content/guide-types";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { headingStyle } from "@/components/ui/Typography";
 
-export function ComparisonTable() {
-  const { apps, comparisonColumns } = bestHomeWorkoutAppsPage;
+type Props = { guide?: GuideData };
+
+export function ComparisonTable({ guide = bestHomeWorkoutAppsPage }: Props) {
+  const { apps, comparisonColumns } = guide;
 
   return (
     <section aria-labelledby="comparison-table-heading" style={{ padding: "80px 0", backgroundColor: colors.bgOff }}>
@@ -25,6 +28,10 @@ export function ComparisonTable() {
               boxShadow: "0 4px 24px -8px rgba(15,23,42,0.08)",
             }}
           >
+            <caption style={{ captionSide: "bottom", textAlign: "left", padding: "0.75rem 0 0", color: colors.textLight, fontSize: "0.85rem" }}>
+              Session length, equipment, focus and pricing for each app. Prices checked{" "}
+              {guide.dateModified}; they vary by store and region.
+            </caption>
             <thead>
               <tr style={{ backgroundColor: colors.heroDark, color: "white" }}>
                 <th
@@ -71,7 +78,9 @@ export function ComparisonTable() {
                       color: colors.textMain,
                     }}
                   >
-                    {app.name}
+                    <a href={`#${app.id}`} style={{ color: "inherit", textDecoration: "none" }}>
+                      {app.name}
+                    </a>
                     {app.isOwnProduct && (
                       <span
                         style={{
@@ -89,18 +98,18 @@ export function ComparisonTable() {
                       </span>
                     )}
                   </th>
-                  <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{app.sessionLength}</td>
-                  <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{app.equipment}</td>
-                  <td style={{ padding: "1rem 1.25rem", color: colors.textMuted }}>{app.focus}</td>
-                  <td
-                    style={{
-                      padding: "1rem 1.25rem",
-                      fontWeight: app.isOwnProduct ? 600 : 400,
-                      color: app.isOwnProduct ? colors.textMain : colors.textMuted,
-                    }}
-                  >
-                    {app.price}
-                  </td>
+                  {comparisonColumns.map((col) => (
+                    <td
+                      key={col.key}
+                      style={{
+                        padding: "1rem 1.25rem",
+                        fontWeight: app.isOwnProduct && col.key === "price" ? 600 : 400,
+                        color: app.isOwnProduct && col.key === "price" ? colors.textMain : colors.textMuted,
+                      }}
+                    >
+                      {app[col.key] ?? "—"}
+                    </td>
+                  ))}
                 </tr>
               ))}
             </tbody>

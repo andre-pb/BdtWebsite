@@ -4,7 +4,9 @@ import { DownloadSection } from "@/components/home/DownloadSection";
 import { PrinciplesHero } from "@/components/principles/PrinciplesHero";
 import { PrincipleSection } from "@/components/principles/PrincipleSection";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { RelatedGuides } from "@/components/ui/RelatedGuides";
 import { principlesPage } from "@/content/principles";
+import { relatedFor } from "@/content/related-guides";
 import {
   createPageMetadata,
   getBreadcrumbJsonLd,
@@ -47,6 +49,9 @@ export default function PrinciplesPage() {
             variant={index % 2 === 0 ? "light" : "dark"}
           />
         ))}
+        <RelatedGuides
+          links={relatedFor("/principles/", ["levels", "movements", "about", "twentyMinuteGuide"])}
+        />
         <DownloadSection />
       </main>
       <Footer />

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { aboutPage } from "@/content/about";
-import { appPricing, appStores, appScreenshots, seo, site, youtube, testimonials, burpeeStat } from "@/content/site";
+import { appPricing, appStores, appScreenshots, seo, site, youtube, testimonials, burpeeStat, appStoreRating, storeRatings, founderProfiles } from "@/content/site";
 import { movementsPage } from "@/content/movements";
 import { levelsPage } from "@/content/levels";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideData } from "@/content/guide-types";
 
 const siteUrl = site.url;
 
@@ -14,6 +15,7 @@ export function getAppOffersJsonLd() {
       price: String(appPricing.monthly.amount),
       priceCurrency: appPricing.monthly.currency,
       description: appPricing.monthly.display,
+      availability: "https://schema.org/InStock",
       priceSpecification: {
         "@type": "UnitPriceSpecification",
         price: String(appPricing.monthly.amount),
@@ -26,6 +28,7 @@ export function getAppOffersJsonLd() {
       price: String(appPricing.annual.amount),
       priceCurrency: appPricing.annual.currency,
       description: appPricing.annual.display,
+      availability: "https://schema.org/InStock",
       priceSpecification: {
         "@type": "UnitPriceSpecification",
         price: String(appPricing.annual.amount),
@@ -34,6 +37,107 @@ export function getAppOffersJsonLd() {
       },
     },
   ];
+}
+
+export function getProductJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${siteUrl}/#product`,
+    name: site.name,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "iOS, Android",
+    description: seo.description,
+    offers: getAppOffersJsonLd(),
+    aggregateRating: { "@id": `${siteUrl}/#aggregate-rating` },
+    brand: { "@id": `${siteUrl}/#brand` },
+    dateModified: storeRatings.app.updated,
+    softwareVersion: storeRatings.app.version,
+    downloadUrl: [appStores.appStoreUrl, appStores.googlePlayUrl],
+    image: {
+      "@type": "ImageObject",
+      url: absoluteUrl(appScreenshots.home.src),
+      width: appScreenshots.home.width,
+      height: appScreenshots.home.height,
+      caption: appScreenshots.home.alt,
+    },
+    featureList: [
+      "20-minute workout timer",
+      "Four-tier level progression with Landmark Workouts",
+      "6-count and Navy Seal burpee tracking",
+      "Global community and burpee leaderboard",
+      "No equipment required",
+      "7-day free trial",
+    ],
+    screenshot: [
+      absoluteUrl(appScreenshots.home.src),
+      absoluteUrl(appScreenshots.train.src),
+      absoluteUrl(appScreenshots.levels.src),
+      absoluteUrl(appScreenshots.stats.src),
+      absoluteUrl(appScreenshots.community.src),
+    ],
+    sameAs: [appStores.appStoreUrl, appStores.googlePlayUrl],
+  };
+}
+
+export function getBrandJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Brand",
+    "@id": `${siteUrl}/#brand`,
+    name: site.name,
+    url: siteUrl,
+    logo: absoluteUrl(site.logo.src),
+    description: seo.description,
+    slogan: "Short home workouts for busy dads in 20 minutes",
+    sameAs: [youtube.url, appStores.appStoreUrl, appStores.googlePlayUrl],
+    identifier: ["com.busydadtraining.busydadtrainingapp"],
+  };
+}
+
+export function getPricingItemListJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Busy Dad Training Pricing Plans",
+    description: "Simple, transparent pricing: monthly or annual subscription with a 7-day free trial.",
+    numberOfItems: 2,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Monthly Plan",
+        item: {
+          "@type": "Product",
+          name: "Busy Dad Training Monthly",
+          description: "Monthly subscription to Busy Dad Training. Cancel anytime. Best for trying the programme.",
+          offers: {
+            "@type": "Offer",
+            price: String(appPricing.monthly.amount),
+            priceCurrency: appPricing.monthly.currency,
+            availability: "https://schema.org/InStock",
+          },
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Annual Plan",
+        item: {
+          "@type": "Product",
+          name: "Busy Dad Training Annual",
+          description: "Annual subscription to Busy Dad Training. Save 17% vs monthly. Best for committed practitioners.",
+          offers: {
+            "@type": "Offer",
+            price: String(appPricing.annual.amount),
+            priceCurrency: appPricing.annual.currency,
+            availability: "https://schema.org/InStock",
+          },
+        },
+      },
+    ],
+  };
 }
 
 export function absoluteUrl(path: string): string {
@@ -196,9 +300,9 @@ export function getSiteJsonLd() {
           "Navy Seal burpee",
         ],
         worksFor: { "@id": `${siteUrl}/#organization` },
-        // Add Max's personal profiles (Instagram, X, LinkedIn) here to
-        // strengthen entity disambiguation for search engines and LLMs.
-        sameAs: [youtube.url],
+        // Personal profiles live in content/site.ts (founderProfiles) so
+        // they can be added without touching schema code.
+        sameAs: [youtube.url, ...founderProfiles],
       },
       {
         "@type": "MobileApplication",
@@ -218,10 +322,15 @@ export function getWebPageJsonLd({
   title,
   description,
   path,
+  datePublished,
+  dateModified,
 }: {
   title: string;
   description: string;
   path: string;
+  /** Optional freshness signals. Pass them on any page that tracks dates. */
+  datePublished?: string;
+  dateModified?: string;
 }) {
   const url = absoluteUrl(path);
 
@@ -234,6 +343,14 @@ export function getWebPageJsonLd({
     description,
     isPartOf: { "@id": `${siteUrl}/#website` },
     inLanguage: "en-GB",
+    about: { "@id": `${siteUrl}/#organization` },
+    // Tells assistants which parts of the page are the direct answer.
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "[data-speakable]"],
+    },
+    ...(datePublished ? { datePublished } : {}),
+    ...(dateModified ? { dateModified } : {}),
   };
 }
 
@@ -297,7 +414,7 @@ const movementHowToSteps = {
     },
     {
       name: "Counts 3–4: push up",
-      text: "Lower your chest to the ground and press back up to plank. This is where the upper body — chest, shoulders, triceps — takes the limelight.",
+      text: "Lower your chest to the ground and press back up to plank. This is where the upper body (chest, shoulders, triceps) takes the limelight.",
     },
     {
       name: "Counts 5–6: stand up",
@@ -310,8 +427,8 @@ const movementHowToSteps = {
       text: "From standing, drop into a squat, place your hands on the ground, and kick your feet back into a plank position.",
     },
     {
-      name: "Counts 3–8: the upper-body work",
-      text: "Move through the six-count upper-body sequence that engages core, chest, shoulders, triceps, scapula, traps, and lats. Call out every count.",
+      name: "Counts 3–8: three push-ups with knee drives",
+      text: "Three full push-ups with a knee-to-elbow drive after the first and the second (push-up, right knee, push-up, left knee, push-up). This six-count plank sequence engages core, chest, shoulders, triceps, scapula, traps, and lats. Call out every count.",
     },
     {
       name: "Counts 9–10: stand up",
@@ -365,7 +482,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "Why does the Busy Dad Program only use two movements?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "BDP is a minimalist program. Rather than performing an endless library of isolation exercises, practitioners train two compound movements — the Sacred Movements — that recruit the whole body as an integrated system and activate every major muscle group. The aim is to cultivate excellence in those two movements, not breadth across many.",
+          text: "BDP is a minimalist program. Rather than performing an endless library of isolation exercises, practitioners train two compound movements, the Sacred Movements, that recruit the whole body as an integrated system and activate every major muscle group. The aim is to cultivate excellence in those two movements, not breadth across many.",
         },
       },
       {
@@ -373,7 +490,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "How long should I train each week on the Busy Dad Program?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Exactly 80 minutes per week — not a minute more, not a minute less. The preferred breakdown is four 20-minute sessions, but practitioners are free to divide the 80 minutes however they choose.",
+          text: "Exactly 80 minutes per week: not a minute more, not a minute less. The preferred breakdown is four 20-minute sessions, but practitioners are free to divide the 80 minutes however they choose.",
         },
       },
       {
@@ -381,7 +498,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "Is 80 minutes a week really enough to get fit?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Just 80 minutes per week is enough to see profound training results — provided every minute is of the highest possible quality. Because the training budget is so restrictive, every workout must be deliberate and goal-directed, and that intensity is what produces results.",
+          text: "Yes. Just 80 minutes per week is enough to see profound training results, provided every minute is of the highest possible quality. Because the training budget is so restrictive, every workout must be deliberate and goal-directed, and that intensity is what produces results.",
         },
       },
       {
@@ -389,7 +506,7 @@ export function getPrinciplesFaqJsonLd() {
         name: "Who created the Busy Dad Program?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Busy Dad Training was created by Max Edwards, who developed the program out of the conviction that two compound burpee variations — the 6-count military burpee and the Navy Seal burpee — yield all a person needs to build elite fitness and strength.",
+          text: "Busy Dad Training was created by Max Edwards, who developed the program out of the conviction that two compound burpee variations, the 6-count military burpee and the Navy Seal burpee, yield all a person needs to build elite fitness and strength.",
         },
       },
     ],
@@ -414,7 +531,7 @@ export function getMovementsFaqJsonLd() {
         name: "What is a 6-count military burpee?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The 6-count military burpee is a six-part compound movement that recruits every major muscle group. The core is engaged throughout. The legs and posterior chain work hardest at counts 1–2 and 5–6, and the upper body — chest, shoulders, triceps — takes over at counts 3–4. The 6-count excels at building leg strength and cardiovascular fitness.",
+          text: "The 6-count military burpee is a six-part compound movement that recruits every major muscle group. The core is engaged throughout. The legs and posterior chain work hardest at counts 1–2 and 5–6, and the upper body (chest, shoulders, triceps) takes over at counts 3–4. The 6-count excels at building leg strength and cardiovascular fitness.",
         },
       },
       {
@@ -430,7 +547,7 @@ export function getMovementsFaqJsonLd() {
         name: "How is the American military burpee different from a CrossFit burpee?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The American military burpee has very little in common with the more familiar burpee popularised by CrossFit. Until recently it was a niche movement largely confined to the US military and prison culture. The Sacred Movements of BDP — the 6-count and the Navy Seal — are the two most effective variations of the American military burpee.",
+          text: "The American military burpee has very little in common with the more familiar burpee popularised by CrossFit. Until recently it was a niche movement largely confined to the US military and prison culture. The Sacred Movements of BDP, the 6-count and the Navy Seal, are the two most effective variations of the American military burpee.",
         },
       },
       {
@@ -522,7 +639,7 @@ export function getLevelsFaqJsonLd() {
         name: "What are the four levels of the Busy Dad Program?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "The Busy Dad Program has four levels — Level 1, Level 2, Level 3, and Level 4 — followed by Graduation. Level 1 is further subdivided into 1A, 1B, 1C, and 1D. Each level is unlocked by two Landmark Workouts: one 20-minute 6-count workout and one 20-minute Navy Seal workout.",
+          text: "The Busy Dad Program has four levels (Level 1, Level 2, Level 3, and Level 4) followed by Graduation. Level 1 is further subdivided into 1A, 1B, 1C, and 1D. Each level is unlocked by two Landmark Workouts: one 20-minute 6-count workout and one 20-minute Navy Seal workout.",
         },
       },
       {
@@ -660,8 +777,10 @@ export function getGuideAppJsonLd() {
       "No equipment required",
     ],
     screenshot: [
-      absoluteUrl(appScreenshots.timer.src),
+      absoluteUrl(appScreenshots.home.src),
+      absoluteUrl(appScreenshots.train.src),
       absoluteUrl(appScreenshots.levels.src),
+      absoluteUrl(appScreenshots.stats.src),
       absoluteUrl(appScreenshots.community.src),
     ],
     offers: getAppOffersJsonLd(),
@@ -691,10 +810,10 @@ export function getAggregateRatingJsonLd() {
     "@type": "AggregateRating",
     "@id": `${siteUrl}/#aggregate-rating`,
     itemReviewed: { "@id": `${siteUrl}/#app` },
-    ratingCount: burpeeStat.value,
-    ratingValue: "4.8",
-    bestRating: "5",
-    worstRating: "1",
+    ratingCount: appStoreRating.reviewCount,
+    ratingValue: appStoreRating.ratingValue,
+    bestRating: appStoreRating.bestRating,
+    worstRating: appStoreRating.worstRating,
   };
 }
 
@@ -710,4 +829,108 @@ export function getHomepageReviewJsonLd() {
     reviewBody: t.quote,
     itemReviewed: { "@id": `${siteUrl}/#app` },
   }));
+}
+
+
+/** ItemList schema for any app-roundup guide (see content/guide-types.ts). */
+export function getGuideItemListJsonLd(guide: GuideData) {
+  const url = absoluteUrl(guide.path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "@id": `${url}#list`,
+    name: guide.listName,
+    description: guide.seo.description,
+    url,
+    numberOfItems: guide.apps.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: guide.apps.map((app, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: app.name,
+      url: `${url}#${app.id}`,
+      item: app.isOwnProduct
+        ? { "@id": `${siteUrl}/#product` }
+        : {
+            "@type": "SoftwareApplication",
+            name: app.name,
+            url: app.websiteUrl,
+            applicationCategory: "HealthApplication",
+            operatingSystem: app.platforms ?? "iOS, Android",
+            ...(app.appStoreUrl || app.googlePlayUrl
+              ? { sameAs: [app.appStoreUrl, app.googlePlayUrl].filter(Boolean) }
+              : {}),
+          },
+    })),
+  };
+}
+
+/** Editorial Review of each third-party app in a roundup, authored by Max. */
+export function getGuideReviewsJsonLd(guide: GuideData) {
+  const url = absoluteUrl(guide.path);
+
+  return guide.apps
+    .filter((app) => !app.isOwnProduct)
+    .map((app) => ({
+      "@context": "https://schema.org",
+      "@type": "Review",
+      "@id": `${url}#review-${app.id}`,
+      url: `${url}#${app.id}`,
+      name: `${app.name} review`,
+      reviewBody: app.summary,
+      positiveNotes: {
+        "@type": "ItemList",
+        itemListElement: app.pros.map((text, i) => ({ "@type": "ListItem", position: i + 1, name: text })),
+      },
+      negativeNotes: {
+        "@type": "ItemList",
+        itemListElement: app.cons.map((text, i) => ({ "@type": "ListItem", position: i + 1, name: text })),
+      },
+      author: { "@id": `${siteUrl}/#max-edwards` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      datePublished: guide.datePublished,
+      itemReviewed: {
+        "@type": "SoftwareApplication",
+        name: app.name,
+        url: app.websiteUrl,
+        applicationCategory: "HealthApplication",
+        operatingSystem: app.platforms ?? "iOS, Android",
+      },
+    }));
+}
+
+/**
+ * DefinedTerm schema for the two burpee variations. Gives search engines and
+ * LLMs an explicit "this site defines this term" signal, which is how a
+ * small site becomes the canonical source for a phrase it popularised.
+ */
+export function getDefinedTermJsonLd({
+  path,
+  term,
+  alternateNames,
+  definition,
+}: {
+  path: string;
+  term: string;
+  alternateNames: readonly string[];
+  definition: string;
+}) {
+  const url = absoluteUrl(path);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    "@id": `${url}#term`,
+    name: term,
+    alternateName: [...alternateNames],
+    description: definition,
+    url,
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      "@id": `${siteUrl}/movements/#terms`,
+      name: "Busy Dad Training movement glossary",
+      url: absoluteUrl("/movements/"),
+    },
+  };
 }

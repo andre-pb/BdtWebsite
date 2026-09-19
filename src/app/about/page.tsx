@@ -4,9 +4,13 @@ import { DownloadSection } from "@/components/home/DownloadSection";
 import { AboutHero } from "@/components/about/AboutHero";
 import { AboutBio } from "@/components/about/AboutBio";
 import { OriginTimeline } from "@/components/about/OriginTimeline";
+import { FaqSection } from "@/components/guides/FaqSection";
+import { RelatedGuides } from "@/components/ui/RelatedGuides";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { aboutPage } from "@/content/about";
+import { relatedFor } from "@/content/related-guides";
 import {
+  buildFaqJsonLd,
   createPageMetadata,
   getAboutVideoJsonLd,
   getBreadcrumbJsonLd,
@@ -32,6 +36,7 @@ export default function AboutPage() {
             { name: "About Max", path: "/about/" },
           ]),
           getAboutVideoJsonLd(),
+          buildFaqJsonLd(aboutPage.faqs),
         ]}
       />
       <Header />
@@ -39,6 +44,8 @@ export default function AboutPage() {
         <AboutHero />
         <AboutBio />
         <OriginTimeline />
+        <FaqSection title="Questions about Max and the programme" faqs={aboutPage.faqs} headingId="about-faq-heading" />
+        <RelatedGuides links={relatedFor("/about/", ["principles", "community", "levels", "twentyMinuteGuide"])} />
         <DownloadSection />
       </main>
       <Footer />

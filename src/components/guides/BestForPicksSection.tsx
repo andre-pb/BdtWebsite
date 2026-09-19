@@ -1,10 +1,13 @@
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideData } from "@/content/guide-types";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { bodyStyle, headingStyle } from "@/components/ui/Typography";
 
-export function BestForPicksSection() {
-  const { bestForPicks, apps } = bestHomeWorkoutAppsPage;
+type Props = { guide?: GuideData };
+
+export function BestForPicksSection({ guide = bestHomeWorkoutAppsPage }: Props) {
+  const { bestForPicks, apps } = guide;
   const appById = Object.fromEntries(apps.map((app) => [app.id, app.name]));
 
   return (
@@ -25,7 +28,7 @@ export function BestForPicksSection() {
         >
           {bestForPicks.picks.map((pick) => (
             <li
-              key={pick.appId}
+              key={pick.label}
               style={{
                 padding: "1.5rem",
                 borderRadius: "12px",
@@ -37,7 +40,9 @@ export function BestForPicksSection() {
                 {pick.label}
               </p>
               <p style={{ margin: "0 0 0.5rem", color: colors.brandBlue, fontWeight: 600 }}>
-                {appById[pick.appId]}
+                <a href={`#${pick.appId}`} style={{ color: "inherit", textDecoration: "none" }}>
+                  {appById[pick.appId]}
+                </a>
               </p>
               <p style={{ ...bodyStyle, marginBottom: 0, fontSize: "1rem" }}>{pick.reason}</p>
             </li>

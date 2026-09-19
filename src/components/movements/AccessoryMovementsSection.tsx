@@ -1,4 +1,4 @@
-// Temporarily disabled — uncomment alongside movementsPage.accessory and the page import.
+// Temporarily disabled. Uncomment alongside movementsPage.accessory and the page import.
 
 export function AccessoryMovementsSection() {
   return null;

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { philosophy } from "@/content/site";
 import { colors } from "@/constants/colors";
@@ -62,6 +61,29 @@ export function PhilosophySection() {
               {philosophy.guideLink.label} →
             </Link>
           </p>
+          <nav aria-label="Guides" style={{ marginBottom: "1.5rem" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+              {philosophy.moreGuides.map((guide) => (
+                <li key={guide.href}>
+                  <Link
+                    href={guide.href}
+                    style={{
+                      display: "inline-block",
+                      padding: "0.4rem 0.9rem",
+                      borderRadius: "999px",
+                      border: `1px solid ${colors.borderBlue}`,
+                      color: colors.brandBlue,
+                      fontWeight: 600,
+                      fontSize: "0.85rem",
+                      textDecoration: "none",
+                    }}
+                  >
+                    {guide.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
           <div
             style={{
               marginTop: "32px",
@@ -82,11 +104,22 @@ export function PhilosophySection() {
           </div>
         </div>
         <div>
-          <Image
+          {/* Plain <img>: static export can't build a srcset through next/image.
+              Variants live in public/images/busy-dad-max-{480,720,1080}.webp;
+              lazy + low priority so it never competes with the hero. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={philosophy.image}
+            srcSet={[480, 720, 1080]
+              .map((w) => `${philosophy.image.replace(/\/[^/]+$/, "")}/busy-dad-max-${w}.webp ${w}w`)
+              .join(", ")}
+            sizes="(max-width: 420px) 100vw, 420px"
             alt={philosophy.imageAlt}
             width={852}
             height={1280}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
             style={{
               width: "100%",
               maxWidth: "420px",

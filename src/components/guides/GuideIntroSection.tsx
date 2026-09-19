@@ -1,10 +1,13 @@
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideData } from "@/content/guide-types";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { bodyStyle, headingStyle } from "@/components/ui/Typography";
 
-export function GuideIntroSection() {
-  const { intro, criteria } = bestHomeWorkoutAppsPage;
+type Props = { guide?: GuideData };
+
+export function GuideIntroSection({ guide = bestHomeWorkoutAppsPage }: Props) {
+  const { intro, criteria } = guide;
 
   return (
     <section aria-labelledby="guide-intro-heading" style={{ padding: "100px 0", backgroundColor: colors.bgPure }}>

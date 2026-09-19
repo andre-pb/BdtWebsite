@@ -1,5 +1,10 @@
-const listmonkUrl = process.env.NEXT_PUBLIC_LISTMONK_URL?.replace(/\/$/, "");
-const listUuid = process.env.NEXT_PUBLIC_LISTMONK_LIST_UUID;
+const listmonkUrl =
+  process.env.NEXT_PUBLIC_LISTMONK_URL?.replace(/\/$/, "") ??
+  "https://mail.busydadtraining.com";
+// "BusyDadTraining" list (id 3) in Listmonk.
+const listUuid =
+  process.env.NEXT_PUBLIC_LISTMONK_LIST_UUID ??
+  "ab776f98-a8ae-4e1b-9958-47d4deeefe3d";
 
 export type SubscribeResult =
   | { ok: true; pendingConfirmation: boolean }

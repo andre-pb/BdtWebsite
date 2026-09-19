@@ -1,19 +1,24 @@
 import { assetPath } from "@/lib/base-path";
 import { appPricing, appStores } from "@/content/site";
+import type { GuideData } from "@/content/guide-types";
 
 export const bestHomeWorkoutAppsPage = {
   path: "/best-short-home-workout-apps-for-men-2026/",
   datePublished: "2026-06-02",
-  dateModified: "2026-06-03",
+  dateModified: "2026-09-03",
+  breadcrumbLabel: "Best Home Workout Apps 2026",
+  listName: "Best Short Home Workout Apps for Men (2026)",
   seo: {
-    title: "Best Short Home Workout Apps for Men (2026)",
+    title: "Best Short Home Workout Apps for Men (2026): 20-Minute Apps Compared",
     description:
-      "An honest 2026 comparison of the best short home workout apps for men — Freeletics, Heria Pro, Seven by Perigee, Boostcamp, Thenx, and Busy Dad Training — by session length, equipment, and fit for busy dads.",
+      "An honest 2026 comparison of the best short home workout apps for men (Freeletics, Heria Pro, Seven by Perigee, Boostcamp, Thenx, and Busy Dad Training) by session length, equipment, and fit for busy dads.",
     keywords: [
       "best short home workout apps for men",
       "short home workout app",
       "home workout app for men",
       "20 minute workout app",
+      "20 minute workout app for men",
+      "short workout app for busy men",
       "bodyweight workout app",
       "busy dad workout app",
       "Freeletics alternative",
@@ -25,13 +30,15 @@ export const bestHomeWorkoutAppsPage = {
     title: "Best Short Home Workout Apps for Men (2026)",
     intro:
       "If you train at home and only have 20–30 minutes, the right app matters more than the trendiest one. We compared six popular options on session length, equipment, progression, and who each app is actually built for.",
-    backgroundImage: assetPath("/photos/burpee-photo-1.jpg"),
+    backgroundImage: assetPath("/photos/burpee-photo-1.webp"),
   },
+  quickAnswer:
+    "The best short home workout app for men in 2026 is Busy Dad Training if you want a 20-minute workout app with a fixed programme: two bodyweight movements, four 20-minute sessions a week, no equipment and objective level benchmarks (£9.99/month, 7-day trial). Seven is best for seven-minute habits, Freeletics for AI-guided variety, and Thenx or Heria Pro for calisthenics skills with a pull-up bar.",
   intro: {
     title: "Who this guide is for",
     paragraphs: [
       "This roundup is for men who want effective home training without a gym commute, complicated splits, or hour-long sessions. Every app below can be used at home; the difference is how short the workouts feel, how much equipment you need, and how prescriptive the programming is.",
-      "We evaluated each app on five criteria: typical session length, equipment requirements, progression structure, coaching style (video vs AI vs timer-led), and pricing model. Where pricing varies by region or tier, we describe the general model — check each app's store listing before you subscribe.",
+      "We evaluated each app on five criteria: typical session length, equipment requirements, progression structure, coaching style (video vs AI vs timer-led), and pricing model. Where pricing varies by region or tier, we describe the general model; check each app's store listing before you subscribe.",
     ],
   },
   criteria: {
@@ -47,7 +54,7 @@ export const bestHomeWorkoutAppsPage = {
       },
       {
         label: "Progression",
-        description: "Clear levels, benchmarks, or skill paths — vs endless random workouts.",
+        description: "Clear levels, benchmarks, or skill paths, not endless random workouts.",
       },
       {
         label: "Coaching style",
@@ -72,21 +79,22 @@ export const bestHomeWorkoutAppsPage = {
       websiteUrl: "https://busydadtraining.com/",
       appStoreUrl: appStores.appStoreUrl,
       isOwnProduct: true,
+      platforms: "iOS & Android",
       sessionLength: "20 min, 4×/week",
-      equipment: "None — bodyweight burpees",
+      equipment: "None (bodyweight burpees)",
       focus: "Minimalist burpee programme, levels, tracking",
       price: appPricing.tableLabel,
       summary:
         `Busy Dad Training is built for men who want the simplest possible home system: two compound burpee movements, a strict 80-minute weekly budget (usually four 20-minute sessions), and a four-tier level system unlocked by Landmark Workouts. Subscription is ${appPricing.summary}.`,
       pros: [
-        "Extremely short sessions with a fixed weekly time cap — no decision fatigue.",
+        "Extremely short sessions with a fixed weekly time cap, no decision fatigue.",
         "No equipment; train anywhere.",
         "Clear progression from Level 1 through Graduation with objective benchmarks.",
         `Straightforward pricing: ${appPricing.tableLabel} (${appPricing.annual.effectiveMonthly}).`,
         "Full app access: timer, levels, and community.",
       ],
       cons: [
-        "Narrow exercise menu — mastery of two movements, not exercise variety.",
+        "Narrow exercise menu: mastery of two movements, not exercise variety.",
         "Not ideal if you want dumbbell work, skill tricks, or daily workout variety.",
         "High standards at upper levels; Graduation is a long-term goal.",
       ],
@@ -100,9 +108,11 @@ export const bestHomeWorkoutAppsPage = {
       sessionLength: "15–50 min",
       equipment: "Bodyweight + optional equipment",
       focus: "AI coach, HIIT, strength, personalised plans",
-      price: "Freemium + subscription",
+      price: "Free tier + Coach from ~$34.99",
+      platforms: "iOS & Android",
+      ratingNote: "4.6 (22K ratings, App Store) · 4.5 (260K, Google Play)",
       summary:
-        "Freeletics is one of the best-known home workout apps for men, pairing bodyweight HIIT with an AI coach that adapts plans. Workouts scale from short bursts to longer sessions, with optional equipment tracks.",
+        "Freeletics is one of the best-known home workout apps for men, pairing bodyweight HIIT with an AI coach that adapts plans. Workouts run 15–45 minutes, with optional equipment tracks. Coach+ (its conversational AI coach) is included in the Coach subscription rather than sold as a separate tier.",
       pros: [
         "Strong brand and large workout library; good if you want variety.",
         "AI Coach personalises volume and exercise selection over time.",
@@ -111,7 +121,7 @@ export const bestHomeWorkoutAppsPage = {
       cons: [
         "Subscription unlocks the full experience; free tier is limited.",
         "Less rigid weekly structure than a fixed 80-minute program.",
-        "Exercise selection is broader — not a single-movement mastery model.",
+        "Exercise selection is broader, not a single-movement mastery model.",
       ],
       bestFor: "Men who want an AI-guided, varied HIIT/strength mix and do not mind subscribing.",
     },
@@ -125,14 +135,14 @@ export const bestHomeWorkoutAppsPage = {
       focus: "Calisthenics, skill work, custom plans",
       price: "$11.99/mo or $119.99/yr",
       summary:
-        "Heria Pro is Chris Heria's training app — calisthenics-focused with custom workout building, skill progressions, and follow-along content for pull strength and street-workout goals.",
+        "Heria Pro is Chris Heria's training app: calisthenics-focused with custom workout building, skill progressions, and follow-along content for pull strength and street-workout goals.",
       pros: [
         "High-quality follow-along content for street workout aesthetics.",
         "Custom workouts let you tailor session length and focus.",
         "Good progression for pull strength and skills (muscle-up, handstand path).",
       ],
       cons: [
-        "Often assumes a bar or rings for best results — not pure living-room minimalism.",
+        "Often assumes a bar or rings for best results, not pure living-room minimalism.",
         "Session length varies; less of a fixed weekly structure than a minimalist program.",
         "Overlaps with Thenx for audience; pick one calisthenics ecosystem to avoid duplication.",
       ],
@@ -148,9 +158,9 @@ export const bestHomeWorkoutAppsPage = {
       focus: "Quick daily habit workouts",
       price: "Freemium + 7 Club, around £9.99/mo or £79.99/yr",
       summary:
-        "Seven by Perigee (from the team behind the Seven — 7 Minute Workout app) targets men who want the shortest possible daily habit: seven-minute bodyweight circuits designed to be done anywhere, with optional 7 Club subscription features.",
+        "Seven by Perigee (from the team behind the Seven - 7 Minute Workout app) targets men who want the shortest possible daily habit: seven-minute bodyweight circuits designed to be done anywhere, with optional 7 Club subscription features.",
       pros: [
-        "Among the shortest sessions in this list — easy to stack into a busy morning.",
+        "Among the shortest sessions in this list, easy to stack into a busy morning.",
         "No equipment required for core workouts.",
         "Strong fit if consistency matters more than progressive overload complexity.",
       ],
@@ -171,14 +181,14 @@ export const bestHomeWorkoutAppsPage = {
       focus: "Programme marketplace + workout tracking",
       price: "Free + Pro $14.99/mo or $59.99/yr",
       summary:
-        "Boostcamp is a hub for popular lifting and hypertrophy programs (Reddit PPL, 5/3/1 variants, etc.). You pick a coach's template and log sets — ideal when you already know you want barbell work.",
+        "Boostcamp is a hub for popular lifting and hypertrophy programs (Reddit PPL, 5/3/1 variants, etc.). You pick a coach's template and log sets. Ideal when you already know you want barbell work.",
       pros: [
         "Huge library of proven strength and hypertrophy templates.",
         "Free to log workouts; many programs are affordable one-offs.",
         "Community reviews help you choose a plan that matches your schedule.",
       ],
       cons: [
-        "Typical programs are not \"short home\" by default — often 60+ minutes.",
+        "Typical programs are not \"short home\" by default, often 60+ minutes.",
         "Requires equipment for most top programs.",
         "Less hand-holding than AI-coach apps; you follow the spreadsheet mentality.",
       ],
@@ -194,7 +204,7 @@ export const bestHomeWorkoutAppsPage = {
       focus: "Calisthenics skills, programmes, progressions",
       price: "Free + Premium, around $19/mo or $114–$120/yr",
       summary:
-        "Thenx offers calisthenics workouts and skill paths (beginner to advanced) with follow-along videos — similar space to Heria, with a strong focus on bar work and physique at home.",
+        "Thenx offers calisthenics workouts and skill paths (beginner to advanced) with follow-along videos. Similar space to Heria, with a strong focus on bar work and physique at home.",
       pros: [
         "Structured skill progressions and technique breakdowns.",
         "Workouts can be relatively short for technique or pump sessions.",
@@ -215,7 +225,7 @@ export const bestHomeWorkoutAppsPage = {
         label: "Best for 20-minute bodyweight minimalism",
         appId: "busy-dad-training",
         reason:
-          "Fixed 20-minute windows, two movements, 80 minutes per week — built for dads who need zero friction.",
+          "Fixed 20-minute windows, two movements, 80 minutes per week. Built for dads who need zero friction.",
       },
       {
         label: "Best for AI-guided HIIT variety",
@@ -235,7 +245,7 @@ export const bestHomeWorkoutAppsPage = {
       {
         label: "Best for calisthenics skills (bar work)",
         appId: "thenx",
-        reason: "Skill paths and follow-along calisthenics — pair with or instead of Heria Pro.",
+        reason: "Skill paths and follow-along calisthenics. Pair with or instead of Heria Pro.",
       },
       {
         label: "Best for custom calisthenics plans",
@@ -248,7 +258,7 @@ export const bestHomeWorkoutAppsPage = {
     title: "Why Busy Dad Training fits this list",
     paragraphs: [
       "Most apps on this list optimise for variety, skills, or barbell numbers. Busy Dad Training optimises for constraint: 80 minutes per week, two Sacred Movements (6-count and Navy Seal burpees), and a level system where you unlock the next tier only by hitting Landmark Workouts in 20-minute windows.",
-      "If your goal is the shortest credible home workout for men — not the most exercises — that design is the differentiator. The app handles the timer, tracks your level, and connects you to the Busy Dad Army community.",
+      "If your goal is the shortest credible home workout for men, not the most exercises, that design is the differentiator. The app handles the timer, tracks your level, and connects you to the Busy Dad Army community.",
     ],
     internalLinks: [
       { label: "Training principles", href: "/principles/" },
@@ -261,12 +271,12 @@ export const bestHomeWorkoutAppsPage = {
     {
       question: "What is the best short home workout app for men in 2026?",
       answer:
-        "It depends on your constraint. For strict 20-minute bodyweight sessions with minimal decisions, Busy Dad Training is the strongest fit. For AI-guided variety and HIIT, Freeletics leads. For seven-minute habits, Seven by Perigee. For calisthenics skills with a pull-up bar, Thenx or Heria Pro. For gym programmes and logging, Boostcamp — but expect longer sessions and equipment.",
+        "It depends on your constraint. For strict 20-minute bodyweight sessions with minimal decisions, Busy Dad Training is the strongest fit. For AI-guided variety and HIIT, Freeletics leads. For seven-minute habits, Seven by Perigee. For calisthenics skills with a pull-up bar, Thenx or Heria Pro. For gym programmes and logging, Boostcamp, but expect longer sessions and equipment.",
     },
     {
       question: "How long should a home workout app session be for busy men?",
       answer:
-        "Twenty minutes is enough for high-quality work if the programme is designed around density and clear goals — not endless exercise swapping. Busy Dad Training standardises on 20-minute windows, four times per week. Seven by Perigee goes as short as seven minutes. Freeletics and Thenx vary; Boostcamp often assumes 45–90 minutes for strength templates.",
+        "Twenty minutes is enough for high-quality work if the programme is designed around density and clear goals, not endless exercise swapping. Busy Dad Training standardises on 20-minute windows, four times per week. Seven by Perigee goes as short as seven minutes. Freeletics and Thenx vary; Boostcamp often assumes 45–90 minutes for strength templates.",
     },
     {
       question: "Is Freeletics good for short home workouts?",
@@ -276,7 +286,7 @@ export const bestHomeWorkoutAppsPage = {
     {
       question: "Do I need gym equipment for these workout apps?",
       answer:
-        "Busy Dad Training, Seven by Perigee, and many Freeletics/Thenx/Heria Pro sessions need no gym. Boostcamp programmes often assume barbells, dumbbells, or machines. Heria Pro and Thenx work best with a pull-up bar for full value. Always check the programme you select — \"home workout\" does not always mean \"no equipment.\"",
+        "Busy Dad Training, Seven by Perigee, and many Freeletics/Thenx/Heria Pro sessions need no gym. Boostcamp programmes often assume barbells, dumbbells, or machines. Heria Pro and Thenx work best with a pull-up bar for full value. Always check the programme you select; \"home workout\" does not always mean \"no equipment.\"",
     },
     {
       question: "What makes Busy Dad Training different from Freeletics?",
@@ -286,7 +296,7 @@ export const bestHomeWorkoutAppsPage = {
     {
       question: "How much does Busy Dad Training cost?",
       answer:
-        `Busy Dad Training is ${appPricing.summary}. Heria Pro is $11.99/month or $119.99/year; Seven by Perigee's 7 Club is around £9.99/month or £79.99/year; Boostcamp Pro is $14.99/month or $59.99/year; Thenx Premium is around $19/month or $114–$120/year depending on the plan shown at checkout. Freeletics uses freemium plus subscription. Pricing varies by region — verify on the App Store or Google Play before subscribing.`,
+        `Busy Dad Training is ${appPricing.summary}. Heria Pro is $11.99/month or $119.99/year; Seven by Perigee's 7 Club is around £9.99/month or £79.99/year; Boostcamp Pro is $14.99/month or $59.99/year; Thenx Premium is around $19/month or $114–$120/year depending on the plan shown at checkout. Freeletics uses freemium plus subscription. Pricing varies by region; verify on the App Store or Google Play before subscribing.`,
     },
     {
       question: "Which app is best for calisthenics at home?",
@@ -296,9 +306,9 @@ export const bestHomeWorkoutAppsPage = {
     {
       question: "Can you build muscle with 20-minute home workouts?",
       answer:
-        "Yes — if intensity and progression are built in. Short sessions work when exercises are compound, standards rise over time, and you show up consistently. Busy Dad Training's level system encodes that progression; other apps rely on volume, skill practice, or heavier loads over longer sessions.",
+        "Yes, if intensity and progression are built in. Short sessions work when exercises are compound, standards rise over time, and you show up consistently. Busy Dad Training's level system encodes that progression; other apps rely on volume, skill practice, or heavier loads over longer sessions.",
     },
   ],
-} as const;
+} as const satisfies GuideData;
 
 export type GuideFaq = (typeof bestHomeWorkoutAppsPage.faqs)[number];

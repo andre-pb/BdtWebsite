@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { bestHomeWorkoutAppsPage } from "@/content/best-home-workout-apps";
+import type { GuideData } from "@/content/guide-types";
 import { featuredIn } from "@/content/site";
 import { colors } from "@/constants/colors";
 import { PageContainer } from "@/components/ui/PageContainer";
 import { bodyStyle, headingStyle } from "@/components/ui/Typography";
 
-export function WhyBdpSection() {
-  const { whyBdp } = bestHomeWorkoutAppsPage;
+type Props = { guide?: GuideData };
+
+export function WhyBdpSection({ guide = bestHomeWorkoutAppsPage }: Props) {
+  const { whyBdp } = guide;
 
   return (
     <section aria-labelledby="why-bdp-heading" style={{ padding: "100px 0", backgroundColor: colors.bgOff }}>
@@ -70,6 +73,11 @@ export function WhyBdpSection() {
               </a>
             </li>
           ))}
+          <li>
+            <Link href="/press/" style={{ color: colors.brandBlue, fontWeight: 500 }}>
+              All press and mentions
+            </Link>
+          </li>
         </ul>
       </PageContainer>
     </section>
