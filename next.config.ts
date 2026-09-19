@@ -5,7 +5,7 @@ const basePath = getBasePath();
 const siteUrl = getSiteUrl();
 
 const nextConfig: NextConfig = {
-  output: "export",
+  // output: "export", // Commented out to allow dynamic backend API routes like Stripe webhooks & Trello integrations
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,
   trailingSlash: true,

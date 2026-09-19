@@ -134,6 +134,8 @@ export function Header() {
                 {link.label}
               </NavLink>
             ))}
+            {/* Added Native Desktop Store Link */}
+            <NavLink href="/shop">Store</NavLink>
           </div>
 
           <NavAppStoreButtons className="header-desktop-cta" />
@@ -192,7 +194,8 @@ export function Header() {
           </button>
 
           <nav className="mobile-nav-links" aria-label="Mobile navigation">
-            {[{ label: "Home", href: "/" }, ...navLinks].map((link, index) => (
+            {/* Added Native Mobile Store Link directly to the list array mapping */}
+            {[{ label: "Home", href: "/" }, ...navLinks, { label: "Store", href: "/shop" }].map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}

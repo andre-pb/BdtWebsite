@@ -105,6 +105,7 @@ button:focus-visible {
 }
 
 @media (max-width: 640px) {
+
   .hero-store-badges .app-store-badge,
   .mobile-nav-badges .app-store-badge {
     flex-shrink: 0;
@@ -131,6 +132,7 @@ button:focus-visible {
 }
 
 @media (max-width: 360px) {
+
   .hero-store-badges .app-store-badge,
   .mobile-nav-badges .app-store-badge {
     padding: 8px 10px !important;
@@ -352,6 +354,7 @@ button:focus-visible {
 }
 
 @media (max-width: 900px) {
+
   .header-desktop-nav,
   .header-desktop-cta {
     display: none !important;
@@ -371,6 +374,7 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .header-burger span,
   .mobile-nav-backdrop,
   .mobile-nav-panel,
@@ -461,6 +465,7 @@ button:focus-visible {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -471,6 +476,7 @@ button:focus-visible {
     opacity: 0;
     transform: translateY(16px) scale(0.97);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -532,12 +538,10 @@ button:focus-visible {
 .newsletter-popup__banner-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(15, 23, 42, 0.08) 0%,
-    rgba(15, 23, 42, 0.35) 55%,
-    #111a2e 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(15, 23, 42, 0.08) 0%,
+      rgba(15, 23, 42, 0.35) 55%,
+      #111a2e 100%);
   pointer-events: none;
 }
 
@@ -784,6 +788,7 @@ button:focus-visible {
 }
 
 @media (max-width: 480px) {
+
   /* Tiny screens: even tighter section padding and slimmer side padding */
   section[style*="padding: 120px 0"] {
     padding-top: 48px !important;
