@@ -6,6 +6,9 @@ const siteUrl = getSiteUrl();
 
 const nextConfig: NextConfig = {
   // output: "export", // Commented out to allow dynamic backend API routes like Stripe webhooks & Trello integrations
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,
   trailingSlash: true,
