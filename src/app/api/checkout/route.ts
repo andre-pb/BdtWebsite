@@ -27,6 +27,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Shopping bag data is empty.' }, { status: 400 });
         }
 
+        const isUk = country === 'GB' || region === 'uk';
         let trelloCardDescription = `### 👕 Garment Production Manifest\n`;
         const totalCartAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
@@ -34,7 +35,17 @@ export async function POST(request: Request) {
             const descriptionParts = [`Size: ${item.size}`];
             if (item.logoStyle) descriptionParts.push(`Logo: ${item.logoStyle}`);
             if (item.garmentCut) descriptionParts.push(`Cut: ${item.garmentCut}`);
-            if (item.fabricSpec) descriptionParts.push(`Fabric: ${item.fabricSpec}`);
+
+            if (item.fabricSpec) {
+                let fabricLabel = item.fabricSpec;
+                if (item.fabricSpec === 'PERF') {
+                    fabricLabel = isUk ? 'Performance Poly' : '50/50 Blend';
+                } else if (item.fabricSpec === 'COTTON') {
+                    fabricLabel = 'Cotton';
+                }
+                descriptionParts.push(`Fabric: ${fabricLabel}`);
+            }
+
             if (item.badgeRank) descriptionParts.push(`Rank: ${item.badgeRank}`);
             if (item.customText && item.customText !== 'None Stamped') {
                 descriptionParts.push(`Custom Stamp: "${item.customText}"`);

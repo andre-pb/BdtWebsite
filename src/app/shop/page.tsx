@@ -74,6 +74,7 @@ export default function ShopPage() {
     const [selectedCountry, setSelectedCountry] = useState<string>('GB');
     const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
     const isUkOrder = selectedCountry === 'GB';
+    const prevCountryRef = useRef<string>(selectedCountry);
 
     const countryDropdownRef = useRef<HTMLDivElement>(null);
     const miniBagRef = useRef<HTMLDivElement>(null);
@@ -138,6 +139,7 @@ export default function ShopPage() {
     useEffect(() => {
         const savedCountry = localStorage.getItem('bdt_shop_country');
         if (savedCountry && PRINTFUL_COUNTRIES.some(c => c.code === savedCountry)) {
+            prevCountryRef.current = savedCountry;
             setSelectedCountry(savedCountry);
             return;
         }
@@ -150,6 +152,7 @@ export default function ShopPage() {
                     const detectedCode = data.country_code;
                     const isSupported = PRINTFUL_COUNTRIES.some(c => c.code === detectedCode);
                     if (isSupported) {
+                        prevCountryRef.current = detectedCode;
                         setSelectedCountry(detectedCode);
                     }
                 }
@@ -171,63 +174,135 @@ export default function ShopPage() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // 🛡️ CART AUTO-SWAP & REGIONAL PURGE GUARD
+    // 🛡️ REGIONAL CART SYNC & AUTO-PURGE GUARD
     useEffect(() => {
-        if (cart.length === 0) return;
+        if (!isMounted) return;
 
-        let itemsSwapped = false;
-        let itemsRemoved = false;
+        const prevCountry = prevCountryRef.current;
+        const wasUk = prevCountry === 'GB';
+        const nowUk = selectedCountry === 'GB';
 
-        const updatedCart = cart
-            .map((item) => {
-                // ✈️ 1. UK -> International: Convert Performance Shirt to 50/50 Shirt
-                if (!isUkOrder && (item.id.includes('performance-shirt') || item.id.includes('perf-shirt'))) {
-                    itemsSwapped = true;
+        // Only run when switching between UK and Non-UK regions
+        if (wasUk !== nowUk && cart.length > 0) {
+            let updatedCart = [...cart];
+            let vestsOrBeaniesRemoved = false;
+            let performanceSwapped = false;
+
+            // 1. Purge UK-only items (Vests & Beanies) when leaving the UK
+            if (!nowUk) {
+                const initialLength = updatedCart.length;
+                updatedCart = updatedCart.filter(item => item.garmentCut !== 'VEST' && !item.id.includes('beanie'));
+                if (updatedCart.length < initialLength) {
+                    vestsOrBeaniesRemoved = true;
+                }
+            }
+
+            // 2. Recalculate SKUs and preview images for Level Progress Gear
+            updatedCart = updatedCart.map(item => {
+                const isLevelItem = item.id.startsWith('lvl-') || item.name.includes('Level Progress Gear');
+
+                if (isLevelItem) {
+                    // Extract level parameters from item ID or properties
+                    const idParts = item.id.split('-');
+                    const levelTarget = idParts[1] || '1A';
+                    const logoStyle = item.logoStyle || 'ORIGINAL';
+                    const fabricSpec = item.fabricSpec || 'COTTON';
+                    const garmentCut = item.garmentCut || 'SHIRT';
+
+                    if (fabricSpec === 'PERF') {
+                        performanceSwapped = true;
+                    }
+
+                    // Extract size code (e.g., "Medium (M)" -> "M")
+                    const sizeCode = item.size.includes('(')
+                        ? item.size.split('(')[1].replace(')', '').trim()
+                        : item.size.split(' ')[0].trim();
+
+                    const levelCode = levelTarget.replace(/Level\s*/i, '').replace(/\s*\(.*?\)\s*/g, '').trim();
+
+                    // Recalculate regional SKU
+                    let newSku = '';
+                    if (nowUk) {
+                        newSku = `UK-${levelCode}-${fabricSpec}-${sizeCode}`;
+                    } else {
+                        const styleSuffix = logoStyle === 'BDT' ? 'BDT' : 'ORIGINAL';
+                        const lookupKey = `${levelCode}_${fabricSpec}_${styleSuffix}`;
+                        const productHexMap = PRINTFUL_CATALOG_HEX_IDS[lookupKey];
+                        newSku = productHexMap ? (productHexMap[sizeCode] || 'MISSING_HEX_ID') : 'MISSING_PRODUCT_KEY';
+                    }
+
+                    // Recalculate regional mockup image source
+                    let prefix = levelTarget.replace(/\s*\(.*?\)\s*/g, "").trim();
+                    if (prefix === "Graduated") prefix = "G";
+                    const parts = [prefix];
+                    if (logoStyle === "BDT") parts.push("BDT");
+                    if (fabricSpec === "PERF" && nowUk) parts.push("perf");
+                    if (garmentCut === "VEST") parts.push("vest");
+                    const finalPrefix = parts.join("_").replace(/__+/g, '_');
+                    const newViewSrc = `/images/${finalPrefix}_1.jpg`;
+
                     return {
                         ...item,
-                        id: item.id.replace('performance-shirt', '50-50-shirt').replace('perf-shirt', '50-50-shirt'),
-                        name: item.name.replace(/performance/i, '50/50 Blend'),
-                        supplierSku: item.supplierSku ? item.supplierSku.replace('PERF', '5050') : item.supplierSku,
+                        supplierSku: newSku,
+                        viewSrc: newViewSrc
                     };
                 }
 
-                // 🏠 2. International -> UK: Convert 50/50 Shirt back to Performance Shirt
-                if (isUkOrder && item.id.includes('50-50-shirt')) {
-                    itemsSwapped = true;
-                    return {
-                        ...item,
-                        id: item.id.replace('50-50-shirt', 'performance-shirt'),
-                        name: item.name.replace(/50\/50 blend/i, 'Performance'),
-                        supplierSku: item.supplierSku ? item.supplierSku.replace('5050', 'PERF') : item.supplierSku,
-                    };
+                // Sync Busy Dad Army Shirt SKUs across regions
+                if (item.id.startsWith('bda-')) {
+                    const sizeCode = item.size.includes('(')
+                        ? item.size.split('(')[1].replace(')', '').trim()
+                        : item.size.split(' ')[0].trim();
+                    let newSku = '';
+                    if (nowUk) {
+                        newSku = `BA220-MIL-GREEN-${sizeCode}`;
+                    } else {
+                        const armyHexMap = PRINTFUL_CATALOG_HEX_IDS['ARMY'];
+                        newSku = armyHexMap ? (armyHexMap[sizeCode] || 'MISSING_HEX_ID') : 'MISSING_PRODUCT_KEY';
+                    }
+                    return { ...item, supplierSku: newSku };
+                }
+
+                // Sync DOWN Casual Premium Tee SKUs across regions
+                if (item.id.startsWith('casual-')) {
+                    const sizeCode = item.size.includes('(')
+                        ? item.size.split('(')[1].replace(')', '').trim()
+                        : item.size.split(' ')[0].trim();
+                    let newSku = '';
+                    if (nowUk) {
+                        newSku = `SX001-ORGANIC-BLACK-${sizeCode}`;
+                    } else {
+                        const downHexMap = PRINTFUL_CATALOG_HEX_IDS['DOWN'];
+                        newSku = downHexMap ? (downHexMap[sizeCode] || 'MISSING_HEX_ID') : 'MISSING_PRODUCT_KEY';
+                    }
+                    return { ...item, supplierSku: newSku };
                 }
 
                 return item;
-            })
-            .filter((item) => {
-                // 🚫 3. Purge UK-only items (Vests and Beanies) for International orders
-                if (!isUkOrder && (item.garmentCut === 'VEST' || item.id.includes('beanie'))) {
-                    itemsRemoved = true;
-                    return false;
-                }
-                return true;
             });
 
-        // Save updated cart and notify customer if changes occurred
-        if (itemsSwapped || itemsRemoved) {
             saveCart(updatedCart);
 
-            if (itemsRemoved && itemsSwapped) {
-                window.alert("ℹ️ NOTICE:\n\nPerformance Shirts in your bag were updated to International 50/50 Blend Shirts, and UK-only items (Vests/Beanies) were removed for your selected destination.");
-            } else if (itemsSwapped && !isUkOrder) {
-                window.alert("ℹ️ NOTICE:\n\nPerformance Shirts in your bag have been updated to International 50/50 Blend Shirts for your selected destination.");
-            } else if (itemsSwapped && isUkOrder) {
-                window.alert("ℹ️ NOTICE:\n\nShirts in your bag have been updated to UK Performance Shirts for your selected destination.");
-            } else if (itemsRemoved) {
-                window.alert("ℹ️ NOTICE:\n\nSome items in your bag (Vests/Beanies) are not currently available in the selected region and have been removed.");
+            // 3. Trigger User Notifications
+            const notices: string[] = [];
+            if (vestsOrBeaniesRemoved) {
+                notices.push("• Vests/Beanies are not available in the selected region and have been removed from your bag.");
+            }
+            if (performanceSwapped) {
+                if (nowUk) {
+                    notices.push("• Your 186gsm 50/50 Cotton/Poly Blend shirt has been updated to the UK specification (135gsm Performance Poly).");
+                } else {
+                    notices.push("• Your 135gsm Performance Poly shirt has been updated to the international regional equivalent (186gsm 50/50 Cotton/Poly Blend)");
+                }
+            }
+
+            if (notices.length > 0) {
+                window.alert(`ℹ️ REGIONAL ITEM UPDATE:\n\n${notices.join("\n\n")}`);
             }
         }
-    }, [selectedCountry]);
+
+        prevCountryRef.current = selectedCountry;
+    }, [selectedCountry, isMounted]);
 
 
 
@@ -1291,7 +1366,7 @@ export default function ShopPage() {
                                             {item.garmentCut && (
                                                 <p className="text-[10px] text-white/40 mt-0.5 font-sans">
                                                     Style: {item.garmentCut === 'VEST' ? 'Vest/Tank' : 'Standard Tee'}
-                                                    {item.fabricSpec ? ` | ${item.fabricSpec === 'PERF' ? 'Performance Poly' : 'Cotton'}` : ''}
+                                                    {item.fabricSpec ? ` | ${item.fabricSpec === 'PERF' ? (selectedCountry === 'GB' ? 'Performance Poly' : '50/50 Blend') : 'Cotton'}` : ''}
                                                 </p>
                                             )}
                                             {item.logoStyle && (
