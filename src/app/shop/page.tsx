@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PRINTFUL_CATALOG_HEX_IDS } from './printful-catalog';
+import { PasscodeGuard } from "@/components/shop/PasscodeGuard";
 
 interface CartItem {
     id: string;
@@ -1057,230 +1058,16 @@ export default function ShopPage() {
                         </div>
                     </div>
 
-                    <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "48px 24px" }} className="w-full">
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full items-stretch">
+                    <PasscodeGuard>
+                        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "48px 24px" }} className="w-full">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full items-stretch">
 
-                            {/* Card 1: Level Progress Gear */}
-                            <div style={cardStyle} className="transition hover:border-white/10 duration-200">
-                                <div>
-                                    <div onClick={() => openZoomModal('view-level', levelViewSrc, levelAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
-                                        {levelViewSrc && !brokenImages[levelViewSrc] ? (
-                                            <img src={levelViewSrc} alt="Level Progress" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(levelViewSrc)} />
-                                        ) : (
-                                            <div className="flex flex-col items-center justify-center space-y-2 text-center p-4 select-none">
-                                                <div className="text-4xl opacity-[0.03] font-black tracking-widest">BDT</div>
-                                                <div className="text-xs font-mono text-white/30 uppercase tracking-widest font-bold">Image Pending</div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div style={thumbnailContainerStyle}>
-                                        {levelAssets.map((img) => !brokenImages[img] && (
-                                            <img key={img} src={img} alt="Thumb" className={`rounded-lg object-contain cursor-pointer border transition ${img === levelViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '48px', height: '48px', backgroundColor: '#090d1a' }} onClick={() => setLevelViewSrc(img)} onError={() => handleImageError(img)} />
-                                        ))}
-                                    </div>
-                                </div>
-                                <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                                    <div style={{ flexGrow: 1 }}>
-                                        <div className="mb-6">
-                                            <div className="flex justify-between items-baseline w-full">
-                                                <h3 className="text-lg font-bold text-white tracking-tight">Level Progress Gear</h3>
-                                                <span className="text-lg font-black text-white/90">{getRegionalPrice(24.99)}</span>
-                                            </div>
-                                            <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '12px', paddingBottom: '20px' }}>
-                                                The ultimate visual milestone tracker. Wear your progress with pride as you advance through the program.
-                                            </p>
-                                        </div>
-                                        <div className="space-y-4 mb-6">
-                                            <div>
-                                                <label style={labelStyle}>SELECT CURRENT LEVEL</label>
-                                                <select value={levelTarget} onChange={(e) => setLevelTarget(e.target.value)} style={inputStyle}>
-                                                    {['1A', '1B', '1C', '1D', '2A', '2B', '3A', '3B', '4A', '4B', 'Graduated'].map(lvl => (
-                                                        <option key={lvl} value={lvl}>{lvl === 'Graduated' ? 'Graduated' : `Level ${lvl}`}</option>
-                                                    ))}
-                                                </select>
-                                            </div>
-
-                                            <div>
-                                                <label style={labelStyle}>GEAR STYLE</label>
-                                                {!isUkOrder || ['3A', '3B', '4A', '4B'].includes(levelTarget) ? (
-                                                    <div style={{ ...inputStyle, border: '1px solid rgba(255,255,255,0.08)', backgroundColor: '#090d1a' }} className="font-semibold text-white/80 select-none">
-                                                        Standard Tee
-                                                    </div>
-                                                ) : (
-                                                    <select value={garmentCut} onChange={(e) => setGarmentCut(e.target.value)} style={inputStyle}>
-                                                        <option value="SHIRT">Standard Tee</option>
-                                                        <option value="VEST">Vest/Tank</option>
-                                                    </select>
-                                                )}
-                                            </div>
-
-                                            <div>
-                                                <label style={labelStyle}>FABRIC TYPE</label>
-                                                {garmentCut === 'VEST' ? (
-                                                    <div style={{ ...inputStyle, paddingRight: '14px', border: '1px solid rgba(255,255,255,0.08)', backgroundColor: '#090d1a' }} className="font-semibold text-blue-400 select-none">
-                                                        135gsm Performance Poly
-                                                    </div>
-                                                ) : (
-                                                    <select
-                                                        value={fabricSpec}
-                                                        onChange={(e) => setFabricSpec(e.target.value)}
-                                                        style={{ ...inputStyle, color: '#ffffff' }}
-                                                    >
-                                                        <option value="COTTON" style={{ color: '#ffffff', backgroundColor: '#090d1a' }}>
-                                                            190gsm 100% Pre-Shrunk Ringspun Cotton
-                                                        </option>
-                                                        <option value="PERF" style={{ color: '#ffffff', backgroundColor: '#090d1a' }}>
-                                                            {selectedCountry === 'GB'
-                                                                ? '135gsm Performance Poly'
-                                                                : '186gsm 50/50 Cotton/Poly Blend'}
-                                                        </option>
-                                                    </select>
-                                                )}
-                                            </div>
-
-                                            <div>
-                                                <label style={labelStyle}>GRAPHIC LOGO STYLE</label>
-                                                <select value={logoStyle} onChange={(e) => setLogoStyle(e.target.value)} style={inputStyle}>
-                                                    <option value="ORIGINAL">Original Busy Dad Training</option>
-                                                    <option value="BDT">BDT </option>
-                                                </select>
-                                            </div>
-
-                                            <div>
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <label style={{ ...labelStyle, marginBottom: 0 }}>SELECT GARMENT SIZE</label>
-                                                    <button onClick={() => openSizeChartModal('level')} className="text-xs font-bold text-[#3b82f6] hover:text-blue-400 hover:underline bg-transparent border-0 cursor-pointer flex items-center gap-1">📐 View Size Guide</button>
-                                                </div>
-                                                <select value={levelSize} onChange={(e) => setLevelSize(e.target.value)} style={inputStyle}>
-                                                    {['Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)', '2XL'].map(s => <option key={s} value={s}>{s}</option>)}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button onClick={handleLevelShirtCartAction} style={levelTarget === 'Graduated' ? { background: 'linear-gradient(to right, #e65c00, #F93D2A, #ff8c00)' } : {}} className={levelTarget === 'Graduated' ? "w-full font-sans font-black text-white text-xs uppercase tracking-widest rounded-lg h-14 cursor-pointer border-0 shadow-[0_4px_15px_rgba(249,61,42,0.3)] transition hover:opacity-90" : "font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg w-full h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]"}>
-                                        {levelTarget === 'Graduated' ? 'Claim Free Graduation Shirt' : 'Add To Bag'}
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Card 2: Busy Dad Army Shirt */}
-                            <div style={cardStyle} className="transition hover:border-white/10 duration-200">
-                                <div>
-                                    <div onClick={() => openZoomModal('view-army', bdaViewSrc, bdaAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
-                                        {bdaViewSrc && !brokenImages[bdaViewSrc] ? (
-                                            <img src={bdaViewSrc} alt="Busy Dad Army Shirt" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(bdaViewSrc)} />
-                                        ) : (
-                                            <div className="flex flex-col items-center justify-center space-y-2 text-center p-4 select-none">
-                                                <div className="text-4xl opacity-[0.03] font-black tracking-widest">BDT</div>
-                                                <div className="text-xs font-mono text-white/30 uppercase tracking-widest font-bold">Image Pending</div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div style={thumbnailContainerStyle}>
-                                        {bdaAssets.map((img) => !brokenImages[img] && (
-                                            <img key={img} src={img} alt="Thumb" className={`rounded-lg object-contain cursor-pointer border transition ${img === bdaViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '48px', height: '48px', backgroundColor: '#090d1a' }} onClick={() => setBdaViewSrc(img)} onError={() => handleImageError(img)} />
-                                        ))}
-                                    </div>
-                                </div>
-                                <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                                    <div style={{ flexGrow: 1 }}>
-                                        <div className="mb-6">
-                                            <div className="flex justify-between items-baseline w-full">
-                                                <h3 className="text-lg font-bold text-white tracking-tight">The Busy Dad Army Shirt</h3>
-                                                <span className="text-lg font-black text-white/90">{getRegionalPrice(29.99)}</span>
-                                            </div>
-                                            <p className="text-xs text-white/40 mt-1">Customization Included</p>
-                                            <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>Official uniform of the global collective. Get your name stamped and represent the army.</p>
-                                        </div>
-                                        <div className="space-y-4 mb-6">
-                                            <div>
-                                                <label style={labelStyle}>CUSTOM IDENTITY TEXT</label>
-                                                <input type="text" value={bdaName} onChange={(e) => setBdaName(e.target.value)} placeholder="Enter Name or Initials (e.g. M.Edwards)" style={inputStyle} />
-                                            </div>
-                                            <div>
-                                                <label style={labelStyle}>RANKING BADGE</label>
-                                                <select value={bdaBadge} onChange={(e) => setBdaBadge(e.target.value)} style={inputStyle}>
-                                                    <option value="PRACTITIONER">Practitioner</option>
-                                                    <option value="1A_PRACTITIONER">Level 1A Practitioner</option>
-                                                    <option value="1B_PRACTITIONER">Level 1B Practitioner</option>
-                                                    <option value="1C_PRACTITIONER">Level 1C Practitioner</option>
-                                                    <option value="1D_PRACTITIONER">Level 1D Practitioner</option>
-                                                    <option value="2A_PRACTITIONER">Level 2A Practitioner</option>
-                                                    <option value="2B_PRACTITIONER">Level 2B Practitioner</option>
-                                                    <option value="3A_PRACTITIONER">Level 3A Practitioner</option>
-                                                    <option value="3B_PRACTITIONER">Level 3B Practitioner</option>
-                                                    <option value="4A_PRACTITIONER">Level 4A Practitioner</option>
-                                                    <option value="4B_PRACTITIONER">Level 4B Practitioner</option>
-                                                    <option value="GRADUATED_PRACTITIONER">Graduate</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <label style={{ ...labelStyle, marginBottom: 0 }}>SELECT GARMENT SIZE</label>
-                                                    <button onClick={() => openSizeChartModal('bda')} className="text-xs font-bold text-[#3b82f6] hover:text-blue-400 hover:underline bg-transparent border-0 cursor-pointer flex items-center gap-1">📐 View Size Guide</button>
-                                                </div>
-                                                <select value={bdaSize} onChange={(e) => setBdaSize(e.target.value)} style={inputStyle}>
-                                                    {['Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)', '2XL'].map(s => <option key={s} value={s}>{s}</option>)}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button onClick={handleBdaCartAction} className="font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]">Add Custom Order</button>
-                                </div>
-                            </div>
-
-                            {/* Card 3: DOWN Casual Premium Tee */}
-                            <div style={cardStyle} className="transition hover:border-white/10 duration-200">
-                                <div>
-                                    <div onClick={() => openZoomModal('view-casual', casualViewSrc, casualAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
-                                        {casualViewSrc && !brokenImages[casualViewSrc] ? (
-                                            <img src={casualViewSrc} alt="DOWN Casual Premium Tee" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(casualViewSrc)} />
-                                        ) : (
-                                            <div className="flex flex-col items-center justify-center space-y-2 text-center p-4 select-none">
-                                                <div className="text-4xl opacity-[0.03] font-black tracking-widest">BDT</div>
-                                                <div className="text-xs font-mono text-white/30 uppercase tracking-widest font-bold">Image Pending</div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div style={thumbnailContainerStyle}>
-                                        {casualAssets.map((img) => !brokenImages[img] && (
-                                            <img key={img} src={img} alt="Thumb" className={`rounded-md object-contain cursor-pointer border transition ${img === casualViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '44px', height: '44px', backgroundColor: '#090d1a' }} onClick={() => setCasualViewSrc(img)} onError={() => handleImageError(img)} />
-                                        ))}
-                                    </div>
-                                </div>
-                                <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                                    <div style={{ flexGrow: 1 }}>
-                                        <div className="mb-6">
-                                            <div className="flex justify-between items-baseline w-full">
-                                                <h3 className="text-lg font-bold text-white tracking-tight">DOWN Casual Premium Tee</h3>
-                                                <span className="text-lg font-black text-white/90">{getRegionalPrice(29.99)}</span>
-                                            </div>
-                                            <p className="text-xs text-white/40 mt-1">Premium Organic Cotton</p>
-                                            <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>100% Organic compact ringspun cotton single Jersey (180gsm). A higher quality, premium shirt with a comfortable medium weight feel.</p>
-                                        </div>
-                                        <div className="space-y-4 mb-6">
-                                            <div>
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <label style={{ ...labelStyle, marginBottom: 0 }}>SELECT GARMENT SIZE</label>
-                                                    <button onClick={() => openSizeChartModal('premium')} className="text-xs font-bold text-[#3b82f6] hover:text-blue-400 hover:underline bg-transparent border-0 cursor-pointer flex items-center gap-1">📐 View Size Guide</button>
-                                                </div>
-                                                <select value={casualSize} onChange={(e) => setCasualSize(e.target.value)} style={inputStyle}>
-                                                    {['Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)', '2XL'].map(s => <option key={s} value={s}>{s}</option>)}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button onClick={handlePremiumDropCartAction} className="font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]">Add To Bag</button>
-                                </div>
-                            </div>
-
-                            {/* Card 4: Official BDT Headwear (UK-ONLY EXCLUSIVE) */}
-                            {isUkOrder && (
+                                {/* Card 1: Level Progress Gear */}
                                 <div style={cardStyle} className="transition hover:border-white/10 duration-200">
                                     <div>
-                                        <div onClick={() => openZoomModal('view-beanie', beanieViewSrc, beanieAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
-                                            {beanieViewSrc && !brokenImages[beanieViewSrc] ? (
-                                                <img src={beanieViewSrc} alt="BDT Headwear" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(beanieViewSrc)} />
+                                        <div onClick={() => openZoomModal('view-level', levelViewSrc, levelAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
+                                            {levelViewSrc && !brokenImages[levelViewSrc] ? (
+                                                <img src={levelViewSrc} alt="Level Progress" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(levelViewSrc)} />
                                             ) : (
                                                 <div className="flex flex-col items-center justify-center space-y-2 text-center p-4 select-none">
                                                     <div className="text-4xl opacity-[0.03] font-black tracking-widest">BDT</div>
@@ -1289,8 +1076,8 @@ export default function ShopPage() {
                                             )}
                                         </div>
                                         <div style={thumbnailContainerStyle}>
-                                            {beanieAssets.map((img) => !brokenImages[img] && (
-                                                <img key={img} src={img} alt="Thumb" className={`rounded-md object-contain cursor-pointer border transition ${img === beanieViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '44px', height: '44px', backgroundColor: '#090d1a' }} onClick={() => setBeanieViewSrc(img)} onError={() => handleImageError(img)} />
+                                            {levelAssets.map((img) => !brokenImages[img] && (
+                                                <img key={img} src={img} alt="Thumb" className={`rounded-lg object-contain cursor-pointer border transition ${img === levelViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '48px', height: '48px', backgroundColor: '#090d1a' }} onClick={() => setLevelViewSrc(img)} onError={() => handleImageError(img)} />
                                             ))}
                                         </div>
                                     </div>
@@ -1298,66 +1085,282 @@ export default function ShopPage() {
                                         <div style={{ flexGrow: 1 }}>
                                             <div className="mb-6">
                                                 <div className="flex justify-between items-baseline w-full">
-                                                    <h3 className="text-lg font-bold text-white tracking-tight">Official BDT Headwear</h3>
-                                                    <span className="text-lg font-black text-white/90">
-                                                        {beanieTier === 'NONE' ? `${getRegionalPrice(14.00)} - ${getRegionalPrice(18.00)}` : beanieTier === 'PREM' ? getRegionalPrice(18.00) : getRegionalPrice(14.00)}
-                                                    </span>
+                                                    <h3 className="text-lg font-bold text-white tracking-tight">Level Progress Gear</h3>
+                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(24.99)}</span>
                                                 </div>
-                                                <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>
-                                                    {beanieTier === 'PREM'
-                                                        ? 'Soft-touch double layer loose knit "Thinsulate" beanie that includes a thermal Thinsulate™ lining and offers plenty of warmth for chilly temperatures.'
-                                                        : beanieTier === 'STD'
-                                                            ? 'Double layered original tight knit beanie.'
-                                                            : 'Keep your bonce warm'}
+                                                <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '12px', paddingBottom: '20px' }}>
+                                                    The ultimate visual milestone tracker. Wear your progress with pride as you advance through the program.
                                                 </p>
                                             </div>
                                             <div className="space-y-4 mb-6">
                                                 <div>
-                                                    <label style={labelStyle}>SELECT BEANIE TYPE</label>
-                                                    <select value={beanieTier} onChange={(e) => setBeanieTier(e.target.value)} style={inputStyle}>
-                                                        <option value="NONE">-- Choose Beanie Variant --</option>
-                                                        <option value="STD">Original Tight Knit Beanie ({getRegionalPrice(14.00)})</option>
-                                                        <option value="PREM">Loose-knit Thinsulate beanie ({getRegionalPrice(18.00)})</option>
+                                                    <label style={labelStyle}>SELECT CURRENT LEVEL</label>
+                                                    <select value={levelTarget} onChange={(e) => setLevelTarget(e.target.value)} style={inputStyle}>
+                                                        {['1A', '1B', '1C', '1D', '2A', '2B', '3A', '3B', '4A', '4B', 'Graduated'].map(lvl => (
+                                                            <option key={lvl} value={lvl}>{lvl === 'Graduated' ? 'Graduated' : `Level ${lvl}`}</option>
+                                                        ))}
                                                     </select>
                                                 </div>
 
-                                                {beanieTier !== 'NONE' && (
-                                                    <>
-                                                        <div>
-                                                            <label style={labelStyle}>GRAPHIC LOGO STYLE</label>
-                                                            <select value={beanieLogoStyle} onChange={(e) => setBeanieLogoStyle(e.target.value)} style={inputStyle}>
-                                                                <option value="ORIGINAL">Original Busy Dad Training</option>
-                                                                <option value="BDT">BDT</option>
-                                                            </select>
+                                                <div>
+                                                    <label style={labelStyle}>GEAR STYLE</label>
+                                                    {!isUkOrder || ['3A', '3B', '4A', '4B'].includes(levelTarget) ? (
+                                                        <div style={{ ...inputStyle, border: '1px solid rgba(255,255,255,0.08)', backgroundColor: '#090d1a' }} className="font-semibold text-white/80 select-none">
+                                                            Standard Tee
                                                         </div>
+                                                    ) : (
+                                                        <select value={garmentCut} onChange={(e) => setGarmentCut(e.target.value)} style={inputStyle}>
+                                                            <option value="SHIRT">Standard Tee</option>
+                                                            <option value="VEST">Vest/Tank</option>
+                                                        </select>
+                                                    )}
+                                                </div>
 
-                                                        <div>
-                                                            <label style={labelStyle}>SELECT COLOUR</label>
-                                                            <select value={beanieColor} onChange={(e) => setBeanieColor(e.target.value)} style={inputStyle}>
-                                                                {beanieTier === 'STD' ? (
-                                                                    <>
-                                                                        <option value="BLACK">Black</option>
-                                                                        <option value="WHITE">White</option>
-                                                                    </>
-                                                                ) : (
-                                                                    <>
-                                                                        <option value="GRAPHITE">Graphite Grey</option>
-                                                                        <option value="BLACK">Black</option>
-                                                                    </>
-                                                                )}
-                                                            </select>
+                                                <div>
+                                                    <label style={labelStyle}>FABRIC TYPE</label>
+                                                    {garmentCut === 'VEST' ? (
+                                                        <div style={{ ...inputStyle, paddingRight: '14px', border: '1px solid rgba(255,255,255,0.08)', backgroundColor: '#090d1a' }} className="font-semibold text-blue-400 select-none">
+                                                            135gsm Performance Poly
                                                         </div>
-                                                    </>
-                                                )}
+                                                    ) : (
+                                                        <select
+                                                            value={fabricSpec}
+                                                            onChange={(e) => setFabricSpec(e.target.value)}
+                                                            style={{ ...inputStyle, color: '#ffffff' }}
+                                                        >
+                                                            <option value="COTTON" style={{ color: '#ffffff', backgroundColor: '#090d1a' }}>
+                                                                190gsm 100% Pre-Shrunk Ringspun Cotton
+                                                            </option>
+                                                            <option value="PERF" style={{ color: '#ffffff', backgroundColor: '#090d1a' }}>
+                                                                {selectedCountry === 'GB'
+                                                                    ? '135gsm Performance Poly'
+                                                                    : '186gsm 50/50 Cotton/Poly Blend'}
+                                                            </option>
+                                                        </select>
+                                                    )}
+                                                </div>
+
+                                                <div>
+                                                    <label style={labelStyle}>GRAPHIC LOGO STYLE</label>
+                                                    <select value={logoStyle} onChange={(e) => setLogoStyle(e.target.value)} style={inputStyle}>
+                                                        <option value="ORIGINAL">Original Busy Dad Training</option>
+                                                        <option value="BDT">BDT </option>
+                                                    </select>
+                                                </div>
+
+                                                <div>
+                                                    <div className="flex justify-between items-center mb-1">
+                                                        <label style={{ ...labelStyle, marginBottom: 0 }}>SELECT GARMENT SIZE</label>
+                                                        <button onClick={() => openSizeChartModal('level')} className="text-xs font-bold text-[#3b82f6] hover:text-blue-400 hover:underline bg-transparent border-0 cursor-pointer flex items-center gap-1">📐 View Size Guide</button>
+                                                    </div>
+                                                    <select value={levelSize} onChange={(e) => setLevelSize(e.target.value)} style={inputStyle}>
+                                                        {['Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)', '2XL'].map(s => <option key={s} value={s}>{s}</option>)}
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <button onClick={handleBeanieCartAction} className="font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]">Add To Bag</button>
+                                        <button onClick={handleLevelShirtCartAction} style={levelTarget === 'Graduated' ? { background: 'linear-gradient(to right, #e65c00, #F93D2A, #ff8c00)' } : {}} className={levelTarget === 'Graduated' ? "w-full font-sans font-black text-white text-xs uppercase tracking-widest rounded-lg h-14 cursor-pointer border-0 shadow-[0_4px_15px_rgba(249,61,42,0.3)] transition hover:opacity-90" : "font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg w-full h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]"}>
+                                            {levelTarget === 'Graduated' ? 'Claim Free Graduation Shirt' : 'Add To Bag'}
+                                        </button>
                                     </div>
                                 </div>
-                            )}
 
+                                {/* Card 2: Busy Dad Army Shirt */}
+                                <div style={cardStyle} className="transition hover:border-white/10 duration-200">
+                                    <div>
+                                        <div onClick={() => openZoomModal('view-army', bdaViewSrc, bdaAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
+                                            {bdaViewSrc && !brokenImages[bdaViewSrc] ? (
+                                                <img src={bdaViewSrc} alt="Busy Dad Army Shirt" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(bdaViewSrc)} />
+                                            ) : (
+                                                <div className="flex flex-col items-center justify-center space-y-2 text-center p-4 select-none">
+                                                    <div className="text-4xl opacity-[0.03] font-black tracking-widest">BDT</div>
+                                                    <div className="text-xs font-mono text-white/30 uppercase tracking-widest font-bold">Image Pending</div>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div style={thumbnailContainerStyle}>
+                                            {bdaAssets.map((img) => !brokenImages[img] && (
+                                                <img key={img} src={img} alt="Thumb" className={`rounded-lg object-contain cursor-pointer border transition ${img === bdaViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '48px', height: '48px', backgroundColor: '#090d1a' }} onClick={() => setBdaViewSrc(img)} onError={() => handleImageError(img)} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                                        <div style={{ flexGrow: 1 }}>
+                                            <div className="mb-6">
+                                                <div className="flex justify-between items-baseline w-full">
+                                                    <h3 className="text-lg font-bold text-white tracking-tight">The Busy Dad Army Shirt</h3>
+                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(29.99)}</span>
+                                                </div>
+                                                <p className="text-xs text-white/40 mt-1">Customization Included</p>
+                                                <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>Official uniform of the global collective. Get your name stamped and represent the army.</p>
+                                            </div>
+                                            <div className="space-y-4 mb-6">
+                                                <div>
+                                                    <label style={labelStyle}>CUSTOM IDENTITY TEXT</label>
+                                                    <input type="text" value={bdaName} onChange={(e) => setBdaName(e.target.value)} placeholder="Enter Name or Initials (e.g. M.Edwards)" style={inputStyle} />
+                                                </div>
+                                                <div>
+                                                    <label style={labelStyle}>RANKING BADGE</label>
+                                                    <select value={bdaBadge} onChange={(e) => setBdaBadge(e.target.value)} style={inputStyle}>
+                                                        <option value="PRACTITIONER">Practitioner</option>
+                                                        <option value="1A_PRACTITIONER">Level 1A Practitioner</option>
+                                                        <option value="1B_PRACTITIONER">Level 1B Practitioner</option>
+                                                        <option value="1C_PRACTITIONER">Level 1C Practitioner</option>
+                                                        <option value="1D_PRACTITIONER">Level 1D Practitioner</option>
+                                                        <option value="2A_PRACTITIONER">Level 2A Practitioner</option>
+                                                        <option value="2B_PRACTITIONER">Level 2B Practitioner</option>
+                                                        <option value="3A_PRACTITIONER">Level 3A Practitioner</option>
+                                                        <option value="3B_PRACTITIONER">Level 3B Practitioner</option>
+                                                        <option value="4A_PRACTITIONER">Level 4A Practitioner</option>
+                                                        <option value="4B_PRACTITIONER">Level 4B Practitioner</option>
+                                                        <option value="GRADUATED_PRACTITIONER">Graduate</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <div className="flex justify-between items-center mb-1">
+                                                        <label style={{ ...labelStyle, marginBottom: 0 }}>SELECT GARMENT SIZE</label>
+                                                        <button onClick={() => openSizeChartModal('bda')} className="text-xs font-bold text-[#3b82f6] hover:text-blue-400 hover:underline bg-transparent border-0 cursor-pointer flex items-center gap-1">📐 View Size Guide</button>
+                                                    </div>
+                                                    <select value={bdaSize} onChange={(e) => setBdaSize(e.target.value)} style={inputStyle}>
+                                                        {['Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)', '2XL'].map(s => <option key={s} value={s}>{s}</option>)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button onClick={handleBdaCartAction} className="font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]">Add Custom Order</button>
+                                    </div>
+                                </div>
+
+                                {/* Card 3: DOWN Casual Premium Tee */}
+                                <div style={cardStyle} className="transition hover:border-white/10 duration-200">
+                                    <div>
+                                        <div onClick={() => openZoomModal('view-casual', casualViewSrc, casualAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
+                                            {casualViewSrc && !brokenImages[casualViewSrc] ? (
+                                                <img src={casualViewSrc} alt="DOWN Casual Premium Tee" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(casualViewSrc)} />
+                                            ) : (
+                                                <div className="flex flex-col items-center justify-center space-y-2 text-center p-4 select-none">
+                                                    <div className="text-4xl opacity-[0.03] font-black tracking-widest">BDT</div>
+                                                    <div className="text-xs font-mono text-white/30 uppercase tracking-widest font-bold">Image Pending</div>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div style={thumbnailContainerStyle}>
+                                            {casualAssets.map((img) => !brokenImages[img] && (
+                                                <img key={img} src={img} alt="Thumb" className={`rounded-md object-contain cursor-pointer border transition ${img === casualViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '44px', height: '44px', backgroundColor: '#090d1a' }} onClick={() => setCasualViewSrc(img)} onError={() => handleImageError(img)} />
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                                        <div style={{ flexGrow: 1 }}>
+                                            <div className="mb-6">
+                                                <div className="flex justify-between items-baseline w-full">
+                                                    <h3 className="text-lg font-bold text-white tracking-tight">DOWN Casual Premium Tee</h3>
+                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(29.99)}</span>
+                                                </div>
+                                                <p className="text-xs text-white/40 mt-1">Premium Organic Cotton</p>
+                                                <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>100% Organic compact ringspun cotton single Jersey (180gsm). A higher quality, premium shirt with a comfortable medium weight feel.</p>
+                                            </div>
+                                            <div className="space-y-4 mb-6">
+                                                <div>
+                                                    <div className="flex justify-between items-center mb-1">
+                                                        <label style={{ ...labelStyle, marginBottom: 0 }}>SELECT GARMENT SIZE</label>
+                                                        <button onClick={() => openSizeChartModal('premium')} className="text-xs font-bold text-[#3b82f6] hover:text-blue-400 hover:underline bg-transparent border-0 cursor-pointer flex items-center gap-1">📐 View Size Guide</button>
+                                                    </div>
+                                                    <select value={casualSize} onChange={(e) => setCasualSize(e.target.value)} style={inputStyle}>
+                                                        {['Small (S)', 'Medium (M)', 'Large (L)', 'Extra Large (XL)', '2XL'].map(s => <option key={s} value={s}>{s}</option>)}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button onClick={handlePremiumDropCartAction} className="font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]">Add To Bag</button>
+                                    </div>
+                                </div>
+
+                                {/* Card 4: Official BDT Headwear (UK-ONLY EXCLUSIVE) */}
+                                {isUkOrder && (
+                                    <div style={cardStyle} className="transition hover:border-white/10 duration-200">
+                                        <div>
+                                            <div onClick={() => openZoomModal('view-beanie', beanieViewSrc, beanieAssets)} className="relative bg-[#090d1a] h-[340px] w-full flex flex-col items-center justify-center overflow-hidden rounded-lg cursor-pointer border border-white/[0.02]">
+                                                {beanieViewSrc && !brokenImages[beanieViewSrc] ? (
+                                                    <img src={beanieViewSrc} alt="BDT Headwear" className="max-w-full max-h-full object-contain block" onError={() => handleImageError(beanieViewSrc)} />
+                                                ) : (
+                                                    <div className="flex flex-col items-center justify-center space-y-2 text-center p-4 select-none">
+                                                        <div className="text-4xl opacity-[0.03] font-black tracking-widest">BDT</div>
+                                                        <div className="text-xs font-mono text-white/30 uppercase tracking-widest font-bold">Image Pending</div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div style={thumbnailContainerStyle}>
+                                                {beanieAssets.map((img) => !brokenImages[img] && (
+                                                    <img key={img} src={img} alt="Thumb" className={`rounded-md object-contain cursor-pointer border transition ${img === beanieViewSrc ? 'border-[#3b82f6] scale-105 opacity-100' : 'border-white/5 opacity-40'}`} style={{ width: '44px', height: '44px', backgroundColor: '#090d1a' }} onClick={() => setBeanieViewSrc(img)} onError={() => handleImageError(img)} />
+                                                ))}
+                                            </div>
+                                        </div>
+                                        <div style={{ paddingTop: '24px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                                            <div style={{ flexGrow: 1 }}>
+                                                <div className="mb-6">
+                                                    <div className="flex justify-between items-baseline w-full">
+                                                        <h3 className="text-lg font-bold text-white tracking-tight">Official BDT Headwear</h3>
+                                                        <span className="text-lg font-black text-white/90">
+                                                            {beanieTier === 'NONE' ? `${getRegionalPrice(14.00)} - ${getRegionalPrice(18.00)}` : beanieTier === 'PREM' ? getRegionalPrice(18.00) : getRegionalPrice(14.00)}
+                                                        </span>
+                                                    </div>
+                                                    <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>
+                                                        {beanieTier === 'PREM'
+                                                            ? 'Soft-touch double layer loose knit "Thinsulate" beanie that includes a thermal Thinsulate™ lining and offers plenty of warmth for chilly temperatures.'
+                                                            : beanieTier === 'STD'
+                                                                ? 'Double layered original tight knit beanie.'
+                                                                : 'Keep your bonce warm'}
+                                                    </p>
+                                                </div>
+                                                <div className="space-y-4 mb-6">
+                                                    <div>
+                                                        <label style={labelStyle}>SELECT BEANIE TYPE</label>
+                                                        <select value={beanieTier} onChange={(e) => setBeanieTier(e.target.value)} style={inputStyle}>
+                                                            <option value="NONE">-- Choose Beanie Variant --</option>
+                                                            <option value="STD">Original Tight Knit Beanie ({getRegionalPrice(14.00)})</option>
+                                                            <option value="PREM">Loose-knit Thinsulate beanie ({getRegionalPrice(18.00)})</option>
+                                                        </select>
+                                                    </div>
+
+                                                    {beanieTier !== 'NONE' && (
+                                                        <>
+                                                            <div>
+                                                                <label style={labelStyle}>GRAPHIC LOGO STYLE</label>
+                                                                <select value={beanieLogoStyle} onChange={(e) => setBeanieLogoStyle(e.target.value)} style={inputStyle}>
+                                                                    <option value="ORIGINAL">Original Busy Dad Training</option>
+                                                                    <option value="BDT">BDT</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div>
+                                                                <label style={labelStyle}>SELECT COLOUR</label>
+                                                                <select value={beanieColor} onChange={(e) => setBeanieColor(e.target.value)} style={inputStyle}>
+                                                                    {beanieTier === 'STD' ? (
+                                                                        <>
+                                                                            <option value="BLACK">Black</option>
+                                                                            <option value="WHITE">White</option>
+                                                                        </>
+                                                                    ) : (
+                                                                        <>
+                                                                            <option value="GRAPHITE">Graphite Grey</option>
+                                                                            <option value="BLACK">Black</option>
+                                                                        </>
+                                                                    )}
+                                                                </select>
+                                                            </div>
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <button onClick={handleBeanieCartAction} className="font-sans font-extrabold text-white text-xs uppercase tracking-widest bg-blue-600 rounded-lg h-14 hover:bg-blue-500 transition shadow-[0_4px_14px_rgba(37,99,235,0.2)]">Add To Bag</button>
+                                        </div>
+                                    </div>
+                                )}
+
+                            </div>
                         </div>
-                    </div>
+                    </PasscodeGuard>
                 </div>
 
                 <Footer />
