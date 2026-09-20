@@ -131,6 +131,50 @@ export default function ShopPage() {
         }
         return `${symbol}${converted.toFixed(2)}`;
     };
+
+    // Helper to get raw integer cents/pence in local currency for Stripe
+    const getRegionalStripeAmount = (gbpBase: number) => {
+        const currency = activeCountryObj.currency.toLowerCase();
+
+        if (currency === 'usd') {
+            if (gbpBase === 24.99) return { amount: 2999, currency: 'usd' };
+            if (gbpBase === 29.99) return { amount: 3499, currency: 'usd' };
+            if (gbpBase === 14.00) return { amount: 1800, currency: 'usd' };
+            if (gbpBase === 18.00) return { amount: 2200, currency: 'usd' };
+        }
+
+        if (currency === 'eur') {
+            if (gbpBase === 24.99) return { amount: 2899, currency: 'eur' };
+            if (gbpBase === 29.99) return { amount: 3499, currency: 'eur' };
+            if (gbpBase === 14.00) return { amount: 1600, currency: 'eur' };
+            if (gbpBase === 18.00) return { amount: 2000, currency: 'eur' };
+        }
+
+        if (currency === 'cad') {
+            if (gbpBase === 24.99) return { amount: 3499, currency: 'cad' };
+            if (gbpBase === 29.99) return { amount: 3999, currency: 'cad' };
+            if (gbpBase === 14.00) return { amount: 2000, currency: 'cad' };
+            if (gbpBase === 18.00) return { amount: 2400, currency: 'cad' };
+        }
+
+        if (currency === 'aud') {
+            if (gbpBase === 24.99) return { amount: 3999, currency: 'aud' };
+            if (gbpBase === 29.99) return { amount: 4499, currency: 'aud' };
+            if (gbpBase === 14.00) return { amount: 2200, currency: 'aud' };
+            if (gbpBase === 18.00) return { amount: 2600, currency: 'aud' };
+        }
+
+        if (currency === 'gbp') {
+            return { amount: Math.round(gbpBase * 100), currency: 'gbp' };
+        }
+
+        const converted = gbpBase * activeCountryObj.rate;
+        if (currency === 'jpy' || currency === 'huf') {
+            return { amount: Math.round(converted), currency };
+        }
+        return { amount: Math.round(converted * 100), currency };
+    };
+
     useEffect(() => {
         const timer = setTimeout(() => setIsStoreReady(true), 250);
         return () => clearTimeout(timer);
@@ -697,6 +741,7 @@ export default function ShopPage() {
     const handleCheckoutRedirect = async () => {
         setIsProcessingCheckout(true);
         try {
+            const targetCurrency = activeCountryObj.currency.toLowerCase();
             let calculatedShippingPence = 395; // £3.95 Standard Royal Mail for UK
 
             if (!isUkOrder) {
@@ -719,12 +764,23 @@ export default function ShopPage() {
                 }
             }
 
+            // Attach regional target price to each item sent to checkout
+            const regionalCart = cart.map(item => {
+                const regionalPrice = getRegionalStripeAmount(item.price);
+                return {
+                    ...item,
+                    unitAmount: regionalPrice.amount, // e.g. 2999 for $29.99
+                    currency: regionalPrice.currency   // e.g. 'usd'
+                };
+            });
+
             const response = await fetch('/api/checkout', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    cart,
+                    cart: regionalCart,
                     country: selectedCountry,
+                    currency: targetCurrency,
                     region: isUkOrder ? 'uk' : 'global',
                     shippingCostPence: calculatedShippingPence
                 }),
@@ -1155,7 +1211,7 @@ export default function ShopPage() {
                                                     <option value="3B_PRACTITIONER">Level 3B Practitioner</option>
                                                     <option value="4A_PRACTITIONER">Level 4A Practitioner</option>
                                                     <option value="4B_PRACTITIONER">Level 4B Practitioner</option>
-                                                    <option value="GRADUATED_PRACTITIONER">G Practitioner</option>
+                                                    <option value="GRADUATED_PRACTITIONER">Graduate</option>
                                                 </select>
                                             </div>
                                             <div>

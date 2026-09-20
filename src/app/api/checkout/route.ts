@@ -9,6 +9,8 @@ interface CartRequestItem {
     price: number;
     size: string;
     quantity: number;
+    unitAmount?: number;
+    currency?: string;
     viewSrc?: string;
     customText?: string;
     badgeRank?: string;
@@ -21,15 +23,21 @@ interface CartRequestItem {
 
 export async function POST(request: Request) {
     try {
-        const { cart, country = 'GB', region = 'uk', shippingCostPence = 395 } = await request.json();
+        const {
+            cart,
+            country = 'GB',
+            currency = 'gbp',
+            region = 'uk',
+            shippingCostPence = 395
+        } = await request.json();
 
         if (!cart || !Array.isArray(cart) || cart.length === 0) {
             return NextResponse.json({ error: 'Shopping bag data is empty.' }, { status: 400 });
         }
 
         const isUk = country === 'GB' || region === 'uk';
+        const targetCurrency = (currency || 'gbp').toLowerCase();
         let trelloCardDescription = `### 👕 Garment Production Manifest\n`;
-        const totalCartAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
         const lineItems = cart.map((item: CartRequestItem) => {
             const descriptionParts = [`Size: ${item.size}`];
@@ -62,15 +70,19 @@ export async function POST(request: Request) {
             }
             trelloCardDescription += `\n`;
 
+            // Determine item currency and unit amount (cents/pence)
+            const itemCurrency = (item.currency || targetCurrency).toLowerCase();
+            const itemUnitAmount = item.unitAmount || Math.round(item.price * 100);
+
             return {
                 price_data: {
-                    currency: 'gbp',
+                    currency: itemCurrency,
                     product_data: {
                         name: item.name,
                         description: `SKU: ${item.supplierSku || 'N/A'} | ${descriptionParts.join(' | ')}`,
                         images: item.viewSrc && item.viewSrc.startsWith('http') ? [item.viewSrc] : []
                     },
-                    unit_amount: item.price * 100,
+                    unit_amount: itemUnitAmount,
                 },
                 quantity: item.quantity,
             };
@@ -101,6 +113,7 @@ export async function POST(request: Request) {
         const shippingTitle = region === 'global' ? 'Standard Delivery' : 'Royal Mail Standard (UK)';
         const uniqueSuffix = Math.random().toString(36).substring(2, 7).toUpperCase();
         const orderNumber = `BDT-${uniqueSuffix}`;
+
         const sessionConfiguration: Stripe.Checkout.SessionCreateParams = {
             client_reference_id: orderNumber,
             payment_intent_data: {
@@ -110,13 +123,16 @@ export async function POST(request: Request) {
             mode: 'payment',
             billing_address_collection: 'required',
             shipping_address_collection: {
-                allowed_countries: [country as any], // Strict locking to selected destination
+                allowed_countries: [country as any],
             },
             shipping_options: [
                 {
                     shipping_rate_data: {
                         type: 'fixed_amount',
-                        fixed_amount: { amount: shippingCostPence, currency: 'gbp' },
+                        fixed_amount: {
+                            amount: shippingCostPence,
+                            currency: targetCurrency
+                        },
                         display_name: shippingTitle,
                     }
                 }
@@ -133,10 +149,6 @@ export async function POST(request: Request) {
             success_url: `${request.headers.get('origin')}/shop?success=true`,
             cancel_url: `${request.headers.get('origin')}/shop?canceled=true`,
         };
-
-        if (totalCartAmount > 0) {
-            sessionConfiguration.payment_method_types = ['card'];
-        }
 
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
         const session = await stripe.checkout.sessions.create(sessionConfiguration);
