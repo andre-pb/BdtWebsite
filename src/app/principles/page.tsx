@@ -14,7 +14,6 @@ import {
   getWebPageJsonLd,
 } from "@/lib/seo";
 
-export const dynamic = 'force-static';
 
 export const metadata = createPageMetadata({
   title: principlesPage.seo.title,
