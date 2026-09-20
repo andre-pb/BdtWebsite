@@ -5,7 +5,7 @@ const basePath = getBasePath();
 const siteUrl = getSiteUrl();
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  output: "export",
   eslint: {
     ignoreDuringBuilds: true,
   },
