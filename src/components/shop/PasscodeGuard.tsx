@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { colors } from "@/constants/colors";
 
 const PASSCODE = "marcmax";
 const STORAGE_KEY = "bdt_store_unlocked";
@@ -36,7 +35,7 @@ export function PasscodeGuard({ children }: { children: React.ReactNode }) {
     return (
         <div
             style={{
-                minHeight: "65vh",
+                minHeight: "60vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -50,16 +49,32 @@ export function PasscodeGuard({ children }: { children: React.ReactNode }) {
                     width: "100%",
                     padding: "36px 28px",
                     borderRadius: "20px",
-                    backgroundColor: colors.bgOff || "#f8fafc",
-                    border: `1px solid ${colors.borderLight || "#e2e8f0"}`,
+                    backgroundColor: "rgba(15, 23, 42, 0.8)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
                     textAlign: "center",
-                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05)",
+                    boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                    backdropFilter: "blur(12px)",
                 }}
             >
-                <h2 style={{ marginBottom: "8px", fontSize: "1.5rem", fontWeight: "700" }}>
+                <h2
+                    style={{
+                        marginBottom: "8px",
+                        fontSize: "1.5rem",
+                        fontWeight: "800",
+                        color: "#ffffff",
+                        letterSpacing: "-0.01em",
+                    }}
+                >
                     Store Access
                 </h2>
-                <p style={{ marginBottom: "24px", color: "#64748b", fontSize: "0.95rem" }}>
+                <p
+                    style={{
+                        marginBottom: "24px",
+                        color: "rgba(255, 255, 255, 0.7)",
+                        fontSize: "0.925rem",
+                        lineHeight: "1.5",
+                    }}
+                >
                     This area is currently restricted. Please enter the access code to continue.
                 </p>
 
@@ -70,9 +85,11 @@ export function PasscodeGuard({ children }: { children: React.ReactNode }) {
                     placeholder="Enter access code"
                     style={{
                         width: "100%",
-                        padding: "12px 16px",
+                        padding: "14px 16px",
                         borderRadius: "10px",
-                        border: error ? "2px solid #ef4444" : "1px solid #cbd5e1",
+                        backgroundColor: "#090d1a",
+                        border: error ? "2px solid #ef4444" : "1px solid rgba(255, 255, 255, 0.15)",
+                        color: "#ffffff",
                         fontSize: "1rem",
                         marginBottom: "12px",
                         outline: "none",
@@ -81,7 +98,7 @@ export function PasscodeGuard({ children }: { children: React.ReactNode }) {
                 />
 
                 {error && (
-                    <p style={{ color: "#ef4444", fontSize: "0.875rem", marginBottom: "12px" }}>
+                    <p style={{ color: "#ef4444", fontSize: "0.875rem", marginBottom: "12px", fontWeight: "600" }}>
                         Incorrect code. Please try again.
                     </p>
                 )}
@@ -90,14 +107,16 @@ export function PasscodeGuard({ children }: { children: React.ReactNode }) {
                     type="submit"
                     style={{
                         width: "100%",
-                        padding: "12px",
+                        padding: "14px",
                         borderRadius: "10px",
-                        backgroundColor: colors.textMain || "#0f172a",
-                        color: colors.bgPure || "#ffffff",
-                        fontWeight: "600",
-                        fontSize: "1rem",
+                        backgroundColor: "#2563eb",
+                        color: "#ffffff",
+                        fontWeight: "700",
+                        fontSize: "0.95rem",
                         border: "none",
                         cursor: "pointer",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.05em",
                     }}
                 >
                     Enter Store
