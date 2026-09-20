@@ -1,11 +1,11 @@
 'use client';
+import { API_BASE_URL } from "@/lib/base-path";
 import Script from 'next/script';
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PRINTFUL_CATALOG_HEX_IDS } from './printful-catalog';
 import { PasscodeGuard } from "@/components/shop/PasscodeGuard";
-import { API_BASE_URL } from "@/lib/base-path";
 
 interface CartItem {
     id: string;
@@ -748,7 +748,7 @@ export default function ShopPage() {
 
             if (!isUkOrder) {
                 try {
-                    const rateResponse = await fetch(`${API_BASE_URL}/api/shipping-rates`, {
+                    const rateResponse = await fetch('/api/shipping-rates', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ country: selectedCountry, cart }),
@@ -776,7 +776,7 @@ export default function ShopPage() {
                 };
             });
 
-            const response = await fetch(`${API_BASE_URL}/api/checkout`, {
+            const response = await fetch(`${API_BASE_URL}/api/checkout/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
