@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - agent
-      - main
   workflow_dispatch:
 
 # One run per branch at a time; a newer push cancels the stale build instead
