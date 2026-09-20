@@ -3,5 +3,6 @@
     "gsap-skills": {
       "enabled": true
     }
-  }
+  },
+  "css.lint.unknownAtRules": "ignore"
 }

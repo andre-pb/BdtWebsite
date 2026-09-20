@@ -6,8 +6,6 @@ on:
       - dev
   workflow_dispatch:
 
-# One run per branch at a time; a newer push cancels the stale build instead
-# of stacking another full deploy behind it.
 concurrency:
   group: swa-dev
   cancel-in-progress: true
@@ -28,6 +26,27 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Create production env file from GitHub Secrets
+        run: |
+          echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> .env.production
+          echo "STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}" >> .env.production
+          echo "PRINTFUL_ACCESS_TOKEN=${{ secrets.PRINTFUL_ACCESS_TOKEN }}" >> .env.production
+          echo "PRINTFUL_STORE_ID=${{ secrets.PRINTFUL_STORE_ID }}" >> .env.production
+          echo "TRELLO_API_KEY=${{ secrets.TRELLO_API_KEY }}" >> .env.production
+          echo "TRELLO_TOKEN=${{ secrets.TRELLO_TOKEN }}" >> .env.production
+          echo "TRELLO_BOARD_ID=${{ secrets.TRELLO_BOARD_ID }}" >> .env.production
+          echo "TRELLO_LIST_NEW_ORDERS=${{ secrets.TRELLO_LIST_NEW_ORDERS }}" >> .env.production
+          echo "TRELLO_LABEL_YELLOW=${{ secrets.TRELLO_LABEL_YELLOW }}" >> .env.production
+          echo "TRELLO_LABEL_ORANGE=${{ secrets.TRELLO_LABEL_ORANGE }}" >> .env.production
+          echo "TRELLO_LABEL_PURPLE=${{ secrets.TRELLO_LABEL_PURPLE }}" >> .env.production
+          echo "TRELLO_LABEL_CHECK_PRINTFUL=${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}" >> .env.production
+          echo "TRELLO_LABEL_GARMENTS_IN_STOCK=${{ secrets.TRELLO_LABEL_GARMENTS_IN_STOCK }}" >> .env.production
+          echo "TRELLO_LABEL_DESIGN_FILE_COMPLETED=${{ secrets.TRELLO_LABEL_DESIGN_FILE_COMPLETED }}" >> .env.production
+          echo "TRELLO_LABEL_DTF_PRINTED=${{ secrets.TRELLO_LABEL_DTF_PRINTED }}" >> .env.production
+          echo "TRELLO_LABEL_READY_FOR_HEAT_PRESS=${{ secrets.TRELLO_LABEL_READY_FOR_HEAT_PRESS }}" >> .env.production
+          echo "TRELLO_LABEL_ROYAL_MAIL_BOOKED=${{ secrets.TRELLO_LABEL_ROYAL_MAIL_BOOKED }}" >> .env.production
+          echo "TRELLO_LABEL_PRESSED_READY_TO_SHIP=${{ secrets.TRELLO_LABEL_PRESSED_READY_TO_SHIP }}" >> .env.production
+          echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.production
       - name: Build static site
         run: npm run build
         env:
@@ -43,9 +62,11 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LIVELY_RIVER_03654B603 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "out"
+          app_location: "/"
           api_location: ""
           output_location: ""
           skip_app_build: true
+        env:
+          apiRuntime: "node:20"

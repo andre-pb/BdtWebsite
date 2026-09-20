@@ -5,7 +5,10 @@ const basePath = getBasePath();
 const siteUrl = getSiteUrl();
 
 const nextConfig: NextConfig = {
-  output: "export",
+  output: "standalone",
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,
   trailingSlash: true,

@@ -17,7 +17,7 @@ export const principlesPage = {
       id: "disciplined-minimalism",
       title: "Disciplined Minimalism",
       image: {
-        src: assetPath("/levels-images/motivation%201.webp"),
+        src: assetPath("/levels-images/motivation 1.webp"),
         alt: "Busy Dad Training motivation image for disciplined minimalism",
       },
       blocks: [
@@ -36,7 +36,7 @@ export const principlesPage = {
       id: "ruthless-efficiency",
       title: "Ruthless Efficiency",
       image: {
-        src: assetPath("/levels-images/motivation%202.webp"),
+        src: assetPath("/levels-images/motivation 2.webp"),
         alt: "Busy Dad Training motivation image for ruthless efficiency",
       },
       blocks: [
@@ -55,7 +55,7 @@ export const principlesPage = {
       id: "intentional-execution",
       title: "Intentional Execution",
       image: {
-        src: assetPath("/levels-images/motivation%203.webp"),
+        src: assetPath("/levels-images/motivation 3.webp"),
         alt: "Busy Dad Training motivation image for intentional execution",
       },
       blocks: [

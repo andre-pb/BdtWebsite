@@ -6,8 +6,8 @@ import { PageContainer } from "@/components/ui/PageContainer";
 type PrincipleBlock =
   | string
   | {
-      emphasis: string;
-    };
+    emphasis: string;
+  };
 
 type PrincipleSectionProps = {
   id: string;
@@ -30,9 +30,11 @@ function renderBlock(block: PrincipleBlock, index: number) {
     );
   }
 
+  const text = block?.emphasis || "";
+
   return (
     <p
-      key={`${index}-${block.emphasis.slice(0, 32)}`}
+      key={`${index}-${text.slice(0, 32)}`}
       style={{
         ...bodyStyle,
         marginBottom: "1rem",
@@ -42,7 +44,7 @@ function renderBlock(block: PrincipleBlock, index: number) {
         lineHeight: 1.4,
       }}
     >
-      {block.emphasis}
+      {text}
     </p>
   );
 }

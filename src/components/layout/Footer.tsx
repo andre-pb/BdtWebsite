@@ -65,6 +65,21 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
+
+            <Link
+              href="/shop"
+              style={{
+                color: hoveredLink === "Store" ? "white" : "rgba(255,255,255,0.7)",
+                fontWeight: 500,
+                fontSize: "0.95rem",
+                transition: "color 0.2s",
+                textDecoration: "none",
+              }}
+              onMouseEnter={() => setHoveredLink("Store")}
+              onMouseLeave={() => setHoveredLink(null)}
+            >
+              Store
+            </Link>
           </nav>
 
           <nav
