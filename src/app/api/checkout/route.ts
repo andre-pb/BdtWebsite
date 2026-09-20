@@ -116,6 +116,7 @@ export async function POST(request: Request) {
 
         const sessionConfiguration: Stripe.Checkout.SessionCreateParams = {
             client_reference_id: orderNumber,
+            allow_promotion_codes: true,
             payment_intent_data: {
                 description: `Order ${orderNumber}`,
             },
