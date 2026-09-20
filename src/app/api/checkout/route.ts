@@ -21,6 +21,12 @@ interface CartRequestItem {
     submissionVideoUrl?: string;
 }
 
+const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
 export async function POST(request: Request) {
     try {
         const {
@@ -32,7 +38,10 @@ export async function POST(request: Request) {
         } = await request.json();
 
         if (!cart || !Array.isArray(cart) || cart.length === 0) {
-            return NextResponse.json({ error: 'Shopping bag data is empty.' }, { status: 400 });
+            return NextResponse.json(
+                { error: 'Shopping bag data is empty.' },
+                { status: 400, headers: corsHeaders }
+            );
         }
 
         const isUk = country === 'GB' || region === 'uk';
@@ -153,11 +162,35 @@ export async function POST(request: Request) {
 
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
         const session = await stripe.checkout.sessions.create(sessionConfiguration);
-        return NextResponse.json({ url: session.url });
+        return NextResponse.json(
+            { url: session.url },
+            {
+                status: 200,
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                    "Access-Control-Allow-Headers": "Content-Type, Authorization",
+                },
+            }
+        );
 
     } catch (err) {
         const error = err as Error;
         console.error('❌ Stripe Checkout Handshake Error:', error);
-        return NextResponse.json({ error: error.message || 'Internal processing anomaly.' }, { status: 500 });
+        return NextResponse.json(
+            { error: error.message || 'Internal processing anomaly.' },
+            { status: 500, headers: corsHeaders }
+        );
     }
+}
+
+export async function OPTIONS() {
+    return new Response(null, {
+        status: 200,
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        },
+    });
 }
