@@ -1,7 +1,7 @@
+export const dynamic = "force-static";
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
-export const dynamic = 'force-dynamic';
 
 interface CartRequestItem {
     id: string;

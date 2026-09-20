@@ -1,4 +1,5 @@
 'use client';
+import { API_BASE_URL } from "@/lib/base-path";
 import Script from 'next/script';
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from "@/components/layout/Header";
@@ -775,7 +776,7 @@ export default function ShopPage() {
                 };
             });
 
-            const response = await fetch('/api/checkout', {
+            const response = await fetch(`${API_BASE_URL}/api/checkout/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
