@@ -744,6 +744,50 @@ export default function ShopPage() {
         });
     };
 
+    // The shop (busydadtraining.com) and the backend (an Azure Static Web
+    // App) are different origins, and Azure only allows its own linked
+    // frontend to call its API with fetch/XHR — the same platform
+    // restriction the checkout button works around with a form
+    // submission. This endpoint has to hand a number back to the page
+    // rather than just send the browser onward, so a form won't work
+    // here — instead this loads the response as a <script> tag (JSONP),
+    // which was never subject to that restriction in the first place.
+    const fetchShippingRateViaJsonp = (country: string, cartItems: typeof cart): Promise<number> => {
+        return new Promise((resolve) => {
+            const callbackName = `__bdtShipRate_${Date.now()}_${Math.floor(Math.random() * 100000)}`;
+            let settled = false;
+
+            const cleanup = () => {
+                delete (window as unknown as Record<string, unknown>)[callbackName];
+                script.remove();
+                clearTimeout(timeoutId);
+            };
+
+            const finish = (ratePence: number) => {
+                if (settled) return;
+                settled = true;
+                cleanup();
+                resolve(ratePence);
+            };
+
+            const timeoutId = setTimeout(() => finish(850), 6000); // £8.50 fallback if it's slow/unreachable
+
+            (window as unknown as Record<string, unknown>)[callbackName] = (data: { ratePence?: number }) => {
+                finish(data?.ratePence || 850);
+            };
+
+            const script = document.createElement('script');
+            const params = new URLSearchParams({
+                country,
+                cart: JSON.stringify(cartItems),
+                callback: callbackName,
+            });
+            script.src = `${API_BASE_URL}/api/shipping-rates/?${params.toString()}`;
+            script.onerror = () => finish(850); // £8.50 fallback if the script itself fails to load
+            document.body.appendChild(script);
+        });
+    };
+
     // 🚀 CHECKOUT HANDSHAKE (WITH REFINED BUTTON TEXT)
     const handleCheckoutRedirect = async () => {
         setIsProcessingCheckout(true);
@@ -752,23 +796,7 @@ export default function ShopPage() {
             let calculatedShippingPence = 395; // £3.95 Standard Royal Mail for UK
 
             if (!isUkOrder) {
-                try {
-                    const rateResponse = await fetch(`${API_BASE_URL}/api/shipping-rates/`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ country: selectedCountry, cart }),
-                    });
-
-                    if (rateResponse.ok) {
-                        const rateData = await rateResponse.json();
-                        calculatedShippingPence = rateData.ratePence || 850;
-                    } else {
-                        calculatedShippingPence = 850; // £8.50 fallback
-                    }
-                } catch (rateErr) {
-                    console.warn('⚠️ Could not fetch live rate, falling back to standard international rate:', rateErr);
-                    calculatedShippingPence = 850; // £8.50 fallback
-                }
+                calculatedShippingPence = await fetchShippingRateViaJsonp(selectedCountry, cart);
             }
 
             // Attach regional target price to each item sent to checkout
