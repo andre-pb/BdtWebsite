@@ -34,8 +34,13 @@ jobs:
       - name: Build static site
         run: npm run build
         env:
-          NEXT_PUBLIC_BURPEE_HUB_URL: ${{ secrets.NEXT_PUBLIC_BURPEE_HUB_URL }}
+          GITHUB_ACTIONS: true
+          NEXT_PUBLIC_BASE_PATH: ""
           NEXT_PUBLIC_SITE_URL: "https://busydadtraining.com"
+          NEXT_PUBLIC_BURPEE_HUB_URL: https://api.busydadtraining.com/hubs/burpees
+          NEXT_PUBLIC_LEADERBOARD_HUB_URL: https://api.busydadtraining.com/hubs/leaderboard
+          NEXT_PUBLIC_LISTMONK_URL: https://mail.busydadtraining.com
+          NEXT_PUBLIC_LISTMONK_LIST_UUID: ab776f98-a8ae-4e1b-9958-47d4deeefe3d
 
       - name: Ensure Jekyll is disabled
         run: mkdir -p out && touch out/.nojekyll
