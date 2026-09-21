@@ -493,6 +493,11 @@ export default function ShopPage() {
             setShowCancelModal(true);
             window.history.replaceState({}, document.title, window.location.pathname);
         }
+        const checkoutError = queryParams.get('checkoutError');
+        if (checkoutError) {
+            alert(`❌ Checkout Generation Refused: ${checkoutError}`);
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
     }, []);
 
     const saveCart = (newCart: CartItem[]) => {
@@ -776,28 +781,42 @@ export default function ShopPage() {
                 };
             });
 
-            const response = await fetch(`${API_BASE_URL}/api/checkout/`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    cart: regionalCart,
-                    country: selectedCountry,
-                    currency: targetCurrency,
-                    region: isUkOrder ? 'uk' : 'global',
-                    shippingCostPence: calculatedShippingPence
-                }),
+            // The shop (busydadtraining.com) and the checkout backend (an
+            // Azure Static Web App) are different origins, and Azure only
+            // allows its own linked frontend to call its API with
+            // fetch/XHR — that's a platform restriction with no CORS
+            // workaround available to us. A plain <form> submission isn't
+            // subject to that check (it's a full-page navigation, not a
+            // script reading a cross-origin response), and the backend
+            // replies to a form submission with a redirect straight to
+            // Stripe, so this reaches Stripe the same way a normal "pay
+            // now" link would.
+            const payload = JSON.stringify({
+                cart: regionalCart,
+                country: selectedCountry,
+                currency: targetCurrency,
+                region: isUkOrder ? 'uk' : 'global',
+                shippingCostPence: calculatedShippingPence
             });
 
-            const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                alert(`❌ Checkout Generation Refused: ${data.error || 'Unknown parameter exception.'}`);
-            }
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = `${API_BASE_URL}/api/checkout/`;
+            form.style.display = 'none';
+
+            const payloadField = document.createElement('input');
+            payloadField.type = 'hidden';
+            payloadField.name = 'payload';
+            payloadField.value = payload;
+            form.appendChild(payloadField);
+
+            document.body.appendChild(form);
+            form.submit();
+            // Intentionally no setIsProcessingCheckout(false) here: the page
+            // is navigating away, so there's nothing left to reset.
         } catch (error) {
             console.error('Frontend Checkout Handshake Exception:', error);
             alert('❌ Failed to establish link communication with payment systems.');
-        } finally {
             setIsProcessingCheckout(false);
         }
     };
