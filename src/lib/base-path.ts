@@ -1,4 +1,5 @@
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://lively-river-03654b603.7.azurestaticapps.net";
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://lively-river-03654b603.azurestaticapps.net";
+
 export function getBasePath(): string {
   return process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 }
@@ -12,4 +13,3 @@ export function assetPath(pathname: string): string {
   const base = getBasePath().replace(/\/$/, "");
   return `${base}${normalized}`;
 }
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "https://lively-river-03654b603.azurestaticapps.net";
