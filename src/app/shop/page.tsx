@@ -748,7 +748,7 @@ export default function ShopPage() {
 
             if (!isUkOrder) {
                 try {
-                    const rateResponse = await fetch('/api/shipping-rates', {
+                    const rateResponse = await fetch(`${API_BASE_URL}/api/shipping-rates/`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ country: selectedCountry, cart }),

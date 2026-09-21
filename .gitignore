@@ -28,3 +28,8 @@ UTM_LINKS.md
 # Local scratch for removed-but-not-deleted files
 /.trash/
 _to_delete/
+
+# Shop API (Azure Functions): secrets written in by CI at build time, never committed
+api/node_modules/
+api/src/lib/generated-settings.json
+api/local.settings.json
