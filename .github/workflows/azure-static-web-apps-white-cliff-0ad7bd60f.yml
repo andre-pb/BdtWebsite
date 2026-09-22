@@ -48,7 +48,8 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_WHITE_CLIFF_0AD7BD60F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"
+          # Deploy the static export; the repo root triggers Next.js server packaging.
+          app_location: "out"
           api_location: ""
           output_location: ""
           skip_app_build: true
