@@ -34,6 +34,9 @@ jobs:
       - name: Write public Stripe key for the static build
         run: |
           echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.production
+      - name: Test shop payment boundaries
+        run: node --test api/test/*.test.js
+
       - name: Build static site
         run: npm run build
         env:

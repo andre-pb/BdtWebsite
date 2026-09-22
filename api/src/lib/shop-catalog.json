@@ -1,0 +1,621 @@
+{
+  "countries": [
+    {
+      "code": "GB",
+      "flag": "gb",
+      "name": "United Kingdom",
+      "currency": "GBP",
+      "symbol": "£",
+      "rate": 1
+    },
+    {
+      "code": "US",
+      "flag": "us",
+      "name": "United States",
+      "currency": "USD",
+      "symbol": "$",
+      "rate": 1.2
+    },
+    {
+      "code": "AT",
+      "flag": "at",
+      "name": "Austria",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "AU",
+      "flag": "au",
+      "name": "Australia",
+      "currency": "AUD",
+      "symbol": "A$",
+      "rate": 1.9
+    },
+    {
+      "code": "BE",
+      "flag": "be",
+      "name": "Belgium",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "BG",
+      "flag": "bg",
+      "name": "Bulgaria",
+      "currency": "BGN",
+      "symbol": "lv",
+      "rate": 2.25
+    },
+    {
+      "code": "BR",
+      "flag": "br",
+      "name": "Brazil",
+      "currency": "BRL",
+      "symbol": "R$",
+      "rate": 7
+    },
+    {
+      "code": "CA",
+      "flag": "ca",
+      "name": "Canada",
+      "currency": "CAD",
+      "symbol": "CA$",
+      "rate": 1.65
+    },
+    {
+      "code": "HR",
+      "flag": "hr",
+      "name": "Croatia",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "CY",
+      "flag": "cy",
+      "name": "Cyprus",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "CZ",
+      "flag": "cz",
+      "name": "Czechia",
+      "currency": "CZK",
+      "symbol": "Kč",
+      "rate": 29
+    },
+    {
+      "code": "DK",
+      "flag": "dk",
+      "name": "Denmark",
+      "currency": "DKK",
+      "symbol": "kr.",
+      "rate": 8.6
+    },
+    {
+      "code": "EE",
+      "flag": "ee",
+      "name": "Estonia",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "FI",
+      "flag": "fi",
+      "name": "Finland",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "FR",
+      "flag": "fr",
+      "name": "France",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "DE",
+      "flag": "de",
+      "name": "Germany",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "GR",
+      "flag": "gr",
+      "name": "Greece",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "HU",
+      "flag": "hu",
+      "name": "Hungary",
+      "currency": "HUF",
+      "symbol": "Ft",
+      "rate": 450
+    },
+    {
+      "code": "IE",
+      "flag": "ie",
+      "name": "Ireland",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "IT",
+      "flag": "it",
+      "name": "Italy",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "JP",
+      "flag": "jp",
+      "name": "Japan",
+      "currency": "JPY",
+      "symbol": "¥",
+      "rate": 195
+    },
+    {
+      "code": "LV",
+      "flag": "lv",
+      "name": "Latvia",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "LT",
+      "flag": "lt",
+      "name": "Lithuania",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "LU",
+      "flag": "lu",
+      "name": "Luxembourg",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "MT",
+      "flag": "mt",
+      "name": "Malta",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "MX",
+      "flag": "mx",
+      "name": "Mexico",
+      "currency": "MXN",
+      "symbol": "MEX$",
+      "rate": 23
+    },
+    {
+      "code": "NL",
+      "flag": "nl",
+      "name": "Netherlands",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "NO",
+      "flag": "no",
+      "name": "Norway",
+      "currency": "NOK",
+      "symbol": "kr",
+      "rate": 13.5
+    },
+    {
+      "code": "PL",
+      "flag": "pl",
+      "name": "Poland",
+      "currency": "PLN",
+      "symbol": "zł",
+      "rate": 5
+    },
+    {
+      "code": "PT",
+      "flag": "pt",
+      "name": "Portugal",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "RO",
+      "flag": "ro",
+      "name": "Romania",
+      "currency": "RON",
+      "symbol": "lei",
+      "rate": 5.75
+    },
+    {
+      "code": "SK",
+      "flag": "sk",
+      "name": "Slovakia",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "SI",
+      "flag": "si",
+      "name": "Slovenia",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "ES",
+      "flag": "es",
+      "name": "Spain",
+      "currency": "EUR",
+      "symbol": "€",
+      "rate": 1.15
+    },
+    {
+      "code": "SE",
+      "flag": "se",
+      "name": "Sweden",
+      "currency": "SEK",
+      "symbol": "kr",
+      "rate": 13
+    },
+    {
+      "code": "CH",
+      "flag": "ch",
+      "name": "Switzerland",
+      "currency": "CHF",
+      "symbol": "CHF",
+      "rate": 1.12
+    }
+  ],
+  "prices": {
+    "level": 2499,
+    "army": 2999,
+    "casual": 2999,
+    "beanieSTD": 1400,
+    "beaniePREM": 1800
+  },
+  "regionalPrices": {
+    "USD": {
+      "1400": 1800,
+      "1800": 2200,
+      "2499": 2999,
+      "2999": 3499
+    },
+    "EUR": {
+      "1400": 1600,
+      "1800": 2000,
+      "2499": 2899,
+      "2999": 3499
+    },
+    "CAD": {
+      "1400": 2000,
+      "1800": 2400,
+      "2499": 3499,
+      "2999": 3999
+    },
+    "AUD": {
+      "1400": 2200,
+      "1800": 2600,
+      "2499": 3999,
+      "2999": 4499
+    }
+  },
+  "printful": {
+    "DOWN": {
+      "S": "6aa70761d1b986",
+      "M": "6aa70761d1b9b8",
+      "L": "6aa70761d1b9c9",
+      "XL": "6aa70761d1b9d7",
+      "2XL": "6aa70761d1b9e8"
+    },
+    "ARMY": {
+      "S": "6aa6f3989408b5",
+      "M": "6aa6f3989408d6",
+      "L": "6aa6f3989408f4",
+      "XL": "6aa6f398940906",
+      "2XL": "6aa6f398940918"
+    },
+    "1A_COTTON_ORIGINAL": {
+      "S": "6a8d5ee9d4d099",
+      "M": "6a8d5ee9d4d0c7",
+      "L": "6a8d5ee9d4d0d4",
+      "XL": "6a8d5ee9d4d0f7",
+      "2XL": "6a8d5ee9d4d106"
+    },
+    "1A_COTTON_BDT": {
+      "S": "6a9d3e30cc3ad7",
+      "M": "6a9d3e30cc3af1",
+      "L": "6a9d3e30cc3b18",
+      "XL": "6a9d3e30cc3b26",
+      "2XL": "6a9d3e30cc3b31"
+    },
+    "1A_PERF_ORIGINAL": {
+      "S": "6a9da1cec10eb1",
+      "M": "6a9da1cec10ed5",
+      "L": "6a9da1cec10ee9",
+      "XL": "6a9da1cec10ef6",
+      "2XL": "6a9da1cec10f05"
+    },
+    "1A_PERF_BDT": {
+      "S": "6a9da2364265d2",
+      "M": "6a9da236426601",
+      "L": "6a9da236426616",
+      "XL": "6a9da236426628",
+      "2XL": "6a9da236426649"
+    },
+    "1B_COTTON_ORIGINAL": {
+      "S": "6a9d449a8fce57",
+      "M": "6a9d449a8fce88",
+      "L": "6a9d449a8fcea5",
+      "XL": "6a9d449a8fceb5",
+      "2XL": "6a9d449a8fced8"
+    },
+    "1B_COTTON_BDT": {
+      "S": "6a9d459c1c0568",
+      "M": "6a9d459c1c05a9",
+      "L": "6a9d459c1c05c1",
+      "XL": "6a9d459c1c05f3",
+      "2XL": "6a9d459c1c0615"
+    },
+    "1B_PERF_ORIGINAL": {
+      "S": "6a9da29059d6c7",
+      "M": "6a9da29059d6e1",
+      "L": "6a9da29059d6f9",
+      "XL": "6a9da29059d708",
+      "2XL": "6a9da29059d719"
+    },
+    "1B_PERF_BDT": {
+      "S": "6a9da2dd1ad461",
+      "M": "6a9da2dd1ad483",
+      "L": "6a9da2dd1ad497",
+      "XL": "6a9da2dd1ad4a8",
+      "2XL": "6a9da2dd1ad4b6"
+    },
+    "1C_COTTON_ORIGINAL": {
+      "S": "6a9d4601b18835",
+      "M": "6a9d4601b18852",
+      "L": "6a9d4601b18865",
+      "XL": "6a9d4601b18875",
+      "2XL": "6a9d4601b18888"
+    },
+    "1C_COTTON_BDT": {
+      "S": "6a9d469b6e6613",
+      "M": "6a9d469b6e6641",
+      "L": "6a9d469b6e6671",
+      "XL": "6a9d469b6e6682",
+      "2XL": "6a9d469b6e66a6"
+    },
+    "1C_PERF_ORIGINAL": {
+      "S": "6a9da330203bc7",
+      "M": "6a9da330203bf6",
+      "L": "6a9da330203c01",
+      "XL": "6a9da330203c24",
+      "2XL": "6a9da330203c33"
+    },
+    "1C_PERF_BDT": {
+      "S": "6a9da389b7e071",
+      "M": "6a9da389b7e094",
+      "L": "6a9da389b7e0a2",
+      "XL": "6a9da389b7e0b2",
+      "2XL": "6a9da389b7e0d7"
+    },
+    "1D_COTTON_ORIGINAL": {
+      "S": "6a9d46f3206cd5",
+      "M": "6a9d46f3206d09",
+      "L": "6a9d46f3206d27",
+      "XL": "6a9d46f3206d33",
+      "2XL": "6a9d46f3206d48"
+    },
+    "1D_COTTON_BDT": {
+      "S": "6a9d475522f622",
+      "M": "6a9d475522f642",
+      "L": "6a9d475522f657",
+      "XL": "6a9d475522f663",
+      "2XL": "6a9d475522f676"
+    },
+    "1D_PERF_ORIGINAL": {
+      "S": "6a9da3d3151c84",
+      "M": "6a9da3d3151cb4",
+      "L": "6a9da3d3151cd8",
+      "XL": "6a9da3d3151ce3",
+      "2XL": "6a9da3d3151cf4"
+    },
+    "1D_PERF_BDT": {
+      "S": "6a9da42f439843",
+      "M": "6a9da42f439869",
+      "L": "6a9da42f439883",
+      "XL": "6a9da42f439897",
+      "2XL": "6a9da42f4398a8"
+    },
+    "2A_COTTON_ORIGINAL": {
+      "S": "6a9d48b369b285",
+      "M": "6a9d48b369b2b3",
+      "L": "6a9d48b369b2c8",
+      "XL": "6a9d48b369b2d5",
+      "2XL": "6a9d48b369b2e6"
+    },
+    "2A_COTTON_BDT": {
+      "S": "6a9d4910a85b03",
+      "M": "6a9d4910a85b33",
+      "L": "6a9d4910a85b42",
+      "XL": "6a9d4910a85b61",
+      "2XL": "6a9d4910a85b79"
+    },
+    "2A_PERF_ORIGINAL": {
+      "S": "6a9da4b03c5c15",
+      "M": "6a9da4b03c5c39",
+      "L": "6a9da4b03c5c45",
+      "XL": "6a9da4b03c5c55",
+      "2XL": "6a9da4b03c5c71"
+    },
+    "2A_PERF_BDT": {
+      "S": "6a9da4ed144819",
+      "M": "6a9da4ed144844",
+      "L": "6a9da4ed144868",
+      "XL": "6a9da4ed144872",
+      "2XL": "6a9da4ed144895"
+    },
+    "2B_COTTON_ORIGINAL": {
+      "S": "6a9d4975a588b8",
+      "M": "6a9d4975a588d9",
+      "L": "6a9d4975a588f5",
+      "XL": "6a9d4975a58909",
+      "2XL": "6a9d4975a58928"
+    },
+    "2B_COTTON_BDT": {
+      "S": "6a9d49cb570b78",
+      "M": "6a9d49cb570bb2",
+      "L": "6a9d49cb570bd2",
+      "XL": "6a9d49cb570bf9",
+      "2XL": "6a9d49cb570c13"
+    },
+    "2B_PERF_ORIGINAL": {
+      "S": "6a9da53e4c40b8",
+      "M": "6a9da53e4c40d5",
+      "L": "6a9da53e4c40f8",
+      "XL": "6a9da53e4c4106",
+      "2XL": "6a9da53e4c4111"
+    },
+    "2B_PERF_BDT": {
+      "S": "6a9da577c44052",
+      "M": "6a9da577c44083",
+      "L": "6a9da577c44096",
+      "XL": "6a9da577c440a2",
+      "2XL": "6a9da577c440c2"
+    },
+    "3A_COTTON_ORIGINAL": {
+      "S": "6a9d5e888a0ff1",
+      "M": "6a9d5e888a1014",
+      "L": "6a9d5e888a1032",
+      "XL": "6a9d5e888a1048",
+      "2XL": "6a9d5e888a1059"
+    },
+    "3A_COTTON_BDT": {
+      "S": "6a9d5edcc2cb02",
+      "M": "6a9d5edcc2cbf7",
+      "L": "6a9d5edcc2cc18",
+      "XL": "6a9d5edcc2cc28",
+      "2XL": "6a9d5edcc2cc36"
+    },
+    "3A_PERF_ORIGINAL": {
+      "S": "6a9da5cb3c22d3",
+      "M": "6a9da5cb3c22f3",
+      "L": "6a9da5cb3c2316",
+      "XL": "6a9da5cb3c2334",
+      "2XL": "6a9da5cb3c2343"
+    },
+    "3A_PERF_BDT": {
+      "S": "6a9da60ac78e75",
+      "M": "6a9da60ac78ea4",
+      "L": "6a9da60ac78ec5",
+      "XL": "6a9da60ac78ed5",
+      "2XL": "6a9da60ac78ef4"
+    },
+    "3B_COTTON_ORIGINAL": {
+      "S": "6a9d5f3000ddb3",
+      "M": "6a9d5f3000ddf1",
+      "L": "6a9d5f3000de12",
+      "XL": "6a9d5f3000de34",
+      "2XL": "6a9d5f3000de53"
+    },
+    "3B_COTTON_BDT": {
+      "S": "6a9d5fddde19e6",
+      "M": "6a9d5fddde1a07",
+      "L": "6a9d5fddde1a28",
+      "XL": "6a9d5fddde1a34",
+      "2XL": "6a9d5fddde1a48"
+    },
+    "3B_PERF_ORIGINAL": {
+      "S": "6a9da66356f508",
+      "M": "6a9da66356f531",
+      "L": "6a9da66356f548",
+      "XL": "6a9da66356f567",
+      "2XL": "6a9da66356f578"
+    },
+    "3B_PERF_BDT": {
+      "S": "6a9da6a0861489",
+      "M": "6a9da6a08614a6",
+      "L": "6a9da6a08614c2",
+      "XL": "6a9da6a08614e3",
+      "2XL": "6a9da6a08614f1"
+    },
+    "4A_COTTON_ORIGINAL": {
+      "S": "6a9d6055064d77",
+      "M": "6a9d6055064d92",
+      "L": "6a9d6055064db4",
+      "XL": "6a9d6055064dc3",
+      "2XL": "6a9d6055064dd3"
+    },
+    "4A_COTTON_BDT": {
+      "S": "6a9d60b0d281c5",
+      "M": "6a9d60b0d281f8",
+      "L": "6a9d60b0d28221",
+      "XL": "6a9d60b0d28242",
+      "2XL": "6a9d60b0d28259"
+    },
+    "4B_COTTON_ORIGINAL": {
+      "S": "6a9d60f7a7f188",
+      "M": "6a9d60f7a7f1a2",
+      "L": "6a9d60f7a7f1c4",
+      "XL": "6a9d60f7a7f1d1",
+      "2XL": "6a9d60f7a7f1e2"
+    },
+    "4B_COTTON_BDT": {
+      "S": "6a9d624c95c868",
+      "M": "6a9d624c95c899",
+      "L": "6a9d624c95c8b3",
+      "XL": "6a9d624c95c8d4",
+      "2XL": "6a9d624c95c8f5"
+    },
+    "G_COTTON_ORIGINAL": {
+      "S": "6a9d62b60904e5",
+      "M": "6a9d62b6090511",
+      "L": "6a9d62b6090521",
+      "XL": "6a9d62b6090544",
+      "2XL": "6a9d62b6090559"
+    },
+    "G_COTTON_BDT": {
+      "S": "6a9d630a7459f6",
+      "M": "6a9d630a745a18",
+      "L": "6a9d630a745a27",
+      "XL": "6a9d630a745a34",
+      "2XL": "6a9d630a745a48"
+    },
+    "G_PERF_ORIGINAL": {
+      "S": "6a9da7032d5c59",
+      "M": "6a9da7032d5c83",
+      "L": "6a9da7032d5c93",
+      "XL": "6a9da7032d5cb7",
+      "2XL": "6a9da7032d5cc6"
+    },
+    "G_PERF_BDT": {
+      "S": "6a9da7493f0a21",
+      "M": "6a9da7493f0a45",
+      "L": "6a9da7493f0a66",
+      "XL": "6a9da7493f0a79",
+      "2XL": "6a9da7493f0a96"
+    }
+  }
+}

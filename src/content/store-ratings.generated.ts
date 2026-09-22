@@ -10,9 +10,9 @@
  * Source of truth at runtime: GET /api/v1/StoreRatings on the BDT API.
  */
 export const generatedStoreRatings = {
-  apple: { rating: 4.63, ratingCount: 70 },
-  google: { rating: 4.11, ratingCount: 80 },
-  combined: { rating: 4.35, ratingCount: 150 },
+  apple: { rating: 4.67, ratingCount: 88 },
+  google: { rating: 4.17, ratingCount: 96 },
+  combined: { rating: 4.41, ratingCount: 184 },
   app: { version: "3.0.4", updated: "2026-08-27" },
-  fetchedAt: "2026-09-05",
+  fetchedAt: "2026-09-22",
 } as const;

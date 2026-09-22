@@ -1,5 +1,6 @@
 const { app } = require("@azure/functions");
-const { getSetting } = require("../lib/settings");
+const { computeRate } = require("../lib/shipping");
+const { resolveCart } = require("../lib/catalog");
 const { jsonResponse, optionsResponse } = require("../lib/cors");
 
 // Same cross-origin restriction as checkout.js applies here (Azure's
@@ -12,76 +13,6 @@ const { jsonResponse, optionsResponse } = require("../lib/cors");
 // carries a `callback` param we reply with a small JavaScript snippet that
 // calls that function with the result, instead of a JSON body. A request
 // with no `callback` param still gets a plain JSON response, unchanged.
-async function computeRate(country, state, cart, context) {
-  if (!country || !cart || !Array.isArray(cart) || cart.length === 0) {
-    return { status: 400, error: "Invalid payload or empty cart." };
-  }
-
-  const printfulToken = getSetting("PRINTFUL_ACCESS_TOKEN");
-  const printfulStoreId = getSetting("PRINTFUL_STORE_ID");
-
-  if (!printfulToken) {
-    return { status: 200, ratePence: 850, rateFormatted: "£8.50" };
-  }
-
-  let stateCode = state;
-  if (!stateCode) {
-    if (country === "US") stateCode = "NY";
-    else if (country === "CA") stateCode = "ON";
-    else if (country === "AU") stateCode = "NSW";
-  }
-
-  const printfulItems = cart.map((item) => {
-    const cleanSku = (item.supplierSku || "").replace(/^#/, "").trim();
-    if (/^\d+$/.test(cleanSku)) {
-      return { sync_variant_id: parseInt(cleanSku, 10), quantity: item.quantity };
-    }
-    if (/^[a-f0-9]{10,}$/i.test(cleanSku)) {
-      return { external_variant_id: cleanSku, quantity: item.quantity };
-    }
-    return { variant_id: 4011, quantity: item.quantity };
-  });
-
-  try {
-    const printfulResponse = await fetch("https://api.printful.com/shipping/rates", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${printfulToken}`,
-        "Content-Type": "application/json",
-        ...(printfulStoreId ? { "X-Printful-Store-Id": printfulStoreId } : {}),
-      },
-      body: JSON.stringify({
-        store_id: printfulStoreId ? parseInt(printfulStoreId, 10) : undefined,
-        recipient: {
-          country_code: country,
-          ...(stateCode ? { state_code: stateCode } : {}),
-        },
-        items: printfulItems,
-        currency: "GBP",
-      }),
-    });
-
-    if (!printfulResponse.ok) {
-      const errText = await printfulResponse.text();
-      context.error("❌ Printful Rate API Error Details:", errText);
-      return { status: 200, ratePence: 850, rateFormatted: "£8.50" };
-    }
-
-    const data = await printfulResponse.json();
-    const rates = data.result;
-
-    if (rates && rates.length > 0) {
-      const standardRate = parseFloat(rates[0].rate);
-      const ratePence = Math.round(standardRate * 100);
-      return { status: 200, ratePence, rateFormatted: `£${standardRate.toFixed(2)}` };
-    }
-
-    return { status: 200, ratePence: 850, rateFormatted: "£8.50" };
-  } catch (err) {
-    context.error("❌ Printful Live Rate Fetch Exception:", err);
-    return { status: 200, ratePence: 850, rateFormatted: "£8.50" };
-  }
-}
 
 function jsonpScriptResponse(callbackName, body) {
   // Only allow a plain identifier as the callback name — it gets dropped
@@ -128,7 +59,15 @@ app.http("shippingRates", {
       }
     }
 
-    const result = await computeRate(country, state, cart, context);
+    let result;
+    try {
+      const resolved = resolveCart(cart, country);
+      result = country === "GB"
+        ? { status: 200, ratePence: 395, rateFormatted: "£3.95" }
+        : await computeRate(country, state, resolved.cart, context);
+    } catch (error) {
+      result = { status: error.status || 400, error: "Invalid shipping request." };
+    }
 
     if (callback) {
       return jsonpScriptResponse(callback, result);

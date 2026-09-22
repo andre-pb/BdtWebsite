@@ -1,5 +1,7 @@
 const { app } = require("@azure/functions");
 const Stripe = require("stripe");
+const { resolveCart, toMinorUnits } = require("../lib/catalog");
+const { computeRate } = require("../lib/shipping");
 const { getSetting } = require("../lib/settings");
 const { jsonResponse, optionsResponse } = require("../lib/cors");
 
@@ -35,15 +37,7 @@ app.http("checkout", {
       const parsed = await readCheckoutPayload(request);
       const body = parsed.body;
       isFormSubmission = parsed.isFormSubmission;
-      const {
-        cart,
-        country = "GB",
-        currency = "gbp",
-        region = "uk",
-        shippingCostPence = 395,
-      } = body;
-
-      const origin = request.headers.get("origin") || "https://busydadtraining.com";
+      const origin = "https://busydadtraining.com";
       const respondError = (status, message) => {
         context.error(`❌ Stripe Checkout Handshake Error (${status}):`, message);
         if (isFormSubmission) {
@@ -55,12 +49,16 @@ app.http("checkout", {
         return jsonResponse(request, status, { error: message });
       };
 
-      if (!cart || !Array.isArray(cart) || cart.length === 0) {
-        return respondError(400, "Shopping bag data is empty.");
-      }
-
-      const isUk = country === "GB" || region === "uk";
-      const targetCurrency = (currency || "gbp").toLowerCase();
+      const resolved = resolveCart(body.cart, body.country || "GB");
+      const { cart } = resolved;
+      const country = resolved.country.code;
+      const isUk = country === "GB";
+      const region = isUk ? "uk" : "global";
+      const targetCurrency = resolved.country.currency.toLowerCase();
+      const quote = isUk ? { status: 200, ratePence: 395 }
+        : await computeRate(country, undefined, cart, context);
+      if (quote.status !== 200) return respondError(503, quote.error);
+      const shippingCostPence = toMinorUnits(quote.ratePence, resolved.country, false);
       let trelloCardDescription = `### 👕 Garment Production Manifest\n`;
 
       const lineItems = cart.map((item) => {
@@ -94,8 +92,8 @@ app.http("checkout", {
         }
         trelloCardDescription += `\n`;
 
-        const itemCurrency = (item.currency || targetCurrency).toLowerCase();
-        const itemUnitAmount = item.unitAmount || Math.round(item.price * 100);
+        const itemCurrency = targetCurrency;
+        const itemUnitAmount = item.unitAmount;
 
         return {
           price_data: {
@@ -103,7 +101,6 @@ app.http("checkout", {
             product_data: {
               name: item.name,
               description: `SKU: ${item.supplierSku || "N/A"} | ${descriptionParts.join(" | ")}`,
-              images: item.viewSrc && item.viewSrc.startsWith("http") ? [item.viewSrc] : [],
             },
             unit_amount: itemUnitAmount,
           },
@@ -131,6 +128,10 @@ app.http("checkout", {
       for (let i = 0; i < trelloCardDescription.length; i += chunkSize) {
         manifestChunks[`manifest_chunk_${chunkIndex}`] = trelloCardDescription.substring(i, i + chunkSize);
         chunkIndex++;
+      }
+
+      if (printfulPassportArray.join("|").length > 450 || Object.keys(manifestChunks).length > 40) {
+        return respondError(400, "Your shopping bag is too large. Please split it into smaller orders.");
       }
 
       const shippingTitle = region === "global" ? "Standard Delivery" : "Royal Mail Standard (UK)";
@@ -163,6 +164,7 @@ app.http("checkout", {
         ],
         metadata: {
           order_number: orderNumber,
+          hold_for_review: String(cart.some((item) => item.holdForReview)),
           total_items_count: String(cart.reduce((sum, i) => sum + i.quantity, 0)),
           cart_item_ids_summary: compactedIds.join(" | ").substring(0, 450),
           cart_skus_summary: compactedSkus.join(" | ").substring(0, 450),
@@ -187,13 +189,13 @@ app.http("checkout", {
     } catch (err) {
       context.error("❌ Stripe Checkout Handshake Error:", err);
       if (isFormSubmission) {
-        const origin = request.headers.get("origin") || "https://busydadtraining.com";
+        const origin = "https://busydadtraining.com";
         return {
           status: 303,
-          headers: { Location: `${origin}/shop?checkoutError=${encodeURIComponent(err.message || "Internal processing anomaly.")}` },
+          headers: { Location: `${origin}/shop?checkoutError=${encodeURIComponent(err.status === 400 ? err.message : "Checkout is temporarily unavailable.")}` },
         };
       }
-      return jsonResponse(request, 500, { error: err.message || "Internal processing anomaly." });
+      return jsonResponse(request, err.status || 500, { error: err.status === 400 ? err.message : "Checkout is temporarily unavailable." });
     }
   },
 });

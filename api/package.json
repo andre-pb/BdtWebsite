@@ -2,10 +2,11 @@
   "name": "bdt-shop-api",
   "version": "1.0.0",
   "private": true,
-  "description": "Live backend for the Busy Dad Training shop: Stripe checkout, shipping rates, and the payment webhook (Printful + Trello). Deployed as Azure Functions on the Static Web App this repo already has a deploy key for. Kept separate from Andre's production api.busydadtraining.com — see AGENTS.md.",
+  "description": "Live backend for the Busy Dad Training shop: Stripe checkout, shipping rates, and the payment webhook (Printful + Trello). Deployed as Azure Functions on the Static Web App this repo already has a deploy key for. Kept separate from Andre's production api.busydadtraining.com \u2014 see AGENTS.md.",
   "main": "src/functions/*.js",
   "scripts": {
-    "start": "func start"
+    "start": "func start",
+    "test": "node --test test/*.test.js"
   },
   "engines": {
     "node": ">=20"
