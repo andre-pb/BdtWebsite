@@ -1,13 +1,18 @@
-name: Deploy dev site (Azure SWA)
+name: Deploy shop backend + preview (Azure SWA)
 
+# This resource hosts the shop's live backend (Stripe checkout, shipping
+# rates, the payment webhook -> Printful + Trello) as Azure Functions under
+# /api. It also mirrors the static site for preview purposes. It is
+# separate from Andre's production api.busydadtraining.com — see AGENTS.md.
 on:
   push:
     branches:
+      - main
       - dev
   workflow_dispatch:
 
 concurrency:
-  group: swa-dev
+  group: swa-lively-river
   cancel-in-progress: true
 
 jobs:
@@ -24,29 +29,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - name: Install dependencies
+      - name: Install frontend dependencies
         run: npm ci
-      - name: Create production env file from GitHub Secrets
+      - name: Write public Stripe key for the static build
         run: |
-          echo "STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }}" >> .env.production
-          echo "STRIPE_WEBHOOK_SECRET=${{ secrets.STRIPE_WEBHOOK_SECRET }}" >> .env.production
-          echo "PRINTFUL_ACCESS_TOKEN=${{ secrets.PRINTFUL_ACCESS_TOKEN }}" >> .env.production
-          echo "PRINTFUL_STORE_ID=${{ secrets.PRINTFUL_STORE_ID }}" >> .env.production
-          echo "TRELLO_API_KEY=${{ secrets.TRELLO_API_KEY }}" >> .env.production
-          echo "TRELLO_TOKEN=${{ secrets.TRELLO_TOKEN }}" >> .env.production
-          echo "TRELLO_BOARD_ID=${{ secrets.TRELLO_BOARD_ID }}" >> .env.production
-          echo "TRELLO_LIST_NEW_ORDERS=${{ secrets.TRELLO_LIST_NEW_ORDERS }}" >> .env.production
-          echo "TRELLO_LABEL_YELLOW=${{ secrets.TRELLO_LABEL_YELLOW }}" >> .env.production
-          echo "TRELLO_LABEL_ORANGE=${{ secrets.TRELLO_LABEL_ORANGE }}" >> .env.production
-          echo "TRELLO_LABEL_PURPLE=${{ secrets.TRELLO_LABEL_PURPLE }}" >> .env.production
-          echo "TRELLO_LABEL_CHECK_PRINTFUL=${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}" >> .env.production
-          echo "TRELLO_LABEL_GARMENTS_IN_STOCK=${{ secrets.TRELLO_LABEL_GARMENTS_IN_STOCK }}" >> .env.production
-          echo "TRELLO_LABEL_DESIGN_FILE_COMPLETED=${{ secrets.TRELLO_LABEL_DESIGN_FILE_COMPLETED }}" >> .env.production
-          echo "TRELLO_LABEL_DTF_PRINTED=${{ secrets.TRELLO_LABEL_DTF_PRINTED }}" >> .env.production
-          echo "TRELLO_LABEL_READY_FOR_HEAT_PRESS=${{ secrets.TRELLO_LABEL_READY_FOR_HEAT_PRESS }}" >> .env.production
-          echo "TRELLO_LABEL_ROYAL_MAIL_BOOKED=${{ secrets.TRELLO_LABEL_ROYAL_MAIL_BOOKED }}" >> .env.production
-          echo "TRELLO_LABEL_PRESSED_READY_TO_SHIP=${{ secrets.TRELLO_LABEL_PRESSED_READY_TO_SHIP }}" >> .env.production
           echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.production
+      - name: Test shop payment boundaries
+        run: node --test api/test/*.test.js
+
       - name: Build static site
         run: npm run build
         env:
@@ -57,6 +47,34 @@ jobs:
           NEXT_PUBLIC_LISTMONK_LIST_UUID: ab776f98-a8ae-4e1b-9958-47d4deeefe3d
           NEXT_PUBLIC_BURPEE_HUB_URL: https://api.busydadtraining.com/hubs/burpees
           NEXT_PUBLIC_LEADERBOARD_HUB_URL: https://api.busydadtraining.com/hubs/leaderboard
+      # Application settings on the Static Web App (Azure Portal) are the
+      # right home for these, but we don't have portal access right now.
+      # This bakes them into the deployed Functions package instead, which
+      # works today and is never served publicly (only the /api routes
+      # below are). See api/src/lib/settings.js for the fallback logic —
+      # once real Application Settings exist in the Portal, this step (and
+      # the file it writes) can be deleted with no code change needed.
+      - name: Write backend secrets for the shop API
+        run: |
+          cat > api/src/lib/generated-settings.json <<'EOF'
+          {
+            "STRIPE_SECRET_KEY": "${{ secrets.STRIPE_SECRET_KEY }}",
+            "STRIPE_WEBHOOK_SECRET": "${{ secrets.STRIPE_WEBHOOK_SECRET }}",
+            "PRINTFUL_ACCESS_TOKEN": "${{ secrets.PRINTFUL_ACCESS_TOKEN }}",
+            "PRINTFUL_STORE_ID": "${{ secrets.PRINTFUL_STORE_ID }}",
+            "TRELLO_API_KEY": "${{ secrets.TRELLO_API_KEY }}",
+            "TRELLO_TOKEN": "${{ secrets.TRELLO_TOKEN }}",
+            "TRELLO_LIST_NEW_ORDERS": "${{ secrets.TRELLO_LIST_NEW_ORDERS }}",
+            "TRELLO_LABEL_YELLOW": "${{ secrets.TRELLO_LABEL_YELLOW }}",
+            "TRELLO_LABEL_ORANGE": "${{ secrets.TRELLO_LABEL_ORANGE }}",
+            "TRELLO_LABEL_PURPLE": "${{ secrets.TRELLO_LABEL_PURPLE }}",
+            "TRELLO_LABEL_GREEN": "${{ secrets.TRELLO_LABEL_GREEN }}",
+            "TRELLO_LABEL_CHECK_PRINTFUL": "${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}"
+          }
+          EOF
+      - name: Install shop API dependencies
+        run: npm install
+        working-directory: api
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -64,8 +82,8 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LIVELY_RIVER_03654B603 }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/"
-          api_location: ""
+          app_location: "out"
+          api_location: "api"
           output_location: ""
           skip_app_build: true
         env:

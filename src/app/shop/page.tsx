@@ -1,5 +1,6 @@
 'use client';
 import { API_BASE_URL } from "@/lib/base-path";
+import shopCatalog from "../../../api/src/lib/shop-catalog.json";
 import Script from 'next/script';
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from "@/components/layout/Header";
@@ -21,47 +22,13 @@ interface CartItem {
     logoStyle?: string;
     supplierSku?: string;
     colorVariant?: string;
+    holdForReview?: boolean;
+    submissionVideoUrl?: string;
 }
 
-// 🌍 PRINTFUL HUB COUNTRIES (UK 1ST, USA 2ND, ALPHABETICAL AFTER)
-const PRINTFUL_COUNTRIES = [
-    { code: 'GB', flag: 'gb', name: 'United Kingdom', currency: 'GBP', symbol: '£', rate: 1.0 },
-    { code: 'US', flag: 'us', name: 'United States', currency: 'USD', symbol: '$', rate: 1.20 },
-    { code: 'AT', flag: 'at', name: 'Austria', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'AU', flag: 'au', name: 'Australia', currency: 'AUD', symbol: 'A$', rate: 1.90 },
-    { code: 'BE', flag: 'be', name: 'Belgium', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'BG', flag: 'bg', name: 'Bulgaria', currency: 'BGN', symbol: 'lv', rate: 2.25 },
-    { code: 'BR', flag: 'br', name: 'Brazil', currency: 'BRL', symbol: 'R$', rate: 7.00 },
-    { code: 'CA', flag: 'ca', name: 'Canada', currency: 'CAD', symbol: 'CA$', rate: 1.65 },
-    { code: 'HR', flag: 'hr', name: 'Croatia', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'CY', flag: 'cy', name: 'Cyprus', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'CZ', flag: 'cz', name: 'Czechia', currency: 'CZK', symbol: 'Kč', rate: 29.0 },
-    { code: 'DK', flag: 'dk', name: 'Denmark', currency: 'DKK', symbol: 'kr.', rate: 8.60 },
-    { code: 'EE', flag: 'ee', name: 'Estonia', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'FI', flag: 'fi', name: 'Finland', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'FR', flag: 'fr', name: 'France', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'DE', flag: 'de', name: 'Germany', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'GR', flag: 'gr', name: 'Greece', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'HU', flag: 'hu', name: 'Hungary', currency: 'HUF', symbol: 'Ft', rate: 450.0 },
-    { code: 'IE', flag: 'ie', name: 'Ireland', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'IT', flag: 'it', name: 'Italy', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'JP', flag: 'jp', name: 'Japan', currency: 'JPY', symbol: '¥', rate: 195.0 },
-    { code: 'LV', flag: 'lv', name: 'Latvia', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'LT', flag: 'lt', name: 'Lithuania', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'LU', flag: 'lu', name: 'Luxembourg', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'MT', flag: 'mt', name: 'Malta', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'MX', flag: 'mx', name: 'Mexico', currency: 'MXN', symbol: 'MEX$', rate: 23.0 },
-    { code: 'NL', flag: 'nl', name: 'Netherlands', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'NO', flag: 'no', name: 'Norway', currency: 'NOK', symbol: 'kr', rate: 13.5 },
-    { code: 'PL', flag: 'pl', name: 'Poland', currency: 'PLN', symbol: 'zł', rate: 5.00 },
-    { code: 'PT', flag: 'pt', name: 'Portugal', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'RO', flag: 'ro', name: 'Romania', currency: 'RON', symbol: 'lei', rate: 5.75 },
-    { code: 'SK', flag: 'sk', name: 'Slovakia', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'SI', flag: 'si', name: 'Slovenia', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'ES', flag: 'es', name: 'Spain', currency: 'EUR', symbol: '€', rate: 1.15 },
-    { code: 'SE', flag: 'se', name: 'Sweden', currency: 'SEK', symbol: 'kr', rate: 13.0 },
-    { code: 'CH', flag: 'ch', name: 'Switzerland', currency: 'CHF', symbol: 'CHF', rate: 1.12 },
-];
+// Public catalogue shared with the independently deployed shop API.
+const PRINTFUL_COUNTRIES = shopCatalog.countries;
+const prices = shopCatalog.prices;
 
 export default function ShopPage() {
     const [gradDeclaration, setGradDeclaration] = useState(false);
@@ -90,92 +57,18 @@ export default function ShopPage() {
         setIsCountryDropdownOpen(false);
     };
 
-    // 💵 PSYCHOLOGICAL REGIONAL PRICING HELPER
-    const getRegionalPrice = (gbpBase: number) => {
-        const currency = activeCountryObj.currency;
-        const symbol = activeCountryObj.symbol;
-
-        if (currency === 'USD') {
-            if (gbpBase === 24.99) return `${symbol}29.99`;
-            if (gbpBase === 29.99) return `${symbol}34.99`;
-            if (gbpBase === 14.00) return `${symbol}18.00`;
-            if (gbpBase === 18.00) return `${symbol}22.00`;
-        }
-
-        if (currency === 'EUR') {
-            if (gbpBase === 24.99) return `${symbol}28.99`;
-            if (gbpBase === 29.99) return `${symbol}34.99`;
-            if (gbpBase === 14.00) return `${symbol}16.00`;
-            if (gbpBase === 18.00) return `${symbol}20.00`;
-        }
-
-        if (currency === 'CAD') {
-            if (gbpBase === 24.99) return `${symbol}34.99`;
-            if (gbpBase === 29.99) return `${symbol}39.99`;
-            if (gbpBase === 14.00) return `${symbol}20.00`;
-            if (gbpBase === 18.00) return `${symbol}24.00`;
-        }
-
-        if (currency === 'AUD') {
-            if (gbpBase === 24.99) return `${symbol}39.99`;
-            if (gbpBase === 29.99) return `${symbol}44.99`;
-            if (gbpBase === 14.00) return `${symbol}22.00`;
-            if (gbpBase === 18.00) return `${symbol}26.00`;
-        }
-
-        if (currency === 'GBP') {
-            return `${symbol}${gbpBase.toFixed(2)}`;
-        }
-
-        const converted = gbpBase * activeCountryObj.rate;
-        if (currency === 'JPY' || currency === 'HUF') {
-            return `${symbol}${Math.round(converted).toLocaleString()}`;
-        }
-        return `${symbol}${converted.toFixed(2)}`;
+    const regionalPrices: Record<string, Record<string, number>> = shopCatalog.regionalPrices;
+    const regionalUnitPrice = (gbpBase: number) => {
+        const basePence = Math.round(gbpBase * 100);
+        const fixed = regionalPrices[activeCountryObj.currency]?.[basePence];
+        const converted = fixed === undefined ? gbpBase * activeCountryObj.rate : fixed / 100;
+        return ['JPY', 'HUF'].includes(activeCountryObj.currency)
+            ? Math.round(converted) : Math.round(converted * 100) / 100;
     };
-
-    // Helper to get raw integer cents/pence in local currency for Stripe
-    const getRegionalStripeAmount = (gbpBase: number) => {
-        const currency = activeCountryObj.currency.toLowerCase();
-
-        if (currency === 'usd') {
-            if (gbpBase === 24.99) return { amount: 2999, currency: 'usd' };
-            if (gbpBase === 29.99) return { amount: 3499, currency: 'usd' };
-            if (gbpBase === 14.00) return { amount: 1800, currency: 'usd' };
-            if (gbpBase === 18.00) return { amount: 2200, currency: 'usd' };
-        }
-
-        if (currency === 'eur') {
-            if (gbpBase === 24.99) return { amount: 2899, currency: 'eur' };
-            if (gbpBase === 29.99) return { amount: 3499, currency: 'eur' };
-            if (gbpBase === 14.00) return { amount: 1600, currency: 'eur' };
-            if (gbpBase === 18.00) return { amount: 2000, currency: 'eur' };
-        }
-
-        if (currency === 'cad') {
-            if (gbpBase === 24.99) return { amount: 3499, currency: 'cad' };
-            if (gbpBase === 29.99) return { amount: 3999, currency: 'cad' };
-            if (gbpBase === 14.00) return { amount: 2000, currency: 'cad' };
-            if (gbpBase === 18.00) return { amount: 2400, currency: 'cad' };
-        }
-
-        if (currency === 'aud') {
-            if (gbpBase === 24.99) return { amount: 3999, currency: 'aud' };
-            if (gbpBase === 29.99) return { amount: 4499, currency: 'aud' };
-            if (gbpBase === 14.00) return { amount: 2200, currency: 'aud' };
-            if (gbpBase === 18.00) return { amount: 2600, currency: 'aud' };
-        }
-
-        if (currency === 'gbp') {
-            return { amount: Math.round(gbpBase * 100), currency: 'gbp' };
-        }
-
-        const converted = gbpBase * activeCountryObj.rate;
-        if (currency === 'jpy' || currency === 'huf') {
-            return { amount: Math.round(converted), currency };
-        }
-        return { amount: Math.round(converted * 100), currency };
-    };
+    const formatRegionalTotal = (amount: number) => `${activeCountryObj.symbol}${
+        ['JPY', 'HUF'].includes(activeCountryObj.currency) ? Math.round(amount).toLocaleString() : amount.toFixed(2)
+    }`;
+    const getRegionalPrice = (gbpBase: number) => formatRegionalTotal(regionalUnitPrice(gbpBase));
 
     useEffect(() => {
         const timer = setTimeout(() => setIsStoreReady(true), 250);
@@ -202,7 +95,7 @@ export default function ShopPage() {
                         setSelectedCountry(detectedCode);
                     }
                 }
-            } catch (err) {
+            } catch {
                 // Silently fallback to UK if blocked
             }
         };
@@ -493,6 +386,11 @@ export default function ShopPage() {
             setShowCancelModal(true);
             window.history.replaceState({}, document.title, window.location.pathname);
         }
+        const checkoutError = queryParams.get('checkoutError');
+        if (checkoutError) {
+            alert(`❌ Checkout Generation Refused: ${checkoutError}`);
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
     }, []);
 
     const saveCart = (newCart: CartItem[]) => {
@@ -597,7 +495,7 @@ export default function ShopPage() {
             supplierSku: `BA220-GOLD-${levelSize.split(' ')[0]}`,
             holdForReview: true,
             submissionVideoUrl: videoInput
-        } as any);
+        });
 
         setGradVideoUrl("");
         setGradDeclaration(false);
@@ -640,7 +538,7 @@ export default function ShopPage() {
             addItemToCart({
                 id: `lvl-${levelTarget}-${logoStyle}-${fabricSpec}-${garmentCut}-${levelSize.replace(/\s+/g, '')}`,
                 name: `Level Progress Gear (Level ${levelTarget})`,
-                price: 24.99,
+                price: prices.level / 100,
                 size: levelSize,
                 viewSrc: `/images/${finalPrefix}_1.jpg`,
                 logoStyle,
@@ -683,7 +581,7 @@ export default function ShopPage() {
         addItemToCart({
             id: `bda-${bdaBadge}-${bdaSize.replace(/\s+/g, '')}-${finalStampText.replace(/\s+/g, '')}`,
             name: "The Busy Dad Army Shirt",
-            price: 29.99,
+            price: prices.army / 100,
             size: bdaSize,
             viewSrc: bdaAssets[0],
             badgeRank: bdaBadge,
@@ -709,7 +607,7 @@ export default function ShopPage() {
         addItemToCart({
             id: `casual-${casualSize.replace(/\s+/g, '')}`,
             name: "DOWN Casual Premium Tee",
-            price: 29.99,
+            price: prices.casual / 100,
             size: casualSize,
             viewSrc: '/images/casual_1.jpg',
             supplierSku: casualSku
@@ -725,7 +623,7 @@ export default function ShopPage() {
             ? "Loose-knit Thinsulate beanie"
             : "Original Tight Knit Beanie";
 
-        const finalPrice = beanieTier === 'PREM' ? 18.00 : 14.00;
+        const finalPrice = (beanieTier === 'PREM' ? prices.beaniePREM : prices.beanieSTD) / 100;
 
         addItemToCart({
             id: `beanie-${beanieTier}-${beanieLogoStyle}-${beanieColor}`,
@@ -743,61 +641,39 @@ export default function ShopPage() {
     const handleCheckoutRedirect = async () => {
         setIsProcessingCheckout(true);
         try {
-            const targetCurrency = activeCountryObj.currency.toLowerCase();
-            let calculatedShippingPence = 395; // £3.95 Standard Royal Mail for UK
-
-            if (!isUkOrder) {
-                try {
-                    const rateResponse = await fetch('/api/shipping-rates', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ country: selectedCountry, cart }),
-                    });
-
-                    if (rateResponse.ok) {
-                        const rateData = await rateResponse.json();
-                        calculatedShippingPence = rateData.ratePence || 850;
-                    } else {
-                        calculatedShippingPence = 850; // £8.50 fallback
-                    }
-                } catch (rateErr) {
-                    console.warn('⚠️ Could not fetch live rate, falling back to standard international rate:', rateErr);
-                    calculatedShippingPence = 850; // £8.50 fallback
-                }
-            }
-
-            // Attach regional target price to each item sent to checkout
-            const regionalCart = cart.map(item => {
-                const regionalPrice = getRegionalStripeAmount(item.price);
-                return {
-                    ...item,
-                    unitAmount: regionalPrice.amount, // e.g. 2999 for $29.99
-                    currency: regionalPrice.currency   // e.g. 'usd'
-                };
+            // The shop (busydadtraining.com) and the checkout backend (an
+            // Azure Static Web App) are different origins, and Azure only
+            // allows its own linked frontend to call its API with
+            // fetch/XHR — that's a platform restriction with no CORS
+            // workaround available to us. A plain <form> submission isn't
+            // subject to that check (it's a full-page navigation, not a
+            // script reading a cross-origin response), and the backend
+            // replies to a form submission with a redirect straight to
+            // Stripe, so this reaches Stripe the same way a normal "pay
+            // now" link would.
+            const payload = JSON.stringify({
+                cart,
+                country: selectedCountry,
             });
 
-            const response = await fetch(`${API_BASE_URL}/api/checkout/`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    cart: regionalCart,
-                    country: selectedCountry,
-                    currency: targetCurrency,
-                    region: isUkOrder ? 'uk' : 'global',
-                    shippingCostPence: calculatedShippingPence
-                }),
-            });
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = `${API_BASE_URL}/api/checkout/`;
+            form.style.display = 'none';
 
-            const data = await response.json();
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                alert(`❌ Checkout Generation Refused: ${data.error || 'Unknown parameter exception.'}`);
-            }
+            const payloadField = document.createElement('input');
+            payloadField.type = 'hidden';
+            payloadField.name = 'payload';
+            payloadField.value = payload;
+            form.appendChild(payloadField);
+
+            document.body.appendChild(form);
+            form.submit();
+            // Intentionally no setIsProcessingCheckout(false) here: the page
+            // is navigating away, so there's nothing left to reset.
         } catch (error) {
             console.error('Frontend Checkout Handshake Exception:', error);
             alert('❌ Failed to establish link communication with payment systems.');
-        } finally {
             setIsProcessingCheckout(false);
         }
     };
@@ -849,7 +725,7 @@ export default function ShopPage() {
             addItemToCart({
                 id: `level-gear-G-backup-${levelSize.replace(/\s+/g, '')}`,
                 name: "Graduated Progress Gear",
-                price: 24.99,
+                price: prices.level / 100,
                 size: levelSize,
                 viewSrc: '',
                 supplierSku: `GD005-GOLD-${levelSize.split(' ')[0]}`
@@ -938,7 +814,7 @@ export default function ShopPage() {
     };
 
     const cartItemsCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartSubtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const cartSubtotal = cart.reduce((sum, item) => sum + (regionalUnitPrice(item.price) * item.quantity), 0);
 
     if (!isMounted) {
         return (
@@ -1087,7 +963,7 @@ export default function ShopPage() {
                                             <div className="mb-6">
                                                 <div className="flex justify-between items-baseline w-full">
                                                     <h3 className="text-lg font-bold text-white tracking-tight">Level Progress Gear</h3>
-                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(24.99)}</span>
+                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(prices.level / 100)}</span>
                                                 </div>
                                                 <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '12px', paddingBottom: '20px' }}>
                                                     The ultimate visual milestone tracker. Wear your progress with pride as you advance through the program.
@@ -1190,7 +1066,7 @@ export default function ShopPage() {
                                             <div className="mb-6">
                                                 <div className="flex justify-between items-baseline w-full">
                                                     <h3 className="text-lg font-bold text-white tracking-tight">The Busy Dad Army Shirt</h3>
-                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(29.99)}</span>
+                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(prices.army / 100)}</span>
                                                 </div>
                                                 <p className="text-xs text-white/40 mt-1">Customization Included</p>
                                                 <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>Official uniform of the global collective. Get your name stamped and represent the army.</p>
@@ -1256,7 +1132,7 @@ export default function ShopPage() {
                                             <div className="mb-6">
                                                 <div className="flex justify-between items-baseline w-full">
                                                     <h3 className="text-lg font-bold text-white tracking-tight">DOWN Casual Premium Tee</h3>
-                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(29.99)}</span>
+                                                    <span className="text-lg font-black text-white/90">{getRegionalPrice(prices.army / 100)}</span>
                                                 </div>
                                                 <p className="text-xs text-white/40 mt-1">Premium Organic Cotton</p>
                                                 <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>100% Organic compact ringspun cotton single Jersey (180gsm). A higher quality, premium shirt with a comfortable medium weight feel.</p>
@@ -1303,7 +1179,7 @@ export default function ShopPage() {
                                                     <div className="flex justify-between items-baseline w-full">
                                                         <h3 className="text-lg font-bold text-white tracking-tight">Official BDT Headwear</h3>
                                                         <span className="text-lg font-black text-white/90">
-                                                            {beanieTier === 'NONE' ? `${getRegionalPrice(14.00)} - ${getRegionalPrice(18.00)}` : beanieTier === 'PREM' ? getRegionalPrice(18.00) : getRegionalPrice(14.00)}
+                                                            {beanieTier === 'NONE' ? `${getRegionalPrice(prices.beanieSTD / 100)} - ${getRegionalPrice(prices.beaniePREM / 100)}` : beanieTier === 'PREM' ? getRegionalPrice(prices.beaniePREM / 100) : getRegionalPrice(prices.beanieSTD / 100)}
                                                         </span>
                                                     </div>
                                                     <p className="text-sm text-white/70 mt-3 leading-relaxed" style={{ paddingTop: '16px', paddingBottom: '20px' }}>
@@ -1319,8 +1195,8 @@ export default function ShopPage() {
                                                         <label style={labelStyle}>SELECT BEANIE TYPE</label>
                                                         <select value={beanieTier} onChange={(e) => setBeanieTier(e.target.value)} style={inputStyle}>
                                                             <option value="NONE">-- Choose Beanie Variant --</option>
-                                                            <option value="STD">Original Tight Knit Beanie ({getRegionalPrice(14.00)})</option>
-                                                            <option value="PREM">Loose-knit Thinsulate beanie ({getRegionalPrice(18.00)})</option>
+                                                            <option value="STD">Original Tight Knit Beanie ({getRegionalPrice(prices.beanieSTD / 100)})</option>
+                                                            <option value="PREM">Loose-knit Thinsulate beanie ({getRegionalPrice(prices.beaniePREM / 100)})</option>
                                                         </select>
                                                     </div>
 
@@ -1442,7 +1318,7 @@ export default function ShopPage() {
                                     </div>
                                     <div className="text-right flex items-center gap-3">
                                         <div>
-                                            <p className="text-xs font-black text-white">{getRegionalPrice(item.price * item.quantity)}</p>
+                                            <p className="text-xs font-black text-white">{formatRegionalTotal(regionalUnitPrice(item.price) * item.quantity)}</p>
                                             {item.quantity > 1 && (
                                                 <p className="text-[10px] text-white/40 font-mono mt-0.5">({item.quantity} × {getRegionalPrice(item.price)})</p>
                                             )}
@@ -1459,7 +1335,7 @@ export default function ShopPage() {
                     <div className="pt-5 border-t border-white/5">
                         <div className="flex justify-between items-baseline mb-5">
                             <span className="text-xs font-bold text-white/40 uppercase tracking-wider">Subtotal:</span>
-                            <span className="text-lg font-black text-white">{getRegionalPrice(cartSubtotal)}</span>
+                            <span className="text-lg font-black text-white">{formatRegionalTotal(cartSubtotal)}</span>
                         </div>
                         <button
                             onClick={handleCheckoutRedirect}
@@ -1470,7 +1346,7 @@ export default function ShopPage() {
                             {/* 🎯 REFINED BUTTON TEXT */}
                             {isProcessingCheckout ? 'Calculating Shipping...' : 'Proceed to Checkout'}
                         </button>
-                        {cart.some(item => (item as any).holdForReview) && (
+                        {cart.some(item => item.holdForReview) && (
                             <p className="text-[11px] text-amber-400 font-medium leading-normal mt-3 text-center px-2">
                                 ⚠️ NOTE: Because your bag contains unverified Graduation Gear, your entire order will be held in review until your graduation video is manually approved by Max.
                             </p>
