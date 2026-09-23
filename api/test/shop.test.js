@@ -204,9 +204,10 @@ test("valid signed payment retains fulfilment and Trello behaviour", async () =>
   const body = signedEvent("paid", { printful_passport: "6a8d5ee9d4d0c7:1" });
   const harness = webhookHarness();
   assert.equal((await harness.call(body, sign(body))).status, 200);
-  assert.equal(harness.requests.length, 2);
+  assert.equal(harness.requests.length, 3);
   assert.equal(harness.requests[0], "https://api.printful.com/orders");
   assert.match(harness.requests[1], /^https:\/\/api.trello.com\/1\/cards/);
+  assert.match(harness.requests[2], /^https:\/\/ntfy\.sh\//);
 });
 
 test("unpaid notifications do not fulfil; paid review orders stay out of Printful", async () => {
@@ -217,13 +218,14 @@ test("unpaid notifications do not fulfil; paid review orders stay out of Printfu
   assert.equal(harness.requests.length, 0);
   const review = signedEvent("paid", { hold_for_review: "true", printful_passport: "6a8d5ee9d4d0c7:1" });
   assert.equal((await harness.call(review, sign(review))).status, 200);
-  assert.equal(harness.requests.length, 1);
+  assert.equal(harness.requests.length, 2);
   assert.match(harness.requests[0], /^https:\/\/api.trello.com\/1\/cards/);
+  assert.match(harness.requests[1], /^https:\/\/ntfy\.sh\//);
 });
 
 test("verified delayed payments can complete fulfilment", async () => {
   const body = signedEvent("paid", {}, "checkout.session.async_payment_succeeded");
   const harness = webhookHarness();
   assert.equal((await harness.call(body, sign(body))).status, 200);
-  assert.equal(harness.requests.length, 1);
+  assert.equal(harness.requests.length, 2);
 });
