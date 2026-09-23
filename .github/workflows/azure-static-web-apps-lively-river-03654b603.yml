@@ -69,7 +69,8 @@ jobs:
             "TRELLO_LABEL_ORANGE": "${{ secrets.TRELLO_LABEL_ORANGE }}",
             "TRELLO_LABEL_PURPLE": "${{ secrets.TRELLO_LABEL_PURPLE }}",
             "TRELLO_LABEL_GREEN": "${{ secrets.TRELLO_LABEL_GREEN }}",
-            "TRELLO_LABEL_CHECK_PRINTFUL": "${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}"
+            "TRELLO_LABEL_CHECK_PRINTFUL": "${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}",
+            "NTFY_TOPIC": "${{ secrets.NTFY_TOPIC }}"
           }
           EOF
       - name: Install shop API dependencies
