@@ -11,7 +11,15 @@ app.http("webhook", {
   authLevel: "anonymous",
   route: "webhook",
   handler: async (request, context) => {
-    const stripe = new Stripe(getSetting("STRIPE_SECRET_KEY"));
+    const webhookSecret = getSetting("STRIPE_WEBHOOK_SECRET");
+    const stripeKey = getSetting("STRIPE_SECRET_KEY");
+    if (!webhookSecret || !stripeKey) {
+      context.error("Payment webhook is not configured.");
+      return { status: 503, jsonBody: { error: "Payment webhook is not configured." } };
+    }
+    const signature = request.headers.get("stripe-signature");
+    if (!signature) return { status: 400, jsonBody: { error: "Missing Stripe signature." } };
+    const stripe = new Stripe(stripeKey);
     let rawBody = "";
 
     try {
@@ -21,26 +29,23 @@ app.http("webhook", {
       return { status: 400, jsonBody: { error: `Buffer Read Exception: ${err.message}` } };
     }
 
-    const signature = request.headers.get("stripe-signature");
-    const webhookSecret = getSetting("STRIPE_WEBHOOK_SECRET");
 
     let event;
     try {
-      if (webhookSecret && signature) {
-        event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
-      } else {
-        event = JSON.parse(rawBody);
-      }
+      event = stripe.webhooks.constructEvent(rawBody, signature, webhookSecret);
     } catch (err) {
       context.error(`❌ Webhook Signature Authentication Denied: ${err.message}`);
       return { status: 400, jsonBody: { error: `Signature Verification Failed: ${err.message}` } };
     }
 
-    if (event.type === "checkout.session.completed") {
+    if (event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded") {
       const sessionSnapshot = event.data.object;
+      if (!["paid", "no_payment_required"].includes(sessionSnapshot.payment_status)) {
+        return { status: 200, jsonBody: { received: true } };
+      }
       let session = sessionSnapshot;
 
-      if (sessionSnapshot.id && !sessionSnapshot.id.includes("simulation")) {
+      if (sessionSnapshot.id) {
         try {
           context.log(`📡 Fetching complete master payload from Stripe for Session: ${sessionSnapshot.id}`);
           session = await stripe.checkout.sessions.retrieve(sessionSnapshot.id);
@@ -71,7 +76,7 @@ app.http("webhook", {
 
       let hasArmyShirt = false;
       let hasCustomization = false;
-      let needsVideoReview = false;
+      let needsVideoReview = orderMetadata.hold_for_review === "true";
 
       if (itemManifest.toLowerCase().includes("pending review") || itemManifest.includes("🔗")) {
         needsVideoReview = true;
@@ -114,7 +119,7 @@ app.http("webhook", {
       const isInternational = countryRegionTag !== "GB";
 
       // ✈️ AUTOMATED PRINTFUL ROUTING TRIGGER
-      if (isInternational) {
+      if (isInternational && !needsVideoReview) {
         const printfulToken = getSetting("PRINTFUL_ACCESS_TOKEN");
         const printfulStoreId = getSetting("PRINTFUL_STORE_ID");
         const passportString = orderMetadata.printful_passport || "";
@@ -148,6 +153,11 @@ app.http("webhook", {
                 state_code: activeAddressObject.state || "",
                 country_code: countryRegionTag,
                 zip: activeAddressObject.postal_code || "",
+                // Printful emails the customer directly once it ships
+                // (tracking number, delivery updates) when it has an
+                // address to send that to — without it, tracking info
+                // only lives inside Printful's own dashboard.
+                ...(customerEmail && customerEmail !== "Unknown Client" ? { email: customerEmail } : {}),
               },
               items: printfulItemsPayload,
               confirm: false, // Draft mode safeguard
@@ -184,7 +194,7 @@ app.http("webhook", {
         finalDescription += `> **Max:** An unverified free milestone item is in this order. Check the manifest below for the video access link.\n\n`;
       }
 
-      if (isInternational) {
+      if (isInternational && !needsVideoReview) {
         if (hasArmyShirt || hasCustomization) {
           finalDescription += `## ⚠️ INTERNATIONAL ORDER - ACTION REQUIRED IN PRINTFUL\n`;
           finalDescription += `> **Action Required:** Open the draft order in Printful to attach the custom design print file before confirming/syncing.\n\n`;
@@ -192,7 +202,7 @@ app.http("webhook", {
           finalDescription += `## ✈️ INTERNATIONAL ORDER - PRINTFUL AUTOMATED (RECORD ONLY)\n`;
           finalDescription += `> **No Action Required:** Standard items sent directly to Printful as an automated draft order. Do not print locally.\n\n`;
         }
-      } else {
+      } else if (!isInternational) {
         finalDescription += `## 🏠 DOMESTIC ORDER - WEZZL IN-HOUSE FULFILLMENT\n\n`;
       }
 
@@ -266,6 +276,46 @@ app.http("webhook", {
         } catch (trelloErr) {
           context.error("❌ Trello asynchronous execution pipeline failure:", trelloErr);
         }
+      }
+
+      // 📱 PUSH NOTIFICATION — one alert, to both Marc's and Max's phones,
+      // via a private Telegram bot posting into a private group chat only
+      // the two of them are in. Fires last, after Trello + Printful have
+      // both been attempted, so it reflects the finished order. The bot
+      // token and chat ID are secrets, not hardcoded, since this repo is
+      // public — anyone who found the token could send junk into the
+      // group as the bot, but (unlike a public relay) still couldn't read
+      // anything without actually being a member of the private chat.
+      try {
+        const telegramBotToken = getSetting("TELEGRAM_BOT_TOKEN");
+        const telegramChatId = getSetting("TELEGRAM_CHAT_ID");
+        if (telegramBotToken && telegramChatId) {
+          const itemLines = [];
+          const productPattern = /\*\*Product:\*\* (.+)\n\*\*Garment Code \(SKU\):\*\* `.*`\n\*\*Quantity:\*\* (\d+)\n\*\*Variations:\*\* (.+)/g;
+          let productMatch;
+          while ((productMatch = productPattern.exec(itemManifest)) !== null) {
+            itemLines.push(`${productMatch[2]}x ${productMatch[1]} — ${productMatch[3]}`);
+          }
+
+          const destinationLabel = isInternational ? countryRegionTag : "UK";
+          const notificationText = [
+            `🎉 New order — ${orderNumber}`,
+            "",
+            `Customer: ${customerName}`,
+            `Destination: ${destinationLabel}`,
+            `Total: ${currencySymbol}${amountPaid}`,
+            "",
+            ...(itemLines.length > 0 ? itemLines : ["(see Trello for item details)"]),
+          ].join("\n");
+
+          await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: telegramChatId, text: notificationText }),
+          });
+        }
+      } catch (notifyError) {
+        context.error("⚠️ Order notification failed to send:", notifyError);
       }
     }
 

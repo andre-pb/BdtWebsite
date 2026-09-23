@@ -6,9 +6,6 @@ const siteUrl = getSiteUrl();
 
 const nextConfig: NextConfig = {
   output: "export",
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   basePath,
   assetPrefix: basePath ? `${basePath}/` : undefined,
   trailingSlash: true,

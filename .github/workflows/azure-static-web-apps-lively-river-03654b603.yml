@@ -34,6 +34,9 @@ jobs:
       - name: Write public Stripe key for the static build
         run: |
           echo "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}" >> .env.production
+      - name: Test shop payment boundaries
+        run: node --test api/test/*.test.js
+
       - name: Build static site
         run: npm run build
         env:
@@ -66,7 +69,9 @@ jobs:
             "TRELLO_LABEL_ORANGE": "${{ secrets.TRELLO_LABEL_ORANGE }}",
             "TRELLO_LABEL_PURPLE": "${{ secrets.TRELLO_LABEL_PURPLE }}",
             "TRELLO_LABEL_GREEN": "${{ secrets.TRELLO_LABEL_GREEN }}",
-            "TRELLO_LABEL_CHECK_PRINTFUL": "${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}"
+            "TRELLO_LABEL_CHECK_PRINTFUL": "${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}",
+            "TELEGRAM_BOT_TOKEN": "${{ secrets.TELEGRAM_BOT_TOKEN }}",
+            "TELEGRAM_CHAT_ID": "${{ secrets.TELEGRAM_CHAT_ID }}"
           }
           EOF
       - name: Install shop API dependencies
