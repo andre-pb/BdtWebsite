@@ -207,7 +207,7 @@ test("valid signed payment retains fulfilment and Trello behaviour", async () =>
   assert.equal(harness.requests.length, 3);
   assert.equal(harness.requests[0], "https://api.printful.com/orders");
   assert.match(harness.requests[1], /^https:\/\/api.trello.com\/1\/cards/);
-  assert.match(harness.requests[2], /^https:\/\/ntfy\.sh\//);
+  assert.match(harness.requests[2], /^https:\/\/api\.telegram\.org\/bot/);
 });
 
 test("unpaid notifications do not fulfil; paid review orders stay out of Printful", async () => {
@@ -220,7 +220,7 @@ test("unpaid notifications do not fulfil; paid review orders stay out of Printfu
   assert.equal((await harness.call(review, sign(review))).status, 200);
   assert.equal(harness.requests.length, 2);
   assert.match(harness.requests[0], /^https:\/\/api.trello.com\/1\/cards/);
-  assert.match(harness.requests[1], /^https:\/\/ntfy\.sh\//);
+  assert.match(harness.requests[1], /^https:\/\/api\.telegram\.org\/bot/);
 });
 
 test("verified delayed payments can complete fulfilment", async () => {

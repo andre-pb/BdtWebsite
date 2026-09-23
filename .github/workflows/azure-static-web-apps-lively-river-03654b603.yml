@@ -70,7 +70,8 @@ jobs:
             "TRELLO_LABEL_PURPLE": "${{ secrets.TRELLO_LABEL_PURPLE }}",
             "TRELLO_LABEL_GREEN": "${{ secrets.TRELLO_LABEL_GREEN }}",
             "TRELLO_LABEL_CHECK_PRINTFUL": "${{ secrets.TRELLO_LABEL_CHECK_PRINTFUL }}",
-            "NTFY_TOPIC": "${{ secrets.NTFY_TOPIC }}"
+            "TELEGRAM_BOT_TOKEN": "${{ secrets.TELEGRAM_BOT_TOKEN }}",
+            "TELEGRAM_CHAT_ID": "${{ secrets.TELEGRAM_CHAT_ID }}"
           }
           EOF
       - name: Install shop API dependencies

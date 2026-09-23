@@ -279,15 +279,17 @@ app.http("webhook", {
       }
 
       // 📱 PUSH NOTIFICATION — one alert, to both Marc's and Max's phones,
-      // via ntfy.sh (no account needed; they just subscribe to the same
-      // topic name in the ntfy app). Fires last, after Trello + Printful
-      // have both been attempted, so it reflects the finished order. The
-      // topic name is a secret, not hardcoded, since this repo is public —
-      // anyone who found the topic name could otherwise read your orders
-      // or spam the channel.
+      // via a private Telegram bot posting into a private group chat only
+      // the two of them are in. Fires last, after Trello + Printful have
+      // both been attempted, so it reflects the finished order. The bot
+      // token and chat ID are secrets, not hardcoded, since this repo is
+      // public — anyone who found the token could send junk into the
+      // group as the bot, but (unlike a public relay) still couldn't read
+      // anything without actually being a member of the private chat.
       try {
-        const ntfyTopic = getSetting("NTFY_TOPIC");
-        if (ntfyTopic) {
+        const telegramBotToken = getSetting("TELEGRAM_BOT_TOKEN");
+        const telegramChatId = getSetting("TELEGRAM_CHAT_ID");
+        if (telegramBotToken && telegramChatId) {
           const itemLines = [];
           const productPattern = /\*\*Product:\*\* (.+)\n\*\*Garment Code \(SKU\):\*\* `.*`\n\*\*Quantity:\*\* (\d+)\n\*\*Variations:\*\* (.+)/g;
           let productMatch;
@@ -296,7 +298,9 @@ app.http("webhook", {
           }
 
           const destinationLabel = isInternational ? countryRegionTag : "UK";
-          const notificationBody = [
+          const notificationText = [
+            `🎉 New order — ${orderNumber}`,
+            "",
             `Customer: ${customerName}`,
             `Destination: ${destinationLabel}`,
             `Total: ${currencySymbol}${amountPaid}`,
@@ -304,13 +308,10 @@ app.http("webhook", {
             ...(itemLines.length > 0 ? itemLines : ["(see Trello for item details)"]),
           ].join("\n");
 
-          await fetch(`https://ntfy.sh/${encodeURIComponent(ntfyTopic)}`, {
+          await fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage`, {
             method: "POST",
-            headers: {
-              Title: `New order — ${orderNumber}`,
-              Tags: "moneybag,package",
-            },
-            body: notificationBody,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ chat_id: telegramChatId, text: notificationText }),
           });
         }
       } catch (notifyError) {
