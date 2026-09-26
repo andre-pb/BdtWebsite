@@ -1236,7 +1236,6 @@ export default function ShopPage() {
                             </div>
                         </div>
                     </div>
-                </div>
 
                 <Footer />
             </div>
@@ -1510,4 +1509,4 @@ export default function ShopPage() {
             )}
         </div>
     );
-}
+}
