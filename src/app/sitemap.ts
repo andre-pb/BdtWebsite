@@ -19,7 +19,7 @@ import {
   twentyMinuteAppsComparison,
   freeWorkoutAppsComparison,
 } from "@/content/seo-comparisons";
-import { accountDeletionPage, privacyPage, termsPage } from "@/content/legal";
+import { accountDeletionPage, privacyPage, returnsPage, termsPage } from "@/content/legal";
 import { site } from "@/content/site";
 
 export const dynamic = "force-static";
@@ -33,6 +33,7 @@ export const dynamic = "force-static";
  */
 const CORE_LAST_MODIFIED = "2026-09-07";
 const LEGAL_LAST_MODIFIED = "2026-05-29";
+const RETURNS_LAST_MODIFIED = "2026-09-26";
 
 type Entry = {
   path: string;
@@ -67,6 +68,7 @@ const entries: Entry[] = [
   { path: "/community/", lastModified: CORE_LAST_MODIFIED, changeFrequency: "weekly", priority: 0.8 },
   { path: termsPage.path, lastModified: LEGAL_LAST_MODIFIED, changeFrequency: "yearly", priority: 0.3 },
   { path: privacyPage.path, lastModified: LEGAL_LAST_MODIFIED, changeFrequency: "yearly", priority: 0.3 },
+  { path: returnsPage.path, lastModified: RETURNS_LAST_MODIFIED, changeFrequency: "yearly", priority: 0.3 },
   { path: accountDeletionPage.path, lastModified: LEGAL_LAST_MODIFIED, changeFrequency: "yearly", priority: 0.3 },
 ];
 

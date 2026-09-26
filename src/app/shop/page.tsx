@@ -6,7 +6,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PRINTFUL_CATALOG_HEX_IDS } from './printful-catalog';
-import { PasscodeGuard } from "@/components/shop/PasscodeGuard";
 
 interface CartItem {
     id: string;
@@ -935,8 +934,7 @@ export default function ShopPage() {
                         </div>
                     </div>
 
-                    <PasscodeGuard>
-                        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "48px 24px" }} className="w-full">
+                    <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "48px 24px" }} className="w-full">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full items-stretch">
 
                                 {/* Card 1: Level Progress Gear */}
@@ -1237,8 +1235,7 @@ export default function ShopPage() {
 
                             </div>
                         </div>
-                    </PasscodeGuard>
-                </div>
+                    </div>
 
                 <Footer />
             </div>

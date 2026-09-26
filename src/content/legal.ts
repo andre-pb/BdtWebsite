@@ -321,8 +321,86 @@ export const privacyPage = {
   ] satisfies LegalSection[],
 } as const;
 
+export const returnsPage = {
+  path: "/returns-policy/",
+  seo: {
+    title: "Returns Policy",
+    description:
+      "How to cancel or return an order from the Busy Dad Training shop, our 14-day cancellation and return window, and your rights for faulty or misdescribed goods.",
+  },
+  heading: "Returns Policy",
+  intro:
+    "This Returns Policy explains your rights to cancel or return an order placed through the Busy Dad Training shop, how the process works, and who pays for return shipping. It applies alongside, and does not affect, your statutory rights under UK consumer law.",
+  lastUpdated: "September 2026",
+  sections: [
+    {
+      id: "cancellation-window",
+      title: "Your right to cancel",
+      paragraphs: [
+        "You have the right to cancel your order within 14 days of receiving your goods, without giving any reason. To meet the cancellation deadline, it is enough for you to send your notice of cancellation before the 14-day period has expired.",
+        "To cancel, contact us at hello@busydadtraining.com with your order number and a clear statement that you wish to cancel.",
+      ],
+    },
+    {
+      id: "return-window",
+      title: "Returning the goods",
+      paragraphs: [
+        "Once you have told us you want to cancel, you have a further 14 days to send the goods back to us. We will provide a return address when you contact us to arrange your return.",
+        "Goods should be returned unworn, unwashed, and with any original tags attached, in the same condition you received them.",
+      ],
+    },
+    {
+      id: "return-postage",
+      title: "Return postage costs",
+      paragraphs: [
+        "You are responsible for the cost of returning the goods to us, unless the item is faulty or was misdescribed (see \"Faulty or misdescribed goods\" below). We recommend using a tracked shipping service, as we cannot be responsible for returns lost in transit.",
+      ],
+    },
+    {
+      id: "refunds",
+      title: "Refunds",
+      paragraphs: [
+        "We will refund the price you paid for the goods, including the standard delivery cost you originally paid, once we have received the returned item and confirmed it is in an acceptable condition. Refunds are issued to your original payment method, normally within 14 days of us receiving the goods.",
+        "If the value of the goods has been reduced as a result of handling beyond what is necessary to establish their nature, characteristics and how they work (for example, visible wear, washing, or damage), we may deduct an amount reflecting that loss of value from your refund.",
+        "We do not offer exchanges. If you would like a different size, colour or configuration, please return your original order for a refund and place a new order.",
+      ],
+    },
+    {
+      id: "personalised-items",
+      title: "Personalised items",
+      paragraphs: [
+        "The right to cancel does not apply to goods made to your specification or clearly personalised, such as the Busy Dad Army Shirt with a custom name or text stamp added at your request.",
+        "This exclusion does not apply to products where you simply choose from a standard range of options, such as size, colour, fabric or logo selection on our Level Progress Gear. Those items can be cancelled and returned under the standard terms above.",
+      ],
+    },
+    {
+      id: "faulty-goods",
+      title: "Faulty or misdescribed goods",
+      paragraphs: [
+        "Your rights under this policy are in addition to your statutory rights under the Consumer Rights Act 2015. If an item arrives faulty, damaged, or does not match its description, you are entitled to a repair, replacement, or refund, and we will cover the cost of return postage.",
+        "Please contact hello@busydadtraining.com with your order number and photos of the issue, and we will arrange the return and resolution.",
+      ],
+    },
+    {
+      id: "international-orders",
+      title: "International orders",
+      paragraphs: [
+        "This policy applies to all orders placed through the Busy Dad Training shop, including those shipped outside the UK. Depending on the destination, returned goods may need to clear customs; we will provide guidance on request.",
+      ],
+    },
+    {
+      id: "contact",
+      title: "Contact us",
+      paragraphs: [
+        `To start a return or cancellation, or if you have any questions about this policy, email us at ${legalContact.email}.`,
+      ],
+    },
+  ] satisfies LegalSection[],
+} as const;
+
 export const legalFooterLinks = [
   { label: "Terms", href: termsPage.path },
   { label: "Privacy", href: privacyPage.path },
+  { label: "Returns", href: returnsPage.path },
   { label: "Account Deletion", href: accountDeletionPage.path },
 ] as const;
